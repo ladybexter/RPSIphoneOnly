@@ -1,0 +1,445 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C6965E9614DC995700A4A21D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6965E9514DC995700A4A21D /* UIKit.framework */; };
+		C6965E9814DC995700A4A21D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6965E9714DC995700A4A21D /* Foundation.framework */; };
+		C6965E9A14DC995700A4A21D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6965E9914DC995700A4A21D /* CoreGraphics.framework */; };
+		C6965EA014DC995700A4A21D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C6965E9E14DC995700A4A21D /* InfoPlist.strings */; };
+		C6965EA214DC995700A4A21D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C6965EA114DC995700A4A21D /* main.m */; };
+		C6965EA614DC995700A4A21D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C6965EA514DC995700A4A21D /* AppDelegate.m */; };
+		C6965EA914DC995700A4A21D /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6965EA714DC995700A4A21D /* MainStoryboard.storyboard */; };
+		C6965EAC14DC995700A4A21D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6965EAB14DC995700A4A21D /* ViewController.m */; };
+		C6965EB414DC995700A4A21D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6965EB314DC995700A4A21D /* SenTestingKit.framework */; };
+		C6965EB514DC995700A4A21D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6965E9514DC995700A4A21D /* UIKit.framework */; };
+		C6965EB614DC995700A4A21D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6965E9714DC995700A4A21D /* Foundation.framework */; };
+		C6965EBE14DC995800A4A21D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C6965EBC14DC995800A4A21D /* InfoPlist.strings */; };
+		C6965EC114DC995800A4A21D /* RPSIphoneOnlyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C6965EC014DC995800A4A21D /* RPSIphoneOnlyTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C6965EB714DC995800A4A21D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C6965E8814DC995600A4A21D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C6965E9014DC995700A4A21D;
+			remoteInfo = RPSIphoneOnly;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C6965E9114DC995700A4A21D /* RPSIphoneOnly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RPSIphoneOnly.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6965E9514DC995700A4A21D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C6965E9714DC995700A4A21D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C6965E9914DC995700A4A21D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C6965E9D14DC995700A4A21D /* RPSIphoneOnly-Info.plist */ = {isa = PBXFileReference; path = "RPSIphoneOnly-Info.plist"; sourceTree = "<group>"; };
+		C6965E9F14DC995700A4A21D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C6965EA114DC995700A4A21D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C6965EA314DC995700A4A21D /* RPSIphoneOnly-Prefix.pch */ = {isa = PBXFileReference; path = "RPSIphoneOnly-Prefix.pch"; sourceTree = "<group>"; };
+		C6965EA414DC995700A4A21D /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		C6965EA514DC995700A4A21D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C6965EA814DC995700A4A21D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		C6965EAA14DC995700A4A21D /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		C6965EAB14DC995700A4A21D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C6965EB214DC995700A4A21D /* RPSIphoneOnlyTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RPSIphoneOnlyTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6965EB314DC995700A4A21D /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		C6965EBB14DC995800A4A21D /* RPSIphoneOnlyTests-Info.plist */ = {isa = PBXFileReference; path = "RPSIphoneOnlyTests-Info.plist"; sourceTree = "<group>"; };
+		C6965EBD14DC995800A4A21D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C6965EBF14DC995800A4A21D /* RPSIphoneOnlyTests.h */ = {isa = PBXFileReference; path = RPSIphoneOnlyTests.h; sourceTree = "<group>"; };
+		C6965EC014DC995800A4A21D /* RPSIphoneOnlyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSIphoneOnlyTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C6965E8E14DC995700A4A21D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6965E9614DC995700A4A21D /* UIKit.framework in Frameworks */,
+				C6965E9814DC995700A4A21D /* Foundation.framework in Frameworks */,
+				C6965E9A14DC995700A4A21D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6965EAE14DC995700A4A21D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6965EB414DC995700A4A21D /* SenTestingKit.framework in Frameworks */,
+				C6965EB514DC995700A4A21D /* UIKit.framework in Frameworks */,
+				C6965EB614DC995700A4A21D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C6965E8614DC995600A4A21D = {
+			isa = PBXGroup;
+			children = (
+				C6965E9B14DC995700A4A21D /* RPSIphoneOnly */,
+				C6965EB914DC995800A4A21D /* RPSIphoneOnlyTests */,
+				C6965E9414DC995700A4A21D /* Frameworks */,
+				C6965E9214DC995700A4A21D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C6965E9214DC995700A4A21D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C6965E9114DC995700A4A21D /* RPSIphoneOnly.app */,
+				C6965EB214DC995700A4A21D /* RPSIphoneOnlyTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C6965E9414DC995700A4A21D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C6965E9514DC995700A4A21D /* UIKit.framework */,
+				C6965E9714DC995700A4A21D /* Foundation.framework */,
+				C6965E9914DC995700A4A21D /* CoreGraphics.framework */,
+				C6965EB314DC995700A4A21D /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C6965E9B14DC995700A4A21D /* RPSIphoneOnly */ = {
+			isa = PBXGroup;
+			children = (
+				C6965EA414DC995700A4A21D /* AppDelegate.h */,
+				C6965EA514DC995700A4A21D /* AppDelegate.m */,
+				C6965EA714DC995700A4A21D /* MainStoryboard.storyboard */,
+				C6965EAA14DC995700A4A21D /* ViewController.h */,
+				C6965EAB14DC995700A4A21D /* ViewController.m */,
+				C6965E9C14DC995700A4A21D /* Supporting Files */,
+			);
+			path = RPSIphoneOnly;
+			sourceTree = "<group>";
+		};
+		C6965E9C14DC995700A4A21D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C6965E9D14DC995700A4A21D /* RPSIphoneOnly-Info.plist */,
+				C6965E9E14DC995700A4A21D /* InfoPlist.strings */,
+				C6965EA114DC995700A4A21D /* main.m */,
+				C6965EA314DC995700A4A21D /* RPSIphoneOnly-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C6965EB914DC995800A4A21D /* RPSIphoneOnlyTests */ = {
+			isa = PBXGroup;
+			children = (
+				C6965EBF14DC995800A4A21D /* RPSIphoneOnlyTests.h */,
+				C6965EC014DC995800A4A21D /* RPSIphoneOnlyTests.m */,
+				C6965EBA14DC995800A4A21D /* Supporting Files */,
+			);
+			path = RPSIphoneOnlyTests;
+			sourceTree = "<group>";
+		};
+		C6965EBA14DC995800A4A21D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C6965EBB14DC995800A4A21D /* RPSIphoneOnlyTests-Info.plist */,
+				C6965EBC14DC995800A4A21D /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C6965E9014DC995700A4A21D /* RPSIphoneOnly */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C6965EC414DC995800A4A21D /* Build configuration list for PBXNativeTarget "RPSIphoneOnly" */;
+			buildPhases = (
+				C6965E8D14DC995700A4A21D /* Sources */,
+				C6965E8E14DC995700A4A21D /* Frameworks */,
+				C6965E8F14DC995700A4A21D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RPSIphoneOnly;
+			productName = RPSIphoneOnly;
+			productReference = C6965E9114DC995700A4A21D /* RPSIphoneOnly.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C6965EB114DC995700A4A21D /* RPSIphoneOnlyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C6965EC714DC995800A4A21D /* Build configuration list for PBXNativeTarget "RPSIphoneOnlyTests" */;
+			buildPhases = (
+				C6965EAD14DC995700A4A21D /* Sources */,
+				C6965EAE14DC995700A4A21D /* Frameworks */,
+				C6965EAF14DC995700A4A21D /* Resources */,
+				C6965EB014DC995700A4A21D /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C6965EB814DC995800A4A21D /* PBXTargetDependency */,
+			);
+			name = RPSIphoneOnlyTests;
+			productName = RPSIphoneOnlyTests;
+			productReference = C6965EB214DC995700A4A21D /* RPSIphoneOnlyTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C6965E8814DC995600A4A21D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = UoP;
+			};
+			buildConfigurationList = C6965E8B14DC995600A4A21D /* Build configuration list for PBXProject "RPSIphoneOnly" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C6965E8614DC995600A4A21D;
+			productRefGroup = C6965E9214DC995700A4A21D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C6965E9014DC995700A4A21D /* RPSIphoneOnly */,
+				C6965EB114DC995700A4A21D /* RPSIphoneOnlyTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C6965E8F14DC995700A4A21D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6965EA014DC995700A4A21D /* InfoPlist.strings in Resources */,
+				C6965EA914DC995700A4A21D /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6965EAF14DC995700A4A21D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6965EBE14DC995800A4A21D /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C6965EB014DC995700A4A21D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C6965E8D14DC995700A4A21D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6965EA214DC995700A4A21D /* main.m in Sources */,
+				C6965EA614DC995700A4A21D /* AppDelegate.m in Sources */,
+				C6965EAC14DC995700A4A21D /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6965EAD14DC995700A4A21D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6965EC114DC995800A4A21D /* RPSIphoneOnlyTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C6965EB814DC995800A4A21D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C6965E9014DC995700A4A21D /* RPSIphoneOnly */;
+			targetProxy = C6965EB714DC995800A4A21D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C6965E9E14DC995700A4A21D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C6965E9F14DC995700A4A21D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C6965EA714DC995700A4A21D /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C6965EA814DC995700A4A21D /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		C6965EBC14DC995800A4A21D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C6965EBD14DC995800A4A21D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C6965EC214DC995800A4A21D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C6965EC314DC995800A4A21D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C6965EC514DC995800A4A21D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RPSIphoneOnly/RPSIphoneOnly-Prefix.pch";
+				INFOPLIST_FILE = "RPSIphoneOnly/RPSIphoneOnly-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C6965EC614DC995800A4A21D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RPSIphoneOnly/RPSIphoneOnly-Prefix.pch";
+				INFOPLIST_FILE = "RPSIphoneOnly/RPSIphoneOnly-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C6965EC814DC995800A4A21D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RPSIphoneOnly.app/RPSIphoneOnly";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RPSIphoneOnly/RPSIphoneOnly-Prefix.pch";
+				INFOPLIST_FILE = "RPSIphoneOnlyTests/RPSIphoneOnlyTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		C6965EC914DC995800A4A21D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RPSIphoneOnly.app/RPSIphoneOnly";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RPSIphoneOnly/RPSIphoneOnly-Prefix.pch";
+				INFOPLIST_FILE = "RPSIphoneOnlyTests/RPSIphoneOnlyTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C6965E8B14DC995600A4A21D /* Build configuration list for PBXProject "RPSIphoneOnly" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6965EC214DC995800A4A21D /* Debug */,
+				C6965EC314DC995800A4A21D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C6965EC414DC995800A4A21D /* Build configuration list for PBXNativeTarget "RPSIphoneOnly" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6965EC514DC995800A4A21D /* Debug */,
+				C6965EC614DC995800A4A21D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C6965EC714DC995800A4A21D /* Build configuration list for PBXNativeTarget "RPSIphoneOnlyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6965EC814DC995800A4A21D /* Debug */,
+				C6965EC914DC995800A4A21D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C6965E8814DC995600A4A21D /* Project object */;
+}
