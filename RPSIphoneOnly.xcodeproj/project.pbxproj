@@ -20,6 +20,21 @@
 		C6965EB614DC995700A4A21D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6965E9714DC995700A4A21D /* Foundation.framework */; };
 		C6965EBE14DC995800A4A21D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C6965EBC14DC995800A4A21D /* InfoPlist.strings */; };
 		C6965EC114DC995800A4A21D /* RPSIphoneOnlyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C6965EC014DC995800A4A21D /* RPSIphoneOnlyTests.m */; };
+		C6965ED014DC9F4F00A4A21D /* paper 2_finalise - android (48x48)no bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6965ECF14DC9F4F00A4A21D /* paper 2_finalise - android (48x48)no bg.png */; };
+		C6965ED214DC9F6300A4A21D /* paper2_finalise-android(78x78)nobg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6965ED114DC9F6300A4A21D /* paper2_finalise-android(78x78)nobg.png */; };
+		C6965ED414DC9F7A00A4A21D /* robot4_finalise - android (48x48)no bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6965ED314DC9F7A00A4A21D /* robot4_finalise - android (48x48)no bg.png */; };
+		C6965ED614DC9F8700A4A21D /* robot4_finalise-android(78x78)nobg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6965ED514DC9F8700A4A21D /* robot4_finalise-android(78x78)nobg.png */; };
+		C6965ED814DC9F9D00A4A21D /* rock5._finalise - android (48x48)no bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6965ED714DC9F9D00A4A21D /* rock5._finalise - android (48x48)no bg.png */; };
+		C6965EDA14DC9FAA00A4A21D /* rock5._finalise-android(78x78)nobg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6965ED914DC9FAA00A4A21D /* rock5._finalise-android(78x78)nobg.png */; };
+		C6965EDC14DC9FB700A4A21D /* scissors4_finalise - android (48x48)no bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6965EDB14DC9FB700A4A21D /* scissors4_finalise - android (48x48)no bg.png */; };
+		C6965EDE14DC9FCE00A4A21D /* scissors4_finalise-android(78x78)nobg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6965EDD14DC9FCE00A4A21D /* scissors4_finalise-android(78x78)nobg.png */; };
+		C6965EE014DC9FE100A4A21D /* unicorn3_finalise - android (48x48)no bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6965EDF14DC9FE100A4A21D /* unicorn3_finalise - android (48x48)no bg.png */; };
+		C6965EE214DC9FF100A4A21D /* unicorn3_finalise-android(78x78)nobg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6965EE114DC9FF100A4A21D /* unicorn3_finalise-android(78x78)nobg.png */; };
+		C6965EEB14DCA77400A4A21D /* SingleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6965EE914DCA77400A4A21D /* SingleViewController.m */; };
+		C6965EEC14DCA77400A4A21D /* SingleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6965EEA14DCA77400A4A21D /* SingleViewController.xib */; };
+		C6E73B1114DD893E007E48F2 /* AiFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E73B1014DD893E007E48F2 /* AiFunction.m */; };
+		C6E73B1E14DDDD12007E48F2 /* ModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E73B1C14DDDD11007E48F2 /* ModeViewController.m */; };
+		C6E73B1F14DDDD12007E48F2 /* ModeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6E73B1D14DDDD12007E48F2 /* ModeViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,21 +52,39 @@
 		C6965E9514DC995700A4A21D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C6965E9714DC995700A4A21D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C6965E9914DC995700A4A21D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		C6965E9D14DC995700A4A21D /* RPSIphoneOnly-Info.plist */ = {isa = PBXFileReference; path = "RPSIphoneOnly-Info.plist"; sourceTree = "<group>"; };
+		C6965E9D14DC995700A4A21D /* RPSIphoneOnly-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RPSIphoneOnly-Info.plist"; sourceTree = "<group>"; };
 		C6965E9F14DC995700A4A21D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C6965EA114DC995700A4A21D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		C6965EA314DC995700A4A21D /* RPSIphoneOnly-Prefix.pch */ = {isa = PBXFileReference; path = "RPSIphoneOnly-Prefix.pch"; sourceTree = "<group>"; };
-		C6965EA414DC995700A4A21D /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		C6965EA314DC995700A4A21D /* RPSIphoneOnly-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RPSIphoneOnly-Prefix.pch"; sourceTree = "<group>"; };
+		C6965EA414DC995700A4A21D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C6965EA514DC995700A4A21D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C6965EA814DC995700A4A21D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		C6965EAA14DC995700A4A21D /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		C6965EAA14DC995700A4A21D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		C6965EAB14DC995700A4A21D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		C6965EB214DC995700A4A21D /* RPSIphoneOnlyTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RPSIphoneOnlyTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6965EB314DC995700A4A21D /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		C6965EBB14DC995800A4A21D /* RPSIphoneOnlyTests-Info.plist */ = {isa = PBXFileReference; path = "RPSIphoneOnlyTests-Info.plist"; sourceTree = "<group>"; };
+		C6965EBB14DC995800A4A21D /* RPSIphoneOnlyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RPSIphoneOnlyTests-Info.plist"; sourceTree = "<group>"; };
 		C6965EBD14DC995800A4A21D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		C6965EBF14DC995800A4A21D /* RPSIphoneOnlyTests.h */ = {isa = PBXFileReference; path = RPSIphoneOnlyTests.h; sourceTree = "<group>"; };
+		C6965EBF14DC995800A4A21D /* RPSIphoneOnlyTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSIphoneOnlyTests.h; sourceTree = "<group>"; };
 		C6965EC014DC995800A4A21D /* RPSIphoneOnlyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSIphoneOnlyTests.m; sourceTree = "<group>"; };
+		C6965ECF14DC9F4F00A4A21D /* paper 2_finalise - android (48x48)no bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paper 2_finalise - android (48x48)no bg.png"; sourceTree = "<group>"; };
+		C6965ED114DC9F6300A4A21D /* paper2_finalise-android(78x78)nobg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paper2_finalise-android(78x78)nobg.png"; sourceTree = "<group>"; };
+		C6965ED314DC9F7A00A4A21D /* robot4_finalise - android (48x48)no bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "robot4_finalise - android (48x48)no bg.png"; sourceTree = "<group>"; };
+		C6965ED514DC9F8700A4A21D /* robot4_finalise-android(78x78)nobg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "robot4_finalise-android(78x78)nobg.png"; sourceTree = "<group>"; };
+		C6965ED714DC9F9D00A4A21D /* rock5._finalise - android (48x48)no bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rock5._finalise - android (48x48)no bg.png"; sourceTree = "<group>"; };
+		C6965ED914DC9FAA00A4A21D /* rock5._finalise-android(78x78)nobg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rock5._finalise-android(78x78)nobg.png"; sourceTree = "<group>"; };
+		C6965EDB14DC9FB700A4A21D /* scissors4_finalise - android (48x48)no bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scissors4_finalise - android (48x48)no bg.png"; sourceTree = "<group>"; };
+		C6965EDD14DC9FCE00A4A21D /* scissors4_finalise-android(78x78)nobg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scissors4_finalise-android(78x78)nobg.png"; sourceTree = "<group>"; };
+		C6965EDF14DC9FE100A4A21D /* unicorn3_finalise - android (48x48)no bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unicorn3_finalise - android (48x48)no bg.png"; sourceTree = "<group>"; };
+		C6965EE114DC9FF100A4A21D /* unicorn3_finalise-android(78x78)nobg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unicorn3_finalise-android(78x78)nobg.png"; sourceTree = "<group>"; };
+		C6965EE814DCA77400A4A21D /* SingleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleViewController.h; sourceTree = "<group>"; };
+		C6965EE914DCA77400A4A21D /* SingleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleViewController.m; sourceTree = "<group>"; };
+		C6965EEA14DCA77400A4A21D /* SingleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingleViewController.xib; sourceTree = "<group>"; };
+		C6E73B0F14DD893E007E48F2 /* AiFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AiFunction.h; sourceTree = "<group>"; };
+		C6E73B1014DD893E007E48F2 /* AiFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AiFunction.m; sourceTree = "<group>"; };
+		C6E73B1B14DDDD11007E48F2 /* ModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModeViewController.h; sourceTree = "<group>"; };
+		C6E73B1C14DDDD11007E48F2 /* ModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModeViewController.m; sourceTree = "<group>"; };
+		C6E73B1D14DDDD12007E48F2 /* ModeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModeViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +150,16 @@
 				C6965EAA14DC995700A4A21D /* ViewController.h */,
 				C6965EAB14DC995700A4A21D /* ViewController.m */,
 				C6965E9C14DC995700A4A21D /* Supporting Files */,
+				C6965ECF14DC9F4F00A4A21D /* paper 2_finalise - android (48x48)no bg.png */,
+				C6965ED114DC9F6300A4A21D /* paper2_finalise-android(78x78)nobg.png */,
+				C6965ED314DC9F7A00A4A21D /* robot4_finalise - android (48x48)no bg.png */,
+				C6965ED514DC9F8700A4A21D /* robot4_finalise-android(78x78)nobg.png */,
+				C6965ED714DC9F9D00A4A21D /* rock5._finalise - android (48x48)no bg.png */,
+				C6965ED914DC9FAA00A4A21D /* rock5._finalise-android(78x78)nobg.png */,
+				C6965EDB14DC9FB700A4A21D /* scissors4_finalise - android (48x48)no bg.png */,
+				C6965EDD14DC9FCE00A4A21D /* scissors4_finalise-android(78x78)nobg.png */,
+				C6965EDF14DC9FE100A4A21D /* unicorn3_finalise - android (48x48)no bg.png */,
+				C6965EE114DC9FF100A4A21D /* unicorn3_finalise-android(78x78)nobg.png */,
 			);
 			path = RPSIphoneOnly;
 			sourceTree = "<group>";
@@ -124,6 +167,14 @@
 		C6965E9C14DC995700A4A21D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C6E73B1B14DDDD11007E48F2 /* ModeViewController.h */,
+				C6E73B1C14DDDD11007E48F2 /* ModeViewController.m */,
+				C6E73B1D14DDDD12007E48F2 /* ModeViewController.xib */,
+				C6E73B0F14DD893E007E48F2 /* AiFunction.h */,
+				C6E73B1014DD893E007E48F2 /* AiFunction.m */,
+				C6965EE814DCA77400A4A21D /* SingleViewController.h */,
+				C6965EE914DCA77400A4A21D /* SingleViewController.m */,
+				C6965EEA14DCA77400A4A21D /* SingleViewController.xib */,
 				C6965E9D14DC995700A4A21D /* RPSIphoneOnly-Info.plist */,
 				C6965E9E14DC995700A4A21D /* InfoPlist.strings */,
 				C6965EA114DC995700A4A21D /* main.m */,
@@ -224,6 +275,18 @@
 			files = (
 				C6965EA014DC995700A4A21D /* InfoPlist.strings in Resources */,
 				C6965EA914DC995700A4A21D /* MainStoryboard.storyboard in Resources */,
+				C6965ED014DC9F4F00A4A21D /* paper 2_finalise - android (48x48)no bg.png in Resources */,
+				C6965ED214DC9F6300A4A21D /* paper2_finalise-android(78x78)nobg.png in Resources */,
+				C6965ED414DC9F7A00A4A21D /* robot4_finalise - android (48x48)no bg.png in Resources */,
+				C6965ED614DC9F8700A4A21D /* robot4_finalise-android(78x78)nobg.png in Resources */,
+				C6965ED814DC9F9D00A4A21D /* rock5._finalise - android (48x48)no bg.png in Resources */,
+				C6965EDA14DC9FAA00A4A21D /* rock5._finalise-android(78x78)nobg.png in Resources */,
+				C6965EDC14DC9FB700A4A21D /* scissors4_finalise - android (48x48)no bg.png in Resources */,
+				C6965EDE14DC9FCE00A4A21D /* scissors4_finalise-android(78x78)nobg.png in Resources */,
+				C6965EE014DC9FE100A4A21D /* unicorn3_finalise - android (48x48)no bg.png in Resources */,
+				C6965EE214DC9FF100A4A21D /* unicorn3_finalise-android(78x78)nobg.png in Resources */,
+				C6965EEC14DCA77400A4A21D /* SingleViewController.xib in Resources */,
+				C6E73B1F14DDDD12007E48F2 /* ModeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +324,9 @@
 				C6965EA214DC995700A4A21D /* main.m in Sources */,
 				C6965EA614DC995700A4A21D /* AppDelegate.m in Sources */,
 				C6965EAC14DC995700A4A21D /* ViewController.m in Sources */,
+				C6965EEB14DCA77400A4A21D /* SingleViewController.m in Sources */,
+				C6E73B1114DD893E007E48F2 /* AiFunction.m in Sources */,
+				C6E73B1E14DDDD12007E48F2 /* ModeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +496,7 @@
 				C6965EC614DC995800A4A21D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C6965EC714DC995800A4A21D /* Build configuration list for PBXNativeTarget "RPSIphoneOnlyTests" */ = {
 			isa = XCConfigurationList;
@@ -438,6 +505,7 @@
 				C6965EC914DC995800A4A21D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
