@@ -75,6 +75,10 @@ double predictedNum[2] ={4,4};
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"testBackground" ofType:@"jpg" inDirectory:@""];
+    
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile:path]]];
      
 }
 

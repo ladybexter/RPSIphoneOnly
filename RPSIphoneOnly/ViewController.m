@@ -22,6 +22,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"testBackground" ofType:@"jpg" inDirectory:@""];
+    
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile:path]]];
 }
 
 - (void)viewDidUnload
