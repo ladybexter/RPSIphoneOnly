@@ -34,6 +34,8 @@ int userScore = 0;
 int userChoice;
 int computerScore = 0;
 int computerChoice;
+NSNumber *computerChoiceNS;
+double computerPick;
 int scoreDifference;
 
 int consecutiveWinsComputer = 0;
@@ -111,6 +113,7 @@ double predictedNum[2] ={4,4};
 
 
 -(void) gameComplete{
+    
     //if no games have been played then no data will be available for the computer to make an estimate from
     // for the first game the computer will make a random estimation
     // for the rest of the time the computer will take users past choices to prect the next action
@@ -129,20 +132,9 @@ double predictedNum[2] ={4,4};
         
         nextNumberPrediction(lastNumber, numberBeforeLast, conditionalArray, actionArray, weightsConditionActionArray, numberOfGamesPlayed, predictedNum, results);
         
-        AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         
-        if (appdelegate.mode == @"easy")
-        {
-            txtAIMode.text = @"Lina";
-            computerChoice = (int)results[0];
-            testlabel.text = appdelegate.mode;
-        }
-        if (appdelegate.mode == @"intense")
-        {
-            txtAIMode.text = @"Joanna";
-            computerChoice = (int)results[1];
-            testlabel.text = appdelegate.mode;
-        }
+        
+        computerChoice = (int)results[1];
         
         predictedNum[0] = results[0];
         predictedNum[1] = results[1];        
@@ -153,21 +145,26 @@ double predictedNum[2] ={4,4};
     // start Timer
     counter = 0;
     
-    //time = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(action:)  userInfo:nil repeats:YES];
+    computerChoiceNS = [NSNumber numberWithInt:computerChoice];
+
     
-    [self computerDisplay:computerChoice :true];
+    time = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(action:)  userInfo:computerChoiceNS repeats:YES];
+    
+    //[self computerDisplay:computerChoice :true];
     
     
 }
 
 
 -(void)action:(NSTimer *)timer {
-	if(counter < 25){
+    computerPick = [computerChoiceNS doubleValue];
+	if(counter < 15){
         counter++;
-        [self computerDisplay:computerChoice: false];        
+        int random = (arc4random()%5) + 1;
+        [self computerDisplay:random: false];        
     }else{
         [time invalidate];
-        [self computerDisplay:computerChoice: true];        
+        [self computerDisplay:computerPick: true];        
     }
 }
 
@@ -176,8 +173,11 @@ double predictedNum[2] ={4,4};
     txtResult.textColor =[UIColor blueColor];
     txtWinLoss.textColor = [UIColor blueColor];
     txtWinLoss.text = @"YOU TIE";
+    txtResult.text = @"No Win, No Lose";
     consecutiveWinsComputer = 0;
     consecutiveWinsUser = 0;
+    [self displayORHide:0];  
+    
 }
 
 -(void)win
@@ -188,6 +188,7 @@ double predictedNum[2] ={4,4};
     userScore = userScore + 1;
     consecutiveWinsUser = consecutiveWinsUser + 1;
     consecutiveWinsComputer = 0;
+    [self displayORHide:0];  
 }
 
 -(void)lose
@@ -198,6 +199,7 @@ double predictedNum[2] ={4,4};
     computerScore = computerScore + 1;
     consecutiveWinsComputer = consecutiveWinsComputer + 1;
     consecutiveWinsUser = 0;
+    [self displayORHide:0];  
 }
 
 -(void)computerDisplay:(double)computerPick :(_Bool)finalImage
@@ -465,7 +467,9 @@ double predictedNum[2] ={4,4};
     
     
     [self imageChange:@"rock5._finalise-android(78x78)nobg.png":1];
-    [self displayORHide:0];
+    
+    txtResult.hidden = 1;
+    txtWinLoss.hidden = 1;
     
     [self gameComplete];
     
@@ -479,7 +483,8 @@ double predictedNum[2] ={4,4};
     userChoice = 2;    
     
     [self imageChange:@"paper2_finalise-android(78x78)nobg.png":1];
-    [self displayORHide:0];  
+    txtResult.hidden = 1;
+    txtWinLoss.hidden = 1;
     
     [self gameComplete];
 }
@@ -491,7 +496,8 @@ double predictedNum[2] ={4,4};
     userChoice = 3;
     
     [self imageChange:@"scissors4_finalise-android(78x78)nobg.png":1];
-    [self displayORHide:0];    
+    txtResult.hidden = 1;
+    txtWinLoss.hidden = 1;   
     
     [self gameComplete];
 }
@@ -503,7 +509,8 @@ double predictedNum[2] ={4,4};
     userChoice = 4;
     
     [self imageChange:@"unicorn3_finalise-android(78x78)nobg.png":1];
-    [self displayORHide:0];  
+    txtResult.hidden = 1;
+    txtWinLoss.hidden = 1;
     
     [self gameComplete];
 }
@@ -515,7 +522,8 @@ double predictedNum[2] ={4,4};
     userChoice = 5;
     
     [self imageChange:@"robot4_finalise-android(78x78)nobg.png":1];
-    [self displayORHide:0];    
+    txtResult.hidden = 1;
+    txtWinLoss.hidden = 1;    
     
     [self gameComplete];
 }
