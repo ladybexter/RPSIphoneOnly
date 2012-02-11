@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C690C96914E5E7B9000BB787 /* GCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C690C96814E5E7B9000BB787 /* GCHelper.m */; };
+		C690C96E14E5EA83000BB787 /* MultiPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C690C96C14E5EA83000BB787 /* MultiPlayerViewController.m */; };
+		C690C96F14E5EA83000BB787 /* MultiPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C690C96D14E5EA83000BB787 /* MultiPlayerViewController.xib */; };
 		C6950CAF14E33DCF00967399 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6950CAE14E33DCF00967399 /* GameKit.framework */; };
 		C6965E9614DC995700A4A21D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6965E9514DC995700A4A21D /* UIKit.framework */; };
 		C6965E9814DC995700A4A21D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6965E9714DC995700A4A21D /* Foundation.framework */; };
@@ -53,6 +55,9 @@
 /* Begin PBXFileReference section */
 		C690C96714E5E7B9000BB787 /* GCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCHelper.h; sourceTree = "<group>"; };
 		C690C96814E5E7B9000BB787 /* GCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCHelper.m; sourceTree = "<group>"; };
+		C690C96B14E5EA83000BB787 /* MultiPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiPlayerViewController.h; sourceTree = "<group>"; };
+		C690C96C14E5EA83000BB787 /* MultiPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiPlayerViewController.m; sourceTree = "<group>"; };
+		C690C96D14E5EA83000BB787 /* MultiPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultiPlayerViewController.xib; sourceTree = "<group>"; };
 		C6950CAE14E33DCF00967399 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		C6965E9114DC995700A4A21D /* RPSIphoneOnly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RPSIphoneOnly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6965E9514DC995700A4A21D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -177,6 +182,9 @@
 		C6965E9C14DC995700A4A21D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C690C96B14E5EA83000BB787 /* MultiPlayerViewController.h */,
+				C690C96C14E5EA83000BB787 /* MultiPlayerViewController.m */,
+				C690C96D14E5EA83000BB787 /* MultiPlayerViewController.xib */,
 				C690C96714E5E7B9000BB787 /* GCHelper.h */,
 				C690C96814E5E7B9000BB787 /* GCHelper.m */,
 				C6E73B1B14DDDD11007E48F2 /* ModeViewController.h */,
@@ -300,6 +308,7 @@
 				C6965EEC14DCA77400A4A21D /* SingleViewController.xib in Resources */,
 				C6E73B1F14DDDD12007E48F2 /* ModeViewController.xib in Resources */,
 				C6ABD05114DF8C1800AB6970 /* testBackground.jpg in Resources */,
+				C690C96F14E5EA83000BB787 /* MultiPlayerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +350,7 @@
 				C6E73B1114DD893E007E48F2 /* AiFunction.m in Sources */,
 				C6E73B1E14DDDD12007E48F2 /* ModeViewController.m in Sources */,
 				C690C96914E5E7B9000BB787 /* GCHelper.m in Sources */,
+				C690C96E14E5EA83000BB787 /* MultiPlayerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

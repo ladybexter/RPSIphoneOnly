@@ -14,8 +14,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "490"
          endingLineNumber = "490"
-         landmarkName = "@implementation SingleViewController"
-         landmarkType = "3">
+         landmarkName = "-resetThings"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -27,9 +27,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "582"
-         endingLineNumber = "582"
-         landmarkName = "-btnHome:"
-         landmarkType = "5">
+         endingLineNumber = "582">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>
