@@ -10,6 +10,7 @@
 #import "AiFunction.h"
 #import "AppDelegate.h"
 
+
 @implementation SingleViewController
 
 @synthesize txtAIMode;
@@ -29,6 +30,7 @@ int timerCount = 0;
 int lastNumber = 0;
 int numberBeforeLast = 0;
 double numberOfGamesPlayed = 0;
+NSString *modeChoice;
 
 int userScore = 0;
 int userChoice;
@@ -132,9 +134,27 @@ double predictedNum[2] ={4,4};
         
         nextNumberPrediction(lastNumber, numberBeforeLast, conditionalArray, actionArray, weightsConditionActionArray, numberOfGamesPlayed, predictedNum, results);
         
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        
+        modeChoice = [appDelegate mode];
+        
+        txtAIMode.text = @"wrong";
+        
+        testlabel.text = modeChoice;
+        
+        if (modeChoice == @"easy")
+        {
+            txtAIMode.text = @"correct";
+            computerChoice = (int)results[0];
+        }
+        else
+        {
+            txtAIMode.text = @"Joanna";
+            computerChoice = (int)results[1];
+            
+        }
         
         
-        computerChoice = (int)results[1];
         
         predictedNum[0] = results[0];
         predictedNum[1] = results[1];        
@@ -176,7 +196,7 @@ double predictedNum[2] ={4,4};
     txtResult.text = @"No Win, No Lose";
     consecutiveWinsComputer = 0;
     consecutiveWinsUser = 0;
-    [self displayORHide:0];  
+    [self displayORHide:3];  
     
 }
 
@@ -188,7 +208,7 @@ double predictedNum[2] ={4,4};
     userScore = userScore + 1;
     consecutiveWinsUser = consecutiveWinsUser + 1;
     consecutiveWinsComputer = 0;
-    [self displayORHide:0];  
+    [self displayORHide:3];  
 }
 
 -(void)lose
@@ -199,7 +219,7 @@ double predictedNum[2] ={4,4};
     computerScore = computerScore + 1;
     consecutiveWinsComputer = consecutiveWinsComputer + 1;
     consecutiveWinsUser = 0;
-    [self displayORHide:0];  
+    [self displayORHide:3];  
 }
 
 -(void)computerDisplay:(double)computerPick :(_Bool)finalImage
@@ -406,13 +426,19 @@ double predictedNum[2] ={4,4};
 -(void)displayORHide:(int) variable{
     
     txtWinLoss.hidden = variable;  
-    txtUserScore.hidden = variable;
-    txtComputerScore.hidden = variable;
-    txtUserBestConsWin.hidden = variable;
-    txtComputerBestConsWin.hidden = variable;
-    txtResult.hidden = variable;
-    txtVS.hidden = variable;
-    txtBestConWins.hidden = variable;     
+    txtResult.hidden = variable; 
+    
+    if(variable == 3)
+    {
+        txtBestConWins.hidden = 0;
+        txtComputerBestConsWin.hidden = 0;
+        txtComputerScore.hidden = 0;
+        txtUserBestConsWin.hidden = 0;
+        txtUserScore.hidden = 0;
+        txtVS.hidden = 0;
+        txtWinLoss.hidden = 0;
+        txtResult.hidden = 0;
+    }
 }
 
 
@@ -422,12 +448,17 @@ double predictedNum[2] ={4,4};
     numberBeforeLast = 0;
     numberOfGamesPlayed = 0;
     
+    txtUserScore.text = @"0";
     userScore = 0;
+    txtComputerScore.text = @"0";
     computerScore = 0;
+    
     
     consecutiveWinsComputer = 0;
     consecutiveWinsUser = 0;
+    txtComputerBestConsWin.text = @"0";
     bestConsectuiveWinsComputer = 0;
+    txtUserBestConsWin.text = @"0";
     bestConsecutiveWinsUser = 0;
     
     int ctr=0;
@@ -458,6 +489,13 @@ double predictedNum[2] ={4,4};
     [self displayORHide:1];  
 }
 
+- (IBAction)testAlert:(id)sender {
+    //UIAlertView *eventChoiceNow = [[UIAlertView alloc] initWithTitle:nil message:@"Lina: I suggest UNICORN \n\n Joanna: I suggest SCISSORS" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    //[eventChoiceNow show];
+    
+    
+}
+
 - (IBAction)btnRock:(id)sender {    
     
        
@@ -468,8 +506,7 @@ double predictedNum[2] ={4,4};
     
     [self imageChange:@"rock5._finalise-android(78x78)nobg.png":1];
     
-    txtResult.hidden = 1;
-    txtWinLoss.hidden = 1;
+    [self displayORHide:1];  
     
     [self gameComplete];
     
@@ -483,8 +520,7 @@ double predictedNum[2] ={4,4};
     userChoice = 2;    
     
     [self imageChange:@"paper2_finalise-android(78x78)nobg.png":1];
-    txtResult.hidden = 1;
-    txtWinLoss.hidden = 1;
+    [self displayORHide:1];  
     
     [self gameComplete];
 }
@@ -496,8 +532,7 @@ double predictedNum[2] ={4,4};
     userChoice = 3;
     
     [self imageChange:@"scissors4_finalise-android(78x78)nobg.png":1];
-    txtResult.hidden = 1;
-    txtWinLoss.hidden = 1;   
+    [self displayORHide:1];     
     
     [self gameComplete];
 }
@@ -509,8 +544,7 @@ double predictedNum[2] ={4,4};
     userChoice = 4;
     
     [self imageChange:@"unicorn3_finalise-android(78x78)nobg.png":1];
-    txtResult.hidden = 1;
-    txtWinLoss.hidden = 1;
+    [self displayORHide:1];  
     
     [self gameComplete];
 }
@@ -522,8 +556,7 @@ double predictedNum[2] ={4,4};
     userChoice = 5;
     
     [self imageChange:@"robot4_finalise-android(78x78)nobg.png":1];
-    txtResult.hidden = 1;
-    txtWinLoss.hidden = 1;    
+    [self displayORHide:1];      
     
     [self gameComplete];
 }
@@ -536,4 +569,5 @@ double predictedNum[2] ={4,4};
 - (IBAction)btnHome:(id)sender {
     [self resetThings];
 }
+
 @end

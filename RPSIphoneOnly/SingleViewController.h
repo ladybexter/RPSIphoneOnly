@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *txtComputerBestConsWin;
 
 
+- (IBAction)testAlert:(id)sender;
 
 - (IBAction)btnRock:(id)sender;
 - (IBAction)btnPaper:(id)sender;

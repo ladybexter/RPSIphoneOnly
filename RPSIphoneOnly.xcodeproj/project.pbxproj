@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C690C96914E5E7B9000BB787 /* GCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C690C96814E5E7B9000BB787 /* GCHelper.m */; };
+		C6950CAF14E33DCF00967399 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6950CAE14E33DCF00967399 /* GameKit.framework */; };
 		C6965E9614DC995700A4A21D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6965E9514DC995700A4A21D /* UIKit.framework */; };
 		C6965E9814DC995700A4A21D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6965E9714DC995700A4A21D /* Foundation.framework */; };
 		C6965E9A14DC995700A4A21D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6965E9914DC995700A4A21D /* CoreGraphics.framework */; };
@@ -49,6 +51,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C690C96714E5E7B9000BB787 /* GCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCHelper.h; sourceTree = "<group>"; };
+		C690C96814E5E7B9000BB787 /* GCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCHelper.m; sourceTree = "<group>"; };
+		C6950CAE14E33DCF00967399 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		C6965E9114DC995700A4A21D /* RPSIphoneOnly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RPSIphoneOnly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6965E9514DC995700A4A21D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C6965E9714DC995700A4A21D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -94,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6950CAF14E33DCF00967399 /* GameKit.framework in Frameworks */,
 				C6965E9614DC995700A4A21D /* UIKit.framework in Frameworks */,
 				C6965E9814DC995700A4A21D /* Foundation.framework in Frameworks */,
 				C6965E9A14DC995700A4A21D /* CoreGraphics.framework in Frameworks */,
@@ -135,6 +141,7 @@
 		C6965E9414DC995700A4A21D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C6950CAE14E33DCF00967399 /* GameKit.framework */,
 				C6965E9514DC995700A4A21D /* UIKit.framework */,
 				C6965E9714DC995700A4A21D /* Foundation.framework */,
 				C6965E9914DC995700A4A21D /* CoreGraphics.framework */,
@@ -170,6 +177,8 @@
 		C6965E9C14DC995700A4A21D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C690C96714E5E7B9000BB787 /* GCHelper.h */,
+				C690C96814E5E7B9000BB787 /* GCHelper.m */,
 				C6E73B1B14DDDD11007E48F2 /* ModeViewController.h */,
 				C6E73B1C14DDDD11007E48F2 /* ModeViewController.m */,
 				C6E73B1D14DDDD12007E48F2 /* ModeViewController.xib */,
@@ -331,6 +340,7 @@
 				C6965EEB14DCA77400A4A21D /* SingleViewController.m in Sources */,
 				C6E73B1114DD893E007E48F2 /* AiFunction.m in Sources */,
 				C6E73B1E14DDDD12007E48F2 /* ModeViewController.m in Sources */,
+				C690C96914E5E7B9000BB787 /* GCHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

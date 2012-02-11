@@ -13,7 +13,7 @@
 	<key>CFBundleIconFiles</key>
 	<array/>
 	<key>CFBundleIdentifier</key>
-	<string>com.lucidjargon.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.lucidjargon.xrps</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
