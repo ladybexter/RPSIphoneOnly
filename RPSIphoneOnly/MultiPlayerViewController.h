@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MultiPlayerViewController : UIViewController
+- (IBAction)btnAIAdvice:(id)sender;
 
 @end

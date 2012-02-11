@@ -489,12 +489,6 @@ double predictedNum[2] ={4,4};
     [self displayORHide:1];  
 }
 
-- (IBAction)testAlert:(id)sender {
-    //UIAlertView *eventChoiceNow = [[UIAlertView alloc] initWithTitle:nil message:@"Lina: I suggest UNICORN \n\n Joanna: I suggest SCISSORS" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    //[eventChoiceNow show];
-    
-    
-}
 
 - (IBAction)btnRock:(id)sender {    
     

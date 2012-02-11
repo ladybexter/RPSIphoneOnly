@@ -4,7 +4,7 @@
    version = "1.0">
    <FileBreakpoints>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
@@ -23,11 +23,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "RPSIphoneOnly/SingleViewController.m"
-         timestampString = "350375773.739502"
+         timestampString = "350615901.83398"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "582"
-         endingLineNumber = "582">
+         startingLineNumber = "576"
+         endingLineNumber = "576">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

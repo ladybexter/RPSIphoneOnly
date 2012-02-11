@@ -52,4 +52,9 @@
 	return interfaceOrientation == UIInterfaceOrientationLandscapeRight;
 }
 
+- (IBAction)btnAIAdvice:(id)sender {
+    
+    UIAlertView *eventChoiceNow = [[UIAlertView alloc] initWithTitle:nil message:@"Lina: I suggest UNICORN \n\n Joanna: I suggest SCISSORS" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [eventChoiceNow show];
+}
 @end
