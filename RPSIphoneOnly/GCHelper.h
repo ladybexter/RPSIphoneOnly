@@ -9,14 +9,29 @@
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>
 
-@interface GCHelper : NSObject {
+
+
+// Modify @interface line to support protocols as follows
+@interface GCHelper : NSObject 
+<GKTurnBasedMatchmakerViewControllerDelegate>{
+    
+    // New instance variable
+    UIViewController *presentingViewController;
+    
+    
+    
     BOOL gameCenterAvailable;
     BOOL userAuthenticated;
 }
 
-@property (assign, readonly) BOOL gameCenterAvailable;
+@property (retain) GKTurnBasedMatch * currentMatch;
 
 + (GCHelper *)sharedInstance;
 - (void)authenticateLocalUser;
+
+// New method
+- (void)findMatchWithMinPlayers:(int)minPlayers 
+                     maxPlayers:(int)maxPlayers 
+                 viewController:(UIViewController *)viewController;
 
 @end

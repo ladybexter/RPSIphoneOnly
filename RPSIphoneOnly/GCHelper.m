@@ -9,9 +9,7 @@
 #import "GCHelper.h"
 
 @implementation GCHelper
-
-
-@synthesize gameCenterAvailable;
+@synthesize currentMatch;
 
 #pragma mark Initialization
 
@@ -78,6 +76,58 @@ static GCHelper *sharedHelper = nil;
     }
 }
 
+- (void)findMatchWithMinPlayers:(int)minPlayers 
+                     maxPlayers:(int)maxPlayers 
+                 viewController:(UIViewController *)viewController {
+    if (!gameCenterAvailable) return;               
+    
+    presentingViewController = viewController;
+    
+    GKMatchRequest *request = [[GKMatchRequest alloc] init]; 
+    request.minPlayers = minPlayers;     
+    request.maxPlayers = maxPlayers;
+    
+    GKTurnBasedMatchmakerViewController *mmvc = 
+    [[GKTurnBasedMatchmakerViewController alloc] 
+     initWithMatchRequest:request];    
+    mmvc.turnBasedMatchmakerDelegate = self;
+    mmvc.showExistingMatches = YES;
+    
+    [presentingViewController presentModalViewController:mmvc 
+                                                animated:YES];
+}
+
+#pragma mark GKTurnBasedMatchmakerViewControllerDelegate
+
+-(void)turnBasedMatchmakerViewController: 
+(GKTurnBasedMatchmakerViewController *)viewController 
+                            didFindMatch:(GKTurnBasedMatch *)match {
+    [presentingViewController 
+     dismissModalViewControllerAnimated:YES];
+    self.currentMatch = match;
+}
+
+-(void)turnBasedMatchmakerViewControllerWasCancelled: 
+(GKTurnBasedMatchmakerViewController *)viewController {
+    [presentingViewController 
+     dismissModalViewControllerAnimated:YES];
+    NSLog(@"has cancelled");
+}
+
+-(void)turnBasedMatchmakerViewController: 
+(GKTurnBasedMatchmakerViewController *)viewController 
+                        didFailWithError:(NSError *)error {
+    [presentingViewController 
+     dismissModalViewControllerAnimated:YES];
+    NSLog(@"Error finding match: %@", error.localizedDescription);
+}
+
+-(void)turnBasedMatchmakerViewController: 
+(GKTurnBasedMatchmakerViewController *)viewController 
+                      playerQuitForMatch:(GKTurnBasedMatch *)match {
+    NSLog(@"playerquitforMatch, %@, %@", 
+          match, match.currentParticipant);
+}
 
 
 @end

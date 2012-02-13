@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 
+
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -17,6 +18,7 @@
 {
     
     // Override point for customization after application launch.
+    
     return YES;
 }
 							
