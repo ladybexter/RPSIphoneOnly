@@ -11,6 +11,10 @@
 
 @interface MultiPlayerViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *lblStatus;
+@property (weak, nonatomic) IBOutlet UIImageView *imgOppPick;
+@property (weak, nonatomic) IBOutlet UIImageView *imgUserPick;
+
+
 - (IBAction)btnPaper:(id)sender;
 - (IBAction)btnScissors:(id)sender;
 - (IBAction)btnUnicorn:(id)sender;

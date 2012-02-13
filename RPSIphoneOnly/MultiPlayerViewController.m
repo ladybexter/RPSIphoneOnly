@@ -11,6 +11,8 @@
 
 @implementation MultiPlayerViewController
 @synthesize lblStatus;
+@synthesize imgOppPick;
+@synthesize imgUserPick;
 
 
 
@@ -45,6 +47,8 @@
 - (void)viewDidUnload
 {
     [self setLblStatus:nil];
+    [self setImgOppPick:nil];
+    [self setImgUserPick:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -57,19 +61,65 @@
 	return interfaceOrientation == UIInterfaceOrientationLandscapeRight;
 }
 
+-(void)imageChange:(NSString*) image:(int) number{
+    if(number == 1)
+    {
+        imgUserPick.image = [UIImage imageNamed:(image)];
+    }
+    else
+    {
+        imgOppPick.image = [UIImage imageNamed:(image)];
+    }
+}
+
 - (IBAction)btnPaper:(id)sender {
+    
+    GKTurnBasedMatch *currentMatch = 
+    [[GCHelper sharedInstance] currentMatch];
+    
+    [self imageChange:@"paper2_finalise-android(78x78)nobg.png":1];
+    
+    NSString *userPick;
+    userPick = @"2";
+    NSData *data = 
+    [userPick dataUsingEncoding:NSUTF8StringEncoding ];
+    
+    NSUInteger currentIndex = [currentMatch.participants 
+                               indexOfObject:currentMatch.currentParticipant];
+    GKTurnBasedParticipant *nextParticipant;
+    nextParticipant = [currentMatch.participants objectAtIndex: 
+                       ((currentIndex + 1) % [currentMatch.participants count ])];
+    [currentMatch endTurnWithNextParticipant:nextParticipant 
+                                   matchData:data completionHandler:^(NSError *error) {
+                                       if (error) {
+                                           NSLog(@"%@", error);
+                                       }
+                                   }];
+    NSLog(@"Send Turn, %@, %@", data, nextParticipant);
+    
+    
+    
+    
 }
 
 - (IBAction)btnScissors:(id)sender {
+    
+    [self imageChange:@"scissors4_finalise-android(78x78)nobg.png":1];
 }
 
 - (IBAction)btnUnicorn:(id)sender {
+    
+    [self imageChange:@"unicorn3_finalise-android(78x78)nobg.png":1];
 }
 
 - (IBAction)btnRobot:(id)sender {
+    
+    [self imageChange:@"robot4_finalise-android(78x78)nobg.png":1];
 }
 
 - (IBAction)btnRock:(id)sender {
+    
+    [self imageChange:@"rock5._finalise-android(78x78)nobg.png":1];
 }
 
 - (IBAction)btnAIAdvice:(id)sender {

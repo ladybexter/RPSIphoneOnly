@@ -49,12 +49,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "RPSIphoneOnly/MultiPlayerViewController.h"
-         timestampString = "350753143.54503"
+         timestampString = "350793221.708215"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "13"
-         endingLineNumber = "13"
-         landmarkName = "lblStatus"
+         startingLineNumber = "14"
+         endingLineNumber = "14"
+         landmarkName = "imgOppPick"
          landmarkType = "19">
       </FileBreakpoint>
       <FileBreakpoint
@@ -63,11 +63,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "RPSIphoneOnly/MultiPlayerViewController.h"
-         timestampString = "350756669.836342"
+         timestampString = "350793221.708215"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "14"
-         endingLineNumber = "14"
+         startingLineNumber = "18"
+         endingLineNumber = "18"
          landmarkName = "-btnPaper:"
          landmarkType = "4">
       </FileBreakpoint>
