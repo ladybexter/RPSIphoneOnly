@@ -9,7 +9,10 @@
 #import "GCHelper.h"
 
 @implementation GCHelper
+
 @synthesize currentMatch;
+@synthesize delegate;
+@synthesize gameCenterAvailable;
 
 #pragma mark Initialization
 
@@ -105,6 +108,14 @@ static GCHelper *sharedHelper = nil;
     [presentingViewController 
      dismissModalViewControllerAnimated:YES];
     self.currentMatch = match;
+    
+    GKTurnBasedParticipant *firstParticipant = 
+    [match.participants objectAtIndex:0];
+    if (firstParticipant.lastTurnDate) {
+        [delegate takeTurn:match];
+    } else {
+        [delegate enterNewGame:match];
+    }
 }
 
 -(void)turnBasedMatchmakerViewControllerWasCancelled: 

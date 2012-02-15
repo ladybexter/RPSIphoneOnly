@@ -10,6 +10,15 @@
 #import <GameKit/GameKit.h>
 
 
+@protocol GCTurnBasedMatchHelperDelegate
+- (void)enterNewGame:(GKTurnBasedMatch *)match;
+- (void)layoutMatch:(GKTurnBasedMatch *)match;
+- (void)takeTurn:(GKTurnBasedMatch *)match;
+- (void)recieveEndGame:(GKTurnBasedMatch *)match;
+- (void)sendNotice:(NSString *)notice 
+          forMatch:(GKTurnBasedMatch *)match;
+@end
+
 
 // Modify @interface line to support protocols as follows
 @interface GCHelper : NSObject 
@@ -18,13 +27,20 @@
     // New instance variable
     UIViewController *presentingViewController;
     
-    
-    
     BOOL gameCenterAvailable;
     BOOL userAuthenticated;
+    
+    GKTurnBasedMatch *currentMatch;
+    
+    id <GCTurnBasedMatchHelperDelegate> delegate;
 }
 
-@property (retain) GKTurnBasedMatch * currentMatch;
+
+@property (nonatomic, retain) 
+id <GCTurnBasedMatchHelperDelegate> delegate;
+@property (assign, readonly) BOOL gameCenterAvailable;
+@property (nonatomic, retain) GKTurnBasedMatch *currentMatch;
+
 
 + (GCHelper *)sharedInstance;
 - (void)authenticateLocalUser;

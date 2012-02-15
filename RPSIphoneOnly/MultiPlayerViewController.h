@@ -9,11 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "GCHelper.h"
 
-@interface MultiPlayerViewController : UIViewController
+@interface MultiPlayerViewController : UIViewController <UITextFieldDelegate,  
+GCTurnBasedMatchHelperDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *lblStatus;
 @property (weak, nonatomic) IBOutlet UIImageView *imgOppPick;
 @property (weak, nonatomic) IBOutlet UIImageView *imgUserPick;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnRock;
+@property (weak, nonatomic) IBOutlet UIButton *btnPaper;
+@property (weak, nonatomic) IBOutlet UIButton *btnScissors;
+@property (weak, nonatomic) IBOutlet UIButton *btnUnicorn;
+@property (weak, nonatomic) IBOutlet UIButton *btnRobot;
 
 - (IBAction)btnPaper:(id)sender;
 - (IBAction)btnScissors:(id)sender;
