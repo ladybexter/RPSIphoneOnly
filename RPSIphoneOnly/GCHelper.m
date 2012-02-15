@@ -71,11 +71,21 @@ static GCHelper *sharedHelper = nil;
     
     if (!gameCenterAvailable) return;
     
+    void (^setGKEventHandlerDelegate)(NSError *) = ^ (NSError *error)
+    {
+        GKTurnBasedEventHandler *ev = 
+        [GKTurnBasedEventHandler sharedTurnBasedEventHandler];
+        ev.delegate = self;
+    };
+    
     NSLog(@"Authenticating local user...");
     if ([GKLocalPlayer localPlayer].authenticated == NO) {     
-        [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:nil];        
+        [[GKLocalPlayer localPlayer] 
+         authenticateWithCompletionHandler:
+         setGKEventHandlerDelegate];        
     } else {
         NSLog(@"Already authenticated!");
+        setGKEventHandlerDelegate(nil);
     }
 }
 
@@ -108,13 +118,20 @@ static GCHelper *sharedHelper = nil;
     [presentingViewController 
      dismissModalViewControllerAnimated:YES];
     self.currentMatch = match;
-    
     GKTurnBasedParticipant *firstParticipant = 
     [match.participants objectAtIndex:0];
-    if (firstParticipant.lastTurnDate) {
-        [delegate takeTurn:match];
-    } else {
+    if (firstParticipant.lastTurnDate == NULL) {
+        // It's a new game!
         [delegate enterNewGame:match];
+    } else {
+        if ([match.currentParticipant.playerID 
+             isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
+            // It's your turn!
+            [delegate takeTurn:match];
+        } else {
+            // It's not your turn, just display the game state.
+            [delegate layoutMatch:match];
+        }        
     }
 }
 
@@ -136,8 +153,71 @@ static GCHelper *sharedHelper = nil;
 -(void)turnBasedMatchmakerViewController: 
 (GKTurnBasedMatchmakerViewController *)viewController 
                       playerQuitForMatch:(GKTurnBasedMatch *)match {
+    NSUInteger currentIndex = 
+    [match.participants indexOfObject:match.currentParticipant];
+    GKTurnBasedParticipant *part;
+    
+    for (int i = 0; i < [match.participants count]; i++) {
+        part = [match.participants objectAtIndex:
+                (currentIndex + 1 + i) % match.participants.count];
+        if (part.matchOutcome != GKTurnBasedMatchOutcomeQuit) {
+            break;
+        } 
+    }
     NSLog(@"playerquitforMatch, %@, %@", 
           match, match.currentParticipant);
+    [match participantQuitInTurnWithOutcome:
+     GKTurnBasedMatchOutcomeQuit nextParticipant:part 
+                                  matchData:match.matchData completionHandler:nil];
+}
+
+#pragma mark GKTurnBasedEventHandlerDelegate
+
+-(void)handleInviteFromGameCenter:(NSArray *)playersToInvite {
+    [presentingViewController 
+     dismissModalViewControllerAnimated:YES];
+    GKMatchRequest *request = 
+    [[GKMatchRequest alloc] init]; 
+    request.playersToInvite = playersToInvite;
+    request.maxPlayers = 2;
+    request.minPlayers = 2;
+    GKTurnBasedMatchmakerViewController *viewController =
+    [[GKTurnBasedMatchmakerViewController alloc] 
+     initWithMatchRequest:request];
+    viewController.showExistingMatches = NO;
+    viewController.turnBasedMatchmakerDelegate = self;
+    [presentingViewController 
+     presentModalViewController:viewController animated:YES];
+}
+
+-(void)handleTurnEventForMatch:(GKTurnBasedMatch *)match {
+    NSLog(@"Turn has happened");
+    if ([match.matchID isEqualToString:currentMatch.matchID]) {
+        if ([match.currentParticipant.playerID 
+             isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
+            // it's the current match and it's our turn now
+            self.currentMatch = match;
+            [delegate takeTurn:match];
+        } else {
+            // it's the current match, but it's someone else's turn
+            self.currentMatch = match;
+            [delegate layoutMatch:match];
+        }
+    } else {
+        if ([match.currentParticipant.playerID 
+             isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
+            // it's not the current match and it's our turn now
+            [delegate sendNotice:@"It's your turn for another match" 
+                        forMatch:match];
+        } else {
+            // it's the not current match, and it's someone else's 
+            // turn
+        }
+    }
+}
+
+-(void)handleMatchEnded:(GKTurnBasedMatch *)match {
+    NSLog(@"Game has ended");
 }
 
 

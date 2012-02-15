@@ -10,9 +10,11 @@
 #import "GCHelper.h"
 
 @implementation MultiPlayerViewController
+
 @synthesize lblStatus;
 @synthesize imgOppPick;
 @synthesize imgUserPick;
+@synthesize lblRound;
 @synthesize btnRock;
 @synthesize btnPaper;
 @synthesize btnScissors;
@@ -59,6 +61,7 @@
     [self setBtnScissors:nil];
     [self setBtnUnicorn:nil];
     [self setBtnRobot:nil];
+    [self setLblRound:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -97,18 +100,38 @@
     NSUInteger currentIndex = [currentMatch.participants 
                                indexOfObject:currentMatch.currentParticipant];
     GKTurnBasedParticipant *nextParticipant;
-    nextParticipant = [currentMatch.participants objectAtIndex: 
-                       ((currentIndex + 1) % [currentMatch.participants count ])];
+    
+    NSUInteger nextIndex = (currentIndex + 1) % 
+    [currentMatch.participants count];
+    nextParticipant = 
+    [currentMatch.participants objectAtIndex:nextIndex];
+    
+    for (int i = 0; i < [currentMatch.participants count]; i++) {
+        nextParticipant = [currentMatch.participants 
+                           objectAtIndex:((currentIndex + 1 + i) % 
+                                          [currentMatch.participants count ])];
+        if (nextParticipant.matchOutcome != 
+            GKTurnBasedMatchOutcomeQuit) {
+            break;
+        } 
+    }
+    
     [currentMatch endTurnWithNextParticipant:nextParticipant 
                                    matchData:data completionHandler:^(NSError *error) {
                                        if (error) {
                                            NSLog(@"%@", error);
+                                           lblStatus.text = 
+                                           @"Oops, there was a problem.  Try that again.";
+                                       } else {
+                                           lblStatus.text = @"Your turn is over.";
+                                           btnRobot.enabled = NO;
+                                           btnPaper.enabled = NO;
+                                           btnScissors.enabled = NO;
+                                           btnUnicorn.enabled = NO;
+                                           btnRock.enabled = NO;
                                        }
                                    }];
     NSLog(@"Send Turn, %@, %@", data, nextParticipant);
-    
-    
-    
     
 }
 
@@ -233,38 +256,69 @@
     
     if (match.status == GKTurnBasedMatchStatusEnded) {
         statusString = @"Match Ended";
-    } else {
-        int playerNum = [match.participants 
-                         indexOfObject:match.currentParticipant] + 1;
-        statusString = [NSString stringWithFormat:
-                        @"Player %d's Turn", playerNum];
+    } 
+    else
+    {
+        statusString = match.currentParticipant.playerID;
+        
+        
     }
-    lblStatus.text = statusString;
-    btnRobot.enabled = NO;
-    btnPaper.enabled = NO;
-    btnScissors.enabled = NO;
-    btnUnicorn.enabled = NO;
-    btnRock.enabled = NO;
-    lblStatus.text = statusString;
+        lblStatus.text = statusString;
+        btnRobot.enabled = NO;
+        btnPaper.enabled = NO;
+        btnScissors.enabled = NO;
+        btnUnicorn.enabled = NO;
+        btnRock.enabled = NO;
+    
+        //[self checkForEnding:match.matchData];
+    
     //NSString *storySoFar = [NSString stringWithUTF8String:
                             //[match.matchData bytes]];
     //mainTextController.text = storySoFar;
+}
+
+-(void)sendNotice:(NSString *)notice forMatch:
+(GKTurnBasedMatch *)match {
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:
+                       @"Another game needs your attention!" message:notice 
+                                                delegate:self cancelButtonTitle:@"Sweet!" 
+                                       otherButtonTitles:nil];
+    [av show];
+}
+
+-(void)checkForEnding:(NSData *)matchData {
+    if ([matchData length] > 3000) {
+        lblRound.text = @"Round ....";
+    }
 }
 
 #pragma mark - GCTurnBasedMatchHelperDelegate
 
 -(void)enterNewGame:(GKTurnBasedMatch *)match {
     NSLog(@"Entering new game...");
+    btnRobot.enabled = YES;
+    btnPaper.enabled = YES;
+    btnScissors.enabled = YES;
+    btnUnicorn.enabled = YES;
+    btnRock.enabled = YES;
     lblStatus.text = @"Please start new game";
 }
 
 -(void)takeTurn:(GKTurnBasedMatch *)match {
     NSLog(@"Taking turn for existing game...");
+    btnRobot.enabled = YES;
+    btnPaper.enabled = YES;
+    btnScissors.enabled = YES;
+    btnUnicorn.enabled = YES;
+    btnRock.enabled = YES;
+    lblStatus.text =@"It's your turn";
     if ([match.matchData bytes]) {
         NSString *oppPick = 
         [NSString stringWithUTF8String:[match.matchData bytes]];
         lblStatus.text = oppPick;
     }
+    
+    [self checkForEnding:match.matchData];
 }
 
 
