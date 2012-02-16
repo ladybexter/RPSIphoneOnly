@@ -49,7 +49,21 @@ int cArray[35];
     // Do any additional setup after loading the view from its nib.
     
     [GCHelper sharedInstance].delegate = self;
-    [[GCHelper sharedInstance] authenticateLocalUser];
+    [[GCHelper sharedInstance] authenticateLocalUser];    
+    
+    btnRobot.enabled = NO;
+    btnPaper.enabled = NO;
+    btnScissors.enabled = NO;
+    btnUnicorn.enabled = NO;
+    btnRock.enabled = NO;
+    
+    lblStatus.text = @"";
+    lblRound.text = @"";
+    imgUserPick.image = [UIImage imageNamed:(@"win 7 images/xrps-wp7-f4-2.png")];
+    
+    imgOppPick.image = [UIImage imageNamed:(@"win 7 images/xrps-wp7-f4-2.png")];
+    
+    
     
     
 }
@@ -76,6 +90,7 @@ int cArray[35];
 	
 	return interfaceOrientation == UIInterfaceOrientationLandscapeRight;
 }
+
 
 -(void)imageChange:(NSString*) image:(int) number{
     if(number == 1)
@@ -258,6 +273,12 @@ int cArray[35];
 - (IBAction)presentGCTurnViewController:(id)sender {
     [[GCHelper sharedInstance] 
      findMatchWithMinPlayers:2 maxPlayers:2 viewController:self];
+    btnRobot.enabled = YES;
+    btnPaper.enabled = YES;
+    btnScissors.enabled = YES;
+    btnUnicorn.enabled = YES;
+    btnRock.enabled = YES;
+    
 }
 
 -(void)layoutMatch:(GKTurnBasedMatch *)match {
