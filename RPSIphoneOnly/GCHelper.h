@@ -22,7 +22,8 @@
 
 // Modify @interface line to support protocols as follows
 @interface GCHelper : NSObject 
-<GKTurnBasedMatchmakerViewControllerDelegate>{
+<GKTurnBasedMatchmakerViewControllerDelegate, 
+GKTurnBasedEventHandlerDelegate> {
     
     // New instance variable
     UIViewController *presentingViewController;

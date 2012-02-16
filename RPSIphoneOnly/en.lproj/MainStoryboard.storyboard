@@ -206,7 +206,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="vBq-Sr-BJT">
-                                <rect key="frame" x="314" y="219" width="42" height="21"/>
+                                <rect key="frame" x="314" y="219" width="155" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -295,6 +295,13 @@
                                 <rect key="frame" x="355" y="18" width="100" height="93"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Round: x" lineBreakMode="tailTruncation" minimumFontSize="10" id="nZ2-rk-dDd">
+                                <rect key="frame" x="20" y="219" width="82" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -308,6 +315,7 @@
                         <outlet property="btnUnicorn" destination="IZu-gC-NVF" id="Jxf-ch-Brv"/>
                         <outlet property="imgOppPick" destination="Ar8-Vs-nlf" id="p13-5G-ixR"/>
                         <outlet property="imgUserPick" destination="Fox-Gs-eC1" id="ade-6b-ApX"/>
+                        <outlet property="lblRound" destination="nZ2-rk-dDd" id="pvd-gt-3GN"/>
                         <outlet property="lblStatus" destination="vBq-Sr-BJT" id="4Qc-R5-d7A"/>
                     </connections>
                 </viewController>

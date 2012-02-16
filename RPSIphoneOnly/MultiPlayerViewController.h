@@ -10,10 +10,13 @@
 #import "GCHelper.h"
 
 @interface MultiPlayerViewController : UIViewController <UITextFieldDelegate,  
-GCTurnBasedMatchHelperDelegate>
+GCTurnBasedMatchHelperDelegate>{
+    NSMutableArray *gameInfoArray;
+}
 @property (weak, nonatomic) IBOutlet UILabel *lblStatus;
 @property (weak, nonatomic) IBOutlet UIImageView *imgOppPick;
 @property (weak, nonatomic) IBOutlet UIImageView *imgUserPick;
+@property (weak, nonatomic) IBOutlet UILabel *lblRound;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnRock;
 @property (weak, nonatomic) IBOutlet UIButton *btnPaper;

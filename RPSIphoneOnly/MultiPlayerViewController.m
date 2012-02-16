@@ -107,9 +107,6 @@ int cArray[35];
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray];
     
     
-    //NSData *data = 
-    //[userPick dataUsingEncoding:NSUTF8StringEncoding ];
-    
     NSUInteger currentIndex = [currentMatch.participants 
                                indexOfObject:currentMatch.currentParticipant];
     GKTurnBasedParticipant *nextParticipant;
@@ -317,7 +314,7 @@ int cArray[35];
     
     // 0= currentScoreSelf, 1 = currentScoreOpp, 2= turn, 3 = oppPick, 4= selfPick,5- 10 = actionArray, 11 - 34 = conditionalArray
     
-     NSMutableArray *gameInfoArray = [NSMutableArray arrayWithObjects:[NSNumber numberWithDouble:0],
+     gameInfoArray = [NSMutableArray arrayWithObjects:[NSNumber numberWithDouble:0],
                                    [NSNumber numberWithDouble:0],
                                    [NSNumber numberWithDouble:1],
                                    [NSNumber numberWithDouble:0],
@@ -364,7 +361,7 @@ int cArray[35];
 -(void)takeTurn:(GKTurnBasedMatch *)match {
     
     
-    NSMutableArray *gameInfoArray = [NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
+    gameInfoArray = [NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
     
     NSLog(@"Taking turn for existing game...");
     btnRobot.enabled = YES;
