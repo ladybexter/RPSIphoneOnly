@@ -21,6 +21,7 @@
 @synthesize btnUnicorn;
 @synthesize btnRobot;
 
+int cArray[35];
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -49,6 +50,8 @@
     
     [GCHelper sharedInstance].delegate = self;
     [[GCHelper sharedInstance] authenticateLocalUser];
+    
+    
 }
 
 - (void)viewDidUnload
@@ -92,10 +95,20 @@
     
     [self imageChange:@"paper2_finalise-android(78x78)nobg.png":1];
     
-    NSString *userPick;
-    userPick = @"2";
-    NSData *data = 
-    [userPick dataUsingEncoding:NSUTF8StringEncoding ];
+    //set user choicePick to 2
+    [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:2]];
+    
+    //increase turn count to 1
+    
+    cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue] + 1;
+    [gameInfoArray replaceObjectAtIndex:2 withObject:[NSNumber numberWithDouble:cArray[2]]];
+    
+    
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray];
+    
+    
+    //NSData *data = 
+    //[userPick dataUsingEncoding:NSUTF8StringEncoding ];
     
     NSUInteger currentIndex = [currentMatch.participants 
                                indexOfObject:currentMatch.currentParticipant];
@@ -261,7 +274,6 @@
     {
         statusString = match.currentParticipant.playerID;
         
-        
     }
         lblStatus.text = statusString;
         btnRobot.enabled = NO;
@@ -287,15 +299,61 @@
 }
 
 -(void)checkForEnding:(NSData *)matchData {
+    
+    
+    [(NSString *)[gameInfoArray objectAtIndex:2] intValue];
     if ([matchData length] > 3000) {
         lblRound.text = @"Round ....";
     }
+}
+
+-(void)recieveEndGame:(GKTurnBasedMatch *)match {
+    [self layoutMatch:match];
 }
 
 #pragma mark - GCTurnBasedMatchHelperDelegate
 
 -(void)enterNewGame:(GKTurnBasedMatch *)match {
     NSLog(@"Entering new game...");
+    
+    // 0= currentScoreSelf, 1 = currentScoreOpp, 2= turn, 3 = oppPick, 4= selfPick,5- 10 = actionArray, 11 - 34 = conditionalArray
+    
+     NSMutableArray *gameInfoArray = [NSMutableArray arrayWithObjects:[NSNumber numberWithDouble:0],
+                                   [NSNumber numberWithDouble:0],
+                                   [NSNumber numberWithDouble:1],
+                                   [NSNumber numberWithDouble:0],
+                                   [NSNumber numberWithDouble:0],
+                                   [NSNumber numberWithDouble:0.5], 
+                                   [NSNumber numberWithDouble:0.5], 
+                                   [NSNumber numberWithDouble:0.5], 
+                                   [NSNumber numberWithDouble:0.5], 
+                                   [NSNumber numberWithDouble:0.5], 
+                                   [NSNumber numberWithDouble:1], 
+                                   [NSNumber numberWithDouble:1], 
+                                   [NSNumber numberWithDouble:1], 
+                                   [NSNumber numberWithDouble:1] ,
+                                   [NSNumber numberWithDouble:1], 
+                                   [NSNumber numberWithDouble:1], 
+                                   [NSNumber numberWithDouble:1], 
+                                   [NSNumber numberWithDouble:1], 
+                                   [NSNumber numberWithDouble:1], 
+                                   [NSNumber numberWithDouble:1], 
+                                   [NSNumber numberWithDouble:1], 
+                                   [NSNumber numberWithDouble:1], 
+                                   [NSNumber numberWithDouble:1], 
+                                   [NSNumber numberWithDouble:1], 
+                                   [NSNumber numberWithDouble:1], 
+                                   [NSNumber numberWithDouble:1], 
+                                   [NSNumber numberWithDouble:1], 
+                                   [NSNumber numberWithDouble:1], 
+                                   [NSNumber numberWithDouble:1], 
+                                   [NSNumber numberWithDouble:1], 
+                                   [NSNumber numberWithDouble:1], 
+                                   [NSNumber numberWithDouble:1], 
+                                   [NSNumber numberWithDouble:1], 
+                                   [NSNumber numberWithDouble:1], 
+                                   [NSNumber numberWithDouble:1],nil];
+    
     btnRobot.enabled = YES;
     btnPaper.enabled = YES;
     btnScissors.enabled = YES;
@@ -305,6 +363,10 @@
 }
 
 -(void)takeTurn:(GKTurnBasedMatch *)match {
+    
+    
+    NSMutableArray *gameInfoArray = [NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
+    
     NSLog(@"Taking turn for existing game...");
     btnRobot.enabled = YES;
     btnPaper.enabled = YES;
@@ -312,6 +374,18 @@
     btnUnicorn.enabled = YES;
     btnRock.enabled = YES;
     lblStatus.text =@"It's your turn";
+    
+    
+    // check to see if turn count is even, if even then display opp, if odd dont
+    cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue];
+    if (cArray[2]% 2 ==0)
+    {
+        
+    }
+    else
+    {
+        
+    }
     if ([match.matchData bytes]) {
         NSString *oppPick = 
         [NSString stringWithUTF8String:[match.matchData bytes]];
