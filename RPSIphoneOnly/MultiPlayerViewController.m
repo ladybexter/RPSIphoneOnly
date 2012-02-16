@@ -298,12 +298,11 @@ int cArray[35];
     [av show];
 }
 
--(void)checkForEnding:(NSData *)matchData {
+-(void)checkForEnding:(double)roundCount {
     
-    
-    [(NSString *)[gameInfoArray objectAtIndex:2] intValue];
-    if ([matchData length] > 3000) {
-        lblRound.text = @"Round ....";
+    if (roundCount/2 == 5)
+    {
+        lblStatus.text = @"Match has ended";
     }
 }
 
@@ -380,19 +379,42 @@ int cArray[35];
     cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue];
     if (cArray[2]% 2 ==0)
     {
+        //display round
+        int round = cArray[2]/2;
+        lblRound.text = [NSString stringWithFormat:@"%d",round];
         
+        //check what opp picked
+        cArray[3] = [[gameInfoArray objectAtIndex:3] floatValue];
+        
+        if (cArray[3] == 1)
+        {
+            [self imageChange:@"rock5._finalise-android(78x78)nobg.png":2];
+        }
+        else if (cArray[3] == 2)
+        {
+            [self imageChange:@"paper2_finalise-android(78x78)nobg.png":2];
+        }
+        else if (cArray[3] == 3)
+        {
+            [self imageChange:@"scissors4_finalise-android(78x78)nobg.png":2];
+        }
+        else if (cArray[3] == 4)
+        {
+            [self imageChange:@"unicorn3_finalise-android(78x78)nobg.png":2];
+        }
+        else
+        {
+            [self imageChange:@"robot4_finalise-android(78x78)nobg.png":2];
+        }
     }
     else
     {
-        
-    }
-    if ([match.matchData bytes]) {
-        NSString *oppPick = 
-        [NSString stringWithUTF8String:[match.matchData bytes]];
-        lblStatus.text = oppPick;
+        int round = cArray[2]/2 - 1;
+        lblRound.text = [NSString stringWithFormat:@"%d",round];
+        [self imageChange:@"xrps-wp7-f4-2.png.png":2];
     }
     
-    [self checkForEnding:match.matchData];
+    [self checkForEnding:cArray[2]];
 }
 
 
