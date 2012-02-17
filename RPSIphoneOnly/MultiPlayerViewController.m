@@ -21,7 +21,8 @@
 @synthesize btnUnicorn;
 @synthesize btnRobot;
 
-int cArray[35];
+int cArray[6];
+int playerMe;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -59,12 +60,6 @@ int cArray[35];
     
     lblStatus.text = @"";
     lblRound.text = @"";
-    imgUserPick.image = [UIImage imageNamed:(@"win 7 images/xrps-wp7-f4-2.png")];
-    
-    imgOppPick.image = [UIImage imageNamed:(@"win 7 images/xrps-wp7-f4-2.png")];
-    
-    
-    
     
 }
 
@@ -110,8 +105,15 @@ int cArray[35];
     
     [self imageChange:@"paper2_finalise-android(78x78)nobg.png":1];
     
-    //set user choicePick to 2
-    [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:2]];
+    //set userMePick to 2
+    if (playerMe == 1)
+    {
+        [gameInfoArray replaceObjectAtIndex:3 withObject:[NSNumber numberWithDouble:2]];
+    }
+    else if (playerMe == 2)
+    {
+        [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:2]];
+    }
     
     //increase turn count to 1
     
@@ -167,20 +169,57 @@ int cArray[35];
     
     [self imageChange:@"scissors4_finalise-android(78x78)nobg.png":1];
     
-    NSString *userPick;
-    userPick = @"3";
-    NSData *data = 
-    [userPick dataUsingEncoding:NSUTF8StringEncoding ];
+    //set userMePick to 3
+    if (playerMe == 1)
+    {
+        [gameInfoArray replaceObjectAtIndex:3 withObject:[NSNumber numberWithDouble:3]];
+    }
+    else if (playerMe == 2)
+    {
+        [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:3]];
+    }
+    
+    //increase turn count to 1
+    
+    cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue] + 1;
+    [gameInfoArray replaceObjectAtIndex:2 withObject:[NSNumber numberWithDouble:cArray[2]]];
+    
+    
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray];
+    
     
     NSUInteger currentIndex = [currentMatch.participants 
                                indexOfObject:currentMatch.currentParticipant];
     GKTurnBasedParticipant *nextParticipant;
-    nextParticipant = [currentMatch.participants objectAtIndex: 
-                       ((currentIndex + 1) % [currentMatch.participants count ])];
+    
+    NSUInteger nextIndex = (currentIndex + 1) % 
+    [currentMatch.participants count];
+    nextParticipant = 
+    [currentMatch.participants objectAtIndex:nextIndex];
+    
+    for (int i = 0; i < [currentMatch.participants count]; i++) {
+        nextParticipant = [currentMatch.participants 
+                           objectAtIndex:((currentIndex + 1 + i) % 
+                                          [currentMatch.participants count ])];
+        if (nextParticipant.matchOutcome != 
+            GKTurnBasedMatchOutcomeQuit) {
+            break;
+        } 
+    }
+    
     [currentMatch endTurnWithNextParticipant:nextParticipant 
                                    matchData:data completionHandler:^(NSError *error) {
                                        if (error) {
                                            NSLog(@"%@", error);
+                                           lblStatus.text = 
+                                           @"Oops, there was a problem.  Try that again.";
+                                       } else {
+                                           lblStatus.text = @"Your turn is over.";
+                                           btnRobot.enabled = NO;
+                                           btnPaper.enabled = NO;
+                                           btnScissors.enabled = NO;
+                                           btnUnicorn.enabled = NO;
+                                           btnRock.enabled = NO;
                                        }
                                    }];
     NSLog(@"Send Turn, %@, %@", data, nextParticipant);
@@ -193,20 +232,57 @@ int cArray[35];
     
     [self imageChange:@"unicorn3_finalise-android(78x78)nobg.png":1];
     
-    NSString *userPick;
-    userPick = @"4";
-    NSData *data = 
-    [userPick dataUsingEncoding:NSUTF8StringEncoding ];
+    //set userMePick to 4
+    if (playerMe == 1)
+    {
+        [gameInfoArray replaceObjectAtIndex:3 withObject:[NSNumber numberWithDouble:4]];
+    }
+    else if (playerMe == 2)
+    {
+        [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:4]];
+    }
+    
+    //increase turn count to 1
+    
+    cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue] + 1;
+    [gameInfoArray replaceObjectAtIndex:2 withObject:[NSNumber numberWithDouble:cArray[2]]];
+    
+    
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray];
+    
     
     NSUInteger currentIndex = [currentMatch.participants 
                                indexOfObject:currentMatch.currentParticipant];
     GKTurnBasedParticipant *nextParticipant;
-    nextParticipant = [currentMatch.participants objectAtIndex: 
-                       ((currentIndex + 1) % [currentMatch.participants count ])];
+    
+    NSUInteger nextIndex = (currentIndex + 1) % 
+    [currentMatch.participants count];
+    nextParticipant = 
+    [currentMatch.participants objectAtIndex:nextIndex];
+    
+    for (int i = 0; i < [currentMatch.participants count]; i++) {
+        nextParticipant = [currentMatch.participants 
+                           objectAtIndex:((currentIndex + 1 + i) % 
+                                          [currentMatch.participants count ])];
+        if (nextParticipant.matchOutcome != 
+            GKTurnBasedMatchOutcomeQuit) {
+            break;
+        } 
+    }
+    
     [currentMatch endTurnWithNextParticipant:nextParticipant 
                                    matchData:data completionHandler:^(NSError *error) {
                                        if (error) {
                                            NSLog(@"%@", error);
+                                           lblStatus.text = 
+                                           @"Oops, there was a problem.  Try that again.";
+                                       } else {
+                                           lblStatus.text = @"Your turn is over.";
+                                           btnRobot.enabled = NO;
+                                           btnPaper.enabled = NO;
+                                           btnScissors.enabled = NO;
+                                           btnUnicorn.enabled = NO;
+                                           btnRock.enabled = NO;
                                        }
                                    }];
     NSLog(@"Send Turn, %@, %@", data, nextParticipant);
@@ -219,20 +295,57 @@ int cArray[35];
     
     [self imageChange:@"robot4_finalise-android(78x78)nobg.png":1];
     
-    NSString *userPick;
-    userPick = @"5";
-    NSData *data = 
-    [userPick dataUsingEncoding:NSUTF8StringEncoding ];
+    //set userMePick to 5
+    if (playerMe == 1)
+    {
+        [gameInfoArray replaceObjectAtIndex:3 withObject:[NSNumber numberWithDouble:5]];
+    }
+    else if (playerMe == 2)
+    {
+        [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:5]];
+    }
+    
+    //increase turn count to 1
+    
+    cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue] + 1;
+    [gameInfoArray replaceObjectAtIndex:2 withObject:[NSNumber numberWithDouble:cArray[2]]];
+    
+    
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray];
+    
     
     NSUInteger currentIndex = [currentMatch.participants 
                                indexOfObject:currentMatch.currentParticipant];
     GKTurnBasedParticipant *nextParticipant;
-    nextParticipant = [currentMatch.participants objectAtIndex: 
-                       ((currentIndex + 1) % [currentMatch.participants count ])];
+    
+    NSUInteger nextIndex = (currentIndex + 1) % 
+    [currentMatch.participants count];
+    nextParticipant = 
+    [currentMatch.participants objectAtIndex:nextIndex];
+    
+    for (int i = 0; i < [currentMatch.participants count]; i++) {
+        nextParticipant = [currentMatch.participants 
+                           objectAtIndex:((currentIndex + 1 + i) % 
+                                          [currentMatch.participants count ])];
+        if (nextParticipant.matchOutcome != 
+            GKTurnBasedMatchOutcomeQuit) {
+            break;
+        } 
+    }
+    
     [currentMatch endTurnWithNextParticipant:nextParticipant 
                                    matchData:data completionHandler:^(NSError *error) {
                                        if (error) {
                                            NSLog(@"%@", error);
+                                           lblStatus.text = 
+                                           @"Oops, there was a problem.  Try that again.";
+                                       } else {
+                                           lblStatus.text = @"Your turn is over.";
+                                           btnRobot.enabled = NO;
+                                           btnPaper.enabled = NO;
+                                           btnScissors.enabled = NO;
+                                           btnUnicorn.enabled = NO;
+                                           btnRock.enabled = NO;
                                        }
                                    }];
     NSLog(@"Send Turn, %@, %@", data, nextParticipant);
@@ -245,20 +358,57 @@ int cArray[35];
     
     [self imageChange:@"rock5._finalise-android(78x78)nobg.png":1];
     
-    NSString *userPick;
-    userPick = @"1";
-    NSData *data = 
-    [userPick dataUsingEncoding:NSUTF8StringEncoding ];
+    //set userMePick to 1
+    if (playerMe == 1)
+    {
+        [gameInfoArray replaceObjectAtIndex:3 withObject:[NSNumber numberWithDouble:1]];
+    }
+    else if (playerMe == 2)
+    {
+        [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:1]];
+    }
+    
+    //increase turn count to 1
+    
+    cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue] + 1;
+    [gameInfoArray replaceObjectAtIndex:2 withObject:[NSNumber numberWithDouble:cArray[2]]];
+    
+    
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray];
+    
     
     NSUInteger currentIndex = [currentMatch.participants 
                                indexOfObject:currentMatch.currentParticipant];
     GKTurnBasedParticipant *nextParticipant;
-    nextParticipant = [currentMatch.participants objectAtIndex: 
-                       ((currentIndex + 1) % [currentMatch.participants count ])];
+    
+    NSUInteger nextIndex = (currentIndex + 1) % 
+    [currentMatch.participants count];
+    nextParticipant = 
+    [currentMatch.participants objectAtIndex:nextIndex];
+    
+    for (int i = 0; i < [currentMatch.participants count]; i++) {
+        nextParticipant = [currentMatch.participants 
+                           objectAtIndex:((currentIndex + 1 + i) % 
+                                          [currentMatch.participants count ])];
+        if (nextParticipant.matchOutcome != 
+            GKTurnBasedMatchOutcomeQuit) {
+            break;
+        } 
+    }
+    
     [currentMatch endTurnWithNextParticipant:nextParticipant 
                                    matchData:data completionHandler:^(NSError *error) {
                                        if (error) {
                                            NSLog(@"%@", error);
+                                           lblStatus.text = 
+                                           @"Oops, there was a problem.  Try that again.";
+                                       } else {
+                                           lblStatus.text = @"Your turn is over.";
+                                           btnRobot.enabled = NO;
+                                           btnPaper.enabled = NO;
+                                           btnScissors.enabled = NO;
+                                           btnUnicorn.enabled = NO;
+                                           btnRock.enabled = NO;
                                        }
                                    }];
     NSLog(@"Send Turn, %@, %@", data, nextParticipant);
@@ -281,6 +431,42 @@ int cArray[35];
     
 }
 
+-(void)checkForEnding:(double)roundCount {
+    
+    if (roundCount/2 == 5)
+    {
+        lblStatus.text = @"Match has ended";
+    }
+}
+
+
+-(void) displayChange:(int)indexForPlayer:(int) selfOrOpp
+{
+    //check what opp picked
+    cArray[indexForPlayer] = [[gameInfoArray objectAtIndex:indexForPlayer] floatValue];
+    
+    if (cArray[indexForPlayer] == 1)
+    {
+        [self imageChange:@"rock5._finalise-android(78x78)nobg.png":selfOrOpp];
+    }
+    else if (cArray[indexForPlayer] == 2)
+    {
+        [self imageChange:@"paper2_finalise-android(78x78)nobg.png":selfOrOpp];
+    }
+    else if (cArray[indexForPlayer] == 3)
+    {
+        [self imageChange:@"scissors4_finalise-android(78x78)nobg.png":selfOrOpp];
+    }
+    else if (cArray[indexForPlayer] == 4)
+    {
+        [self imageChange:@"unicorn3_finalise-android(78x78)nobg.png":selfOrOpp];
+    }
+    else if (cArray[indexForPlayer] == 5)
+    {
+        [self imageChange:@"robot4_finalise-android(78x78)nobg.png":selfOrOpp];
+    }
+}
+
 -(void)layoutMatch:(GKTurnBasedMatch *)match {
     NSLog(@"Viewing match where it's not our turn...");
     NSString *statusString;
@@ -300,7 +486,49 @@ int cArray[35];
         btnUnicorn.enabled = NO;
         btnRock.enabled = NO;
     
-        //[self checkForEnding:match.matchData];
+    gameInfoArray = [NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
+    
+    //check to see if you are player1 or 2
+    if ([gameInfoArray objectAtIndex:2] == match.currentParticipant.playerID)
+    {
+        playerMe = 1;
+    }
+    else
+    {
+        playerMe = 2;
+    }
+    
+    // check to see if turn count is even, if even then display opp, if odd dont
+    cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue];
+    if (cArray[2]% 2 ==0)
+    {
+        //display round
+        int round = cArray[2]/2;
+        lblRound.text = [NSString stringWithFormat:@"%d",round];
+        
+        if (playerMe == 1)
+        {
+            //display what user picked for round
+            [self displayChange:3 :1];
+            //display what opp picked for round
+            [self displayChange:4:2];
+        }
+        else if (playerMe == 2)
+        {
+            [self displayChange:4 : 1];
+            [self displayChange:3:2];
+        }
+
+    }
+    else
+    {
+        int round = cArray[2]/2 - 1;
+        lblRound.text = [NSString stringWithFormat:@"%d",round];
+        [self imageChange:@"xrps-wp7-f4-2.png.png":2];
+    }
+    
+    
+        [self checkForEnding:cArray[2]];
     
     //NSString *storySoFar = [NSString stringWithUTF8String:
                             //[match.matchData bytes]];
@@ -316,13 +544,7 @@ int cArray[35];
     [av show];
 }
 
--(void)checkForEnding:(double)roundCount {
-    
-    if (roundCount/2 == 5)
-    {
-        lblStatus.text = @"Match has ended";
-    }
-}
+
 
 -(void)recieveEndGame:(GKTurnBasedMatch *)match {
     [self layoutMatch:match];
@@ -333,43 +555,15 @@ int cArray[35];
 -(void)enterNewGame:(GKTurnBasedMatch *)match {
     NSLog(@"Entering new game...");
     
-    // 0= currentScoreSelf, 1 = currentScoreOpp, 2= turn, 3 = oppPick, 4= selfPick,5- 10 = actionArray, 11 - 34 = conditionalArray
+    // 0= currentScorePlayer1, 1 = currentScorePlayer2, 2= turn, 3 = player1Pick, 4= player2Pick, 5 = firstPlayer
     
      gameInfoArray = [NSMutableArray arrayWithObjects:[NSNumber numberWithDouble:0],
                                    [NSNumber numberWithDouble:0],
                                    [NSNumber numberWithDouble:1],
                                    [NSNumber numberWithDouble:0],
                                    [NSNumber numberWithDouble:0],
-                                   [NSNumber numberWithDouble:0.5], 
-                                   [NSNumber numberWithDouble:0.5], 
-                                   [NSNumber numberWithDouble:0.5], 
-                                   [NSNumber numberWithDouble:0.5], 
-                                   [NSNumber numberWithDouble:0.5], 
-                                   [NSNumber numberWithDouble:1], 
-                                   [NSNumber numberWithDouble:1], 
-                                   [NSNumber numberWithDouble:1], 
-                                   [NSNumber numberWithDouble:1] ,
-                                   [NSNumber numberWithDouble:1], 
-                                   [NSNumber numberWithDouble:1], 
-                                   [NSNumber numberWithDouble:1], 
-                                   [NSNumber numberWithDouble:1], 
-                                   [NSNumber numberWithDouble:1], 
-                                   [NSNumber numberWithDouble:1], 
-                                   [NSNumber numberWithDouble:1], 
-                                   [NSNumber numberWithDouble:1], 
-                                   [NSNumber numberWithDouble:1], 
-                                   [NSNumber numberWithDouble:1], 
-                                   [NSNumber numberWithDouble:1], 
-                                   [NSNumber numberWithDouble:1], 
-                                   [NSNumber numberWithDouble:1], 
-                                   [NSNumber numberWithDouble:1], 
-                                   [NSNumber numberWithDouble:1], 
-                                   [NSNumber numberWithDouble:1], 
-                                   [NSNumber numberWithDouble:1], 
-                                   [NSNumber numberWithDouble:1], 
-                                   [NSNumber numberWithDouble:1], 
-                                   [NSNumber numberWithDouble:1], 
-                                   [NSNumber numberWithDouble:1],nil];
+                                   [NSNumber numberWithDouble:1],
+                                    match.currentParticipant.playerID,nil];
     
     btnRobot.enabled = YES;
     btnPaper.enabled = YES;
@@ -377,7 +571,10 @@ int cArray[35];
     btnUnicorn.enabled = YES;
     btnRock.enabled = YES;
     lblStatus.text = @"Please start new game";
+    lblRound.text = @"Round:1";
 }
+
+
 
 -(void)takeTurn:(GKTurnBasedMatch *)match {
     
@@ -392,6 +589,15 @@ int cArray[35];
     btnRock.enabled = YES;
     lblStatus.text =@"It's your turn";
     
+    //check to see if you are player1 or 2
+    if ([gameInfoArray objectAtIndex:2] == match.currentParticipant.playerID)
+    {
+        playerMe = 1;
+    }
+    else
+    {
+        playerMe = 2;
+    }
     
     // check to see if turn count is even, if even then display opp, if odd dont
     cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue];
@@ -401,28 +607,19 @@ int cArray[35];
         int round = cArray[2]/2;
         lblRound.text = [NSString stringWithFormat:@"%d",round];
         
-        //check what opp picked
-        cArray[3] = [[gameInfoArray objectAtIndex:3] floatValue];
-        
-        if (cArray[3] == 1)
+        if (playerMe == 1)
         {
-            [self imageChange:@"rock5._finalise-android(78x78)nobg.png":2];
+            //display what user picked for round
+            [self displayChange:3 :1];
+            //display what opp picked for round
+            [self displayChange:4:2];
         }
-        else if (cArray[3] == 2)
+        else if (playerMe == 2)
         {
-            [self imageChange:@"paper2_finalise-android(78x78)nobg.png":2];
-        }
-        else if (cArray[3] == 3)
-        {
-            [self imageChange:@"scissors4_finalise-android(78x78)nobg.png":2];
-        }
-        else if (cArray[3] == 4)
-        {
-            [self imageChange:@"unicorn3_finalise-android(78x78)nobg.png":2];
-        }
-        else
-        {
-            [self imageChange:@"robot4_finalise-android(78x78)nobg.png":2];
+            //display what user picked for round
+            [self displayChange:4 :1];
+            //display whatt opp picked for round
+            [self displayChange:3:2];
         }
     }
     else

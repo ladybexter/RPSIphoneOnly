@@ -86,13 +86,11 @@ static GCHelper *sharedHelper = nil;
     } else {
         NSLog(@"Already authenticated!");
         setGKEventHandlerDelegate(nil);
+        
     }
     
     UIAlertView *eventInstruct = [[UIAlertView alloc] initWithTitle:nil message:@"Please press Game Center to \n\n either START NEW game or CONTINUE game" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     
-    
-    CGAffineTransform rot = CGAffineTransformMakeRotation(3.1415f * 0.5f); // rotate by 90 degrees
-    eventInstruct.transform = CGAffineTransformScale(rot, 0.5f, 0.5f); // throw in a scale just for kicks
     [eventInstruct show];
 }
 
