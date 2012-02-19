@@ -21,7 +21,7 @@
 @synthesize btnUnicorn;
 @synthesize btnRobot;
 
-int cArray[5];
+int cArray[6];
 int playerMe;
 
 
@@ -123,12 +123,16 @@ int playerMe;
     {
         [self imageChange:@"robot4_finalise-android(78x78)nobg.png":selfOrOpp];
     }
+    else
+    {
+        [self imageChange:@"xrps-wp7-f4-2.png":selfOrOpp];
+    }
 }
 
 
--(void)checkForEnding:(double)round {
+-(void)checkForEnding:(double)roundCount {
     
-    if (round == 5)
+    if (roundCount == 10)
     {
         
         lblStatus.text = @"Match has ended";
@@ -182,13 +186,23 @@ int playerMe;
     {
         cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue] + 1;
     [gameInfoArray replaceObjectAtIndex:2 withObject:[NSNumber numberWithDouble:cArray[2]]];
+        //reset image for next round
+        [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:0]];
+        
+        [self checkForEnding:cArray[2]];
+        
+        
     }
     
+    //increase turnCount by 1
+    cArray[5] = [[gameInfoArray objectAtIndex:5] floatValue] + 1;
+    [gameInfoArray replaceObjectAtIndex:5 withObject:[NSNumber numberWithDouble:cArray[5]]];
     
     
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray]; 
     
-    if ([[gameInfoArray objectAtIndex:2] floatValue] /2 == 5 ) {
+    //need to change this to ....
+    if ([[gameInfoArray objectAtIndex:2] floatValue] == 5 ) {
         for (GKTurnBasedParticipant *part in currentMatch.participants) {
             
             
@@ -223,16 +237,13 @@ int playerMe;
     }
     NSLog(@"Send Turn, %@, %@", data, nextParticipant);
     
-    [self checkForEnding:cArray[2]];
+    
 
     
 }
 
 - (IBAction)btnPaper:(id)sender {
     
-    
-    
-    [self imageChange:@"paper2_finalise-android(78x78)nobg.png":1];
     
     //set userMePick to 2
     if (playerMe == 1)
@@ -241,7 +252,9 @@ int playerMe;
     }
     else if (playerMe == 2)
     {
+        
         [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:2]];
+        
     }
     
     [self sendTurn];
@@ -251,8 +264,6 @@ int playerMe;
 - (IBAction)btnScissors:(id)sender {
     
     
-    [self imageChange:@"scissors4_finalise-android(78x78)nobg.png":1];
-    
     //set userMePick to 3
     if (playerMe == 1)
     {
@@ -260,6 +271,7 @@ int playerMe;
     }
     else if (playerMe == 2)
     {
+        
         [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:3]];
     }
     
@@ -270,8 +282,6 @@ int playerMe;
 - (IBAction)btnUnicorn:(id)sender {
     
     
-    [self imageChange:@"unicorn3_finalise-android(78x78)nobg.png":1];
-    
     //set userMePick to 4
     if (playerMe == 1)
     {
@@ -279,6 +289,7 @@ int playerMe;
     }
     else if (playerMe == 2)
     {
+        
         [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:4]];
     }
     [self sendTurn];
@@ -286,8 +297,6 @@ int playerMe;
 
 - (IBAction)btnRobot:(id)sender {
     
-    
-    [self imageChange:@"robot4_finalise-android(78x78)nobg.png":1];
     
     //set userMePick to 5
     if (playerMe == 1)
@@ -304,7 +313,6 @@ int playerMe;
 
 - (IBAction)btnRock:(id)sender {
     
-    [self imageChange:@"rock5._finalise-android(78x78)nobg.png":1];
     
     //set userMePick to 1
     if (playerMe == 1)
@@ -313,6 +321,7 @@ int playerMe;
     }
     else if (playerMe == 2)
     {
+        
         [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:1]];
     }
     
@@ -417,14 +426,14 @@ int playerMe;
 -(void)enterNewGame:(GKTurnBasedMatch *)match {
     NSLog(@"Entering new game...");
     
-    // 0= currentScorePlayer1, 1 = currentScorePlayer2, 2= turn, 3 = player1Pick, 4= player2Pick,
+    // 0= currentScorePlayer1, 1 = currentScorePlayer2, 2= turn, 3 = player1Pick, 4= player2Pick, 5=turnCount
     
      gameInfoArray = [NSMutableArray arrayWithObjects:[NSNumber numberWithDouble:0],
                                    [NSNumber numberWithDouble:0],
                                    [NSNumber numberWithDouble:1],
                                    [NSNumber numberWithDouble:0],
                                    [NSNumber numberWithDouble:0],
-                                   [NSNumber numberWithDouble:1],nil];
+                                   [NSNumber numberWithDouble: 1], nil];
     
     btnRobot.enabled = YES;
     btnPaper.enabled = YES;
