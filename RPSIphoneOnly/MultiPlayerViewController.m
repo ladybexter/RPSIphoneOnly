@@ -15,6 +15,12 @@
 @synthesize imgOppPick;
 @synthesize imgUserPick;
 @synthesize lblRound;
+@synthesize lblPlayerName;
+@synthesize lblUserScore;
+@synthesize lblOppScore;
+@synthesize lblYOUResult;
+@synthesize lblHowResult;
+@synthesize lblVS;
 @synthesize btnRock;
 @synthesize btnPaper;
 @synthesize btnScissors;
@@ -74,6 +80,12 @@ int playerMe;
     [self setBtnUnicorn:nil];
     [self setBtnRobot:nil];
     [self setLblRound:nil];
+    [self setLblPlayerName:nil];
+    [self setLblUserScore:nil];
+    [self setLblOppScore:nil];
+    [self setLblYOUResult:nil];
+    [self setLblHowResult:nil];
+    [self setLblVS:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -97,6 +109,224 @@ int playerMe;
         imgOppPick.image = [UIImage imageNamed:(image)];
     }
 }
+
+
+-(void)tie
+{
+    lblHowResult.textColor =[UIColor blueColor];
+    lblYOUResult.textColor = [UIColor blueColor];
+    lblYOUResult.text = @"YOU TIE";
+    lblHowResult.text = @"No Win, No Lose";
+    //[self displayORHide:3];  
+    
+}
+
+-(void)win
+{
+    lblHowResult.textColor =[UIColor greenColor];
+    lblYOUResult.textColor = [UIColor greenColor];
+    lblYOUResult.text = @"YOU WIN";
+    
+    
+    //update userscore by one if win
+    if (playerMe == 1)
+    {
+        cArray[0] = [[gameInfoArray objectAtIndex:0] floatValue] + 1;
+        [gameInfoArray replaceObjectAtIndex:0 withObject:[NSNumber numberWithDouble:cArray[0]]];
+    }
+    else
+    {
+        cArray[1] = [[gameInfoArray objectAtIndex:1] floatValue] + 1;
+        [gameInfoArray replaceObjectAtIndex:1 withObject:[NSNumber numberWithDouble:cArray[1]]];
+    }
+    
+    //[self displayORHide:3];  
+}
+
+-(void)lose
+{
+    lblHowResult.textColor =[UIColor redColor];
+    lblYOUResult.textColor = [UIColor redColor];
+    lblYOUResult.text =@"YOU LOSE";
+    
+    //update oppscore by one if win
+    if (playerMe == 2)
+    {
+        cArray[0] = [[gameInfoArray objectAtIndex:0] floatValue] + 1;
+        [gameInfoArray replaceObjectAtIndex:0 withObject:[NSNumber numberWithDouble:cArray[0]]];
+    }
+    else
+    {
+        cArray[1] = [[gameInfoArray objectAtIndex:1] floatValue] + 1;
+        [gameInfoArray replaceObjectAtIndex:1 withObject:[NSNumber numberWithDouble:cArray[1]]];
+    }
+    
+    //[self displayORHide:3];  
+}
+
+
+
+-(void)resultsDisplay:(double)userpick :(double)opppick
+{
+    
+    if (userpick == 1)
+    {
+        if (opppick == 1)
+        {
+            [self tie];
+        }
+        else if (opppick == 2)
+        {
+            lblHowResult.text = @"Paper 'wraps' around Rock";
+            [self lose];
+            
+        }
+        else if (opppick == 3)
+        {
+            lblHowResult.text = @"Rock 'breaks' Scissors";
+            [self win];
+            
+        }
+        else if (opppick == 4)
+        {
+            lblHowResult.text = @"Rock 'knocks' out Unicorn";
+            [self win];
+        }
+        else
+        {
+            lblHowResult.text = @"Robot 'smashes' Rock";
+            [self lose];
+        }
+    }
+    else if (userpick == 2)
+    {
+        if (opppick == 1)
+        {
+            lblHowResult.text = @"Paper 'wraps' around Rock";
+            [self win ];
+        }
+        else if (opppick == 2)
+        {
+            [self tie ];
+        }
+        else if (opppick == 3)
+        {
+            lblHowResult.text = @"Scissors 'cut' Paper";
+            [self lose ];
+        }
+        else if (opppick == 4)
+        {
+            lblHowResult.text = @"Unicorn 'pokes' hole in Paper";
+            [self lose ];
+        }
+        else
+        {
+            lblHowResult.text = @"Paper 'blinds' Robot vision";
+            [self win ];
+        }
+    }
+    else if (userpick == 3)
+    {
+        if (opppick == 1)
+        {
+            lblHowResult.text = @"Rock 'breaks' Scissors";
+            [self lose ];
+        }
+        else if (opppick == 2)
+        {
+            lblHowResult.text = @"Scissors 'cut' Paper";
+            [self win ];
+        }
+        else if (opppick == 3)
+        {
+            [self tie ];
+        }
+        else if (opppick == 4)
+        {
+            lblHowResult.text = @"Unicorn 'stomps' on Scissors";
+            [self lose ];
+        }
+        else
+        {
+            lblHowResult.text = @"Scissors 'cut' Robot wires";
+            [self win ];
+        }
+    }
+    else if (userpick == 4)
+    {
+        if (opppick == 1)
+        {
+            lblHowResult.text = @"Rock 'knocks out' Unicorn";
+            [self lose ];
+        }
+        else if (opppick == 2)
+        {
+            lblHowResult.text = @"Unicorn 'pokes' hole in Paper";
+            [self win ];
+        }
+        else if (opppick == 3)
+        {
+            lblHowResult.text = @"Unicorn 'stomps' on Scissors";
+            [self win ];
+        }
+        else if (opppick == 4)
+        {
+            [self tie ];
+        }
+        else
+        {
+            lblHowResult.text = @"Robot laser 'shoots' Unicorn";
+            [self lose ];
+        }
+    }
+    else
+    {
+        if (opppick == 1)
+        {
+            lblHowResult.text = @"Robot 'smashes' Rock";
+            [self win ];
+        }
+        else if (opppick == 2)
+        {
+            lblHowResult.text = @"Paper 'blinds' Robot vision";
+            [self lose ];
+        }
+        else if (opppick == 3)
+        {
+            lblHowResult.text = @"Scissors 'cut' Robot wires";
+            [self lose ];
+        }
+        else if (opppick == 4)
+        {
+            lblHowResult.text = @"Robot laser 'shoots' Unicorn";
+            [self win ];
+        }
+        else
+        {
+            [self tie ];
+        }
+    }
+    
+    
+    if (playerMe == 1)
+    {
+        int oppScore = [[gameInfoArray objectAtIndex:1] floatValue];
+        int userScore = [[gameInfoArray objectAtIndex:0] floatValue];
+        lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
+        lblUserScore.text = [NSString stringWithFormat:@"%d",userScore];    
+    }
+    else
+    {
+        int oppScore = [[gameInfoArray objectAtIndex:0] floatValue];
+        int userScore = [[gameInfoArray objectAtIndex:1] floatValue];
+        lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
+        lblUserScore.text = [NSString stringWithFormat:@"%d",userScore];    
+    }
+    
+    
+    
+}
+
 
 -(void) displayChange:(int)indexForPlayer:(int) selfOrOpp
 {
