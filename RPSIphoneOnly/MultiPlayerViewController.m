@@ -98,7 +98,59 @@ int playerMe;
     }
 }
 
+-(void) displayChange:(int)indexForPlayer:(int) selfOrOpp
+{
+    //check what opp picked
+    cArray[indexForPlayer] = [[gameInfoArray objectAtIndex:indexForPlayer] floatValue];
+    
+    if (cArray[indexForPlayer] == 1)
+    {
+        [self imageChange:@"rock5._finalise-android(78x78)nobg.png":selfOrOpp];
+    }
+    else if (cArray[indexForPlayer] == 2)
+    {
+        [self imageChange:@"paper2_finalise-android(78x78)nobg.png":selfOrOpp];
+    }
+    else if (cArray[indexForPlayer] == 3)
+    {
+        [self imageChange:@"scissors4_finalise-android(78x78)nobg.png":selfOrOpp];
+    }
+    else if (cArray[indexForPlayer] == 4)
+    {
+        [self imageChange:@"unicorn3_finalise-android(78x78)nobg.png":selfOrOpp];
+    }
+    else if (cArray[indexForPlayer] == 5)
+    {
+        [self imageChange:@"robot4_finalise-android(78x78)nobg.png":selfOrOpp];
+    }
+}
+
+
+-(void)checkForEnding:(double)round {
+    
+    if (round == 5)
+    {
+        
+        lblStatus.text = @"Match has ended";
+    }
+}
+
 -(void)sendTurn{
+    
+    if (playerMe == 1)
+    {
+        //display what user picked for round
+        [self displayChange:3 :1];
+        //display what opp picked for round
+        [self displayChange:4:2];
+    }
+    else if (playerMe == 2)
+    {
+        //display what user picked for round
+        [self displayChange:4 :1];
+        //display whatt opp picked for round
+        [self displayChange:3:2];
+    }
     
     GKTurnBasedMatch *currentMatch = 
     [[GCHelper sharedInstance] currentMatch];
@@ -125,15 +177,22 @@ int playerMe;
     }
     
     
-    //increase turn count to 1
-    
-    cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue] + 1;
+    //increase turn by 1 after player 2 turns
+    if (playerMe == 2)
+    {
+        cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue] + 1;
     [gameInfoArray replaceObjectAtIndex:2 withObject:[NSNumber numberWithDouble:cArray[2]]];
+    }
+    
+    
     
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray]; 
     
     if ([[gameInfoArray objectAtIndex:2] floatValue] /2 == 5 ) {
         for (GKTurnBasedParticipant *part in currentMatch.participants) {
+            
+            
+            //fill in here what result of match was use GKTurnBasedOutcomeWon if user won, and GKTurnBasedOutcomeLost if lost 
             part.matchOutcome = GKTurnBasedMatchOutcomeTied;
         }
         [currentMatch endMatchInTurnWithMatchData:data 
@@ -164,7 +223,7 @@ int playerMe;
     }
     NSLog(@"Send Turn, %@, %@", data, nextParticipant);
     
-    
+    [self checkForEnding:cArray[2]];
 
     
 }
@@ -277,44 +336,10 @@ int playerMe;
     
 }
 
--(void)checkForEnding:(double)roundCount {
-    
-    if (roundCount/2 == 5)
-    {
-        
-        lblStatus.text = @"Match has ended";
-    }
-}
 
-
--(void) displayChange:(int)indexForPlayer:(int) selfOrOpp
-{
-    //check what opp picked
-    cArray[indexForPlayer] = [[gameInfoArray objectAtIndex:indexForPlayer] floatValue];
-    
-    if (cArray[indexForPlayer] == 1)
-    {
-        [self imageChange:@"rock5._finalise-android(78x78)nobg.png":selfOrOpp];
-    }
-    else if (cArray[indexForPlayer] == 2)
-    {
-        [self imageChange:@"paper2_finalise-android(78x78)nobg.png":selfOrOpp];
-    }
-    else if (cArray[indexForPlayer] == 3)
-    {
-        [self imageChange:@"scissors4_finalise-android(78x78)nobg.png":selfOrOpp];
-    }
-    else if (cArray[indexForPlayer] == 4)
-    {
-        [self imageChange:@"unicorn3_finalise-android(78x78)nobg.png":selfOrOpp];
-    }
-    else if (cArray[indexForPlayer] == 5)
-    {
-        [self imageChange:@"robot4_finalise-android(78x78)nobg.png":selfOrOpp];
-    }
-}
 
 -(void)layoutMatch:(GKTurnBasedMatch *)match {
+    
     NSLog(@"Viewing match where it's not our turn...");
     NSString *statusString;
     
@@ -342,21 +367,20 @@ int playerMe;
     [match.participants objectAtIndex:0];
     if (firstParticipant == match.currentParticipant)
     {
-        playerMe = 1;
+        playerMe = 2;
     }
     else
     {
-        playerMe = 2;
+        playerMe = 1;
     }
     
-    // check to see if turn count is even, if even then display opp, if odd dont
+    
     cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue];
-    if (cArray[2]% 2 ==0)
-    {
-        //display round
-        int round = cArray[2]/2;
+    
+    //display round
+        int round = cArray[2];
         lblRound.text = [NSString stringWithFormat:@"%d",round];
-        
+    
         if (playerMe == 1)
         {
             //display what user picked for round
@@ -366,24 +390,11 @@ int playerMe;
         }
         else if (playerMe == 2)
         {
-            [self displayChange:4 : 1];
-            [self displayChange:3:2];
+            [self imageChange:@"xrps-wp7-f4-2.png" :1];
+            [self imageChange:@"xrps-wp7-f4-2.png" :2];
         }
 
-    }
-    else
-    {
-        int round = cArray[2]/2 - 1;
-        lblRound.text = [NSString stringWithFormat:@"%d",round];
-        [self imageChange:@"xrps-wp7-f4-2.png.png":2];
-    }
-    
-    
-        [self checkForEnding:cArray[2]];
-    
-    //NSString *storySoFar = [NSString stringWithUTF8String:
-                            //[match.matchData bytes]];
-    //mainTextController.text = storySoFar;
+    [self checkForEnding:cArray[2]];
 }
 
 -(void)sendNotice:(NSString *)notice forMatch:
@@ -431,7 +442,12 @@ int playerMe;
     
     gameInfoArray = [NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
     
+    [self imageChange:@"xrps-wp7-f4-2.png" :1];
+    [self imageChange:@"xrps-wp7-f4-2.png" :2];
+    
+    
     NSLog(@"Taking turn for existing game...");
+    
     btnRobot.enabled = YES;
     btnPaper.enabled = YES;
     btnScissors.enabled = YES;
@@ -453,35 +469,13 @@ int playerMe;
     
     // check to see if turn count is even, if even then display opp, if odd dont
     cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue];
-    if (cArray[2]% 2 ==0)
-    {
-        //display round
-        int round = cArray[2]/2;
-        lblRound.text = [NSString stringWithFormat:@"%d",round];
-        
-        if (playerMe == 1)
-        {
-            //display what user picked for round
-            [self displayChange:3 :1];
-            //display what opp picked for round
-            [self displayChange:4:2];
-        }
-        else if (playerMe == 2)
-        {
-            //display what user picked for round
-            [self displayChange:4 :1];
-            //display whatt opp picked for round
-            [self displayChange:3:2];
-        }
-    }
-    else
-    {
-        int round = cArray[2]/2 - 1;
-        lblRound.text = [NSString stringWithFormat:@"%d",round];
-        [self imageChange:@"xrps-wp7-f4-2.png.png":2];
-    }
     
-    [self checkForEnding:cArray[2]];
+    //display round
+        int round = cArray[2];
+        
+        NSLog(@"%d",round);
+        lblRound.text = [NSString stringWithFormat:@"%d",round];
+    
 }
 
 
