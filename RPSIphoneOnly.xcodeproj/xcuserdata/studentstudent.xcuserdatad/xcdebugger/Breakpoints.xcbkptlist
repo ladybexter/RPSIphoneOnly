@@ -169,5 +169,17 @@
          landmarkName = "-btnPaper:"
          landmarkType = "5">
       </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "RPSIphoneOnly/MultiPlayerViewController.h"
+         timestampString = "351384485.626334"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1"
+         endingLineNumber = "1">
+      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

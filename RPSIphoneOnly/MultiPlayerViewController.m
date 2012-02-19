@@ -194,15 +194,12 @@ int playerMe;
         
     }
     
-    //increase turnCount by 1
-    cArray[5] = [[gameInfoArray objectAtIndex:5] floatValue] + 1;
-    [gameInfoArray replaceObjectAtIndex:5 withObject:[NSNumber numberWithDouble:cArray[5]]];
     
     
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray]; 
     
     //need to change this to ....
-    if ([[gameInfoArray objectAtIndex:2] floatValue] == 5 ) {
+    if ([[gameInfoArray objectAtIndex:5] floatValue] == 10 ) {
         for (GKTurnBasedParticipant *part in currentMatch.participants) {
             
             
@@ -236,6 +233,11 @@ int playerMe;
         
     }
     NSLog(@"Send Turn, %@, %@", data, nextParticipant);
+    
+    
+    //increase turnCount by 1
+    cArray[5] = [[gameInfoArray objectAtIndex:5] floatValue] + 1;
+    [gameInfoArray replaceObjectAtIndex:5 withObject:[NSNumber numberWithDouble:cArray[5]]];
     
     
 
