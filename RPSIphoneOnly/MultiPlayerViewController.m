@@ -129,12 +129,7 @@ int playerMe;
     
     
     //update userscore by one if win
-    if (playerMe == 1)
-    {
-        cArray[0] = [[gameInfoArray objectAtIndex:0] floatValue] + 1;
-        [gameInfoArray replaceObjectAtIndex:0 withObject:[NSNumber numberWithDouble:cArray[0]]];
-    }
-    else
+    if (playerMe == 2)
     {
         cArray[1] = [[gameInfoArray objectAtIndex:1] floatValue] + 1;
         [gameInfoArray replaceObjectAtIndex:1 withObject:[NSNumber numberWithDouble:cArray[1]]];
@@ -154,11 +149,6 @@ int playerMe;
     {
         cArray[0] = [[gameInfoArray objectAtIndex:0] floatValue] + 1;
         [gameInfoArray replaceObjectAtIndex:0 withObject:[NSNumber numberWithDouble:cArray[0]]];
-    }
-    else
-    {
-        cArray[1] = [[gameInfoArray objectAtIndex:1] floatValue] + 1;
-        [gameInfoArray replaceObjectAtIndex:1 withObject:[NSNumber numberWithDouble:cArray[1]]];
     }
     
     //[self displayORHide:3];  
@@ -192,7 +182,7 @@ int playerMe;
             lblHowResult.text = @"Rock 'knocks' out Unicorn";
             [self win];
         }
-        else
+        else if (opppick == 5)
         {
             lblHowResult.text = @"Robot 'smashes' Rock";
             [self lose];
@@ -219,7 +209,7 @@ int playerMe;
             lblHowResult.text = @"Unicorn 'pokes' hole in Paper";
             [self lose ];
         }
-        else
+        else if (opppick == 5)
         {
             lblHowResult.text = @"Paper 'blinds' Robot vision";
             [self win ];
@@ -246,7 +236,7 @@ int playerMe;
             lblHowResult.text = @"Unicorn 'stomps' on Scissors";
             [self lose ];
         }
-        else
+        else if (opppick == 5)
         {
             lblHowResult.text = @"Scissors 'cut' Robot wires";
             [self win ];
@@ -273,13 +263,13 @@ int playerMe;
         {
             [self tie ];
         }
-        else
+        else if (opppick == 5)
         {
             lblHowResult.text = @"Robot laser 'shoots' Unicorn";
             [self lose ];
         }
     }
-    else
+    else if (userpick == 5)
     {
         if (opppick == 1)
         {
@@ -301,7 +291,7 @@ int playerMe;
             lblHowResult.text = @"Robot laser 'shoots' Unicorn";
             [self win ];
         }
-        else
+        else if (opppick == 5)
         {
             [self tie ];
         }
@@ -373,6 +363,9 @@ int playerMe;
     
     if (playerMe == 1)
     {
+        //reset image for next round
+        [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:0]];
+        
         //display what user picked for round
         [self displayChange:3 :1];
         //display what opp picked for round
@@ -414,10 +407,15 @@ int playerMe;
     //increase turn by 1 after player 2 turns
     if (playerMe == 2)
     {
+        
+        lblYOUResult.hidden = NO;
+        lblHowResult.hidden = NO;
+        
         cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue] + 1;
     [gameInfoArray replaceObjectAtIndex:2 withObject:[NSNumber numberWithDouble:cArray[2]]];
-        //reset image for next round
-        [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:0]];
+        
+        
+        [self resultsDisplay:[[gameInfoArray objectAtIndex:4] floatValue] : [[gameInfoArray objectAtIndex:3] floatValue]];
         
         [self checkForEnding:cArray[2]];
         
@@ -674,6 +672,9 @@ int playerMe;
     btnRock.enabled = YES;
     lblStatus.text = @"Please start new game";
     lblRound.text = @"Round:1";
+    lblHowResult.hidden = YES;
+    lblYOUResult.hidden = YES;
+    playerMe = 1;
 }
 
 
@@ -683,8 +684,7 @@ int playerMe;
     
     gameInfoArray = [NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
     
-    [self imageChange:@"xrps-wp7-f4-2.png" :1];
-    [self imageChange:@"xrps-wp7-f4-2.png" :2];
+    
     
     
     NSLog(@"Taking turn for existing game...");
@@ -701,10 +701,24 @@ int playerMe;
     if (firstParticipant == match.currentParticipant)
     {
         playerMe = 1;
+        
+        //display what user picked for round before
+        [self displayChange:3 :1];
+        //display what opp picked for round before
+        [self displayChange:4:2];
+        
+        [self resultsDisplay:[[gameInfoArray objectAtIndex:3] floatValue] : [[gameInfoArray objectAtIndex:4] floatValue]];
+        
     }
     else
     {
         playerMe = 2;
+        
+        [self imageChange:@"xrps-wp7-f4-2.png" :1];
+        [self imageChange:@"xrps-wp7-f4-2.png" :2];
+        
+        lblYOUResult.hidden = YES;
+        lblHowResult.hidden = YES;
     }
         
     

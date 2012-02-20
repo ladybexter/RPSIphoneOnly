@@ -63,11 +63,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "RPSIphoneOnly/MultiPlayerViewController.h"
-         timestampString = "351113272.278053"
+         timestampString = "351387380.603224"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "27"
-         endingLineNumber = "27"
+         startingLineNumber = "33"
+         endingLineNumber = "33"
          landmarkName = "-btnPaper:"
          landmarkType = "4">
       </FileBreakpoint>
@@ -91,11 +91,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "RPSIphoneOnly/MultiPlayerViewController.m"
-         timestampString = "351379332.737586"
+         timestampString = "351387380.603224"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "144"
-         endingLineNumber = "144"
+         startingLineNumber = "374"
+         endingLineNumber = "374"
          landmarkName = "-sendTurn"
          landmarkType = "5">
       </FileBreakpoint>
@@ -105,11 +105,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "RPSIphoneOnly/MultiPlayerViewController.m"
-         timestampString = "351379541.441653"
+         timestampString = "351393520.007243"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "151"
-         endingLineNumber = "151"
+         startingLineNumber = "384"
+         endingLineNumber = "384"
          landmarkName = "-sendTurn"
          landmarkType = "5">
       </FileBreakpoint>
@@ -119,11 +119,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "RPSIphoneOnly/MultiPlayerViewController.m"
-         timestampString = "351379544.033596"
+         timestampString = "351393520.007243"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "159"
-         endingLineNumber = "159"
+         startingLineNumber = "392"
+         endingLineNumber = "392"
          landmarkName = "-sendTurn"
          landmarkType = "5">
       </FileBreakpoint>
@@ -133,11 +133,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "RPSIphoneOnly/MultiPlayerViewController.m"
-         timestampString = "351381600.321288"
+         timestampString = "351393520.007243"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "244"
-         endingLineNumber = "244"
+         startingLineNumber = "487"
+         endingLineNumber = "487"
          landmarkName = "-btnPaper:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -147,11 +147,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "RPSIphoneOnly/MultiPlayerViewController.m"
-         timestampString = "351381600.321288"
+         timestampString = "351393520.007243"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "245"
-         endingLineNumber = "245"
+         startingLineNumber = "488"
+         endingLineNumber = "488"
          landmarkName = "-btnPaper:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -161,11 +161,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "RPSIphoneOnly/MultiPlayerViewController.m"
-         timestampString = "351381600.321288"
+         timestampString = "351393520.007243"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "246"
-         endingLineNumber = "246"
+         startingLineNumber = "489"
+         endingLineNumber = "489"
          landmarkName = "-btnPaper:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -187,12 +187,96 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "RPSIphoneOnly/MultiPlayerViewController.m"
-         timestampString = "351386461.618095"
+         timestampString = "351387380.603224"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "322"
-         endingLineNumber = "322"
+         startingLineNumber = "326"
+         endingLineNumber = "326"
          landmarkName = "-resultsDisplay::"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "RPSIphoneOnly/MultiPlayerViewController.m"
+         timestampString = "351393520.007243"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "668"
+         endingLineNumber = "668"
+         landmarkName = "-enterNewGame:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "RPSIphoneOnly/MultiPlayerViewController.m"
+         timestampString = "351393520.007243"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "695"
+         endingLineNumber = "695"
+         landmarkName = "-takeTurn:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "RPSIphoneOnly/MultiPlayerViewController.m"
+         timestampString = "351393520.007243"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "508"
+         endingLineNumber = "508"
+         landmarkName = "-btnScissors:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "RPSIphoneOnly/MultiPlayerViewController.m"
+         timestampString = "351393520.007243"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "526"
+         endingLineNumber = "526"
+         landmarkName = "-btnUnicorn:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "RPSIphoneOnly/MultiPlayerViewController.m"
+         timestampString = "351393520.007243"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "542"
+         endingLineNumber = "542"
+         landmarkName = "-btnRobot:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "RPSIphoneOnly/MultiPlayerViewController.m"
+         timestampString = "351393520.007243"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "558"
+         endingLineNumber = "558"
+         landmarkName = "-btnRock:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

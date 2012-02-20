@@ -17,6 +17,12 @@ GCTurnBasedMatchHelperDelegate>{
 @property (weak, nonatomic) IBOutlet UIImageView *imgOppPick;
 @property (weak, nonatomic) IBOutlet UIImageView *imgUserPick;
 @property (weak, nonatomic) IBOutlet UILabel *lblRound;
+@property (weak, nonatomic) IBOutlet UILabel *lblPlayerName;
+@property (weak, nonatomic) IBOutlet UILabel *lblUserScore;
+@property (weak, nonatomic) IBOutlet UILabel *lblOppScore;
+@property (weak, nonatomic) IBOutlet UILabel *lblYOUResult;
+@property (weak, nonatomic) IBOutlet UILabel *lblHowResult;
+@property (weak, nonatomic) IBOutlet UILabel *lblVS;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnRock;
 @property (weak, nonatomic) IBOutlet UIButton *btnPaper;
