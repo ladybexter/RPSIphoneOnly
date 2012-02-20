@@ -358,7 +358,7 @@ int playerMe;
 
 -(void)checkForEnding:(double)roundCount {
     
-    if (roundCount == 10)
+    if (roundCount == 7)
     {
         
         lblStatus.text = @"Match has ended";
@@ -440,7 +440,7 @@ int playerMe;
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray]; 
     
     //need to change this to ....
-    if ([[gameInfoArray objectAtIndex:5] floatValue] == 10 ) {
+    if ([[gameInfoArray objectAtIndex:5] floatValue] == 7 ) {
         for (GKTurnBasedParticipant *part in currentMatch.participants) {
             
             
