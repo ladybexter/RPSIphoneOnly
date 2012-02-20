@@ -26,6 +26,7 @@
 @synthesize btnScissors;
 @synthesize btnUnicorn;
 @synthesize btnRobot;
+@synthesize btnAdvice;
 
 int cArray[6];
 int playerMe;
@@ -64,8 +65,12 @@ int playerMe;
     btnUnicorn.enabled = NO;
     btnRock.enabled = NO;
     
-    lblStatus.text = @"";
+    lblStatus.text = @"Please press Game Center to get started";
     lblRound.text = @"";
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"XRPSInterfacebackground3" ofType:@"png" inDirectory:@""];
+    
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile:path]]];
     
 }
 
@@ -86,6 +91,7 @@ int playerMe;
     [self setLblYOUResult:nil];
     [self setLblHowResult:nil];
     [self setLblVS:nil];
+    [self setBtnAdvice:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -361,10 +367,17 @@ int playerMe;
 
 -(void)sendTurn{
     
+    //increase turnCount by 1
+    cArray[5] = [[gameInfoArray objectAtIndex:5] floatValue] + 1;
+    [gameInfoArray replaceObjectAtIndex:5 withObject:[NSNumber numberWithDouble:cArray[5]]];
+    
     if (playerMe == 1)
     {
         //reset image for next round
         [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:0]];
+        
+        lblHowResult.hidden = YES;
+        lblYOUResult.hidden = YES;
         
         //display what user picked for round
         [self displayChange:3 :1];
@@ -432,7 +445,18 @@ int playerMe;
             
             
             //fill in here what result of match was use GKTurnBasedOutcomeWon if user won, and GKTurnBasedOutcomeLost if lost 
-            part.matchOutcome = GKTurnBasedMatchOutcomeTied;
+            if ([[gameInfoArray objectAtIndex:0] floatValue] == [[gameInfoArray objectAtIndex:1] floatValue])
+            {
+                part.matchOutcome = GKTurnBasedMatchOutcomeTied;
+            }
+            else if ([[gameInfoArray objectAtIndex:0] floatValue] > [[gameInfoArray objectAtIndex:1] floatValue])
+            {
+                part.matchOutcome = GKTurnBasedMatchOutcomeLost;
+            }
+            else if ([[gameInfoArray objectAtIndex:0] floatValue] < [[gameInfoArray objectAtIndex:1] floatValue])
+            {
+                part.matchOutcome = GKTurnBasedMatchOutcomeWon;
+            }
         }
         [currentMatch endMatchInTurnWithMatchData:data 
                                 completionHandler:^(NSError *error) {
@@ -462,13 +486,6 @@ int playerMe;
     }
     NSLog(@"Send Turn, %@, %@", data, nextParticipant);
     
-    
-    //increase turnCount by 1
-    cArray[5] = [[gameInfoArray objectAtIndex:5] floatValue] + 1;
-    [gameInfoArray replaceObjectAtIndex:5 withObject:[NSNumber numberWithDouble:cArray[5]]];
-    
-    
-
     
 }
 
@@ -618,7 +635,7 @@ int playerMe;
     
     //display round
         int round = cArray[2];
-        lblRound.text = [NSString stringWithFormat:@"%d",round];
+        lblRound.text = [NSString stringWithFormat:@"Round: %d",round];
     
         if (playerMe == 1)
         {
@@ -714,6 +731,11 @@ int playerMe;
     {
         playerMe = 2;
         
+        int oppScore = [[gameInfoArray objectAtIndex:0] floatValue];
+        int userScore = [[gameInfoArray objectAtIndex:1] floatValue];
+        lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
+        lblUserScore.text = [NSString stringWithFormat:@"%d",userScore]; 
+        
         [self imageChange:@"xrps-wp7-f4-2.png" :1];
         [self imageChange:@"xrps-wp7-f4-2.png" :2];
         
@@ -729,7 +751,12 @@ int playerMe;
         int round = cArray[2];
         
         NSLog(@"%d",round);
-        lblRound.text = [NSString stringWithFormat:@"%d",round];
+        lblRound.text = [NSString stringWithFormat:@"Round: %d",round];
+    
+    if (round > 1)
+    {
+        btnAdvice.enabled = YES;
+    }
     
 }
 

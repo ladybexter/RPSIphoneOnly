@@ -29,6 +29,7 @@ GCTurnBasedMatchHelperDelegate>{
 @property (weak, nonatomic) IBOutlet UIButton *btnScissors;
 @property (weak, nonatomic) IBOutlet UIButton *btnUnicorn;
 @property (weak, nonatomic) IBOutlet UIButton *btnRobot;
+@property (weak, nonatomic) IBOutlet UIButton *btnAdvice;
 
 - (IBAction)btnPaper:(id)sender;
 - (IBAction)btnScissors:(id)sender;

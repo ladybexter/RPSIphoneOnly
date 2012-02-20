@@ -42,6 +42,7 @@
 		C69A232014F06E7C00CFF477 /* XRPSInterfacebackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = C69A231F14F06E7C00CFF477 /* XRPSInterfacebackground2.png */; };
 		C6A332B214E828BA0026C51E /* tempRobotButton.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C6A332B114E828BA0026C51E /* tempRobotButton.jpg */; };
 		C6ABD05114DF8C1800AB6970 /* testBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C6ABD05014DF8C1800AB6970 /* testBackground.jpg */; };
+		C6B463B214F1E9070097F1A7 /* XRPSInterfacebackground3.png in Resources */ = {isa = PBXBuildFile; fileRef = C6B463B114F1E9070097F1A7 /* XRPSInterfacebackground3.png */; };
 		C6E73B1114DD893E007E48F2 /* AiFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E73B1014DD893E007E48F2 /* AiFunction.m */; };
 		C6E73B1E14DDDD12007E48F2 /* ModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E73B1C14DDDD11007E48F2 /* ModeViewController.m */; };
 		C6E73B1F14DDDD12007E48F2 /* ModeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6E73B1D14DDDD12007E48F2 /* ModeViewController.xib */; };
@@ -102,6 +103,7 @@
 		C69A231F14F06E7C00CFF477 /* XRPSInterfacebackground2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = XRPSInterfacebackground2.png; path = ../../../../Downloads/XRPSInterfacebackground2.png; sourceTree = "<group>"; };
 		C6A332B114E828BA0026C51E /* tempRobotButton.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = tempRobotButton.jpg; path = ../../../IphoneRPSScreenshots/tempRobotButton.jpg; sourceTree = "<group>"; };
 		C6ABD05014DF8C1800AB6970 /* testBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = testBackground.jpg; sourceTree = "<group>"; };
+		C6B463B114F1E9070097F1A7 /* XRPSInterfacebackground3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = XRPSInterfacebackground3.png; path = ../../../../Downloads/XRPSInterfacebackground3.png; sourceTree = "<group>"; };
 		C6E73B0F14DD893E007E48F2 /* AiFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AiFunction.h; sourceTree = "<group>"; };
 		C6E73B1014DD893E007E48F2 /* AiFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AiFunction.m; sourceTree = "<group>"; };
 		C6E73B1B14DDDD11007E48F2 /* ModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModeViewController.h; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				C6ABD05014DF8C1800AB6970 /* testBackground.jpg */,
 				C69A231D14F010EC00CFF477 /* xrps-background2.png */,
 				C69A231F14F06E7C00CFF477 /* XRPSInterfacebackground2.png */,
+				C6B463B114F1E9070097F1A7 /* XRPSInterfacebackground3.png */,
 				C665542B14E891A100941205 /* GI-Display-Robot(FINAL).png */,
 				C69A231814ED496700CFF477 /* xrps-wp7-f4-2.png */,
 				C6965ED314DC9F7A00A4A21D /* robot4_finalise - android (48x48)no bg.png */,
@@ -329,6 +332,7 @@
 				C69A231914ED496700CFF477 /* xrps-wp7-f4-2.png in Resources */,
 				C69A231E14F010EC00CFF477 /* xrps-background2.png in Resources */,
 				C69A232014F06E7C00CFF477 /* XRPSInterfacebackground2.png in Resources */,
+				C6B463B214F1E9070097F1A7 /* XRPSInterfacebackground3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -175,7 +175,7 @@
                                     <segue destination="2" kind="modal" id="IMC-Nk-U23"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WRf-F6-ndr">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WRf-F6-ndr">
                                 <rect key="frame" x="349" y="248" width="114" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -190,7 +190,7 @@
                                     <action selector="btnAIAdvice:" destination="A3B-TR-7R4" eventType="touchUpInside" id="10H-4j-6ij"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5xz-jL-E7m">
+                            <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5xz-jL-E7m">
                                 <rect key="frame" x="183" y="248" width="114" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -206,7 +206,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="vBq-Sr-BJT">
-                                <rect key="frame" x="163" y="219" width="155" height="21"/>
+                                <rect key="frame" x="87" y="219" width="307" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -330,14 +330,14 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="YOU LOSE" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="2g0-Sz-bOx">
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="YOU LOSE" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="2g0-Sz-bOx">
                                 <rect key="frame" x="201" y="17" width="72" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Unicorn stomps on Scissors" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="A5Z-Lc-k3T">
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Unicorn stomps on Scissors" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="A5Z-Lc-k3T">
                                 <rect key="frame" x="130" y="97" width="220" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -357,6 +357,7 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="btnAdvice" destination="WRf-F6-ndr" id="HZp-E7-aGR"/>
                         <outlet property="btnPaper" destination="ynd-6E-3Oc" id="M8e-re-q1H"/>
                         <outlet property="btnRobot" destination="OGi-jU-Kdc" id="loX-xj-Dkg"/>
                         <outlet property="btnRock" destination="hmU-Fd-3XI" id="oqT-sO-In2"/>
@@ -717,6 +718,7 @@
                 <relationship kind="action" name="btnScissors:"/>
                 <relationship kind="action" name="btnUnicorn:"/>
                 <relationship kind="action" name="presentGCTurnViewController:"/>
+                <relationship kind="outlet" name="btnAdvice" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="btnPaper" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="btnRobot" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="btnRock" candidateClass="UIButton"/>
