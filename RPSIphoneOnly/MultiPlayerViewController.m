@@ -448,6 +448,7 @@ int playerMe;
             [currentMatch.participants objectAtIndex:0];
             GKTurnBasedParticipant *secondPlayer;
             secondPlayer = [currentMatch.participants objectAtIndex:1];
+        
             
             if ([[gameInfoArray objectAtIndex:0] floatValue] == [[gameInfoArray objectAtIndex:1] floatValue])
             {
@@ -623,7 +624,7 @@ int playerMe;
     
     if (firstParticipant == match.currentParticipant)
     {
-        playerMe = 1;
+        playerMe = 2;
         int oppScore = [[gameInfoArray objectAtIndex:0] floatValue];
         int userScore = [[gameInfoArray objectAtIndex:1] floatValue];
         lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
@@ -637,7 +638,7 @@ int playerMe;
     }
     else
     {
-        playerMe = 2;
+        playerMe = 1;
         int oppScore = [[gameInfoArray objectAtIndex:1] floatValue];
         int userScore = [[gameInfoArray objectAtIndex:0] floatValue];
         lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
@@ -648,6 +649,30 @@ int playerMe;
     NSString *statusString;
     
     if (match.status == GKTurnBasedMatchStatusEnded) {
+        
+        //if player is looking at ended game, its current participant
+        if (firstParticipant == match.currentParticipant)
+        {
+            playerMe = 1;
+            int oppScore = [[gameInfoArray objectAtIndex:0] floatValue];
+            int userScore = [[gameInfoArray objectAtIndex:1] floatValue];
+            lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
+            lblUserScore.text = [NSString stringWithFormat:@"%d",userScore];
+            
+            //display what user picked for round
+            [self displayChange:3 :1];
+            //display what opp picked for round
+            [self displayChange:4:2];
+            
+        }
+        else
+        {
+            playerMe = 2;
+            int oppScore = [[gameInfoArray objectAtIndex:1] floatValue];
+            int userScore = [[gameInfoArray objectAtIndex:0] floatValue];
+            lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
+            lblUserScore.text = [NSString stringWithFormat:@"%d",userScore];
+        }
         
         int oppScoreInt;
         int userScoreInt;
@@ -681,6 +706,31 @@ int playerMe;
     } 
     else
     {
+        //if players looking at game layout and it hasnt ended, it wont be his turn, so 
+        if (firstParticipant == match.currentParticipant)
+        {
+            playerMe = 2;
+            int oppScore = [[gameInfoArray objectAtIndex:0] floatValue];
+            int userScore = [[gameInfoArray objectAtIndex:1] floatValue];
+            lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
+            lblUserScore.text = [NSString stringWithFormat:@"%d",userScore];
+            
+            //display what user picked for round
+            [self displayChange:3 :1];
+            //display what opp picked for round
+            [self displayChange:4:2];
+            
+        }
+        else
+        {
+            playerMe = 1;
+            int oppScore = [[gameInfoArray objectAtIndex:1] floatValue];
+            int userScore = [[gameInfoArray objectAtIndex:0] floatValue];
+            lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
+            lblUserScore.text = [NSString stringWithFormat:@"%d",userScore];
+        }
+        
+        
         int playerNum = [match.participants 
                          indexOfObject:match.currentParticipant] + 1;
         statusString = [NSString stringWithFormat:
