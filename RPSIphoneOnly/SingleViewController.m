@@ -83,6 +83,29 @@ double predictedNum[2] ={4,4};
     NSString *path = [[NSBundle mainBundle] pathForResource:@"XRPSInterfacebackground2" ofType:@"png" inDirectory:@""];
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile:path]]];
+    
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    modeChoice = [appDelegate mode];
+    
+    testlabel.text = modeChoice;
+    
+    int m;
+    
+    m = [modeChoice intValue];
+    
+    //easy mode
+    if (m == 1)
+    {
+        txtAIMode.text = @"Lina";
+        testlabel.text = @"Mode: easy";
+    }
+    else // intense mode 
+    {
+        txtAIMode.text = @"Joanna";
+        testlabel.text = @"Mode: intense";
+        
+    }
      
 }
 
@@ -137,19 +160,17 @@ double predictedNum[2] ={4,4};
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         
         modeChoice = [appDelegate mode];
+        int m;
         
-        txtAIMode.text = @"wrong";
+        m = [modeChoice intValue];
         
-        testlabel.text = modeChoice;
-        
-        if (modeChoice == @"easy")
+        //easy mode
+        if (m == 1)
         {
-            txtAIMode.text = @"correct";
             computerChoice = (int)results[0];
         }
-        else
+        else // intense mode 
         {
-            txtAIMode.text = @"Joanna";
             computerChoice = (int)results[1];
             
         }

@@ -57,12 +57,12 @@
 
 - (IBAction)btnEasyMode:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate.mode setString:@"easy"];
+    [appDelegate.mode setString:@"1"];
      
 }
 
 - (IBAction)btnIntenseMode:(id)sender {   
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate.mode setString:@"intense"];
+    [appDelegate.mode setString:@"2"];
 }
 @end

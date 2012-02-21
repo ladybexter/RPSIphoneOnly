@@ -32,6 +32,7 @@ int cArray[6];
 int playerMe;
 
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -358,7 +359,7 @@ int playerMe;
 
 -(void)checkForEnding:(double)roundCount {
     
-    if (roundCount == 7)
+    if (roundCount == 11)
     {
         
         lblStatus.text = @"Match has ended";
@@ -440,11 +441,10 @@ int playerMe;
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray]; 
     
     //need to change this to ....
-    if ([[gameInfoArray objectAtIndex:5] floatValue] == 7 ) {
+    if ([[gameInfoArray objectAtIndex:5] floatValue] == 11 ) {
         for (GKTurnBasedParticipant *part in currentMatch.participants) {
             
             
-            //fill in here what result of match was use GKTurnBasedOutcomeWon if user won, and GKTurnBasedOutcomeLost if lost 
             if ([[gameInfoArray objectAtIndex:0] floatValue] == [[gameInfoArray objectAtIndex:1] floatValue])
             {
                 part.matchOutcome = GKTurnBasedMatchOutcomeTied;
@@ -584,11 +584,6 @@ int playerMe;
 - (IBAction)presentGCTurnViewController:(id)sender {
     [[GCHelper sharedInstance] 
      findMatchWithMinPlayers:2 maxPlayers:2 viewController:self];
-    btnRobot.enabled = YES;
-    btnPaper.enabled = YES;
-    btnScissors.enabled = YES;
-    btnUnicorn.enabled = YES;
-    btnRock.enabled = YES;
     
 }
 
@@ -673,7 +668,8 @@ int playerMe;
 -(void)enterNewGame:(GKTurnBasedMatch *)match {
     NSLog(@"Entering new game...");
     
-    // 0= currentScorePlayer1, 1 = currentScorePlayer2, 2= turn, 3 = player1Pick, 4= player2Pick, 5=turnCount
+    
+    // 0= currentScorePlayer1, 1 = currentScorePlayer2, 2= turn, 3 = player1Pick, 4= player2Pick, 5=turnCount, 
     
      gameInfoArray = [NSMutableArray arrayWithObjects:[NSNumber numberWithDouble:0],
                                    [NSNumber numberWithDouble:0],
@@ -692,6 +688,8 @@ int playerMe;
     lblHowResult.hidden = YES;
     lblYOUResult.hidden = YES;
     playerMe = 1;
+    
+    
 }
 
 
@@ -700,9 +698,6 @@ int playerMe;
     
     
     gameInfoArray = [NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
-    
-    
-    
     
     NSLog(@"Taking turn for existing game...");
     
