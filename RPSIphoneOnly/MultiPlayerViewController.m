@@ -359,7 +359,7 @@ int playerMe;
 
 -(void)checkForEnding:(double)roundCount {
     
-    if (roundCount == 11)
+    if (roundCount == 3)
     {
         
         lblStatus.text = @"Match has ended";
@@ -441,23 +441,47 @@ int playerMe;
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray]; 
     
     //need to change this to ....
-    if ([[gameInfoArray objectAtIndex:5] floatValue] == 11 ) {
-        for (GKTurnBasedParticipant *part in currentMatch.participants) {
-            
+    if ([[gameInfoArray objectAtIndex:5] floatValue] == 3 ) {
+        
+            GKTurnBasedParticipant *firstPlayer;
+            firstPlayer = 
+            [currentMatch.participants objectAtIndex:0];
+            GKTurnBasedParticipant *secondPlayer;
+            secondPlayer = [currentMatch.participants objectAtIndex:1];
             
             if ([[gameInfoArray objectAtIndex:0] floatValue] == [[gameInfoArray objectAtIndex:1] floatValue])
             {
-                part.matchOutcome = GKTurnBasedMatchOutcomeTied;
+                //setting match outcome for currentplayer to tied .. show popup result for 2.player
+                secondPlayer.matchOutcome = GKTurnBasedMatchOutcomeTied;
+                UIAlertView *outcomeEventTie = [[UIAlertView alloc] initWithTitle:nil message:@"YOU TIE" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [outcomeEventTie show];
+                
+                //setting matchoutcome for firstplayer to tied
+                firstPlayer.matchOutcome = GKTurnBasedMatchOutcomeTied;
+               
             }
             else if ([[gameInfoArray objectAtIndex:0] floatValue] > [[gameInfoArray objectAtIndex:1] floatValue])
             {
-                part.matchOutcome = GKTurnBasedMatchOutcomeLost;
+                //second player lost .. display pop up result for 2.player
+                secondPlayer.matchOutcome = GKTurnBasedMatchOutcomeLost;
+                UIAlertView *outcomeEventLost = [[UIAlertView alloc] initWithTitle:nil message:@"YOU LOST :(" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [outcomeEventLost show];
+                
+                //first player won
+                firstPlayer.matchOutcome = GKTurnBasedMatchOutcomeWon;
             }
             else if ([[gameInfoArray objectAtIndex:0] floatValue] < [[gameInfoArray objectAtIndex:1] floatValue])
             {
-                part.matchOutcome = GKTurnBasedMatchOutcomeWon;
-            }
-        }
+                //second player won ... display pop up result for 2.player 
+                secondPlayer.matchOutcome = GKTurnBasedMatchOutcomeWon;
+                UIAlertView *outcomeEventWin = [[UIAlertView alloc] initWithTitle:nil message:@"YOU WIN :)" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [outcomeEventWin show];
+                
+                //second player lost
+                firstPlayer.matchOutcome = GKTurnBasedMatchOutcomeLost;
+            }  
+          
+        
         [currentMatch endMatchInTurnWithMatchData:data 
                                 completionHandler:^(NSError *error) {
                                     if (error) {
@@ -591,11 +615,69 @@ int playerMe;
 
 -(void)layoutMatch:(GKTurnBasedMatch *)match {
     
+    
+    gameInfoArray = [NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
+    
+    GKTurnBasedParticipant *firstParticipant = 
+    [match.participants objectAtIndex:0];
+    
+    if (firstParticipant == match.currentParticipant)
+    {
+        playerMe = 1;
+        int oppScore = [[gameInfoArray objectAtIndex:0] floatValue];
+        int userScore = [[gameInfoArray objectAtIndex:1] floatValue];
+        lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
+        lblUserScore.text = [NSString stringWithFormat:@"%d",userScore];
+        
+        //display what user picked for round
+        [self displayChange:3 :1];
+        //display what opp picked for round
+        [self displayChange:4:2];
+  
+    }
+    else
+    {
+        playerMe = 2;
+        int oppScore = [[gameInfoArray objectAtIndex:1] floatValue];
+        int userScore = [[gameInfoArray objectAtIndex:0] floatValue];
+        lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
+        lblUserScore.text = [NSString stringWithFormat:@"%d",userScore];
+    }
+    
     NSLog(@"Viewing match where it's not our turn...");
     NSString *statusString;
     
     if (match.status == GKTurnBasedMatchStatusEnded) {
+        
+        int oppScoreInt;
+        int userScoreInt;
+        
+        oppScoreInt = [lblOppScore.text intValue];
+        userScoreInt = [lblUserScore.text intValue];
+        
+        if (userScoreInt == oppScoreInt)
+        {
+            UIAlertView *outcomeEventTie = [[UIAlertView alloc] initWithTitle:nil message:@"YOU TIE" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [outcomeEventTie show];   
+        }
+        else if (userScoreInt < oppScoreInt)
+        {
+            UIAlertView *outcomeEventLost = [[UIAlertView alloc] initWithTitle:nil message:@"YOU LOST :(" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [outcomeEventLost show];
+        }
+        else if (userScoreInt > oppScoreInt)
+        {
+            UIAlertView *outcomeEventWin = [[UIAlertView alloc] initWithTitle:nil message:@"YOU WON :)" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [outcomeEventWin show];
+        }
+        
+            
+        [self imageChange:@"xrps-wp7-f4-2.png" :1];
+        [self imageChange:@"xrps-wp7-f4-2.png" :2];
+        
+        
         statusString = @"Match Ended";
+        lblRound.text = @"";
     } 
     else
     {
@@ -603,6 +685,19 @@ int playerMe;
                          indexOfObject:match.currentParticipant] + 1;
         statusString = [NSString stringWithFormat:
                         @"Player %d's Turn", playerNum];
+        
+        if (playerMe == 2)
+        {
+            
+            [self imageChange:@"xrps-wp7-f4-2.png" :1];
+            [self imageChange:@"xrps-wp7-f4-2.png" :2];
+        }
+        
+        cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue];
+        
+        //display round
+        int round = cArray[2];
+        lblRound.text = [NSString stringWithFormat:@"Round: %d",round];
         
     }
         lblStatus.text = statusString;
@@ -612,38 +707,10 @@ int playerMe;
         btnUnicorn.enabled = NO;
         btnRock.enabled = NO;
     
-    gameInfoArray = [NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
-    
-    GKTurnBasedParticipant *firstParticipant = 
-    [match.participants objectAtIndex:0];
-    if (firstParticipant == match.currentParticipant)
-    {
-        playerMe = 2;
-    }
-    else
-    {
-        playerMe = 1;
-    }
     
     
-    cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue];
     
-    //display round
-        int round = cArray[2];
-        lblRound.text = [NSString stringWithFormat:@"Round: %d",round];
-    
-        if (playerMe == 1)
-        {
-            //display what user picked for round
-            [self displayChange:3 :1];
-            //display what opp picked for round
-            [self displayChange:4:2];
-        }
-        else if (playerMe == 2)
-        {
-            [self imageChange:@"xrps-wp7-f4-2.png" :1];
-            [self imageChange:@"xrps-wp7-f4-2.png" :2];
-        }
+        
 
     [self checkForEnding:cArray[2]];
 }
@@ -683,6 +750,8 @@ int playerMe;
     btnScissors.enabled = YES;
     btnUnicorn.enabled = YES;
     btnRock.enabled = YES;
+    lblOppScore.text = @"000";
+    lblUserScore.text = @"000";
     lblStatus.text = @"Please start new game";
     lblRound.text = @"Round:1";
     lblHowResult.hidden = YES;
@@ -739,7 +808,7 @@ int playerMe;
     }
         
     
-    // check to see if turn count is even, if even then display opp, if odd dont
+    // turn
     cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue];
     
     //display round
