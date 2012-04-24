@@ -620,6 +620,7 @@ int playerMe;
     
     gameInfoArray = [NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
     
+    
     GKTurnBasedParticipant *firstParticipant = 
     [match.participants objectAtIndex:0];
     
@@ -629,7 +630,7 @@ int playerMe;
     if (match.status == GKTurnBasedMatchStatusEnded) {
         
         //if player is looking at ended game, that player is current participant
-        if ([gameInfoArray objectAtIndex:8] == [[GKLocalPlayer localPlayer] playerID])
+        if ([[gameInfoArray objectAtIndex:8] isEqualToString: [[GKLocalPlayer localPlayer] playerID]])
         {
             playerMe = 1;
             int oppScore = [[gameInfoArray objectAtIndex:1] floatValue];
@@ -685,6 +686,11 @@ int playerMe;
     } 
     else
     {
+        cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue];
+        
+        //display round
+        int round = cArray[2];
+        
         //if players looking at game layout and it hasnt ended, it wont be his turn, so 
         if (firstParticipant == match.currentParticipant)
         {
@@ -709,7 +715,10 @@ int playerMe;
             lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
             lblUserScore.text = [NSString stringWithFormat:@"%d",userScore];
             
-            lblPlayerName.text = [gameInfoArray objectAtIndex:7];
+            if (round > 1)
+            {
+                lblPlayerName.text = [gameInfoArray objectAtIndex:7];
+            }
             
             //only display what player1 picked
             [self displayChange:[[gameInfoArray objectAtIndex:3] intValue]: 1];
@@ -722,10 +731,6 @@ int playerMe;
         statusString = [NSString stringWithFormat:
                         @"Player %d's Turn", playerNum];
         
-        cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue];
-        
-        //display round
-        int round = cArray[2];
         lblRound.text = [NSString stringWithFormat:@"Round: %d",round];
         
     }
