@@ -28,7 +28,7 @@
 @synthesize btnRobot;
 @synthesize btnAdvice;
 
-int cArray[6];
+int cArray[7];
 int playerMe;
 
 
@@ -359,7 +359,7 @@ int playerMe;
 
 -(void)checkForEnding:(double)roundCount {
     
-    if (roundCount == 3)
+    if (roundCount == 5)
     {
         
         lblStatus.text = @"Match has ended";
@@ -367,6 +367,7 @@ int playerMe;
 }
 
 -(void)sendTurn{
+    
     
     //increase turnCount by 1
     cArray[5] = [[gameInfoArray objectAtIndex:5] floatValue] + 1;
@@ -441,7 +442,7 @@ int playerMe;
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray]; 
     
     //need to change this to ....
-    if ([[gameInfoArray objectAtIndex:5] floatValue] == 3 ) {
+    if ([[gameInfoArray objectAtIndex:5] floatValue] == 5 ) {
         
             GKTurnBasedParticipant *firstPlayer;
             firstPlayer = 
@@ -622,56 +623,34 @@ int playerMe;
     GKTurnBasedParticipant *firstParticipant = 
     [match.participants objectAtIndex:0];
     
-    if (firstParticipant == match.currentParticipant)
-    {
-        playerMe = 2;
-        int oppScore = [[gameInfoArray objectAtIndex:0] floatValue];
-        int userScore = [[gameInfoArray objectAtIndex:1] floatValue];
-        lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
-        lblUserScore.text = [NSString stringWithFormat:@"%d",userScore];
-        
-        //display what user picked for round
-        [self displayChange:3 :1];
-        //display what opp picked for round
-        [self displayChange:4:2];
-  
-    }
-    else
-    {
-        playerMe = 1;
-        int oppScore = [[gameInfoArray objectAtIndex:1] floatValue];
-        int userScore = [[gameInfoArray objectAtIndex:0] floatValue];
-        lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
-        lblUserScore.text = [NSString stringWithFormat:@"%d",userScore];
-    }
-    
     NSLog(@"Viewing match where it's not our turn...");
     NSString *statusString;
     
     if (match.status == GKTurnBasedMatchStatusEnded) {
         
-        //if player is looking at ended game, its current participant
-        if (firstParticipant == match.currentParticipant)
+        //if player is looking at ended game, that player is current participant
+        if ([gameInfoArray objectAtIndex:8] == [[GKLocalPlayer localPlayer] playerID])
         {
             playerMe = 1;
-            int oppScore = [[gameInfoArray objectAtIndex:0] floatValue];
-            int userScore = [[gameInfoArray objectAtIndex:1] floatValue];
+            int oppScore = [[gameInfoArray objectAtIndex:1] floatValue];
+            int userScore = [[gameInfoArray objectAtIndex:0] floatValue];
             lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
             lblUserScore.text = [NSString stringWithFormat:@"%d",userScore];
             
-            //display what user picked for round
-            [self displayChange:3 :1];
-            //display what opp picked for round
-            [self displayChange:4:2];
+            lblPlayerName.text = [gameInfoArray objectAtIndex:7];
+            
             
         }
         else
         {
             playerMe = 2;
-            int oppScore = [[gameInfoArray objectAtIndex:1] floatValue];
-            int userScore = [[gameInfoArray objectAtIndex:0] floatValue];
+            int oppScore = [[gameInfoArray objectAtIndex:0] floatValue];
+            int userScore = [[gameInfoArray objectAtIndex:1] floatValue];
             lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
             lblUserScore.text = [NSString stringWithFormat:@"%d",userScore];
+            
+            lblPlayerName.text = [gameInfoArray objectAtIndex:6];
+            
         }
         
         int oppScoreInt;
@@ -715,10 +694,11 @@ int playerMe;
             lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
             lblUserScore.text = [NSString stringWithFormat:@"%d",userScore];
             
-            //display what user picked for round
-            [self displayChange:3 :1];
-            //display what opp picked for round
-            [self displayChange:4:2];
+            lblPlayerName.text = [gameInfoArray objectAtIndex:6];
+            
+            //display outcome of previous round
+            [self displayChange: [[gameInfoArray objectAtIndex:4]intValue]:1];
+            [self displayChange:[[gameInfoArray objectAtIndex:3]intValue] :2];
             
         }
         else
@@ -728,6 +708,12 @@ int playerMe;
             int userScore = [[gameInfoArray objectAtIndex:0] floatValue];
             lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
             lblUserScore.text = [NSString stringWithFormat:@"%d",userScore];
+            
+            lblPlayerName.text = [gameInfoArray objectAtIndex:7];
+            
+            //only display what player1 picked
+            [self displayChange:[[gameInfoArray objectAtIndex:3] intValue]: 1];
+            [self displayChange:0 :2];
         }
         
         
@@ -735,13 +721,6 @@ int playerMe;
                          indexOfObject:match.currentParticipant] + 1;
         statusString = [NSString stringWithFormat:
                         @"Player %d's Turn", playerNum];
-        
-        if (playerMe == 2)
-        {
-            
-            [self imageChange:@"xrps-wp7-f4-2.png" :1];
-            [self imageChange:@"xrps-wp7-f4-2.png" :2];
-        }
         
         cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue];
         
@@ -757,11 +736,6 @@ int playerMe;
         btnUnicorn.enabled = NO;
         btnRock.enabled = NO;
     
-    
-    
-    
-        
-
     [self checkForEnding:cArray[2]];
 }
 
@@ -786,14 +760,18 @@ int playerMe;
     NSLog(@"Entering new game...");
     
     
-    // 0= currentScorePlayer1, 1 = currentScorePlayer2, 2= turn, 3 = player1Pick, 4= player2Pick, 5=turnCount, 
+    // 0= currentScorePlayer1, 1 = currentScorePlayer2, 2= turn, 3 = player1Pick, 4= player2Pick, 5=turnCount, 6=Player1Alias, 7= Player1ID to be replaced with Player2Alias, 8 = Player1PlayerID, 9 = Player1PlayerID to be reaplced with Player2PlayerID
     
      gameInfoArray = [NSMutableArray arrayWithObjects:[NSNumber numberWithDouble:0],
                                    [NSNumber numberWithDouble:0],
                                    [NSNumber numberWithDouble:1],
                                    [NSNumber numberWithDouble:0],
                                    [NSNumber numberWithDouble:0],
-                                   [NSNumber numberWithDouble: 1], nil];
+                                   [NSNumber numberWithDouble: 1], 
+                                   [[GKLocalPlayer localPlayer] alias],
+                                    [[GKLocalPlayer localPlayer] playerID],
+                                    [[GKLocalPlayer localPlayer] playerID],
+                                    [[GKLocalPlayer localPlayer] playerID],nil];
     
     btnRobot.enabled = YES;
     btnPaper.enabled = YES;
@@ -816,9 +794,13 @@ int playerMe;
 -(void)takeTurn:(GKTurnBasedMatch *)match {
     
     
+    
     gameInfoArray = [NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
     
     NSLog(@"Taking turn for existing game...");
+    
+    //Display opponent alias name
+    lblPlayerName.text = [gameInfoArray objectAtIndex:6];
     
     btnRobot.enabled = YES;
     btnPaper.enabled = YES;
@@ -833,6 +815,9 @@ int playerMe;
     {
         playerMe = 1;
         
+        
+        lblPlayerName.text = [gameInfoArray objectAtIndex:7];
+        
         //display what user picked for round before
         [self displayChange:3 :1];
         //display what opp picked for round before
@@ -844,6 +829,8 @@ int playerMe;
     else
     {
         playerMe = 2;
+        
+        lblPlayerName.text = [gameInfoArray objectAtIndex:6];
         
         int oppScore = [[gameInfoArray objectAtIndex:0] floatValue];
         int userScore = [[gameInfoArray objectAtIndex:1] floatValue];
@@ -858,7 +845,7 @@ int playerMe;
     }
         
     
-    // turn
+    // round
     cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue];
     
     //display round
@@ -870,6 +857,11 @@ int playerMe;
     if (round > 1)
     {
         btnAdvice.enabled = YES;
+    }
+    else
+    {
+        [gameInfoArray replaceObjectAtIndex:7 withObject:[[GKLocalPlayer localPlayer] alias]];
+        [gameInfoArray replaceObjectAtIndex:9 withObject:[[GKLocalPlayer localPlayer] playerID]];
     }
     
 }
