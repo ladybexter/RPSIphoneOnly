@@ -24,6 +24,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnLeaderboard:" destination="2" eventType="touchUpInside" id="pib-TW-cwZ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Man-gd-g8S">
                                 <rect key="frame" x="102" y="211" width="116" height="37"/>
@@ -68,7 +71,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bAx-0C-9Ye" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="R" id="eFq-uY-GT5" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="g6T-9s-dkK">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1J5-yG-kTl">
@@ -112,7 +115,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QGq-c4-s4k" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="eVV-Ob-GJi" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vNb-Ov-ePd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uv5-tg-NxW">
@@ -157,7 +160,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gS6-N8-LPq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="A3B-TR-7R4" customClass="MultiPlayerViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wxn-i9-8hv">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="300"/>
+                        <rect key="frame" x="0.0" y="20" width="480" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ugd-X0-axk">
@@ -383,7 +386,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fY5-RK-hYJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="n5Q-QF-kI1" customClass="ModeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mxl-35-vqe">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fV1-eU-O4R">
@@ -430,7 +433,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KcF-uH-7GT" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Zax-uh-4qY" customClass="SingleViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XhR-kO-600">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="300"/>
+                        <rect key="frame" x="0.0" y="20" width="480" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ZG5-xJ-Cw9">
@@ -700,73 +703,15 @@
         <image name="unicorn3_finalise - android (48x48)no bg.png" width="48" height="48"/>
         <image name="xrps-wp7-f4-2.png" width="62" height="62"/>
     </resources>
-    <classes>
-        <class className="ModeViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ModeViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="btnEasyMode:"/>
-                <relationship kind="action" name="btnIntenseMode:"/>
-            </relationships>
-        </class>
-        <class className="MultiPlayerViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MultiPlayerViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="btnAIAdvice:"/>
-                <relationship kind="action" name="btnPaper:"/>
-                <relationship kind="action" name="btnRobot:"/>
-                <relationship kind="action" name="btnRock:"/>
-                <relationship kind="action" name="btnScissors:"/>
-                <relationship kind="action" name="btnUnicorn:"/>
-                <relationship kind="action" name="presentGCTurnViewController:"/>
-                <relationship kind="outlet" name="btnAdvice" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="btnPaper" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="btnRobot" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="btnRock" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="btnScissors" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="btnUnicorn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="imgOppPick" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="imgUserPick" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="lblHowResult" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblOppScore" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblPlayerName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblRound" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblStatus" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblUserScore" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblVS" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblYOUResult" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="SingleViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SingleViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="btnHome:"/>
-                <relationship kind="action" name="btnPaper:"/>
-                <relationship kind="action" name="btnReset:"/>
-                <relationship kind="action" name="btnRobot:"/>
-                <relationship kind="action" name="btnRock:"/>
-                <relationship kind="action" name="btnScissors:"/>
-                <relationship kind="action" name="btnUnicorn:"/>
-                <relationship kind="outlet" name="imgComputerDisplay" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="imgUserDisplay" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="testlabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="txtAIMode" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="txtBestConWins" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="txtComputerBestConsWin" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="txtComputerScore" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="txtResult" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="txtUserBestConsWin" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="txtUserScore" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="txtVS" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="txtWinLoss" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="3IV-G5-Iaa"/>
+        <segue reference="8h9-JP-t3i"/>
+        <segue reference="wh2-7t-1lF"/>
+        <segue reference="yso-er-TFo"/>
+    </inferredMetricsTieBreakers>
 </document>

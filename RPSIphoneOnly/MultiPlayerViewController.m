@@ -359,7 +359,7 @@ int playerMe;
 
 -(void)checkForEnding:(double)roundCount {
     
-    if (roundCount == 5)
+    if (roundCount == 11)
     {
         
         lblStatus.text = @"Match has ended";
@@ -442,7 +442,7 @@ int playerMe;
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray]; 
     
     //need to change this to ....
-    if ([[gameInfoArray objectAtIndex:5] floatValue] == 5 ) {
+    if ([[gameInfoArray objectAtIndex:5] floatValue] == 11 ) {
         
             GKTurnBasedParticipant *firstPlayer;
             firstPlayer = 

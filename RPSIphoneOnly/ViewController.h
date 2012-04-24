@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GameKit/GameKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController :UIViewController 
+
+- (IBAction)btnLeaderboard:(id)sender;
 
 @end

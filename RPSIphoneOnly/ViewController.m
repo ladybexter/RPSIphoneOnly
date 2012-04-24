@@ -7,6 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "GCHelper.h"
+
+
 
 @implementation ViewController
 
@@ -26,6 +29,7 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"testBackground" ofType:@"jpg" inDirectory:@""];
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile:path]]];
+    
 }
 
 - (void)viewDidUnload
@@ -61,4 +65,10 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+- (IBAction)btnLeaderboard:(id)sender {
+    
+    [GCHelper sharedInstance].delegate = self;
+    [[GCHelper sharedInstance] authenticateLocalUser]; 
+    
+}
 @end
