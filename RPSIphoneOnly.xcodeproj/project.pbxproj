@@ -42,6 +42,7 @@
 		C69A232014F06E7C00CFF477 /* XRPSInterfacebackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = C69A231F14F06E7C00CFF477 /* XRPSInterfacebackground2.png */; };
 		C6A332B214E828BA0026C51E /* tempRobotButton.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C6A332B114E828BA0026C51E /* tempRobotButton.jpg */; };
 		C6ABD05114DF8C1800AB6970 /* testBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C6ABD05014DF8C1800AB6970 /* testBackground.jpg */; };
+		C6AF4EA3154820CA00B94D81 /* GameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C6AF4EA2154820CA00B94D81 /* GameCenterManager.m */; };
 		C6B463B214F1E9070097F1A7 /* XRPSInterfacebackground3.png in Resources */ = {isa = PBXBuildFile; fileRef = C6B463B114F1E9070097F1A7 /* XRPSInterfacebackground3.png */; };
 		C6E73B1114DD893E007E48F2 /* AiFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E73B1014DD893E007E48F2 /* AiFunction.m */; };
 		C6E73B1E14DDDD12007E48F2 /* ModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E73B1C14DDDD11007E48F2 /* ModeViewController.m */; };
@@ -103,6 +104,9 @@
 		C69A231F14F06E7C00CFF477 /* XRPSInterfacebackground2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = XRPSInterfacebackground2.png; path = ../../../../Downloads/XRPSInterfacebackground2.png; sourceTree = "<group>"; };
 		C6A332B114E828BA0026C51E /* tempRobotButton.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = tempRobotButton.jpg; path = ../../../IphoneRPSScreenshots/tempRobotButton.jpg; sourceTree = "<group>"; };
 		C6ABD05014DF8C1800AB6970 /* testBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = testBackground.jpg; sourceTree = "<group>"; };
+		C6AF4EA1154820B500B94D81 /* AppSpecificValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppSpecificValues.h; path = ../../../../Downloads/GKTapper/Classes/AppSpecificValues.h; sourceTree = "<group>"; };
+		C6AF4EA2154820CA00B94D81 /* GameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameCenterManager.m; path = ../../../../Downloads/GKTapper/Classes/GameCenterManager.m; sourceTree = "<group>"; };
+		C6AF4EA4154820D500B94D81 /* GameCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameCenterManager.h; path = ../../../../Downloads/GKTapper/Classes/GameCenterManager.h; sourceTree = "<group>"; };
 		C6B463B114F1E9070097F1A7 /* XRPSInterfacebackground3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = XRPSInterfacebackground3.png; path = ../../../../Downloads/XRPSInterfacebackground3.png; sourceTree = "<group>"; };
 		C6E73B0F14DD893E007E48F2 /* AiFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AiFunction.h; sourceTree = "<group>"; };
 		C6E73B1014DD893E007E48F2 /* AiFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AiFunction.m; sourceTree = "<group>"; };
@@ -200,6 +204,9 @@
 		C6965E9C14DC995700A4A21D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C6AF4EA4154820D500B94D81 /* GameCenterManager.h */,
+				C6AF4EA2154820CA00B94D81 /* GameCenterManager.m */,
+				C6AF4EA1154820B500B94D81 /* AppSpecificValues.h */,
 				C690C96B14E5EA83000BB787 /* MultiPlayerViewController.h */,
 				C690C96C14E5EA83000BB787 /* MultiPlayerViewController.m */,
 				C690C96D14E5EA83000BB787 /* MultiPlayerViewController.xib */,
@@ -375,6 +382,7 @@
 				C6E73B1E14DDDD12007E48F2 /* ModeViewController.m in Sources */,
 				C690C96914E5E7B9000BB787 /* GCHelper.m in Sources */,
 				C690C96E14E5EA83000BB787 /* MultiPlayerViewController.m in Sources */,
+				C6AF4EA3154820CA00B94D81 /* GameCenterManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

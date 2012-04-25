@@ -89,9 +89,6 @@ static GCHelper *sharedHelper = nil;
         
     }
     
-    UIAlertView *eventInstruct = [[UIAlertView alloc] initWithTitle:nil message:@"Please press Game Center to \n\n either START NEW game or CONTINUE game" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    
-    [eventInstruct show];
 }
 
 - (void)findMatchWithMinPlayers:(int)minPlayers 

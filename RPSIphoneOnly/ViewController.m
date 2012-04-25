@@ -8,8 +8,7 @@
 
 #import "ViewController.h"
 #import "GCHelper.h"
-
-
+#import "AppSpecificValues.h"
 
 @implementation ViewController
 
@@ -65,10 +64,23 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+- (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
+{
+    [self dismissModalViewControllerAnimated: YES];
+}
+
 - (IBAction)btnLeaderboard:(id)sender {
     
-    [GCHelper sharedInstance].delegate = self;
+    [GCHelper sharedInstance].delegate = (id)self;
     [[GCHelper sharedInstance] authenticateLocalUser]; 
     
+    GKLeaderboardViewController *leaderboardController = [[GKLeaderboardViewController alloc] init];
+    if (leaderboardController != NULL)
+    {
+        leaderboardController.category = kLeaderboardID;
+        leaderboardController.timeScope = GKLeaderboardTimeScopeWeek;
+        leaderboardController.leaderboardDelegate = (id)self;
+        [self presentModalViewController: leaderboardController animated: YES];
+    }
 }
 @end

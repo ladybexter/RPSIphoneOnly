@@ -73,6 +73,10 @@ int playerMe;
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile:path]]];
     
+    UIAlertView *eventInstruct = [[UIAlertView alloc] initWithTitle:nil message:@"Please press Game Center to \n\n either START NEW game or CONTINUE game" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
+    [eventInstruct show];
+    
 }
 
 - (void)viewDidUnload
