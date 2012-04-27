@@ -8,9 +8,12 @@
 
 #import "MultiPlayerViewController.h"
 #import "GCHelper.h"
+#import "AppSpecificValues.h"
 
 @implementation MultiPlayerViewController
 
+
+@synthesize gameCenterManager;
 @synthesize lblStatus;
 @synthesize imgOppPick;
 @synthesize imgUserPick;
@@ -447,6 +450,12 @@ int playerMe;
     
     //need to change this to ....
     if ([[gameInfoArray objectAtIndex:5] floatValue] == 11 ) {
+            
+        btnRobot.enabled = NO;
+        btnPaper.enabled = NO;
+        btnScissors.enabled = NO;
+        btnUnicorn.enabled = NO;
+        btnRock.enabled = NO;
         
             GKTurnBasedParticipant *firstPlayer;
             firstPlayer = 
@@ -475,6 +484,37 @@ int playerMe;
                 
                 //first player won
                 firstPlayer.matchOutcome = GKTurnBasedMatchOutcomeWon;
+                
+                
+                
+                 //get player 1 score on leaderboard
+                 if([GKLocalPlayer localPlayer].authenticated) {
+                     NSArray *arr = [[NSArray alloc] initWithObjects:[gameInfoArray objectAtIndex:8], nil];
+                     GKLeaderboard *board = [[GKLeaderboard alloc] initWithPlayerIDs:arr];
+                     if(board != nil) {
+                         board.timeScope = GKLeaderboardTimeScopeAllTime;
+                         board.range = NSMakeRange(1, 1);
+                         board.category = @"HighscoreTable";
+                         [board loadScoresWithCompletionHandler: ^(NSArray *scores, NSError *error) {
+                             if (error != nil) {
+                                 // handle the error.
+                                 NSLog(@"Error retrieving score.", nil);
+                             }
+                             if (scores != nil) {
+                                 
+                                 //get current player 1 leaderboard score
+                                 int currentPlayer1Score = ((GKScore*)[scores objectAtIndex:0]).value;
+                                 //increase current leaderboard score by 1
+                                 currentPlayer1Score = currentPlayer1Score + 1;
+                                 //send updated score to game center
+                                 [self.gameCenterManager reportScore: currentPlayer1Score forCategory: kLeaderboardID];
+                             }
+                         }];
+                     }
+                }
+
+                
+                
             }
             else if ([[gameInfoArray objectAtIndex:0] floatValue] < [[gameInfoArray objectAtIndex:1] floatValue])
             {
@@ -482,6 +522,33 @@ int playerMe;
                 secondPlayer.matchOutcome = GKTurnBasedMatchOutcomeWon;
                 UIAlertView *outcomeEventWin = [[UIAlertView alloc] initWithTitle:nil message:@"YOU WIN :)" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [outcomeEventWin show];
+                
+                //get player 2 score on leaderboard
+                if([GKLocalPlayer localPlayer].authenticated) {
+                    NSArray *arr = [[NSArray alloc] initWithObjects:[GKLocalPlayer localPlayer].playerID, nil];
+                    GKLeaderboard *board = [[GKLeaderboard alloc] initWithPlayerIDs:arr];
+                    if(board != nil) {
+                        board.timeScope = GKLeaderboardTimeScopeAllTime;
+                        board.range = NSMakeRange(1, 1);
+                        board.category = @"HighscoreTable";
+                        [board loadScoresWithCompletionHandler: ^(NSArray *scores, NSError *error) {
+                            if (error != nil) {
+                                // handle the error.
+                                NSLog(@"Error retrieving score.", nil);
+                            }
+                            if (scores != nil) {
+                                
+                                //get current player 2 leaderboard score
+                                int currentPlayer2Score = ((GKScore*)[scores objectAtIndex:0]).value;
+                                //increase current leaderboard score by 1
+                                currentPlayer2Score = currentPlayer2Score + 1;
+                                //send updated score to game center
+                                [self.gameCenterManager reportScore: currentPlayer2Score forCategory: kLeaderboardID];
+                            }
+                        }];
+                    }
+                }
+                
                 
                 //second player lost
                 firstPlayer.matchOutcome = GKTurnBasedMatchOutcomeLost;
@@ -617,6 +684,50 @@ int playerMe;
     
 }
 
+-(BOOL)checkIfOtherPlayerQuit{
+    GKTurnBasedMatch *currentMatch = 
+    [[GCHelper sharedInstance] currentMatch];
+    
+    NSUInteger currentIndex = [currentMatch.participants 
+                               indexOfObject:currentMatch.currentParticipant];
+    GKTurnBasedParticipant *nextParticipant;
+    
+    NSUInteger nextIndex = (currentIndex + 1) % 
+    [currentMatch.participants count];
+    nextParticipant = 
+    [currentMatch.participants objectAtIndex:nextIndex];
+    
+    for (int i = 0; i < [currentMatch.participants count]; i++) {
+        nextParticipant = [currentMatch.participants 
+                           objectAtIndex:((currentIndex + 1 + i) % 
+                                          [currentMatch.participants count ])];
+        if (nextParticipant.matchOutcome == GKTurnBasedMatchOutcomeQuit)
+        {
+            [self imageChange:@"xrps-wp7-f4-2.png" :1];
+            [self imageChange:@"xrps-wp7-f4-2.png" :2];
+            
+            lblStatus.text = @"Match was cancled, due to a player quitting";
+            btnRobot.enabled = NO;
+            btnPaper.enabled = NO;
+            btnScissors.enabled = NO;
+            btnUnicorn.enabled = NO;
+            btnRock.enabled = NO;
+            lblOppScore.hidden = YES;
+            lblUserScore.hidden = YES;
+            lblVS.hidden = YES;
+            lblHowResult.hidden = YES;
+            lblYOUResult.hidden = YES;
+            
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
+
+
 
 
 -(void)layoutMatch:(GKTurnBasedMatch *)match {
@@ -624,13 +735,14 @@ int playerMe;
     
     gameInfoArray = [NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
     
-    
     GKTurnBasedParticipant *firstParticipant = 
     [match.participants objectAtIndex:0];
     
     NSLog(@"Viewing match where it's not our turn...");
     NSString *statusString;
     
+    if ([self checkIfOtherPlayerQuit] == false)
+    {
     if (match.status == GKTurnBasedMatchStatusEnded) {
         
         //if player is looking at ended game, that player is current participant
@@ -653,7 +765,7 @@ int playerMe;
             int userScore = [[gameInfoArray objectAtIndex:1] floatValue];
             lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
             lblUserScore.text = [NSString stringWithFormat:@"%d",userScore];
-            
+    
             lblPlayerName.text = [gameInfoArray objectAtIndex:6];
             
         }
@@ -687,17 +799,15 @@ int playerMe;
         
         statusString = @"Match Ended";
         lblRound.text = @"";
-    } 
+    }
+    //match hasnt ended yet
     else
     {
-        cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue];
+            
         
-        //display round
-        int round = cArray[2];
-        
-        //if players looking at game layout and it hasnt ended, it wont be his turn, so 
-        if (firstParticipant == match.currentParticipant)
-        {
+            //if players looking at game layout and it hasnt ended, it wont be his turn, so 
+            if (firstParticipant == match.currentParticipant)
+            {
             playerMe = 2;
             int oppScore = [[gameInfoArray objectAtIndex:0] floatValue];
             int userScore = [[gameInfoArray objectAtIndex:1] floatValue];
@@ -707,45 +817,68 @@ int playerMe;
             lblPlayerName.text = [gameInfoArray objectAtIndex:6];
             
             //display outcome of previous round
-            [self displayChange: [[gameInfoArray objectAtIndex:4]intValue]:1];
-            [self displayChange:[[gameInfoArray objectAtIndex:3]intValue] :2];
+            [self displayChange: 4:1];
+            [self displayChange:3:2];
             
-        }
-        else
-        {
-            playerMe = 1;
-            int oppScore = [[gameInfoArray objectAtIndex:1] floatValue];
-            int userScore = [[gameInfoArray objectAtIndex:0] floatValue];
-            lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
-            lblUserScore.text = [NSString stringWithFormat:@"%d",userScore];
-            
-            if (round > 1)
+            }
+            else
             {
-                lblPlayerName.text = [gameInfoArray objectAtIndex:7];
+                playerMe = 1;
+                int oppScore = [[gameInfoArray objectAtIndex:1] floatValue];
+                int userScore = [[gameInfoArray objectAtIndex:0] floatValue];
+                lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
+                lblUserScore.text = [NSString stringWithFormat:@"%d",userScore];
+            
+                
+            
+                //only display what player1 picked
+                [self displayChange:3: 1];
+                [self imageChange:@"xrps-wp7-f4-2.png" :2];
             }
             
-            //only display what player1 picked
-            [self displayChange:[[gameInfoArray objectAtIndex:3] intValue]: 1];
-            [self displayChange:0 :2];
-        }
         
         
-        int playerNum = [match.participants 
+            int playerNum = [match.participants 
                          indexOfObject:match.currentParticipant] + 1;
-        statusString = [NSString stringWithFormat:
+        
+            
+            statusString = [NSString stringWithFormat:
                         @"Player %d's Turn", playerNum];
+            
+            
+        cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue];
         
-        lblRound.text = [NSString stringWithFormat:@"Round: %d",round];
-        
-    }
-        lblStatus.text = statusString;
-        btnRobot.enabled = NO;
-        btnPaper.enabled = NO;
-        btnScissors.enabled = NO;
-        btnUnicorn.enabled = NO;
-        btnRock.enabled = NO;
+            //display round
+            int round = cArray[2];
+            lblRound.text = [NSString stringWithFormat:@"Round: %d",round];
+          
+        }
     
-    [self checkForEnding:cArray[2]];
+            lblStatus.text = statusString;
+    }
+            btnRobot.enabled = NO;
+            btnPaper.enabled = NO;
+            btnScissors.enabled = NO;
+            btnUnicorn.enabled = NO;
+            btnRock.enabled = NO;
+            
+            cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue];
+    
+            int round = cArray[2];
+            if (round > 1)
+            {
+                if (playerMe == 1)
+                {
+                    lblPlayerName.text = [gameInfoArray objectAtIndex:7];
+                }
+                else
+                {
+                    lblPlayerName.text = [gameInfoArray objectAtIndex:6];
+                }
+            }
+    
+            [self checkForEnding:cArray[2]];
+    
 }
 
 -(void)sendNotice:(NSString *)notice forMatch:
@@ -794,6 +927,8 @@ int playerMe;
     lblHowResult.hidden = YES;
     lblYOUResult.hidden = YES;
     playerMe = 1;
+    [self imageChange:@"xrps-wp7-f4-2.png" :1];
+    [self imageChange:@"xrps-wp7-f4-2.png" :2];
     
     
 }
@@ -806,71 +941,75 @@ int playerMe;
     
     gameInfoArray = [NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
     
-    NSLog(@"Taking turn for existing game...");
-    
     //Display opponent alias name
-    lblPlayerName.text = [gameInfoArray objectAtIndex:6];
-    
-    btnRobot.enabled = YES;
-    btnPaper.enabled = YES;
-    btnScissors.enabled = YES;
-    btnUnicorn.enabled = YES;
-    btnRock.enabled = YES;
-    lblStatus.text =@"It's your turn";
-    
-    GKTurnBasedParticipant *firstParticipant = 
-    [match.participants objectAtIndex:0];
-    if (firstParticipant == match.currentParticipant)
-    {
-        playerMe = 1;
-        
-        
-        lblPlayerName.text = [gameInfoArray objectAtIndex:7];
-        
-        //display what user picked for round before
-        [self displayChange:3 :1];
-        //display what opp picked for round before
-        [self displayChange:4:2];
-        
-        [self resultsDisplay:[[gameInfoArray objectAtIndex:3] floatValue] : [[gameInfoArray objectAtIndex:4] floatValue]];
-        
-    }
-    else
-    {
-        playerMe = 2;
-        
         lblPlayerName.text = [gameInfoArray objectAtIndex:6];
+    
+    if ([self checkIfOtherPlayerQuit] == false)
+    {
+    
+        NSLog(@"Taking turn for existing game...");
+    
+        btnRobot.enabled = YES;
+        btnPaper.enabled = YES;
+        btnScissors.enabled = YES;
+        btnUnicorn.enabled = YES;
+        btnRock.enabled = YES;
+        lblStatus.text =@"It's your turn";
+    
+        GKTurnBasedParticipant *firstParticipant = 
+        [match.participants objectAtIndex:0];
+        if (firstParticipant == match.currentParticipant)
+        {
+            playerMe = 1;
         
-        int oppScore = [[gameInfoArray objectAtIndex:0] floatValue];
-        int userScore = [[gameInfoArray objectAtIndex:1] floatValue];
-        lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
-        lblUserScore.text = [NSString stringWithFormat:@"%d",userScore]; 
         
-        [self imageChange:@"xrps-wp7-f4-2.png" :1];
-        [self imageChange:@"xrps-wp7-f4-2.png" :2];
+            lblPlayerName.text = [gameInfoArray objectAtIndex:7];
         
-        lblYOUResult.hidden = YES;
-        lblHowResult.hidden = YES;
-    }
+            //display what user picked for round before
+            [self displayChange:3 :1];
+            //display what opp picked for round before
+            [self displayChange:4:2];
+        
+            [self resultsDisplay:[[gameInfoArray objectAtIndex:3] floatValue] : [[gameInfoArray objectAtIndex:4] floatValue]];
+        
+        }
+        else
+        {
+            playerMe = 2;
+        
+            lblPlayerName.text = [gameInfoArray objectAtIndex:6];
+        
+            int oppScore = [[gameInfoArray objectAtIndex:0] floatValue];
+            int userScore = [[gameInfoArray objectAtIndex:1] floatValue];
+            lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
+            lblUserScore.text = [NSString stringWithFormat:@"%d",userScore]; 
+        
+            [self imageChange:@"xrps-wp7-f4-2.png" :1];
+            [self imageChange:@"xrps-wp7-f4-2.png" :2];
+        
+            lblYOUResult.hidden = YES;
+            lblHowResult.hidden = YES;
+        }
         
     
-    // round
-    cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue];
+        // round
+        cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue];
     
-    //display round
+        //display round
         int round = cArray[2];
         
         NSLog(@"%d",round);
         lblRound.text = [NSString stringWithFormat:@"Round: %d",round];
     
-    if (round > 1)
-    {
-        btnAdvice.enabled = YES;
-    }
-    else
-    {
-        [gameInfoArray replaceObjectAtIndex:7 withObject:[[GKLocalPlayer localPlayer] alias]];
-        [gameInfoArray replaceObjectAtIndex:9 withObject:[[GKLocalPlayer localPlayer] playerID]];
+        if (round > 1)
+        {
+            btnAdvice.enabled = YES;
+        }
+        else
+        {
+            [gameInfoArray replaceObjectAtIndex:7 withObject:[[GKLocalPlayer localPlayer] alias]];
+            [gameInfoArray replaceObjectAtIndex:9 withObject:[[GKLocalPlayer localPlayer] playerID]];
+        }
     }
     
 }

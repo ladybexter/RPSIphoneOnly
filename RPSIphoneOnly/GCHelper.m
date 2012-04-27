@@ -163,6 +163,7 @@ static GCHelper *sharedHelper = nil;
         part = [match.participants objectAtIndex:
                 (currentIndex + 1 + i) % match.participants.count];
         if (part.matchOutcome != GKTurnBasedMatchOutcomeQuit) {
+            part.matchOutcome = GKTurnBasedMatchOutcomeNone;
             break;
         } 
     }

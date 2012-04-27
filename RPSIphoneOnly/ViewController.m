@@ -74,13 +74,15 @@
     [GCHelper sharedInstance].delegate = (id)self;
     [[GCHelper sharedInstance] authenticateLocalUser]; 
     
-    GKLeaderboardViewController *leaderboardController = [[GKLeaderboardViewController alloc] init];
-    if (leaderboardController != NULL)
-    {
-        leaderboardController.category = kLeaderboardID;
-        leaderboardController.timeScope = GKLeaderboardTimeScopeWeek;
-        leaderboardController.leaderboardDelegate = (id)self;
-        [self presentModalViewController: leaderboardController animated: YES];
+    if([GKLocalPlayer localPlayer].authenticated) {
+        GKLeaderboardViewController *leaderboardController = [[GKLeaderboardViewController alloc] init];
+        if (leaderboardController != NULL)
+        {
+            leaderboardController.category = kLeaderboardID;
+            leaderboardController.timeScope = GKLeaderboardTimeScopeAllTime;
+            leaderboardController.leaderboardDelegate = (id)self;
+            [self presentModalViewController: leaderboardController animated: YES];
+        }
     }
 }
 @end

@@ -8,11 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "GCHelper.h"
+#import "GameCenterManager.h"
+
+@class GameCenterManager;
 
 @interface MultiPlayerViewController : UIViewController <UITextFieldDelegate,  
-GCTurnBasedMatchHelperDelegate>{
+GCTurnBasedMatchHelperDelegate, GameCenterManagerDelegate>{
+    
+    GameCenterManager *gameCenterManager;
     NSMutableArray *gameInfoArray;
 }
+
+@property (nonatomic, retain) GameCenterManager *gameCenterManager;
+
 @property (weak, nonatomic) IBOutlet UILabel *lblStatus;
 @property (weak, nonatomic) IBOutlet UIImageView *imgOppPick;
 @property (weak, nonatomic) IBOutlet UIImageView *imgUserPick;
