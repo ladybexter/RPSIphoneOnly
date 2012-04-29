@@ -55,6 +55,15 @@ int playerMe;
 
 #pragma mark - View lifecycle
 
+- (void)didPresentAlertView:(UIAlertView *)alertView
+{
+    // UIAlertView in landscape mode
+    //[UIView beginAnimations:@"" context:nil];
+    //[UIView setAnimationDuration:0.1];
+    alertView.transform = CGAffineTransformRotate(alertView.transform, 3.14159/2);
+    //[UIView commitAnimations];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -76,11 +85,14 @@ int playerMe;
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile:path]]];
     
-    UIAlertView *eventInstruct = [[UIAlertView alloc] initWithTitle:nil message:@"Please press Game Center to \n\n either START NEW game or CONTINUE game" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView *eventInstruct = [[UIAlertView alloc] initWithTitle:nil message:@"Please press Game Center to either \n\n START NEW game \n or \n CONTINUE game" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     
     [eventInstruct show];
+    [self didPresentAlertView:eventInstruct];
     
 }
+
+
 
 - (void)viewDidUnload
 {
@@ -366,7 +378,7 @@ int playerMe;
 
 -(void)checkForEnding:(double)roundCount {
     
-    if (roundCount == 11)
+    if (roundCount == 5)
     {
         
         lblStatus.text = @"Match has ended";
@@ -421,6 +433,7 @@ int playerMe;
             NSLog(@"isnt' quit %@", nextParticipant);
             break;
         } else {
+            
             NSLog(@"nex part %@", nextParticipant);
         }
     }
@@ -448,8 +461,7 @@ int playerMe;
     
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray]; 
     
-    //need to change this to ....
-    if ([[gameInfoArray objectAtIndex:5] floatValue] == 11 ) {
+    if ([[gameInfoArray objectAtIndex:5] floatValue] == 5) {
             
         btnRobot.enabled = NO;
         btnPaper.enabled = NO;
@@ -498,7 +510,7 @@ int playerMe;
                          [board loadScoresWithCompletionHandler: ^(NSArray *scores, NSError *error) {
                              if (error != nil) {
                                  // handle the error.
-                                 NSLog(@"Error retrieving score.", nil);
+                                 NSLog(@"Error retrieving score.");
                              }
                              if (scores != nil) {
                                  
@@ -534,7 +546,7 @@ int playerMe;
                         [board loadScoresWithCompletionHandler: ^(NSArray *scores, NSError *error) {
                             if (error != nil) {
                                 // handle the error.
-                                NSLog(@"Error retrieving score.", nil);
+                                NSLog(@"Error retrieving score.");
                             }
                             if (scores != nil) {
                                 
@@ -706,7 +718,9 @@ int playerMe;
             [self imageChange:@"xrps-wp7-f4-2.png" :1];
             [self imageChange:@"xrps-wp7-f4-2.png" :2];
             
-            lblStatus.text = @"Match was cancled, due to a player quitting";
+            
+            
+            lblStatus.text = @"Match was canceled, due to a player quitting";
             btnRobot.enabled = NO;
             btnPaper.enabled = NO;
             btnScissors.enabled = NO;
@@ -927,6 +941,7 @@ int playerMe;
     lblHowResult.hidden = YES;
     lblYOUResult.hidden = YES;
     playerMe = 1;
+    lblPlayerName =@"Other Player";
     [self imageChange:@"xrps-wp7-f4-2.png" :1];
     [self imageChange:@"xrps-wp7-f4-2.png" :2];
     
@@ -941,11 +956,9 @@ int playerMe;
     
     gameInfoArray = [NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
     
-    //Display opponent alias name
-        lblPlayerName.text = [gameInfoArray objectAtIndex:6];
     
-    if ([self checkIfOtherPlayerQuit] == false)
-    {
+    //if ([self checkIfOtherPlayerQuit] == false)
+    //{
     
         NSLog(@"Taking turn for existing game...");
     
@@ -1010,7 +1023,7 @@ int playerMe;
             [gameInfoArray replaceObjectAtIndex:7 withObject:[[GKLocalPlayer localPlayer] alias]];
             [gameInfoArray replaceObjectAtIndex:9 withObject:[[GKLocalPlayer localPlayer] playerID]];
         }
-    }
+    //}
     
 }
 
