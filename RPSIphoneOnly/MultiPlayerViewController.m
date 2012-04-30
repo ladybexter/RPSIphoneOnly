@@ -521,6 +521,11 @@ int playerMe;
                                  //send updated score to game center
                                  [self.gameCenterManager reportScore: currentPlayer1Score forCategory: kLeaderboardID];
                              }
+                             else
+                             {
+                                 //send updated score to game center
+                                 [self.gameCenterManager reportScore: 1 forCategory: kLeaderboardID];
+                             }
                          }];
                      }
                 }
@@ -556,6 +561,10 @@ int playerMe;
                                 currentPlayer2Score = currentPlayer2Score + 1;
                                 //send updated score to game center
                                 [self.gameCenterManager reportScore: currentPlayer2Score forCategory: kLeaderboardID];
+                            }
+                            else
+                            {
+                                [self.gameCenterManager reportScore: 1 forCategory: kLeaderboardID];
                             }
                         }];
                     }
@@ -941,7 +950,7 @@ int playerMe;
     lblHowResult.hidden = YES;
     lblYOUResult.hidden = YES;
     playerMe = 1;
-    lblPlayerName =@"Other Player";
+    lblPlayerName.text = @"Other Player";
     [self imageChange:@"xrps-wp7-f4-2.png" :1];
     [self imageChange:@"xrps-wp7-f4-2.png" :2];
     
