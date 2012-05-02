@@ -46,6 +46,8 @@
 		C6AF4EB3154E032B00B94D81 /* xrps-rulespage.png in Resources */ = {isa = PBXBuildFile; fileRef = C6AF4EB2154E032A00B94D81 /* xrps-rulespage.png */; };
 		C6AF4EB8154E06B700B94D81 /* RulesPage1.m in Sources */ = {isa = PBXBuildFile; fileRef = C6AF4EB6154E06AB00B94D81 /* RulesPage1.m */; };
 		C6AF4EB9154E06B700B94D81 /* RulesPage1.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6AF4EB7154E06B600B94D81 /* RulesPage1.xib */; };
+		C6AF4EC5154F409500B94D81 /* InitialController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6AF4EC3154F409400B94D81 /* InitialController.m */; };
+		C6AF4EC6154F409500B94D81 /* InitialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6AF4EC4154F409400B94D81 /* InitialController.xib */; };
 		C6B463B214F1E9070097F1A7 /* XRPSInterfacebackground3.png in Resources */ = {isa = PBXBuildFile; fileRef = C6B463B114F1E9070097F1A7 /* XRPSInterfacebackground3.png */; };
 		C6E73B1114DD893E007E48F2 /* AiFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E73B1014DD893E007E48F2 /* AiFunction.m */; };
 		C6E73B1E14DDDD12007E48F2 /* ModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E73B1C14DDDD11007E48F2 /* ModeViewController.m */; };
@@ -114,6 +116,9 @@
 		C6AF4EB5154E06A900B94D81 /* RulesPage1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RulesPage1.h; sourceTree = "<group>"; };
 		C6AF4EB6154E06AB00B94D81 /* RulesPage1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RulesPage1.m; sourceTree = "<group>"; };
 		C6AF4EB7154E06B600B94D81 /* RulesPage1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RulesPage1.xib; sourceTree = "<group>"; };
+		C6AF4EC2154F409400B94D81 /* InitialController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialController.h; sourceTree = "<group>"; };
+		C6AF4EC3154F409400B94D81 /* InitialController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialController.m; sourceTree = "<group>"; };
+		C6AF4EC4154F409400B94D81 /* InitialController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InitialController.xib; sourceTree = "<group>"; };
 		C6B463B114F1E9070097F1A7 /* XRPSInterfacebackground3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = XRPSInterfacebackground3.png; path = ../../../../Downloads/XRPSInterfacebackground3.png; sourceTree = "<group>"; };
 		C6E73B0F14DD893E007E48F2 /* AiFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AiFunction.h; sourceTree = "<group>"; };
 		C6E73B1014DD893E007E48F2 /* AiFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AiFunction.m; sourceTree = "<group>"; };
@@ -235,6 +240,9 @@
 				C6AF4EB5154E06A900B94D81 /* RulesPage1.h */,
 				C6AF4EB6154E06AB00B94D81 /* RulesPage1.m */,
 				C6AF4EB7154E06B600B94D81 /* RulesPage1.xib */,
+				C6AF4EC2154F409400B94D81 /* InitialController.h */,
+				C6AF4EC3154F409400B94D81 /* InitialController.m */,
+				C6AF4EC4154F409400B94D81 /* InitialController.xib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -353,6 +361,7 @@
 				C6B463B214F1E9070097F1A7 /* XRPSInterfacebackground3.png in Resources */,
 				C6AF4EB3154E032B00B94D81 /* xrps-rulespage.png in Resources */,
 				C6AF4EB9154E06B700B94D81 /* RulesPage1.xib in Resources */,
+				C6AF4EC6154F409500B94D81 /* InitialController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +406,7 @@
 				C690C96E14E5EA83000BB787 /* MultiPlayerViewController.m in Sources */,
 				C6AF4EA3154820CA00B94D81 /* GameCenterManager.m in Sources */,
 				C6AF4EB8154E06B700B94D81 /* RulesPage1.m in Sources */,
+				C6AF4EC5154F409500B94D81 /* InitialController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

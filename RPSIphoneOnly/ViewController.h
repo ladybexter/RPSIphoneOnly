@@ -11,6 +11,7 @@
 
 @interface ViewController :UIViewController 
 
-- (IBAction)btnLeaderboard:(id)sender;
 
+
+- (IBAction)btnLeaderboard:(id)sender;
 @end

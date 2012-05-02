@@ -506,7 +506,8 @@ double predictedNum[2] ={4,4};
     predictedNum[0] = 4;
     predictedNum[1] = 4;
     
-    [self imageChange:@"rock5._finalise-android(78x78)nobg.png":1];
+    [self imageChange:@"xrps-wp7-f4-2.png":1];
+    [self imageChange:@"xrps-wp7-f4-2.png":2];
     [self displayORHide:1];  
 }
 

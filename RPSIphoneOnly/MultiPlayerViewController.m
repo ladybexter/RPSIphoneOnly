@@ -69,6 +69,10 @@ int playerMe;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    UIAlertView *eventInstruct = [[UIAlertView alloc] initWithTitle:nil message:@"Please press Game Center to either \n\n START NEW game \n or \n CONTINUE game" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
+    [eventInstruct show];
+    
     [GCHelper sharedInstance].delegate = self;
     [[GCHelper sharedInstance] authenticateLocalUser];    
     
@@ -85,10 +89,9 @@ int playerMe;
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile:path]]];
     
-    UIAlertView *eventInstruct = [[UIAlertView alloc] initWithTitle:nil message:@"Please press Game Center to either \n\n START NEW game \n or \n CONTINUE game" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+   
     
-    [eventInstruct show];
-    [self didPresentAlertView:eventInstruct];
+    //[self didPresentAlertView:eventInstruct];
     
 }
 
@@ -385,6 +388,19 @@ int playerMe;
     }
 }
 
+- (void) reportScore: (int64_t) score forCategory: (NSString*) category
+{
+    GKScore *scoreReporter = [[GKScore alloc] initWithCategory:category];
+    scoreReporter.value = score;
+    
+    [scoreReporter reportScoreWithCompletionHandler:^(NSError *error) {
+        if (error != nil)
+        {
+            // handle the reporting error
+        }
+    }];
+}
+
 -(void)sendTurn{
     
     
@@ -500,35 +516,35 @@ int playerMe;
                 
                 
                  //get player 1 score on leaderboard
-                 if([GKLocalPlayer localPlayer].authenticated) {
-                     NSArray *arr = [[NSArray alloc] initWithObjects:[gameInfoArray objectAtIndex:8], nil];
-                     GKLeaderboard *board = [[GKLeaderboard alloc] initWithPlayerIDs:arr];
-                     if(board != nil) {
-                         board.timeScope = GKLeaderboardTimeScopeAllTime;
-                         board.range = NSMakeRange(1, 1);
-                         board.category = @"HighscoreTable";
-                         [board loadScoresWithCompletionHandler: ^(NSArray *scores, NSError *error) {
-                             if (error != nil) {
+                 //if([GKLocalPlayer localPlayer].authenticated) {
+                     //NSArray *arr = [[NSArray alloc] initWithObjects:[gameInfoArray objectAtIndex:8], nil];
+                     //GKLeaderboard *board = [[GKLeaderboard alloc] initWithPlayerIDs:arr];
+                     //if(board != nil) {
+                       //  board.timeScope = GKLeaderboardTimeScopeAllTime;
+                         //board.range = NSMakeRange(1, 1);
+                         //board.category = @"HighscoreTable";
+                         //[board loadScoresWithCompletionHandler: ^(NSArray *scores, NSError *error) {
+                           //  if (error != nil) {
                                  // handle the error.
-                                 NSLog(@"Error retrieving score.");
-                             }
-                             if (scores != nil) {
+                             //    NSLog(@"Error retrieving score.");
+                             //}
+                             //if (scores != nil) {
                                  
                                  //get current player 1 leaderboard score
-                                 int currentPlayer1Score = ((GKScore*)[scores objectAtIndex:0]).value;
+                               //  int currentPlayer1Score = ((GKScore*)[scores objectAtIndex:0]).value;
                                  //increase current leaderboard score by 1
-                                 currentPlayer1Score = currentPlayer1Score + 1;
+                                 //currentPlayer1Score = currentPlayer1Score + 1;
                                  //send updated score to game center
-                                 [self.gameCenterManager reportScore: currentPlayer1Score forCategory: kLeaderboardID];
-                             }
-                             else
-                             {
+                                 //[self.gameCenterManager reportScore: currentPlayer1Score forCategory: kLeaderboardID]//;
+                             //}
+                             //else
+                             //{
                                  //send updated score to game center
-                                 [self.gameCenterManager reportScore: 1 forCategory: kLeaderboardID];
-                             }
-                         }];
-                     }
-                }
+                               //  [self.gameCenterManager reportScore: 1 forCategory: kLeaderboardID];
+                             //}
+                         //}];
+                     //}
+                //}
 
                 
                 
@@ -540,35 +556,39 @@ int playerMe;
                 UIAlertView *outcomeEventWin = [[UIAlertView alloc] initWithTitle:nil message:@"YOU WIN :)" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [outcomeEventWin show];
                 
+                int64_t  score = 7;
+                
+                [self reportScore:score forCategory: kLeaderboardID];
+                
                 //get player 2 score on leaderboard
-                if([GKLocalPlayer localPlayer].authenticated) {
-                    NSArray *arr = [[NSArray alloc] initWithObjects:[GKLocalPlayer localPlayer].playerID, nil];
-                    GKLeaderboard *board = [[GKLeaderboard alloc] initWithPlayerIDs:arr];
-                    if(board != nil) {
-                        board.timeScope = GKLeaderboardTimeScopeAllTime;
-                        board.range = NSMakeRange(1, 1);
-                        board.category = @"HighscoreTable";
-                        [board loadScoresWithCompletionHandler: ^(NSArray *scores, NSError *error) {
-                            if (error != nil) {
+                //if([GKLocalPlayer localPlayer].authenticated) {
+                  //  NSArray *arr = [[NSArray alloc] initWithObjects:[GKLocalPlayer localPlayer].playerID, nil];
+                    //GKLeaderboard *board = [[GKLeaderboard alloc] initWithPlayerIDs:arr];
+                    //if(board != nil) {
+                      //  board.timeScope = GKLeaderboardTimeScopeAllTime;
+                        //board.range = NSMakeRange(1, 1);
+                        //board.category = @"HighscoreTable";
+                        //[board loadScoresWithCompletionHandler: ^(NSArray *scores, NSError *error) {
+                          //  if (error != nil) {
                                 // handle the error.
-                                NSLog(@"Error retrieving score.");
-                            }
-                            if (scores != nil) {
+                            //    NSLog(@"Error retrieving score.");
+                            //}
+                            //if (scores != nil) {
                                 
                                 //get current player 2 leaderboard score
-                                int currentPlayer2Score = ((GKScore*)[scores objectAtIndex:0]).value;
+                                //int currentPlayer2Score = ((GKScore*)[scores objectAtIndex:0]).value;
                                 //increase current leaderboard score by 1
-                                currentPlayer2Score = currentPlayer2Score + 1;
+                                //currentPlayer2Score = currentPlayer2Score + 1;
                                 //send updated score to game center
-                                [self.gameCenterManager reportScore: currentPlayer2Score forCategory: kLeaderboardID];
-                            }
-                            else
-                            {
-                                [self.gameCenterManager reportScore: 1 forCategory: kLeaderboardID];
-                            }
-                        }];
-                    }
-                }
+                              //  [self.gameCenterManager reportScore: currentPlayer2Score forCategory: kLeaderboardID];
+                            //}
+                            //else
+                          //  {
+                        //       [self.gameCenterManager reportScore: 1 forCategory: kLeaderboardID];
+                      //      }
+                    //    }];
+                  //  }
+                //}
                 
                 
                 //second player lost

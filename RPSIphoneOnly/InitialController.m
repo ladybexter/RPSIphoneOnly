@@ -1,16 +1,15 @@
 //
-//  ModeViewController.m
+//  InitialController.m
 //  RPSIphoneOnly
 //
-//  Created by student student on 04/02/2012.
+//  Created by student student on 30/04/2012.
 //  Copyright (c) 2012 UoP. All rights reserved.
 //
 
-#import "ModeViewController.h"
-#import "AppDelegate.h"
+#import "InitialController.h"
 
-@implementation ModeViewController
 
+@implementation InitialController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,12 +34,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
-    
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"testBackground" ofType:@"jpg" inDirectory:@""];
-    
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile:path]]];
-    
+   
 }
 
 - (void)viewDidUnload
@@ -53,17 +47,8 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-	return interfaceOrientation == UIInterfaceOrientationLandscapeRight;
+	return YES;
 }
 
-- (IBAction)btnEasyMode:(id)sender {
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate.mode setString:@"1"];
-     
-}
 
-- (IBAction)btnIntenseMode:(id)sender {   
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate.mode setString:@"2"];
-}
 @end
