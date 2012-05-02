@@ -401,6 +401,30 @@ int playerMe;
     }];
 }
 
+-(void)getCurrentLeaderboardScore:(NSString *)Category withCalculatedScore:(int)calculatedScore
+{
+    //NSLog(@"find score for category %@ ", Category);
+    if([GKLocalPlayer localPlayer].authenticated) {
+        NSArray *arr = [[NSArray alloc] initWithObjects:[GKLocalPlayer localPlayer].playerID, nil];
+        GKLeaderboard *board = [[GKLeaderboard alloc] initWithPlayerIDs:arr];
+        if(board != nil) {
+            board.timeScope = GKLeaderboardTimeScopeAllTime;
+            board.range = NSMakeRange(1, 1);
+            board.category = Category;
+            [board loadScoresWithCompletionHandler: ^(NSArray *scores, NSError *error) {
+                if (error != nil) {
+                    // handle the error.
+                    NSLog(@"Error retrieving score.", nil);
+                }
+                if (scores != nil) {
+                    int myCurrScore = ((GKScore*)[scores objectAtIndex:0]).value;
+                    NSLog(@"My Score: %i", myCurrScore);
+                }
+            }];
+        }
+    }
+}
+
 -(void)sendTurn{
     
     
@@ -556,9 +580,11 @@ int playerMe;
                 UIAlertView *outcomeEventWin = [[UIAlertView alloc] initWithTitle:nil message:@"YOU WIN :)" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [outcomeEventWin show];
                 
-                int64_t  score = 7;
                 
-                [self reportScore:score forCategory: kLeaderboardID];
+                
+                //int64_t  score = 7;
+                
+                //[self reportScore:score forCategory: kLeaderboardID];
                 
                 //get player 2 score on leaderboard
                 //if([GKLocalPlayer localPlayer].authenticated) {
@@ -629,6 +655,7 @@ int playerMe;
 
 - (IBAction)btnPaper:(id)sender {
     
+    [self getCurrentLeaderboardScore:kLeaderboardID withCalculatedScore:0];
     
     //set userMePick to 2
     if (playerMe == 1)
