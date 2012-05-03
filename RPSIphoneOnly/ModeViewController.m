@@ -37,7 +37,7 @@
     // Do any additional setup after loading the view from its nib.
     
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"testBackground" ofType:@"jpg" inDirectory:@""];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"XRPSInterfacebackground3" ofType:@"png" inDirectory:@""];
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile:path]]];
     

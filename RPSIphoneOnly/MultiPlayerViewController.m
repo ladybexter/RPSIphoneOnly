@@ -419,6 +419,10 @@ int playerMe;
                 if (scores != nil) {
                     int myCurrScore = ((GKScore*)[scores objectAtIndex:0]).value;
                     NSLog(@"My Score: %i", myCurrScore);
+                    
+                    //update current leaderboardScore
+                    int totalScoreToSubmit = myCurrScore+calculatedScore;
+                    [self reportScore:totalScoreToSubmit forCategory: kLeaderboardID];
                 }
             }];
         }
@@ -655,7 +659,7 @@ int playerMe;
 
 - (IBAction)btnPaper:(id)sender {
     
-    [self getCurrentLeaderboardScore:kLeaderboardID withCalculatedScore:0];
+    //[self getCurrentLeaderboardScore:kLeaderboardID withCalculatedScore:1];
     
     //set userMePick to 2
     if (playerMe == 1)

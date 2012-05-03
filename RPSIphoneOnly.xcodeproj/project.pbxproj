@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C665542C14E891A100941205 /* GI-Display-Robot(FINAL).png in Resources */ = {isa = PBXBuildFile; fileRef = C665542B14E891A100941205 /* GI-Display-Robot(FINAL).png */; };
 		C690C96914E5E7B9000BB787 /* GCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C690C96814E5E7B9000BB787 /* GCHelper.m */; };
 		C690C96E14E5EA83000BB787 /* MultiPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C690C96C14E5EA83000BB787 /* MultiPlayerViewController.m */; };
 		C690C96F14E5EA83000BB787 /* MultiPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C690C96D14E5EA83000BB787 /* MultiPlayerViewController.xib */; };
@@ -48,6 +47,12 @@
 		C6AF4EB9154E06B700B94D81 /* RulesPage1.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6AF4EB7154E06B600B94D81 /* RulesPage1.xib */; };
 		C6AF4EC5154F409500B94D81 /* InitialController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6AF4EC3154F409400B94D81 /* InitialController.m */; };
 		C6AF4EC6154F409500B94D81 /* InitialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6AF4EC4154F409400B94D81 /* InitialController.xib */; };
+		C6AF4EDC1553406000B94D81 /* GI- Display - Unicorn.png in Resources */ = {isa = PBXBuildFile; fileRef = C6AF4EDB1553406000B94D81 /* GI- Display - Unicorn.png */; };
+		C6AF4EDF1553408300B94D81 /* GI- Display - Scissors.png in Resources */ = {isa = PBXBuildFile; fileRef = C6AF4EDE1553408300B94D81 /* GI- Display - Scissors.png */; };
+		C6AF4EE11553409200B94D81 /* GI- Display - Robot (FINAL).png in Resources */ = {isa = PBXBuildFile; fileRef = C6AF4EE01553409200B94D81 /* GI- Display - Robot (FINAL).png */; };
+		C6AF4EE31553409D00B94D81 /* GI - button-v2.png in Resources */ = {isa = PBXBuildFile; fileRef = C6AF4EE21553409D00B94D81 /* GI - button-v2.png */; };
+		C6AF4EE5155340A800B94D81 /* GI- Display - Rock.png in Resources */ = {isa = PBXBuildFile; fileRef = C6AF4EE4155340A800B94D81 /* GI- Display - Rock.png */; };
+		C6AF4EE7155340C100B94D81 /* GI- Display - Paper.png in Resources */ = {isa = PBXBuildFile; fileRef = C6AF4EE6155340C100B94D81 /* GI- Display - Paper.png */; };
 		C6B463B214F1E9070097F1A7 /* XRPSInterfacebackground3.png in Resources */ = {isa = PBXBuildFile; fileRef = C6B463B114F1E9070097F1A7 /* XRPSInterfacebackground3.png */; };
 		C6E73B1114DD893E007E48F2 /* AiFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E73B1014DD893E007E48F2 /* AiFunction.m */; };
 		C6E73B1E14DDDD12007E48F2 /* ModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E73B1C14DDDD11007E48F2 /* ModeViewController.m */; };
@@ -65,7 +70,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C665542B14E891A100941205 /* GI-Display-Robot(FINAL).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GI-Display-Robot(FINAL).png"; path = "../../../../Dropbox/Mobile Apps/RPS Interface/Iphone/GI - buttons/GI-Display-Robot(FINAL).png"; sourceTree = "<group>"; };
 		C690C96714E5E7B9000BB787 /* GCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCHelper.h; sourceTree = "<group>"; };
 		C690C96814E5E7B9000BB787 /* GCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCHelper.m; sourceTree = "<group>"; };
 		C690C96B14E5EA83000BB787 /* MultiPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiPlayerViewController.h; sourceTree = "<group>"; };
@@ -119,6 +123,12 @@
 		C6AF4EC2154F409400B94D81 /* InitialController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialController.h; sourceTree = "<group>"; };
 		C6AF4EC3154F409400B94D81 /* InitialController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialController.m; sourceTree = "<group>"; };
 		C6AF4EC4154F409400B94D81 /* InitialController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InitialController.xib; sourceTree = "<group>"; };
+		C6AF4EDB1553406000B94D81 /* GI- Display - Unicorn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GI- Display - Unicorn.png"; sourceTree = "<group>"; };
+		C6AF4EDE1553408300B94D81 /* GI- Display - Scissors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GI- Display - Scissors.png"; sourceTree = "<group>"; };
+		C6AF4EE01553409200B94D81 /* GI- Display - Robot (FINAL).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GI- Display - Robot (FINAL).png"; sourceTree = "<group>"; };
+		C6AF4EE21553409D00B94D81 /* GI - button-v2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GI - button-v2.png"; sourceTree = "<group>"; };
+		C6AF4EE4155340A800B94D81 /* GI- Display - Rock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GI- Display - Rock.png"; sourceTree = "<group>"; };
+		C6AF4EE6155340C100B94D81 /* GI- Display - Paper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GI- Display - Paper.png"; sourceTree = "<group>"; };
 		C6B463B114F1E9070097F1A7 /* XRPSInterfacebackground3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = XRPSInterfacebackground3.png; path = ../../../../Downloads/XRPSInterfacebackground3.png; sourceTree = "<group>"; };
 		C6E73B0F14DD893E007E48F2 /* AiFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AiFunction.h; sourceTree = "<group>"; };
 		C6E73B1014DD893E007E48F2 /* AiFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AiFunction.m; sourceTree = "<group>"; };
@@ -199,8 +209,13 @@
 				C69A231D14F010EC00CFF477 /* xrps-background2.png */,
 				C69A231F14F06E7C00CFF477 /* XRPSInterfacebackground2.png */,
 				C6B463B114F1E9070097F1A7 /* XRPSInterfacebackground3.png */,
-				C665542B14E891A100941205 /* GI-Display-Robot(FINAL).png */,
 				C69A231814ED496700CFF477 /* xrps-wp7-f4-2.png */,
+				C6AF4EDB1553406000B94D81 /* GI- Display - Unicorn.png */,
+				C6AF4EDE1553408300B94D81 /* GI- Display - Scissors.png */,
+				C6AF4EE01553409200B94D81 /* GI- Display - Robot (FINAL).png */,
+				C6AF4EE4155340A800B94D81 /* GI- Display - Rock.png */,
+				C6AF4EE6155340C100B94D81 /* GI- Display - Paper.png */,
+				C6AF4EE21553409D00B94D81 /* GI - button-v2.png */,
 				C6965ED314DC9F7A00A4A21D /* robot4_finalise - android (48x48)no bg.png */,
 				C6965ED514DC9F8700A4A21D /* robot4_finalise-android(78x78)nobg.png */,
 				C6965ED714DC9F9D00A4A21D /* rock5._finalise - android (48x48)no bg.png */,
@@ -354,7 +369,6 @@
 				C6ABD05114DF8C1800AB6970 /* testBackground.jpg in Resources */,
 				C690C96F14E5EA83000BB787 /* MultiPlayerViewController.xib in Resources */,
 				C6A332B214E828BA0026C51E /* tempRobotButton.jpg in Resources */,
-				C665542C14E891A100941205 /* GI-Display-Robot(FINAL).png in Resources */,
 				C69A231914ED496700CFF477 /* xrps-wp7-f4-2.png in Resources */,
 				C69A231E14F010EC00CFF477 /* xrps-background2.png in Resources */,
 				C69A232014F06E7C00CFF477 /* XRPSInterfacebackground2.png in Resources */,
@@ -362,6 +376,12 @@
 				C6AF4EB3154E032B00B94D81 /* xrps-rulespage.png in Resources */,
 				C6AF4EB9154E06B700B94D81 /* RulesPage1.xib in Resources */,
 				C6AF4EC6154F409500B94D81 /* InitialController.xib in Resources */,
+				C6AF4EDC1553406000B94D81 /* GI- Display - Unicorn.png in Resources */,
+				C6AF4EDF1553408300B94D81 /* GI- Display - Scissors.png in Resources */,
+				C6AF4EE11553409200B94D81 /* GI- Display - Robot (FINAL).png in Resources */,
+				C6AF4EE31553409D00B94D81 /* GI - button-v2.png in Resources */,
+				C6AF4EE5155340A800B94D81 /* GI- Display - Rock.png in Resources */,
+				C6AF4EE7155340C100B94D81 /* GI- Display - Paper.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
