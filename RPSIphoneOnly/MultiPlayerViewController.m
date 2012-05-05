@@ -544,35 +544,9 @@ int playerMe;
                 
                 
                  //get player 1 score on leaderboard
-                 //if([GKLocalPlayer localPlayer].authenticated) {
-                     //NSArray *arr = [[NSArray alloc] initWithObjects:[gameInfoArray objectAtIndex:8], nil];
-                     //GKLeaderboard *board = [[GKLeaderboard alloc] initWithPlayerIDs:arr];
-                     //if(board != nil) {
-                       //  board.timeScope = GKLeaderboardTimeScopeAllTime;
-                         //board.range = NSMakeRange(1, 1);
-                         //board.category = @"HighscoreTable";
-                         //[board loadScoresWithCompletionHandler: ^(NSArray *scores, NSError *error) {
-                           //  if (error != nil) {
-                                 // handle the error.
-                             //    NSLog(@"Error retrieving score.");
-                             //}
-                             //if (scores != nil) {
-                                 
-                                 //get current player 1 leaderboard score
-                               //  int currentPlayer1Score = ((GKScore*)[scores objectAtIndex:0]).value;
-                                 //increase current leaderboard score by 1
-                                 //currentPlayer1Score = currentPlayer1Score + 1;
-                                 //send updated score to game center
-                                 //[self.gameCenterManager reportScore: currentPlayer1Score forCategory: kLeaderboardID]//;
-                             //}
-                             //else
-                             //{
-                                 //send updated score to game center
-                               //  [self.gameCenterManager reportScore: 1 forCategory: kLeaderboardID];
-                             //}
-                         //}];
-                     //}
-                //}
+                
+                //[self getCurrentLeaderboardScore:kLeaderboardID withCalculatedScore:1];
+                
 
                 
                 
@@ -591,34 +565,9 @@ int playerMe;
                 //[self reportScore:score forCategory: kLeaderboardID];
                 
                 //get player 2 score on leaderboard
-                //if([GKLocalPlayer localPlayer].authenticated) {
-                  //  NSArray *arr = [[NSArray alloc] initWithObjects:[GKLocalPlayer localPlayer].playerID, nil];
-                    //GKLeaderboard *board = [[GKLeaderboard alloc] initWithPlayerIDs:arr];
-                    //if(board != nil) {
-                      //  board.timeScope = GKLeaderboardTimeScopeAllTime;
-                        //board.range = NSMakeRange(1, 1);
-                        //board.category = @"HighscoreTable";
-                        //[board loadScoresWithCompletionHandler: ^(NSArray *scores, NSError *error) {
-                          //  if (error != nil) {
-                                // handle the error.
-                            //    NSLog(@"Error retrieving score.");
-                            //}
-                            //if (scores != nil) {
-                                
-                                //get current player 2 leaderboard score
-                                //int currentPlayer2Score = ((GKScore*)[scores objectAtIndex:0]).value;
-                                //increase current leaderboard score by 1
-                                //currentPlayer2Score = currentPlayer2Score + 1;
-                                //send updated score to game center
-                              //  [self.gameCenterManager reportScore: currentPlayer2Score forCategory: kLeaderboardID];
-                            //}
-                            //else
-                          //  {
-                        //       [self.gameCenterManager reportScore: 1 forCategory: kLeaderboardID];
-                      //      }
-                    //    }];
-                  //  }
-                //}
+                
+                //[self getCurrentLeaderboardScore:kLeaderboardID withCalculatedScore:1];
+                
                 
                 
                 //second player lost
@@ -659,7 +608,7 @@ int playerMe;
 
 - (IBAction)btnPaper:(id)sender {
     
-    //[self getCurrentLeaderboardScore:kLeaderboardID withCalculatedScore:1];
+    
     
     //set userMePick to 2
     if (playerMe == 1)
