@@ -8,18 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "GCHelper.h"
-#import "GameCenterManager.h"
 
-@class GameCenterManager;
 
 @interface MultiPlayerViewController : UIViewController <UITextFieldDelegate,  
-GCTurnBasedMatchHelperDelegate, GameCenterManagerDelegate>{
+GCTurnBasedMatchHelperDelegate>{
     
-    GameCenterManager *gameCenterManager;
     NSMutableArray *gameInfoArray;
 }
 
-@property (nonatomic, retain) GameCenterManager *gameCenterManager;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblStatus;
 @property (weak, nonatomic) IBOutlet UIImageView *imgOppPick;
@@ -38,6 +34,8 @@ GCTurnBasedMatchHelperDelegate, GameCenterManagerDelegate>{
 @property (weak, nonatomic) IBOutlet UIButton *btnUnicorn;
 @property (weak, nonatomic) IBOutlet UIButton *btnRobot;
 @property (weak, nonatomic) IBOutlet UIButton *btnAdvice;
+
+
 
 - (IBAction)btnPaper:(id)sender;
 - (IBAction)btnScissors:(id)sender;

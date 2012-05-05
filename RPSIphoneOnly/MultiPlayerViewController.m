@@ -10,10 +10,10 @@
 #import "GCHelper.h"
 #import "AppSpecificValues.h"
 
+
 @implementation MultiPlayerViewController
 
 
-@synthesize gameCenterManager;
 @synthesize lblStatus;
 @synthesize imgOppPick;
 @synthesize imgUserPick;
@@ -694,6 +694,44 @@ int playerMe;
 }
 
 - (IBAction)btnAIAdvice:(id)sender {
+    
+    //look at this code which creates path to plist in documents directory:
+    NSError *error;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); //1
+    NSString *documentsDirectory = [paths objectAtIndex:0]; //2
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"LBScore.plist"]; //3
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if (![fileManager fileExistsAtPath: path]) //4
+    {
+        NSBundle *bundle = [NSBundle mainBundle];
+        NSString *filePath = [bundle pathForResource:@"LBScore" ofType:@"plist"];
+        
+        [fileManager copyItemAtPath:filePath toPath: path error:&error]; //6
+        
+    }
+    
+    //next read data:
+    NSMutableDictionary *scoreDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
+    
+    //load from scoreDictionary example int value
+    int score;
+    score = [[scoreDictionary objectForKey:@"PlayerID"] intValue];
+    
+    
+    //And write data:
+    
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
+    
+    //here add elements to data file and write data to file
+    int value = 5;
+    
+    [data setObject:[NSNumber numberWithInt:value] forKey:@"Playername"];
+    
+    [data writeToFile: path atomically:YES];
+    
+    
     
     UIAlertView *eventChoiceNow = [[UIAlertView alloc] initWithTitle:nil message:@"Lina: I suggest UNICORN \n\n Joanna: I suggest SCISSORS" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [eventChoiceNow show];
