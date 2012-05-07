@@ -359,6 +359,13 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="nRd-gP-xRT">
+                                <rect key="frame" x="101" y="264" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -375,6 +382,7 @@
                         <outlet property="imgOppPick" destination="Ar8-Vs-nlf" id="p13-5G-ixR"/>
                         <outlet property="imgUserPick" destination="Fox-Gs-eC1" id="ade-6b-ApX"/>
                         <outlet property="lblHowResult" destination="A5Z-Lc-k3T" id="Nte-bL-reC"/>
+                        <outlet property="lblLBScore" destination="nRd-gP-xRT" id="N6C-fb-Nnz"/>
                         <outlet property="lblOppScore" destination="9rx-Um-FyD" id="s5t-bQ-a6K"/>
                         <outlet property="lblPlayerName" destination="TgZ-Ab-ORL" id="5yS-Gj-qoY"/>
                         <outlet property="lblRound" destination="nZ2-rk-dDd" id="pvd-gt-3GN"/>

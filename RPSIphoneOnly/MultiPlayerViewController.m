@@ -14,6 +14,7 @@
 @implementation MultiPlayerViewController
 
 
+@synthesize lblLBScore;
 @synthesize lblStatus;
 @synthesize imgOppPick;
 @synthesize imgUserPick;
@@ -115,6 +116,7 @@ int playerMe;
     [self setLblHowResult:nil];
     [self setLblVS:nil];
     [self setBtnAdvice:nil];
+    [self setLblLBScore:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -388,8 +390,42 @@ int playerMe;
     }
 }
 
+-(void)sendTurnToSelf: (NSData*) data{
+    
+    GKTurnBasedMatch *currentMatch = 
+    [[GCHelper sharedInstance] currentMatch];
+    
+    [currentMatch endTurnWithNextParticipant:currentMatch.currentParticipant
+                                   matchData:data completionHandler:^(NSError *error) {
+                                       if (error) {
+                                           NSLog(@"%@", error);
+                                           lblStatus.text = 
+                                           @"Oops, there was a problem.  Try that again.";
+                                       } else {
+                                           lblStatus.text = @"Please Update your Leaderboard score";
+                                           btnRobot.enabled = NO;
+                                           btnPaper.enabled = NO;
+                                           btnScissors.enabled = NO;
+                                           btnUnicorn.enabled = NO;
+                                           btnRock.enabled = NO;
+                                       }
+                                   }];
+    
+}
+
 - (void) reportScore: (int64_t) score forCategory: (NSString*) category
 {
+    GKTurnBasedMatch *currentMatch = 
+    [[GCHelper sharedInstance] currentMatch];
+    
+    
+    GKTurnBasedParticipant *firstPlayer;
+    firstPlayer = 
+    [currentMatch.participants objectAtIndex:0];
+    GKTurnBasedParticipant *secondPlayer;
+    secondPlayer = [currentMatch.participants objectAtIndex:1];
+    
+    
     GKScore *scoreReporter = [[GKScore alloc] initWithCategory:category];
     scoreReporter.value = score;
     
@@ -397,12 +433,82 @@ int playerMe;
         if (error != nil)
         {
             // handle the reporting error
+            
+            //end of 5 rounds
+            if ([[gameInfoArray objectAtIndex:5] floatValue] == 11) {
+                
+                //increase turncount by 2
+                cArray[5] = [[gameInfoArray objectAtIndex:5] floatValue] + 1;
+                [gameInfoArray replaceObjectAtIndex:5 withObject:[NSNumber numberWithDouble:cArray[5]]];
+                
+                
+                NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray];
+                
+                //send turn to 2.Player again
+                [self sendTurnToSelf:data];
+                
+                
+                
+            }
+            if ([[gameInfoArray objectAtIndex:5] floatValue] == 13) {
+                
+                //Post of player2 score failed to update again
+                
+                
+                NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray];
+                
+                //send turn to 2.Player again
+                [self sendTurnToSelf:data];
+            }
+            
+        }
+        else
+        {
+            
+            //end of 5 rounds,player 2 must have won
+            if ([[gameInfoArray objectAtIndex:5] floatValue] == 11 || [[gameInfoArray objectAtIndex:5] floatValue] == 13) {
+                
+                //second player won ... display pop up result for 2.player 
+                secondPlayer.matchOutcome = GKTurnBasedMatchOutcomeWon;
+                
+                //second player lost
+                firstPlayer.matchOutcome = GKTurnBasedMatchOutcomeLost;
+                
+                
+            }
+            
+            //player 1 must have won
+            if ([[gameInfoArray objectAtIndex:5] floatValue] == 12 || [[gameInfoArray objectAtIndex:5] floatValue] == 14) {
+                
+                //second player lost
+                secondPlayer.matchOutcome = GKTurnBasedMatchOutcomeLost;
+                
+                //first player won
+                firstPlayer.matchOutcome = GKTurnBasedMatchOutcomeWon;
+                
+                
+            }
+            
+            
+            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray];
+            
+            //if score update was successful end game
+             
+            [currentMatch endMatchInTurnWithMatchData:data 
+                                    completionHandler:^(NSError *error) {
+                                        if (error) {
+                                            NSLog(@"%@", error);
+                                        }
+                                    }];
+            lblStatus.text = @"Game has ended";
         }
     }];
 }
 
--(void)getCurrentLeaderboardScore:(NSString *)Category withCalculatedScore:(int)calculatedScore
+
+-(int)getCurrentLeaderboardScore:(NSString *)Category 
 {
+    
     //NSLog(@"find score for category %@ ", Category);
     if([GKLocalPlayer localPlayer].authenticated) {
         NSArray *arr = [[NSArray alloc] initWithObjects:[GKLocalPlayer localPlayer].playerID, nil];
@@ -412,22 +518,29 @@ int playerMe;
             board.range = NSMakeRange(1, 1);
             board.category = Category;
             [board loadScoresWithCompletionHandler: ^(NSArray *scores, NSError *error) {
+                int lbScore;
                 if (error != nil) {
                     // handle the error.
-                    NSLog(@"Error retrieving score.", nil);
+                    NSLog(@"Error retrieving score.");
+                    lbScore = -1;
                 }
                 if (scores != nil) {
-                    int myCurrScore = ((GKScore*)[scores objectAtIndex:0]).value;
-                    NSLog(@"My Score: %i", myCurrScore);
-                    
-                    //update current leaderboardScore
-                    int totalScoreToSubmit = myCurrScore+calculatedScore;
-                    [self reportScore:totalScoreToSubmit forCategory: kLeaderboardID];
+                    //leaderboard score
+                    lbScore = board.localPlayerScore.value;
                 }
+                else
+                {
+                    //no scores on LB
+                    lbScore = -1;
+                }
+               lblLBScore.text = [NSString stringWithFormat:@"%d",lbScore];
             }];
+            return [lblLBScore.text intValue];
         }
+        
     }
 }
+
 
 -(int)loadLocalSavedScore:(NSString *)Playername{
     
@@ -446,10 +559,23 @@ int playerMe;
         // If the file exists, read dictionary from file
         scoreDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
         
-        //load from scoreDictionary example int value
+        
+        //check dictionary to see if player has saved previous score on current device
         int score;
-        score = [[scoreDictionary objectForKey:Playername] intValue];
-        lblStatus.text = [NSString stringWithFormat:@"%d",score];
+        
+        if([scoreDictionary objectForKey:Playername] != nil)
+        {
+            //load from scoreDictionary previously stored LB score for player on current device
+        
+            score = [[scoreDictionary objectForKey:Playername] intValue];
+            lblStatus.text = [NSString stringWithFormat:@"%d",score];
+        }
+        else
+        {
+            //player hasnt stored any leaderboard score on current device yet
+            score = -1;
+        }
+        
     
         return score;
     }
@@ -458,8 +584,8 @@ int playerMe;
         // If the file doesn’t exist, create an empty dictionary
         scoreDictionary = [[NSMutableDictionary alloc] init];
         
-        //no previous games have been won
-        return 0;
+        //no previous games have been won on this device for any player
+        return -1;
     }
    
 }
@@ -496,6 +622,69 @@ int playerMe;
     
     [data writeToFile: path atomically:YES];
     
+}
+
+
+-(void)compareUpdateLBScoreWithLocallyStoredScore:(NSString *)PlayersID{
+    
+    int localScore;
+    int leaderboardScore;
+    int newScore;
+    
+    localScore = [self loadLocalSavedScore:PlayersID];
+    leaderboardScore = [self getCurrentLeaderboardScore:kLeaderboardID ];
+    
+    
+    if (leaderboardScore == -1 & localScore == -1)
+    {
+        //create local score storage and set it to 1
+        [self saveScoreLocally:1 :PlayersID];
+        
+        //post localScore as leaderboardScore
+        [self reportScore:1 forCategory: kLeaderboardID];  
+    }
+    else if(leaderboardScore == -1)
+    {
+        //leaderboard hasnt been updated yet. take local score increase by one and post it
+        newScore = localScore + 1;
+        [self reportScore:newScore forCategory:kLeaderboardID];
+        
+        //submit update for local score
+        [self saveScoreLocally:newScore :PlayersID];
+    }
+    else if(localScore == -1)
+    {
+        //create local score with current leaderboardNumber
+        newScore = leaderboardScore + 1;
+        [self saveScoreLocally:newScore :PlayersID];
+        
+        //submit new leaderboard score
+        [self reportScore:newScore forCategory:kLeaderboardID];
+    }
+    else if(localScore == leaderboardScore)
+    {
+        newScore = localScore + 1;
+        
+        [self reportScore:newScore forCategory:kLeaderboardID];
+        [self saveScoreLocally:newScore :PlayersID];
+    }
+    else if(localScore > leaderboardScore)
+    {
+        //leaderboardscore hasnt updated yet
+        newScore = localScore + 1;
+        
+        [self reportScore:newScore forCategory:kLeaderboardID];
+        [self saveScoreLocally:newScore :PlayersID];
+    }
+    else if(leaderboardScore > localScore)
+    {
+        //devices were switched so leaderboard score will b more up to date
+        newScore = leaderboardScore + 1;
+        
+        [self reportScore:newScore forCategory:kLeaderboardID];
+        [self saveScoreLocally:newScore :PlayersID];
+    }
+                                           
 }
 
 -(void)sendTurn{
@@ -574,7 +763,9 @@ int playerMe;
     
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray]; 
     
-    if ([[gameInfoArray objectAtIndex:5] floatValue] == 5) {
+    
+    //end of 5 rounds
+    if ([[gameInfoArray objectAtIndex:5] floatValue] == 11) {
             
         btnRobot.enabled = NO;
         btnPaper.enabled = NO;
@@ -598,59 +789,42 @@ int playerMe;
                 
                 //setting matchoutcome for firstplayer to tied
                 firstPlayer.matchOutcome = GKTurnBasedMatchOutcomeTied;
+                
+                [currentMatch endMatchInTurnWithMatchData:data 
+                                        completionHandler:^(NSError *error) {
+                                            if (error) {
+                                                NSLog(@"%@", error);
+                                            }
+                                        }];
+                lblStatus.text = @"Game has ended";
                
             }
             else if ([[gameInfoArray objectAtIndex:0] floatValue] > [[gameInfoArray objectAtIndex:1] floatValue])
             {
-                //second player lost .. display pop up result for 2.player
-                secondPlayer.matchOutcome = GKTurnBasedMatchOutcomeLost;
+               
                 UIAlertView *outcomeEventLost = [[UIAlertView alloc] initWithTitle:nil message:@"YOU LOST :(" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [outcomeEventLost show];
                 
+                 //second player lost .. display pop up result for 2.player
+                secondPlayer.matchOutcome = GKTurnBasedMatchOutcomeLost;
                 //first player won
                 firstPlayer.matchOutcome = GKTurnBasedMatchOutcomeWon;
-                
-                
-                
-                 //get player 1 score on leaderboard
-                
-                //[self getCurrentLeaderboardScore:kLeaderboardID withCalculatedScore:1];
-                
-
-                
-                
+                 
             }
             else if ([[gameInfoArray objectAtIndex:0] floatValue] < [[gameInfoArray objectAtIndex:1] floatValue])
             {
-                //second player won ... display pop up result for 2.player 
-                secondPlayer.matchOutcome = GKTurnBasedMatchOutcomeWon;
+                
+                
                 UIAlertView *outcomeEventWin = [[UIAlertView alloc] initWithTitle:nil message:@"YOU WIN :)" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [outcomeEventWin show];
                 
+                //check LB and L score for player 2, try posting to leaderboard
+                [self compareUpdateLBScoreWithLocallyStoredScore:secondPlayer.playerID];
                 
-                
-                //int64_t  score = 7;
-                
-                //[self reportScore:score forCategory: kLeaderboardID];
-                
-                //get player 2 score on leaderboard
-                
-                //[self getCurrentLeaderboardScore:kLeaderboardID withCalculatedScore:1];
-                
-                
-                
-                //second player lost
-                firstPlayer.matchOutcome = GKTurnBasedMatchOutcomeLost;
             }  
           
         
-        [currentMatch endMatchInTurnWithMatchData:data 
-                                completionHandler:^(NSError *error) {
-                                    if (error) {
-                                        NSLog(@"%@", error);
-                                    }
-                                }];
-        lblStatus.text = @"Game has ended";
+        
     } else {
         [currentMatch endTurnWithNextParticipant:nextParticipant 
                                        matchData:data completionHandler:^(NSError *error) {

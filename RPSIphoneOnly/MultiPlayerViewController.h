@@ -16,6 +16,7 @@ GCTurnBasedMatchHelperDelegate>{
     NSMutableArray *gameInfoArray;
 }
 
+@property (weak, nonatomic) IBOutlet UILabel *lblLBScore;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblStatus;
 @property (weak, nonatomic) IBOutlet UIImageView *imgOppPick;
