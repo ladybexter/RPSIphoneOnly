@@ -479,7 +479,7 @@ int playerMe;
                                             NSLog(@"%@", error);
                                         }
                                     }];
-            lblStatus.text = @"Leaderboard Post was successful";
+            lblHowResult.text = @"Leaderboard Post was successful";
         }
     }];
 }
@@ -511,9 +511,6 @@ int playerMe;
             //load from scoreDictionary previously stored LB score for player on current device
         
             score = [[scoreDictionary objectForKey:Playername] intValue];
-            NSLog(@"Current Local Score: %d",score);
-            
-            lblStatus.text = [NSString stringWithFormat:@"%d",score];
         }
         else
         {
@@ -661,13 +658,17 @@ int playerMe;
                     // handle the error.
                     NSLog(@"Error retrieving score.");
                     lbScore = -1;
+                    NSLog(@"Current Leaderboard Score: %d",lbScore);
                     localScore = [self loadLocalSavedScore:PlayerID];
+                    NSLog(@"Current Local Score: %d",localScore);
                     [self compareUpdateLBScoreWithLocallyStoredScore:PlayerID:localScore:lbScore];
                 }
                 if (scores != nil) {
                     //leaderboard score
                     lbScore = board.localPlayerScore.value;
+                    NSLog(@"Current Leaderboard Score: %d",lbScore);
                     localScore = [self loadLocalSavedScore:PlayerID];
+                    NSLog(@"Current Local Score: %d",localScore);
                     [self compareUpdateLBScoreWithLocallyStoredScore:PlayerID:localScore:lbScore];
                 }
                 
@@ -751,7 +752,7 @@ int playerMe;
     
     
     
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray]; 
+    
     
     
     //end of 5 rounds
@@ -780,6 +781,8 @@ int playerMe;
                 //setting matchoutcome for firstplayer to tied
                 firstPlayer.matchOutcome = GKTurnBasedMatchOutcomeTied;
                 
+                NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray]; 
+                
                 [currentMatch endMatchInTurnWithMatchData:data 
                                         completionHandler:^(NSError *error) {
                                             if (error) {
@@ -796,9 +799,8 @@ int playerMe;
                 [outcomeEventLost show];
                 
                 //increase turncount to 12
-                cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue] + 1;
-                [gameInfoArray replaceObjectAtIndex:2 withObject:[NSNumber numberWithDouble:cArray[2]]];
-                data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray]; 
+                [gameInfoArray replaceObjectAtIndex:5 withObject:[NSNumber numberWithDouble:12]];
+                NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray]; 
                 
                 
                 
@@ -836,6 +838,8 @@ int playerMe;
         
         
     } else {
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray]; 
+        
         [currentMatch endTurnWithNextParticipant:nextParticipant 
                                        matchData:data completionHandler:^(NSError *error) {
                                            if (error) {
@@ -854,7 +858,6 @@ int playerMe;
         
         
     }
-    NSLog(@"Send Turn, %@, %@", data, nextParticipant);
     
     
 }
@@ -1246,6 +1249,15 @@ int playerMe;
         //player 2 score failed to update LBscore
     if ([[gameInfoArray objectAtIndex:5] floatValue] == 11)
     {
+        
+        lblPlayerName.text = [gameInfoArray objectAtIndex:6];
+        
+        
+        //display what user picked for round before
+        [self displayChange:4 :1];
+        //display what opp picked for round before
+        [self displayChange:3:2];
+        
         btnRobot.enabled = NO;
         btnPaper.enabled = NO;
         btnScissors.enabled = NO;
@@ -1254,13 +1266,22 @@ int playerMe;
         btnPostScore.hidden = NO;
         lblHowResult.text =@"Try to update your leaderboard score again!";
         lblStatus.text = @"Match has ended";
+        lblYOUResult.hidden = YES;
     }
     else if ([[gameInfoArray objectAtIndex:5] floatValue] == 12)
     {
         //player 1 won and needs to update score
         
-        UIAlertView *outcomeEventLost = [[UIAlertView alloc] initWithTitle:nil message:@"YOU LOST :(" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *outcomeEventLost = [[UIAlertView alloc] initWithTitle:nil message:@"YOU WIN :)" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [outcomeEventLost show];
+        
+        lblPlayerName.text = [gameInfoArray objectAtIndex:7];
+        lblRound.text = @"Round: 5";
+        
+        //display what user picked for round before
+        [self displayChange:3 :1];
+        //display what opp picked for round before
+        [self displayChange:4:2];
         
         btnRobot.enabled = NO;
         btnPaper.enabled = NO;
@@ -1270,6 +1291,12 @@ int playerMe;
         btnPostScore.hidden = NO;
         lblHowResult.text =@"Please update your leaderboard score!";
         lblStatus.text = @"Match has ended";
+        lblYOUResult.text = @"";
+        
+        int oppScore = [[gameInfoArray objectAtIndex:1] floatValue];
+        int userScore = [[gameInfoArray objectAtIndex:0] floatValue];
+        lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
+        lblUserScore.text = [NSString stringWithFormat:@"%d",userScore];
     }
     else 
     {
