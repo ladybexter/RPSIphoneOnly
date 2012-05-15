@@ -41,7 +41,7 @@
 		C69A232014F06E7C00CFF477 /* XRPSInterfacebackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = C69A231F14F06E7C00CFF477 /* XRPSInterfacebackground2.png */; };
 		C6A332B214E828BA0026C51E /* tempRobotButton.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C6A332B114E828BA0026C51E /* tempRobotButton.jpg */; };
 		C6ABD05114DF8C1800AB6970 /* testBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C6ABD05014DF8C1800AB6970 /* testBackground.jpg */; };
-		C6AD145E155547F20016A738 /* LBScore.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6AD145D155547F20016A738 /* LBScore.plist */; };
+		C6AC9327155F1C5F005D81B2 /* xrps-rulespage1.png in Resources */ = {isa = PBXBuildFile; fileRef = C6AC9326155F1C5F005D81B2 /* xrps-rulespage1.png */; };
 		C6AF4EB3154E032B00B94D81 /* xrps-rulespage.png in Resources */ = {isa = PBXBuildFile; fileRef = C6AF4EB2154E032A00B94D81 /* xrps-rulespage.png */; };
 		C6AF4EB8154E06B700B94D81 /* RulesPage1.m in Sources */ = {isa = PBXBuildFile; fileRef = C6AF4EB6154E06AB00B94D81 /* RulesPage1.m */; };
 		C6AF4EB9154E06B700B94D81 /* RulesPage1.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6AF4EB7154E06B600B94D81 /* RulesPage1.xib */; };
@@ -111,7 +111,7 @@
 		C69A231F14F06E7C00CFF477 /* XRPSInterfacebackground2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = XRPSInterfacebackground2.png; path = ../../../../Downloads/XRPSInterfacebackground2.png; sourceTree = "<group>"; };
 		C6A332B114E828BA0026C51E /* tempRobotButton.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = tempRobotButton.jpg; path = ../../../IphoneRPSScreenshots/tempRobotButton.jpg; sourceTree = "<group>"; };
 		C6ABD05014DF8C1800AB6970 /* testBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = testBackground.jpg; sourceTree = "<group>"; };
-		C6AD145D155547F20016A738 /* LBScore.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LBScore.plist; sourceTree = "<group>"; };
+		C6AC9326155F1C5F005D81B2 /* xrps-rulespage1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "xrps-rulespage1.png"; path = "../../../../Downloads/xrps-rulespage1.png"; sourceTree = "<group>"; };
 		C6AF4EA1154820B500B94D81 /* AppSpecificValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppSpecificValues.h; path = ../../../../Downloads/GKTapper/Classes/AppSpecificValues.h; sourceTree = "<group>"; };
 		C6AF4EB2154E032A00B94D81 /* xrps-rulespage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "xrps-rulespage.png"; path = "../../../../Downloads/xrps-rulespage.png"; sourceTree = "<group>"; };
 		C6AF4EB5154E06A900B94D81 /* RulesPage1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RulesPage1.h; sourceTree = "<group>"; };
@@ -200,6 +200,7 @@
 				C6965ED114DC9F6300A4A21D /* paper2_finalise-android(78x78)nobg.png */,
 				C6ABD05014DF8C1800AB6970 /* testBackground.jpg */,
 				C6AF4EB2154E032A00B94D81 /* xrps-rulespage.png */,
+				C6AC9326155F1C5F005D81B2 /* xrps-rulespage1.png */,
 				C69A231D14F010EC00CFF477 /* xrps-background2.png */,
 				C69A231F14F06E7C00CFF477 /* XRPSInterfacebackground2.png */,
 				C6B463B114F1E9070097F1A7 /* XRPSInterfacebackground3.png */,
@@ -247,7 +248,6 @@
 				C6AF4EB5154E06A900B94D81 /* RulesPage1.h */,
 				C6AF4EB6154E06AB00B94D81 /* RulesPage1.m */,
 				C6AF4EB7154E06B600B94D81 /* RulesPage1.xib */,
-				C6AD145D155547F20016A738 /* LBScore.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -371,7 +371,7 @@
 				C6AF4EE31553409D00B94D81 /* GI - button-v2.png in Resources */,
 				C6AF4EE5155340A800B94D81 /* GI- Display - Rock.png in Resources */,
 				C6AF4EE7155340C100B94D81 /* GI- Display - Paper.png in Resources */,
-				C6AD145E155547F20016A738 /* LBScore.plist in Resources */,
+				C6AC9327155F1C5F005D81B2 /* xrps-rulespage1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

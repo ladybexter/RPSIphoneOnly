@@ -15,6 +15,7 @@
 
 
 @synthesize lblLBScore;
+@synthesize btnPostScore;
 @synthesize lblStatus;
 @synthesize imgOppPick;
 @synthesize imgUserPick;
@@ -117,6 +118,7 @@ int playerMe;
     [self setLblVS:nil];
     [self setBtnAdvice:nil];
     [self setLblLBScore:nil];
+    [self setBtnPostScore:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -383,10 +385,10 @@ int playerMe;
 
 -(void)checkForEnding:(double)roundCount {
     
-    if (roundCount == 5)
+    //if (roundCount == 5)
     {
         
-        lblStatus.text = @"Match has ended";
+        //lblStatus.text = @"Match has ended";
     }
 }
 
@@ -434,39 +436,15 @@ int playerMe;
         {
             // handle the reporting error
             
-            //end of 5 rounds
-            if ([[gameInfoArray objectAtIndex:5] floatValue] == 11) {
-                
-                //increase turncount by 2
-                cArray[5] = [[gameInfoArray objectAtIndex:5] floatValue] + 1;
-                [gameInfoArray replaceObjectAtIndex:5 withObject:[NSNumber numberWithDouble:cArray[5]]];
-                
-                
-                NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray];
-                
-                //send turn to 2.Player again
-                [self sendTurnToSelf:data];
-                
-                
-                
-            }
-            if ([[gameInfoArray objectAtIndex:5] floatValue] == 13) {
-                
-                //Post of player2 score failed to update again
-                
-                
-                NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray];
-                
-                //send turn to 2.Player again
-                [self sendTurnToSelf:data];
-            }
+            btnPostScore.hidden = NO;
+            lblHowResult.text = @"Opps, another error occured.Please try again to post";
             
         }
         else
         {
             
             //end of 5 rounds,player 2 must have won
-            if ([[gameInfoArray objectAtIndex:5] floatValue] == 11 || [[gameInfoArray objectAtIndex:5] floatValue] == 13) {
+            if ([[gameInfoArray objectAtIndex:5] floatValue] == 11) {
                 
                 //second player won ... display pop up result for 2.player 
                 secondPlayer.matchOutcome = GKTurnBasedMatchOutcomeWon;
@@ -476,9 +454,10 @@ int playerMe;
                 
                 
             }
+            else
+            {
             
-            //player 1 must have won
-            if ([[gameInfoArray objectAtIndex:5] floatValue] == 12 || [[gameInfoArray objectAtIndex:5] floatValue] == 14) {
+                //player 1 must have won
                 
                 //second player lost
                 secondPlayer.matchOutcome = GKTurnBasedMatchOutcomeLost;
@@ -492,7 +471,7 @@ int playerMe;
             
             NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray];
             
-            //if score update was successful end game
+            //score update was successful so end game
              
             [currentMatch endMatchInTurnWithMatchData:data 
                                     completionHandler:^(NSError *error) {
@@ -500,45 +479,9 @@ int playerMe;
                                             NSLog(@"%@", error);
                                         }
                                     }];
-            lblStatus.text = @"Game has ended";
+            lblStatus.text = @"Leaderboard Post was successful";
         }
     }];
-}
-
-
--(int)getCurrentLeaderboardScore:(NSString *)Category 
-{
-    
-    //NSLog(@"find score for category %@ ", Category);
-    if([GKLocalPlayer localPlayer].authenticated) {
-        NSArray *arr = [[NSArray alloc] initWithObjects:[GKLocalPlayer localPlayer].playerID, nil];
-        GKLeaderboard *board = [[GKLeaderboard alloc] initWithPlayerIDs:arr];
-        if(board != nil) {
-            board.timeScope = GKLeaderboardTimeScopeAllTime;
-            board.range = NSMakeRange(1, 1);
-            board.category = Category;
-            [board loadScoresWithCompletionHandler: ^(NSArray *scores, NSError *error) {
-                int lbScore;
-                if (error != nil) {
-                    // handle the error.
-                    NSLog(@"Error retrieving score.");
-                    lbScore = -1;
-                }
-                if (scores != nil) {
-                    //leaderboard score
-                    lbScore = board.localPlayerScore.value;
-                }
-                else
-                {
-                    //no scores on LB
-                    lbScore = -1;
-                }
-               lblLBScore.text = [NSString stringWithFormat:@"%d",lbScore];
-            }];
-            return [lblLBScore.text intValue];
-        }
-        
-    }
 }
 
 
@@ -568,12 +511,14 @@ int playerMe;
             //load from scoreDictionary previously stored LB score for player on current device
         
             score = [[scoreDictionary objectForKey:Playername] intValue];
+            NSLog(@"Current Local Score: %d",score);
+            
             lblStatus.text = [NSString stringWithFormat:@"%d",score];
         }
         else
         {
             //player hasnt stored any leaderboard score on current device yet
-            score = -1;
+            score = 0;
         }
         
     
@@ -585,7 +530,7 @@ int playerMe;
         scoreDictionary = [[NSMutableDictionary alloc] init];
         
         //no previous games have been won on this device for any player
-        return -1;
+        return 0;
     }
    
 }
@@ -625,66 +570,111 @@ int playerMe;
 }
 
 
--(void)compareUpdateLBScoreWithLocallyStoredScore:(NSString *)PlayersID{
+-(void)compareUpdateLBScoreWithLocallyStoredScore:(NSString *)PlayersID: (int) localScore: (int) leaderboardScore{
     
-    int localScore;
-    int leaderboardScore;
     int newScore;
     
-    localScore = [self loadLocalSavedScore:PlayersID];
-    leaderboardScore = [self getCurrentLeaderboardScore:kLeaderboardID ];
+    //if leaderboardscore is -1 then there was an error retreiving current leaderboard score
     
+    if (leaderboardScore != -1)
+    {
     
-    if (leaderboardScore == -1 & localScore == -1)
-    {
-        //create local score storage and set it to 1
-        [self saveScoreLocally:1 :PlayersID];
+            //no data stored yet
+        if (leaderboardScore == 0 & localScore == 0)
+        {
+            //create local score storage and set it to 1
+            [self saveScoreLocally:1 :PlayersID];
         
-        //post localScore as leaderboardScore
-        [self reportScore:1 forCategory: kLeaderboardID];  
+            //post localScore as leaderboardScore
+            [self reportScore:1 forCategory: kLeaderboardID];  
+        }
+        else if(leaderboardScore == 0)
+        {
+            //leaderboard hasnt been updated yet. take local score increase by one and post it
+            newScore = localScore + 1;
+            [self reportScore:newScore forCategory:kLeaderboardID];
+        
+            //submit update for local score
+            [self saveScoreLocally:newScore :PlayersID];
+        }
+        else if(localScore == 0)
+        {
+            //create local score with current leaderboardNumber
+            newScore = leaderboardScore + 1;
+            [self saveScoreLocally:newScore :PlayersID];
+        
+            //submit new leaderboard score
+            [self reportScore:newScore forCategory:kLeaderboardID];
+        }
+        else if(localScore == leaderboardScore)
+        {
+            newScore = localScore + 1;
+        
+            [self reportScore:newScore forCategory:kLeaderboardID];
+            [self saveScoreLocally:newScore :PlayersID];
+        }
+        else if(localScore > leaderboardScore)
+        {
+            //leaderboardscore hasnt updated yet
+            newScore = localScore + 1;
+        
+            [self reportScore:newScore forCategory:kLeaderboardID];
+            [self saveScoreLocally:newScore :PlayersID];
+        }
+        else if(leaderboardScore > localScore)
+        {
+            //devices were switched so leaderboard score will b more up to date
+            newScore = leaderboardScore + 1;
+        
+            [self reportScore:newScore forCategory:kLeaderboardID];
+            [self saveScoreLocally:newScore :PlayersID];
+        }
     }
-    else if(leaderboardScore == -1)
+    else
     {
-        //leaderboard hasnt been updated yet. take local score increase by one and post it
-        newScore = localScore + 1;
-        [self reportScore:newScore forCategory:kLeaderboardID];
+        //there was an error retreiving leaderboardscore
+        lblYOUResult.text = @"";
+        lblHowResult.textColor = [UIColor orangeColor];
+        lblHowResult.text = @"Sorry, there was an error trying to update your score, please try again!";
         
-        //submit update for local score
-        [self saveScoreLocally:newScore :PlayersID];
-    }
-    else if(localScore == -1)
-    {
-        //create local score with current leaderboardNumber
-        newScore = leaderboardScore + 1;
-        [self saveScoreLocally:newScore :PlayersID];
+        btnPostScore.hidden = NO;
         
-        //submit new leaderboard score
-        [self reportScore:newScore forCategory:kLeaderboardID];
-    }
-    else if(localScore == leaderboardScore)
-    {
-        newScore = localScore + 1;
-        
-        [self reportScore:newScore forCategory:kLeaderboardID];
-        [self saveScoreLocally:newScore :PlayersID];
-    }
-    else if(localScore > leaderboardScore)
-    {
-        //leaderboardscore hasnt updated yet
-        newScore = localScore + 1;
-        
-        [self reportScore:newScore forCategory:kLeaderboardID];
-        [self saveScoreLocally:newScore :PlayersID];
-    }
-    else if(leaderboardScore > localScore)
-    {
-        //devices were switched so leaderboard score will b more up to date
-        newScore = leaderboardScore + 1;
-        
-        [self reportScore:newScore forCategory:kLeaderboardID];
-        [self saveScoreLocally:newScore :PlayersID];
     }
                                            
+}
+
+-(int)getCurrentLeaderboardScoreAndCompareWithLocal:(NSString *)Category:(NSString *)PlayerID 
+{
+    
+    //NSLog(@"find score for category %@ ", Category);
+    if([GKLocalPlayer localPlayer].authenticated) {
+        NSArray *arr = [[NSArray alloc] initWithObjects:[GKLocalPlayer localPlayer].playerID, nil];
+        GKLeaderboard *board = [[GKLeaderboard alloc] initWithPlayerIDs:arr];
+        if(board != nil) {
+            board.timeScope = GKLeaderboardTimeScopeAllTime;
+            board.range = NSMakeRange(1, 1);
+            board.category = Category;
+            [board loadScoresWithCompletionHandler: ^(NSArray *scores, NSError *error) {
+                int lbScore;
+                int localScore;
+                if (error != nil) {
+                    // handle the error.
+                    NSLog(@"Error retrieving score.");
+                    lbScore = -1;
+                    localScore = [self loadLocalSavedScore:PlayerID];
+                    [self compareUpdateLBScoreWithLocallyStoredScore:PlayerID:localScore:lbScore];
+                }
+                if (scores != nil) {
+                    //leaderboard score
+                    lbScore = board.localPlayerScore.value;
+                    localScore = [self loadLocalSavedScore:PlayerID];
+                    [self compareUpdateLBScoreWithLocallyStoredScore:PlayerID:localScore:lbScore];
+                }
+                
+            }];
+        }
+        
+    }
 }
 
 -(void)sendTurn{
@@ -805,10 +795,30 @@ int playerMe;
                 UIAlertView *outcomeEventLost = [[UIAlertView alloc] initWithTitle:nil message:@"YOU LOST :(" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [outcomeEventLost show];
                 
-                 //second player lost .. display pop up result for 2.player
-                secondPlayer.matchOutcome = GKTurnBasedMatchOutcomeLost;
-                //first player won
-                firstPlayer.matchOutcome = GKTurnBasedMatchOutcomeWon;
+                //increase turncount to 12
+                cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue] + 1;
+                [gameInfoArray replaceObjectAtIndex:2 withObject:[NSNumber numberWithDouble:cArray[2]]];
+                data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray]; 
+                
+                
+                
+                //send turn to player 1 so that player can update his score via post score button
+                [currentMatch endTurnWithNextParticipant:nextParticipant 
+                                               matchData:data completionHandler:^(NSError *error) {
+                                                   if (error) {
+                                                       NSLog(@"%@", error);
+                                                       lblStatus.text = 
+                                                       @"Oops, there was a problem.  Try that again.";
+                                                   } else {
+                                                       lblStatus.text = @"Your turn is over.";
+                                                       btnRobot.enabled = NO;
+                                                       btnPaper.enabled = NO;
+                                                       btnScissors.enabled = NO;
+                                                       btnUnicorn.enabled = NO;
+                                                       btnRock.enabled = NO;
+                                                   }
+                                               }];
+                
                  
             }
             else if ([[gameInfoArray objectAtIndex:0] floatValue] < [[gameInfoArray objectAtIndex:1] floatValue])
@@ -819,7 +829,7 @@ int playerMe;
                 [outcomeEventWin show];
                 
                 //check LB and L score for player 2, try posting to leaderboard
-                [self compareUpdateLBScoreWithLocallyStoredScore:secondPlayer.playerID];
+                [self getCurrentLeaderboardScoreAndCompareWithLocal:kLeaderboardID:secondPlayer.playerID];
                 
             }  
           
@@ -847,6 +857,27 @@ int playerMe;
     NSLog(@"Send Turn, %@, %@", data, nextParticipant);
     
     
+}
+
+- (IBAction)btnPostScore:(id)sender {
+    
+    GKTurnBasedMatch *currentMatch = 
+    [[GCHelper sharedInstance] currentMatch];
+    
+    GKTurnBasedParticipant *firstPlayer;
+    firstPlayer = 
+    [currentMatch.participants objectAtIndex:0];
+    GKTurnBasedParticipant *secondPlayer;
+    secondPlayer = [currentMatch.participants objectAtIndex:1];
+    
+    if (firstPlayer == currentMatch.currentParticipant)
+    {
+        [self getCurrentLeaderboardScoreAndCompareWithLocal:kLeaderboardID:firstPlayer.playerID];
+    }
+    else
+    {
+        [self getCurrentLeaderboardScoreAndCompareWithLocal:kLeaderboardID:secondPlayer.playerID];
+    }
 }
 
 - (IBAction)btnPaper:(id)sender {
@@ -1212,7 +1243,36 @@ int playerMe;
     
     //if ([self checkIfOtherPlayerQuit] == false)
     //{
-    
+        //player 2 score failed to update LBscore
+    if ([[gameInfoArray objectAtIndex:5] floatValue] == 11)
+    {
+        btnRobot.enabled = NO;
+        btnPaper.enabled = NO;
+        btnScissors.enabled = NO;
+        btnUnicorn.enabled = NO;
+        btnRock.enabled = NO;
+        btnPostScore.hidden = NO;
+        lblHowResult.text =@"Try to update your leaderboard score again!";
+        lblStatus.text = @"Match has ended";
+    }
+    else if ([[gameInfoArray objectAtIndex:5] floatValue] == 12)
+    {
+        //player 1 won and needs to update score
+        
+        UIAlertView *outcomeEventLost = [[UIAlertView alloc] initWithTitle:nil message:@"YOU LOST :(" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [outcomeEventLost show];
+        
+        btnRobot.enabled = NO;
+        btnPaper.enabled = NO;
+        btnScissors.enabled = NO;
+        btnUnicorn.enabled = NO;
+        btnRock.enabled = NO;
+        btnPostScore.hidden = NO;
+        lblHowResult.text =@"Please update your leaderboard score!";
+        lblStatus.text = @"Match has ended";
+    }
+    else 
+    {
         NSLog(@"Taking turn for existing game...");
     
         btnRobot.enabled = YES;
@@ -1276,7 +1336,7 @@ int playerMe;
             [gameInfoArray replaceObjectAtIndex:7 withObject:[[GKLocalPlayer localPlayer] alias]];
             [gameInfoArray replaceObjectAtIndex:9 withObject:[[GKLocalPlayer localPlayer] playerID]];
         }
-    //}
+    }
     
 }
 

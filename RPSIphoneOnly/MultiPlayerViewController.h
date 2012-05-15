@@ -17,6 +17,7 @@ GCTurnBasedMatchHelperDelegate>{
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *lblLBScore;
+@property (weak, nonatomic) IBOutlet UIButton *btnPostScore;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblStatus;
 @property (weak, nonatomic) IBOutlet UIImageView *imgOppPick;
@@ -37,12 +38,12 @@ GCTurnBasedMatchHelperDelegate>{
 @property (weak, nonatomic) IBOutlet UIButton *btnAdvice;
 
 
+- (IBAction)btnPostScore:(id)sender;
 
 - (IBAction)btnPaper:(id)sender;
 - (IBAction)btnScissors:(id)sender;
 - (IBAction)btnUnicorn:(id)sender;
 - (IBAction)btnRobot:(id)sender;
-
 - (IBAction)btnRock:(id)sender;
 
 - (IBAction)btnAIAdvice:(id)sender;
