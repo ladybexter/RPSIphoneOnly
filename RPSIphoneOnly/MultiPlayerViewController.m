@@ -479,6 +479,8 @@ int playerMe;
                                             NSLog(@"%@", error);
                                         }
                                     }];
+            lblYOUResult.text = @"";
+            lblHowResult.textColor = [UIColor orangeColor];
             lblHowResult.text = @"Leaderboard Post was successful";
         }
     }];
@@ -1005,7 +1007,14 @@ int playerMe;
             [self imageChange:@"xrps-wp7-f4-2.png" :1];
             [self imageChange:@"xrps-wp7-f4-2.png" :2];
             
-            
+            if (currentMatch.currentParticipant.playerID == [gameInfoArray objectAtIndex:8])
+            {
+                lblPlayerName.text = [gameInfoArray objectAtIndex:7];
+            }
+            else
+            {
+                lblPlayerName.text = [gameInfoArray objectAtIndex:8];
+            }
             
             lblStatus.text = @"Match was canceled, due to a player quitting";
             btnRobot.enabled = NO;
@@ -1018,6 +1027,17 @@ int playerMe;
             lblVS.hidden = YES;
             lblHowResult.hidden = YES;
             lblYOUResult.hidden = YES;
+            
+            currentMatch.currentParticipant.matchOutcome = GKTurnBasedMatchOutcomeQuit;
+            
+            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameInfoArray]; 
+            
+            [currentMatch endMatchInTurnWithMatchData:data 
+                                    completionHandler:^(NSError *error) {
+                                        if (error) {
+                                            NSLog(@"%@", error);
+                                        }
+                                    }];
             
             return true;
         }
@@ -1077,20 +1097,22 @@ int playerMe;
         oppScoreInt = [lblOppScore.text intValue];
         userScoreInt = [lblUserScore.text intValue];
         
+        lblHowResult.hidden = NO;
+        
         if (userScoreInt == oppScoreInt)
         {
-            UIAlertView *outcomeEventTie = [[UIAlertView alloc] initWithTitle:nil message:@"YOU TIE" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [outcomeEventTie show];   
+            lblHowResult.textColor = [UIColor orangeColor];
+            lblHowResult.text = @"You Tied";
         }
         else if (userScoreInt < oppScoreInt)
         {
-            UIAlertView *outcomeEventLost = [[UIAlertView alloc] initWithTitle:nil message:@"YOU LOST :(" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [outcomeEventLost show];
+            lblHowResult.textColor = [UIColor orangeColor];
+            lblHowResult.text = @"You Lost";
         }
         else if (userScoreInt > oppScoreInt)
         {
-            UIAlertView *outcomeEventWin = [[UIAlertView alloc] initWithTitle:nil message:@"YOU WON :)" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [outcomeEventWin show];
+            lblHowResult.textColor = [UIColor orangeColor];
+            lblHowResult.text = @"You Won";
         }
         
             
@@ -1244,8 +1266,8 @@ int playerMe;
     gameInfoArray = [NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
     
     
-    //if ([self checkIfOtherPlayerQuit] == false)
-    //{
+    if ([self checkIfOtherPlayerQuit] == false)
+    {
         //player 2 score failed to update LBscore
     if ([[gameInfoArray objectAtIndex:5] floatValue] == 11)
     {
@@ -1363,6 +1385,7 @@ int playerMe;
             [gameInfoArray replaceObjectAtIndex:7 withObject:[[GKLocalPlayer localPlayer] alias]];
             [gameInfoArray replaceObjectAtIndex:9 withObject:[[GKLocalPlayer localPlayer] playerID]];
         }
+    }
     }
     
 }
