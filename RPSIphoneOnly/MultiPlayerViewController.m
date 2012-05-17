@@ -985,9 +985,12 @@ int playerMe;
     
 }
 
--(BOOL)checkIfOtherPlayerQuit{
+-(BOOL)checkIfOtherPlayerQuit:(int)TakeTurn{
     GKTurnBasedMatch *currentMatch = 
     [[GCHelper sharedInstance] currentMatch];
+    
+    GKTurnBasedParticipant *firstParticipant = 
+    [currentMatch.participants objectAtIndex:0];
     
     NSUInteger currentIndex = [currentMatch.participants 
                                indexOfObject:currentMatch.currentParticipant];
@@ -1007,13 +1010,42 @@ int playerMe;
             [self imageChange:@"xrps-wp7-f4-2.png" :1];
             [self imageChange:@"xrps-wp7-f4-2.png" :2];
             
-            if (currentMatch.currentParticipant.playerID == [gameInfoArray objectAtIndex:8])
+            if (TakeTurn == 1)
             {
-                lblPlayerName.text = [gameInfoArray objectAtIndex:7];
+                if (firstParticipant == currentMatch.currentParticipant)
+                {
+                    if ([[gameInfoArray objectAtIndex:5] floatValue] > 2)
+                    {
+                        lblPlayerName.text = [gameInfoArray objectAtIndex:7];
+                    }
+                    else
+                    {
+                        lblPlayerName.text = @"Other Player";
+                    }
+                }
+                else
+                {
+                    lblPlayerName.text = [gameInfoArray objectAtIndex:6];
+                }
             }
             else
             {
-                lblPlayerName.text = [gameInfoArray objectAtIndex:8];
+                if ([[gameInfoArray objectAtIndex:8] isEqualToString: [[GKLocalPlayer localPlayer] playerID]])
+                {
+                    if ([[gameInfoArray objectAtIndex:5] floatValue] > 2)
+                    {
+                        lblPlayerName.text = [gameInfoArray objectAtIndex:7];
+                    }
+                    else
+                    {
+                        lblPlayerName.text = @"Other Player";
+                    }
+                }
+                else
+                {
+                    lblPlayerName.text = [gameInfoArray objectAtIndex:6];
+
+                }
             }
             
             lblStatus.text = @"Match was canceled, due to a player quitting";
@@ -1062,7 +1094,7 @@ int playerMe;
     NSLog(@"Viewing match where it's not our turn...");
     NSString *statusString;
     
-    if ([self checkIfOtherPlayerQuit] == false)
+    if ([self checkIfOtherPlayerQuit:0] == false)
     {
     if (match.status == GKTurnBasedMatchStatusEnded) {
         
@@ -1178,7 +1210,7 @@ int playerMe;
         }
     
             lblStatus.text = statusString;
-    }
+    
             btnRobot.enabled = NO;
             btnPaper.enabled = NO;
             btnScissors.enabled = NO;
@@ -1199,6 +1231,7 @@ int playerMe;
                     lblPlayerName.text = [gameInfoArray objectAtIndex:6];
                 }
             }
+    }
     
             [self checkForEnding:cArray[2]];
     
@@ -1266,7 +1299,7 @@ int playerMe;
     gameInfoArray = [NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
     
     
-    if ([self checkIfOtherPlayerQuit] == false)
+    if ([self checkIfOtherPlayerQuit:1] == false)
     {
         //player 2 score failed to update LBscore
     if ([[gameInfoArray objectAtIndex:5] floatValue] == 11)
