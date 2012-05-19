@@ -9,6 +9,8 @@
 #import "MultiPlayerViewController.h"
 #import "GCHelper.h"
 #import "AppSpecificValues.h"
+#import "Reachability.h"
+#import "SystemConfiguration/SystemConfiguration.h"
 
 
 @implementation MultiPlayerViewController
@@ -65,6 +67,8 @@ int playerMe;
     alertView.transform = CGAffineTransformRotate(alertView.transform, 3.14159/2);
     //[UIView commitAnimations];
 }
+
+
 
 - (void)viewDidLoad
 {
@@ -392,6 +396,33 @@ int playerMe;
     }
 }
 
+- (BOOL) connectedToNetwork
+{
+	Reachability *r = [Reachability reachabilityWithHostName:@"www.google.com"];
+	NetworkStatus internetStatus = [r currentReachabilityStatus];
+	BOOL internet;
+	if ((internetStatus != ReachableViaWiFi) && (internetStatus != ReachableViaWWAN)) {
+		internet = NO;
+	} else {
+		internet = YES;
+	}
+	return internet;
+}
+
+-(BOOL) checkInternet
+{
+	//Make sure we have internet connectivity
+	if([self connectedToNetwork] != YES)
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make an internet connection at this time. You will need internet connection to play multiplayer." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+		return NO;
+	}
+	else {
+		return YES;
+	}
+}
+
 -(void)sendTurnToSelf: (NSData*) data{
     
     GKTurnBasedMatch *currentMatch = 
@@ -682,6 +713,9 @@ int playerMe;
 
 -(void)sendTurn{
     
+    if ([self checkInternet] == YES)
+    {
+    
     
     //increase turnCount by 1
     cArray[5] = [[gameInfoArray objectAtIndex:5] floatValue] + 1;
@@ -860,6 +894,7 @@ int playerMe;
         
         
     }
+    }
     
     
 }
@@ -980,12 +1015,17 @@ int playerMe;
 }
 
 - (IBAction)presentGCTurnViewController:(id)sender {
-    [[GCHelper sharedInstance] 
-     findMatchWithMinPlayers:2 maxPlayers:2 viewController:self];
+    
+    if ([self checkInternet] == YES)
+    {
+        [[GCHelper sharedInstance] 
+         findMatchWithMinPlayers:2 maxPlayers:2 viewController:self];
+    }
     
 }
 
 -(BOOL)checkIfOtherPlayerQuit:(int)TakeTurn{
+    
     GKTurnBasedMatch *currentMatch = 
     [[GCHelper sharedInstance] currentMatch];
     

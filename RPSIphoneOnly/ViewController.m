@@ -10,6 +10,8 @@
 
 #import "GCHelper.h"
 #import "AppSpecificValues.h"
+#import "Reachability.h"
+#import "SystemConfiguration/SystemConfiguration.h"
 
 @implementation ViewController
 
@@ -66,6 +68,33 @@
     
 }
 
+- (BOOL) connectedToNetwork
+{
+	Reachability *r = [Reachability reachabilityWithHostName:@"www.google.com"];
+	NetworkStatus internetStatus = [r currentReachabilityStatus];
+	BOOL internet;
+	if ((internetStatus != ReachableViaWiFi) && (internetStatus != ReachableViaWWAN)) {
+		internet = NO;
+	} else {
+		internet = YES;
+	}
+	return internet;
+}
+
+-(BOOL) checkInternet
+{
+	//Make sure we have internet connectivity
+	if([self connectedToNetwork] != YES)
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make an internet connection at this time. The leaderboard will be unavailabe until a connection is made." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+		return NO;
+	}
+	else {
+		return YES;
+	}
+}
+
 
 - (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
 {
@@ -74,17 +103,21 @@
 
 - (IBAction)btnLeaderboard:(id)sender {
     
-    [GCHelper sharedInstance].delegate = (id)self;
-    [[GCHelper sharedInstance] authenticateLocalUser]; 
+    if ([self checkInternet] == YES)
+    {
+        
+        [GCHelper sharedInstance].delegate = (id)self;
+        [[GCHelper sharedInstance] authenticateLocalUser]; 
     
-    if([GKLocalPlayer localPlayer].authenticated) {
-        GKLeaderboardViewController *leaderboardController = [[GKLeaderboardViewController alloc] init];
-        if (leaderboardController != NULL)
-        {
-            leaderboardController.category = kLeaderboardID;
-            leaderboardController.timeScope = GKLeaderboardTimeScopeAllTime;
-            leaderboardController.leaderboardDelegate = (id)self;
-            [self presentModalViewController: leaderboardController animated: YES];
+        if([GKLocalPlayer localPlayer].authenticated) {
+            GKLeaderboardViewController *leaderboardController = [[GKLeaderboardViewController alloc] init];
+            if (leaderboardController != NULL)
+            {
+                leaderboardController.category = kLeaderboardID;
+                leaderboardController.timeScope = GKLeaderboardTimeScopeAllTime;
+                leaderboardController.leaderboardDelegate = (id)self;
+                [self presentModalViewController: leaderboardController animated: YES];
+            }
         }
     }
 }

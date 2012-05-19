@@ -42,6 +42,8 @@
 		C6A332B214E828BA0026C51E /* tempRobotButton.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C6A332B114E828BA0026C51E /* tempRobotButton.jpg */; };
 		C6ABD05114DF8C1800AB6970 /* testBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C6ABD05014DF8C1800AB6970 /* testBackground.jpg */; };
 		C6AC9327155F1C5F005D81B2 /* xrps-rulespage1.png in Resources */ = {isa = PBXBuildFile; fileRef = C6AC9326155F1C5F005D81B2 /* xrps-rulespage1.png */; };
+		C6AC932915652153005D81B2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6AC932815652152005D81B2 /* SystemConfiguration.framework */; };
+		C6AC932F1568425E005D81B2 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C6AC932E1568425E005D81B2 /* Reachability.m */; };
 		C6AF4EB3154E032B00B94D81 /* xrps-rulespage.png in Resources */ = {isa = PBXBuildFile; fileRef = C6AF4EB2154E032A00B94D81 /* xrps-rulespage.png */; };
 		C6AF4EB8154E06B700B94D81 /* RulesPage1.m in Sources */ = {isa = PBXBuildFile; fileRef = C6AF4EB6154E06AB00B94D81 /* RulesPage1.m */; };
 		C6AF4EB9154E06B700B94D81 /* RulesPage1.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6AF4EB7154E06B600B94D81 /* RulesPage1.xib */; };
@@ -112,6 +114,9 @@
 		C6A332B114E828BA0026C51E /* tempRobotButton.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = tempRobotButton.jpg; path = ../../../IphoneRPSScreenshots/tempRobotButton.jpg; sourceTree = "<group>"; };
 		C6ABD05014DF8C1800AB6970 /* testBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = testBackground.jpg; sourceTree = "<group>"; };
 		C6AC9326155F1C5F005D81B2 /* xrps-rulespage1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "xrps-rulespage1.png"; path = "../../../../Downloads/xrps-rulespage1.png"; sourceTree = "<group>"; };
+		C6AC932815652152005D81B2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C6AC932D1568425E005D81B2 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		C6AC932E1568425E005D81B2 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		C6AF4EA1154820B500B94D81 /* AppSpecificValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppSpecificValues.h; path = ../../../../Downloads/GKTapper/Classes/AppSpecificValues.h; sourceTree = "<group>"; };
 		C6AF4EB2154E032A00B94D81 /* xrps-rulespage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "xrps-rulespage.png"; path = "../../../../Downloads/xrps-rulespage.png"; sourceTree = "<group>"; };
 		C6AF4EB5154E06A900B94D81 /* RulesPage1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RulesPage1.h; sourceTree = "<group>"; };
@@ -136,6 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6AC932915652153005D81B2 /* SystemConfiguration.framework in Frameworks */,
 				C6950CAF14E33DCF00967399 /* GameKit.framework in Frameworks */,
 				C6965E9614DC995700A4A21D /* UIKit.framework in Frameworks */,
 				C6965E9814DC995700A4A21D /* Foundation.framework in Frameworks */,
@@ -178,6 +184,7 @@
 		C6965E9414DC995700A4A21D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C6AC932815652152005D81B2 /* SystemConfiguration.framework */,
 				C6950CAE14E33DCF00967399 /* GameKit.framework */,
 				C6965E9514DC995700A4A21D /* UIKit.framework */,
 				C6965E9714DC995700A4A21D /* Foundation.framework */,
@@ -248,6 +255,8 @@
 				C6AF4EB5154E06A900B94D81 /* RulesPage1.h */,
 				C6AF4EB6154E06AB00B94D81 /* RulesPage1.m */,
 				C6AF4EB7154E06B600B94D81 /* RulesPage1.xib */,
+				C6AC932D1568425E005D81B2 /* Reachability.h */,
+				C6AC932E1568425E005D81B2 /* Reachability.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -415,6 +424,7 @@
 				C690C96914E5E7B9000BB787 /* GCHelper.m in Sources */,
 				C690C96E14E5EA83000BB787 /* MultiPlayerViewController.m in Sources */,
 				C6AF4EB8154E06B700B94D81 /* RulesPage1.m in Sources */,
+				C6AC932F1568425E005D81B2 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
