@@ -62,10 +62,10 @@ int playerMe;
 - (void)didPresentAlertView:(UIAlertView *)alertView
 {
     // UIAlertView in landscape mode
-    //[UIView beginAnimations:@"" context:nil];
-    //[UIView setAnimationDuration:0.1];
-    alertView.transform = CGAffineTransformRotate(alertView.transform, 3.14159/2);
-    //[UIView commitAnimations];
+    [UIView beginAnimations:@"" context:nil];
+    [UIView setAnimationDuration:0.1];
+    //alertView.transform = CGAffineTransformRotate(alertView.transform, 3.14159/2);
+    [UIView commitAnimations];
 }
 
 
@@ -74,9 +74,8 @@ int playerMe;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
     UIAlertView *eventInstruct = [[UIAlertView alloc] initWithTitle:nil message:@"Please press Game Center to either \n\n START NEW game \n or \n CONTINUE game" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    
+
     [eventInstruct show];
     
     [GCHelper sharedInstance].delegate = self;
@@ -96,8 +95,9 @@ int playerMe;
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile:path]]];
     
    
+    [self didPresentAlertView:eventInstruct];
+
     
-    //[self didPresentAlertView:eventInstruct];
     
 }
 
@@ -416,6 +416,9 @@ int playerMe;
 	{
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make an internet connection at this time. You will need internet connection to play multiplayer." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
+        [self didPresentAlertView:alert];
+
+        
 		return NO;
 	}
 	else {
@@ -813,6 +816,8 @@ int playerMe;
                 secondPlayer.matchOutcome = GKTurnBasedMatchOutcomeTied;
                 UIAlertView *outcomeEventTie = [[UIAlertView alloc] initWithTitle:nil message:@"YOU TIE" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [outcomeEventTie show];
+                [self didPresentAlertView:outcomeEventTie];
+
                 
                 //setting matchoutcome for firstplayer to tied
                 firstPlayer.matchOutcome = GKTurnBasedMatchOutcomeTied;
@@ -833,6 +838,8 @@ int playerMe;
                
                 UIAlertView *outcomeEventLost = [[UIAlertView alloc] initWithTitle:nil message:@"YOU LOST :(" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [outcomeEventLost show];
+                [self didPresentAlertView:outcomeEventLost];
+
                 
                 //increase turncount to 12
                 [gameInfoArray replaceObjectAtIndex:5 withObject:[NSNumber numberWithDouble:12]];
@@ -865,6 +872,8 @@ int playerMe;
                 
                 UIAlertView *outcomeEventWin = [[UIAlertView alloc] initWithTitle:nil message:@"YOU WIN :)" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [outcomeEventWin show];
+                [self didPresentAlertView:outcomeEventWin];
+
                 
                 //check LB and L score for player 2, try posting to leaderboard
                 [self getCurrentLeaderboardScoreAndCompareWithLocal:kLeaderboardID:secondPlayer.playerID];
@@ -1012,6 +1021,8 @@ int playerMe;
         
     UIAlertView *eventChoiceNow = [[UIAlertView alloc] initWithTitle:nil message:@"Lina: I suggest UNICORN \n\n Joanna: I suggest SCISSORS" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [eventChoiceNow show];
+    [self didPresentAlertView:eventChoiceNow];
+
 }
 
 - (IBAction)presentGCTurnViewController:(id)sender {
@@ -1284,6 +1295,8 @@ int playerMe;
                                                 delegate:self cancelButtonTitle:@"Sweet!" 
                                        otherButtonTitles:nil];
     [av show];
+    [self didPresentAlertView:av];
+
 }
 
 
@@ -1369,6 +1382,8 @@ int playerMe;
         
         UIAlertView *outcomeEventLost = [[UIAlertView alloc] initWithTitle:nil message:@"YOU WIN :)" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [outcomeEventLost show];
+        [self didPresentAlertView:outcomeEventLost];
+
         
         lblPlayerName.text = [gameInfoArray objectAtIndex:7];
         lblRound.text = @"Round: 5";

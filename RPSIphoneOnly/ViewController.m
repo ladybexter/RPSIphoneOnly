@@ -26,6 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
 	// Do any additional setup after loading the view, typically from a nib.
     NSString *path = [[NSBundle mainBundle] pathForResource:@"XRPSInterfacebackground3" ofType:@"png" inDirectory:@""];
     
@@ -68,6 +70,15 @@
     
 }
 
+- (void)didPresentAlertView:(UIAlertView *)alertView
+{
+    // UIAlertView in landscape mode
+    [UIView beginAnimations:@"" context:nil];
+    [UIView setAnimationDuration:0.1];
+    //alertView.transform = CGAffineTransformRotate(alertView.transform, 3.14159/2);
+    [UIView commitAnimations];
+}
+
 - (BOOL) connectedToNetwork
 {
 	Reachability *r = [Reachability reachabilityWithHostName:@"www.google.com"];
@@ -88,6 +99,7 @@
 	{
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make an internet connection at this time. The leaderboard will be unavailabe until a connection is made." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
+        [self didPresentAlertView:alert];
 		return NO;
 	}
 	else {
