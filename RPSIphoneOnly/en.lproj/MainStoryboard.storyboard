@@ -17,7 +17,7 @@
                                 <rect key="frame" x="158" y="176" width="140" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Leaderboard" backgroundImage="GI - button-v2.png">
+                                <state key="normal" title="Leaderboard" backgroundImage="GI - button-v3.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -32,7 +32,7 @@
                                 <rect key="frame" x="158" y="125" width="140" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Play" backgroundImage="GI - button-v2.png">
+                                <state key="normal" title="Play" backgroundImage="GI - button-v3.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -47,7 +47,7 @@
                                 <rect key="frame" x="158" y="75" width="140" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Rules" backgroundImage="GI - button-v2.png">
+                                <state key="normal" title="Rules" backgroundImage="GI - button-v3.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -76,10 +76,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1J5-yG-kTl">
-                                <rect key="frame" x="204" y="264" width="72" height="39"/>
+                                <rect key="frame" x="204" y="12" width="72" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" size="button"/>
-                                <state key="normal" title="Play" backgroundImage="GI - button-v2.png">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Play" backgroundImage="GI - button-v3.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -91,7 +91,7 @@
                                 </connections>
                             </button>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" currentPage="1" id="q3D-Ab-IHd">
-                                <rect key="frame" x="221" y="20" width="38" height="36"/>
+                                <rect key="frame" x="221" y="264" width="38" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </pageControl>
@@ -125,7 +125,7 @@
                                 <rect key="frame" x="169" y="79" width="143" height="61"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Single Player" backgroundImage="GI - button-v2.png">
+                                <state key="normal" title="Single Player" backgroundImage="GI - button-v3.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -140,7 +140,7 @@
                                 <rect key="frame" x="169" y="148" width="143" height="61"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Multi Player" backgroundImage="GI - button-v2.png">
+                                <state key="normal" title="Multi Player" backgroundImage="GI - button-v3.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -172,7 +172,7 @@
                                 <rect key="frame" x="17" y="248" width="76" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Home" backgroundImage="GI - button-v2.png">
+                                <state key="normal" title="Home" backgroundImage="GI - button-v2-1.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -187,7 +187,7 @@
                                 <rect key="frame" x="387" y="248" width="76" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Advice" backgroundImage="GI - button-v2.png">
+                                <state key="normal" title="Advice" backgroundImage="GI - button-v2-1.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -202,7 +202,7 @@
                                 <rect key="frame" x="172" y="248" width="136" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Game Center" backgroundImage="GI - button-v2.png">
+                                <state key="normal" title="Game Center" backgroundImage="GI - button-v2-1.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -338,14 +338,14 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="YOU LOSE" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="2g0-Sz-bOx">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="2g0-Sz-bOx">
                                 <rect key="frame" x="201" y="17" width="72" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Unicorn stomps on Scissors" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="A5Z-Lc-k3T">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="A5Z-Lc-k3T">
                                 <rect key="frame" x="130" y="97" width="220" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -359,18 +359,11 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="nRd-gP-xRT">
-                                <rect key="frame" x="93" y="279" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fXS-nf-g3b">
                                 <rect key="frame" x="183" y="113" width="114" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                <state key="normal" title="Post Score" backgroundImage="GI - button-v2.png">
+                                <state key="normal" title="Post Score" backgroundImage="GI - button-v2-1.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -398,7 +391,6 @@
                         <outlet property="imgOppPick" destination="Ar8-Vs-nlf" id="p13-5G-ixR"/>
                         <outlet property="imgUserPick" destination="Fox-Gs-eC1" id="ade-6b-ApX"/>
                         <outlet property="lblHowResult" destination="A5Z-Lc-k3T" id="Nte-bL-reC"/>
-                        <outlet property="lblLBScore" destination="nRd-gP-xRT" id="N6C-fb-Nnz"/>
                         <outlet property="lblOppScore" destination="9rx-Um-FyD" id="s5t-bQ-a6K"/>
                         <outlet property="lblPlayerName" destination="TgZ-Ab-ORL" id="5yS-Gj-qoY"/>
                         <outlet property="lblRound" destination="nZ2-rk-dDd" id="pvd-gt-3GN"/>
@@ -423,7 +415,7 @@
                                 <rect key="frame" x="180" y="79" width="140" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="easy mode" backgroundImage="GI - button-v2.png">
+                                <state key="normal" title="easy mode" backgroundImage="GI - button-v3.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -439,7 +431,7 @@
                                 <rect key="frame" x="180" y="144" width="140" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="intense mode" backgroundImage="GI - button-v2.png">
+                                <state key="normal" title="intense mode" backgroundImage="GI - button-v3.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -471,7 +463,7 @@
                                 <rect key="frame" x="377" y="243" width="83" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Reset" backgroundImage="GI - button-v2.png">
+                                <state key="normal" title="Reset" backgroundImage="GI - button-v2-1.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -486,7 +478,7 @@
                                 <rect key="frame" x="17" y="243" width="83" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Home" backgroundImage="GI - button-v2.png">
+                                <state key="normal" title="Home" backgroundImage="GI - button-v2-1.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -636,11 +628,11 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="mun-0g-AMc">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="xrps-wp7-f4-2.png" id="mun-0g-AMc">
                                 <rect key="frame" x="370" y="9" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="0Zm-Hi-Jb6">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="xrps-wp7-f4-2.png" id="0Zm-Hi-Jb6">
                                 <rect key="frame" x="17" y="9" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -729,7 +721,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="GI - button-v2.png" width="430" height="110"/>
+        <image name="GI - button-v2-1.png" width="430" height="110"/>
+        <image name="GI - button-v3.png" width="391" height="73"/>
         <image name="GI- Display - Paper.png" width="239" height="231"/>
         <image name="GI- Display - Robot (FINAL).png" width="238" height="238"/>
         <image name="GI- Display - Rock.png" width="227" height="220"/>
@@ -737,6 +730,79 @@
         <image name="GI- Display - Unicorn.png" width="234" height="225"/>
         <image name="xrps-wp7-f4-2.png" width="62" height="62"/>
     </resources>
+    <classes>
+        <class className="ModeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ModeViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="btnEasyMode:"/>
+                <relationship kind="action" name="btnIntenseMode:"/>
+            </relationships>
+        </class>
+        <class className="MultiPlayerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MultiPlayerViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="btnAIAdvice:"/>
+                <relationship kind="action" name="btnPaper:"/>
+                <relationship kind="action" name="btnPostScore:"/>
+                <relationship kind="action" name="btnRobot:"/>
+                <relationship kind="action" name="btnRock:"/>
+                <relationship kind="action" name="btnScissors:"/>
+                <relationship kind="action" name="btnUnicorn:"/>
+                <relationship kind="action" name="presentGCTurnViewController:"/>
+                <relationship kind="outlet" name="btnAdvice" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="btnPaper" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="btnPostScore" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="btnRobot" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="btnRock" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="btnScissors" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="btnUnicorn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="imgOppPick" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="imgUserPick" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="lblHowResult" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblLBScore" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblOppScore" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblPlayerName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblRound" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblStatus" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblUserScore" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblVS" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblYOUResult" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="RulesPage1" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RulesPage1.h"/>
+        </class>
+        <class className="SingleViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SingleViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="btnHome:"/>
+                <relationship kind="action" name="btnPaper:"/>
+                <relationship kind="action" name="btnReset:"/>
+                <relationship kind="action" name="btnRobot:"/>
+                <relationship kind="action" name="btnRock:"/>
+                <relationship kind="action" name="btnScissors:"/>
+                <relationship kind="action" name="btnUnicorn:"/>
+                <relationship kind="outlet" name="imgComputerDisplay" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="imgUserDisplay" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="testlabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="txtAIMode" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="txtBestConWins" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="txtComputerBestConsWin" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="txtComputerScore" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="txtResult" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="txtUserBestConsWin" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="txtUserScore" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="txtVS" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="txtWinLoss" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="btnLeaderboard:"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

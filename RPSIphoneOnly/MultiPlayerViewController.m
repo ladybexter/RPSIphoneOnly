@@ -334,9 +334,11 @@ int playerMe;
         }
     }
     
+    lblVS.text = @"VS";
     
     if (playerMe == 1)
     {
+        
         int oppScore = [[gameInfoArray objectAtIndex:1] floatValue];
         int userScore = [[gameInfoArray objectAtIndex:0] floatValue];
         lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
@@ -515,7 +517,9 @@ int playerMe;
                                     }];
             lblYOUResult.text = @"";
             lblHowResult.textColor = [UIColor orangeColor];
-            lblHowResult.text = @"Leaderboard Post was successful";
+            lblHowResult.text = @"";
+            lblStatus.text = @"Leaderboard Post was successful";
+            btnPostScore.hidden = YES;
         }
     }];
 }
@@ -707,6 +711,15 @@ int playerMe;
                     NSLog(@"Current Local Score: %d",localScore);
                     [self compareUpdateLBScoreWithLocallyStoredScore:PlayerID:localScore:lbScore];
                 }
+                else
+                {
+                    
+                    lbScore = 0;
+                    NSLog(@"Current Leaderboard Score: %d",lbScore);
+                    localScore = [self loadLocalSavedScore:PlayerID];
+                    NSLog(@"Current Local Score: %d",localScore);
+                    [self compareUpdateLBScoreWithLocallyStoredScore:PlayerID:localScore:lbScore];
+                }
                 
             }];
         }
@@ -729,8 +742,8 @@ int playerMe;
         //reset image for next round
         [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:0]];
         
-        lblHowResult.hidden = YES;
-        lblYOUResult.hidden = YES;
+        lblHowResult.text = @"";
+        lblYOUResult.text = @"";
         
         //display what user picked for round
         [self displayChange:3 :1];
@@ -774,9 +787,6 @@ int playerMe;
     //increase turn by 1 after player 2 turns
     if (playerMe == 2)
     {
-        
-        lblYOUResult.hidden = NO;
-        lblHowResult.hidden = NO;
         
         cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue] + 1;
     [gameInfoArray replaceObjectAtIndex:2 withObject:[NSNumber numberWithDouble:cArray[2]]];
@@ -1105,11 +1115,11 @@ int playerMe;
             btnScissors.enabled = NO;
             btnUnicorn.enabled = NO;
             btnRock.enabled = NO;
-            lblOppScore.hidden = YES;
-            lblUserScore.hidden = YES;
-            lblVS.hidden = YES;
-            lblHowResult.hidden = YES;
-            lblYOUResult.hidden = YES;
+            lblOppScore.text = @"";
+            lblUserScore.text = @"";
+            lblVS.text = @"";
+            lblHowResult.text = @"";
+            lblYOUResult.text = @"";
             
             currentMatch.currentParticipant.matchOutcome = GKTurnBasedMatchOutcomeQuit;
             
@@ -1126,6 +1136,7 @@ int playerMe;
         }
         else
         {
+            lblVS.text = @"VS";
             return false;
         }
     }
@@ -1147,6 +1158,8 @@ int playerMe;
     
     if ([self checkIfOtherPlayerQuit:0] == false)
     {
+        
+        
     if (match.status == GKTurnBasedMatchStatusEnded) {
         
         //if player is looking at ended game, that player is current participant
@@ -1157,6 +1170,7 @@ int playerMe;
             int userScore = [[gameInfoArray objectAtIndex:0] floatValue];
             lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
             lblUserScore.text = [NSString stringWithFormat:@"%d",userScore];
+            
             
             lblPlayerName.text = [gameInfoArray objectAtIndex:7];
             
@@ -1179,8 +1193,6 @@ int playerMe;
         
         oppScoreInt = [lblOppScore.text intValue];
         userScoreInt = [lblUserScore.text intValue];
-        
-        lblHowResult.hidden = NO;
         
         if (userScoreInt == oppScoreInt)
         {
@@ -1333,8 +1345,9 @@ int playerMe;
     lblUserScore.text = @"000";
     lblStatus.text = @"Please start new game";
     lblRound.text = @"Round:1";
-    lblHowResult.hidden = YES;
-    lblYOUResult.hidden = YES;
+    lblHowResult.text = @"";
+    lblYOUResult.text = @"";
+    lblVS.text = @"VS";
     playerMe = 1;
     lblPlayerName.text = @"Other Player";
     [self imageChange:@"xrps-wp7-f4-2.png" :1];
@@ -1351,9 +1364,9 @@ int playerMe;
     
     gameInfoArray = [NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
     
-    
     if ([self checkIfOtherPlayerQuit:1] == false)
     {
+        
         //player 2 score failed to update LBscore
     if ([[gameInfoArray objectAtIndex:5] floatValue] == 11)
     {
@@ -1374,7 +1387,7 @@ int playerMe;
         btnPostScore.hidden = NO;
         lblHowResult.text =@"Try to update your leaderboard score again!";
         lblStatus.text = @"Match has ended";
-        lblYOUResult.hidden = YES;
+        lblYOUResult.text = @"";
     }
     else if ([[gameInfoArray objectAtIndex:5] floatValue] == 12)
     {
@@ -1450,8 +1463,8 @@ int playerMe;
             [self imageChange:@"xrps-wp7-f4-2.png" :1];
             [self imageChange:@"xrps-wp7-f4-2.png" :2];
         
-            lblYOUResult.hidden = YES;
-            lblHowResult.hidden = YES;
+            lblYOUResult.text = @"";
+            lblHowResult.text = @"";
         }
         
     

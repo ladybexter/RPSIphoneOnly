@@ -44,6 +44,8 @@
 		C6AC9327155F1C5F005D81B2 /* xrps-rulespage1.png in Resources */ = {isa = PBXBuildFile; fileRef = C6AC9326155F1C5F005D81B2 /* xrps-rulespage1.png */; };
 		C6AC932915652153005D81B2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6AC932815652152005D81B2 /* SystemConfiguration.framework */; };
 		C6AC932F1568425E005D81B2 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C6AC932E1568425E005D81B2 /* Reachability.m */; };
+		C6AC9331156A33B1005D81B2 /* GI - button-v3.png in Resources */ = {isa = PBXBuildFile; fileRef = C6AC9330156A33B1005D81B2 /* GI - button-v3.png */; };
+		C6AC9333156A33C0005D81B2 /* GI - button-v2-1.png in Resources */ = {isa = PBXBuildFile; fileRef = C6AC9332156A33BF005D81B2 /* GI - button-v2-1.png */; };
 		C6AF4EB3154E032B00B94D81 /* xrps-rulespage.png in Resources */ = {isa = PBXBuildFile; fileRef = C6AF4EB2154E032A00B94D81 /* xrps-rulespage.png */; };
 		C6AF4EB8154E06B700B94D81 /* RulesPage1.m in Sources */ = {isa = PBXBuildFile; fileRef = C6AF4EB6154E06AB00B94D81 /* RulesPage1.m */; };
 		C6AF4EB9154E06B700B94D81 /* RulesPage1.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6AF4EB7154E06B600B94D81 /* RulesPage1.xib */; };
@@ -117,6 +119,8 @@
 		C6AC932815652152005D81B2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C6AC932D1568425E005D81B2 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		C6AC932E1568425E005D81B2 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		C6AC9330156A33B1005D81B2 /* GI - button-v3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GI - button-v3.png"; path = "../../../../Dropbox/Mobile Apps/RPS Interface/Iphone/GI - buttons/GI - button-v3.png"; sourceTree = "<group>"; };
+		C6AC9332156A33BF005D81B2 /* GI - button-v2-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GI - button-v2-1.png"; path = "../../../../Dropbox/Mobile Apps/RPS Interface/Iphone/GI - buttons/GI - button-v2-1.png"; sourceTree = "<group>"; };
 		C6AF4EA1154820B500B94D81 /* AppSpecificValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppSpecificValues.h; path = ../../../../Downloads/GKTapper/Classes/AppSpecificValues.h; sourceTree = "<group>"; };
 		C6AF4EB2154E032A00B94D81 /* xrps-rulespage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "xrps-rulespage.png"; path = "../../../../Downloads/xrps-rulespage.png"; sourceTree = "<group>"; };
 		C6AF4EB5154E06A900B94D81 /* RulesPage1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RulesPage1.h; sourceTree = "<group>"; };
@@ -218,6 +222,8 @@
 				C6AF4EE01553409200B94D81 /* GI- Display - Robot (FINAL).png */,
 				C6AF4EE4155340A800B94D81 /* GI- Display - Rock.png */,
 				C6AF4EE21553409D00B94D81 /* GI - button-v2.png */,
+				C6AC9332156A33BF005D81B2 /* GI - button-v2-1.png */,
+				C6AC9330156A33B1005D81B2 /* GI - button-v3.png */,
 				C6965ED314DC9F7A00A4A21D /* robot4_finalise - android (48x48)no bg.png */,
 				C6965ED514DC9F8700A4A21D /* robot4_finalise-android(78x78)nobg.png */,
 				C6965ED714DC9F9D00A4A21D /* rock5._finalise - android (48x48)no bg.png */,
@@ -381,6 +387,8 @@
 				C6AF4EE5155340A800B94D81 /* GI- Display - Rock.png in Resources */,
 				C6AF4EE7155340C100B94D81 /* GI- Display - Paper.png in Resources */,
 				C6AC9327155F1C5F005D81B2 /* xrps-rulespage1.png in Resources */,
+				C6AC9331156A33B1005D81B2 /* GI - button-v3.png in Resources */,
+				C6AC9333156A33C0005D81B2 /* GI - button-v2-1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
