@@ -388,16 +388,6 @@ int playerMe;
     }
 }
 
-
--(void)checkForEnding:(double)roundCount {
-    
-    //if (roundCount == 5)
-    {
-        
-        //lblStatus.text = @"Match has ended";
-    }
-}
-
 - (BOOL) connectedToNetwork
 {
 	Reachability *r = [Reachability reachabilityWithHostName:@"www.google.com"];
@@ -793,9 +783,6 @@ int playerMe;
         
         
         [self resultsDisplay:[[gameInfoArray objectAtIndex:4] floatValue] : [[gameInfoArray objectAtIndex:3] floatValue]];
-        
-        [self checkForEnding:cArray[2]];
-        
         
     }
     
@@ -1237,6 +1224,35 @@ int playerMe;
             //display outcome of previous round
             [self displayChange: 4:1];
             [self displayChange:3:2];
+                
+                if ([[gameInfoArray objectAtIndex:5] floatValue] == 12)
+                {
+                    [self imageChange:@"xrps-wp7-f4-2.png" :1];
+                    [self imageChange:@"xrps-wp7-f4-2.png" :2];
+                    
+                    lblRound.text = @"";
+                    
+                    statusString = @"Match Ended";
+                }
+                else
+                {
+                    //display outcome of previous round
+                    [self displayChange: 4:1];
+                    [self displayChange:3:2];
+                    
+                    cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue];
+                    
+                    //display round
+                    int round = cArray[2];
+                    lblRound.text = [NSString stringWithFormat:@"Round: %d",round];
+                    
+                    int playerNum = [match.participants 
+                                     indexOfObject:match.currentParticipant] + 1;
+                    
+                    
+                    statusString = [NSString stringWithFormat:
+                                    @"Player %d's Turn", playerNum];
+                }
             
             }
             else
@@ -1252,23 +1268,21 @@ int playerMe;
                 //only display what player1 picked
                 [self displayChange:3: 1];
                 [self imageChange:@"xrps-wp7-f4-2.png" :2];
+                
+                cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue];
+                
+                //display round
+                int round = cArray[2];
+                lblRound.text = [NSString stringWithFormat:@"Round: %d",round];
+                
+                int playerNum = [match.participants 
+                                 indexOfObject:match.currentParticipant] + 1;
+                
+                
+                statusString = [NSString stringWithFormat:
+                                @"Player %d's Turn", playerNum];
             }
             
-        
-        
-            int playerNum = [match.participants 
-                         indexOfObject:match.currentParticipant] + 1;
-        
-            
-            statusString = [NSString stringWithFormat:
-                        @"Player %d's Turn", playerNum];
-            
-            
-        cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue];
-        
-            //display round
-            int round = cArray[2];
-            lblRound.text = [NSString stringWithFormat:@"Round: %d",round];
           
         }
     
@@ -1295,8 +1309,6 @@ int playerMe;
                 }
             }
     }
-    
-            [self checkForEnding:cArray[2]];
     
 }
 
