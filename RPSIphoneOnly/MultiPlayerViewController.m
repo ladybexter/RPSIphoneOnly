@@ -11,6 +11,7 @@
 #import "AppSpecificValues.h"
 #import "Reachability.h"
 #import "SystemConfiguration/SystemConfiguration.h"
+#import "AiFunction.h"
 
 
 @implementation MultiPlayerViewController
@@ -133,6 +134,256 @@ int playerMe;
     // Return YES for supported orientations
 	
 	return interfaceOrientation == UIInterfaceOrientationLandscapeRight;
+}
+
+-(NSMutableDictionary*)initialPlayerDataSetup
+{
+    NSMutableDictionary *playerData;
+    playerData = [[NSMutableDictionary alloc] init];
+    
+    NSMutableArray *conditionalArrayNS = [NSMutableArray arrayWithCapacity:25]; 
+    
+    for (int x=0; x<25;x++)
+    {
+        [conditionalArrayNS addObject:[NSNumber numberWithInt:1]];
+    }
+     
+    NSMutableArray *actionArrayNS = [NSMutableArray arrayWithCapacity:5]; 
+    
+    for (int x=0; x<5;x++)
+    {
+        [actionArrayNS addObject:[NSString stringWithFormat:@"%d", 0.2]];       
+    }
+    
+    NSMutableArray *predictedNumNS = [NSMutableArray arrayWithCapacity:2];
+    
+    [predictedNumNS addObject:[NSNumber numberWithInt:4]];
+    [predictedNumNS addObject:[NSNumber numberWithInt:4]];
+   
+    
+    NSMutableArray *weightsConditionActionArrayNS = [NSMutableArray arrayWithCapacity:2];
+    
+    [weightsConditionActionArrayNS addObject:[NSString stringWithFormat:@"%d", 0.5]];
+    [weightsConditionActionArrayNS addObject:[NSString stringWithFormat:@"%d", 0.5]];
+    
+    [playerData setObject:conditionalArrayNS forKey:@"conditionalArray"];
+    [playerData setObject:actionArrayNS forKey:@"actionArray"];
+    [playerData setObject:predictedNumNS forKey:@"predictedNum"];
+    [playerData setObject:weightsConditionActionArrayNS forKey:@"weightsConditionActionArray"];
+    [playerData setObject:[NSNumber numberWithInt:0] forKey:@"lastNumber"];
+    [playerData setObject:[NSNumber numberWithInt:0] forKey:@"numberBeforeLast"];
+    [playerData setObject:[NSNumber numberWithInt:0] forKey:@"numberOfGamesPlayed"];
+    
+    return playerData;
+}
+
+
+-(NSMutableDictionary*)loadPlayersChoiceData:(NSString *)Playername{
+    
+    
+    
+    //look at this code which creates path to plist in documents directory:
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); //1
+    NSString *documentsDirectory = [paths objectAtIndex:0]; //2
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"PlayersChoices.plist"]; //3
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSMutableDictionary *playerDictionary;
+    
+    //next read data:
+    if ([fileManager fileExistsAtPath: path]) 
+    {
+        // If the file exists, read dictionary from file
+        playerDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
+        
+        
+        //check dictionary to see if previous player data has been saved on current device
+        NSMutableDictionary *playersData;
+        
+        if([playerDictionary objectForKey:Playername] != nil)
+        {
+            //load from playerDictionary previously stored player data on current device
+            
+            playersData = [playerDictionary objectForKey:Playername];
+        }
+        else
+        {
+            //player hasnt stored any data on current device yet
+            
+            playersData = [self initialPlayerDataSetup];
+        }
+        
+        
+        return playersData;
+    }
+    else
+    {
+        // If the file doesn’t exist, create an empty dictionary
+        playerDictionary = [[NSMutableDictionary alloc] init];
+        
+        //no previous games have been played on this device
+        return [self initialPlayerDataSetup];
+        
+    }
+    
+}
+
+-(void)convertNSMutableArrayToArray:(NSMutableArray *)nsArray:(double[])nsConvertedArray
+{
+    for (int x=0; x<[nsArray count];x++)
+    {
+        nsConvertedArray[x] = [[nsArray objectAtIndex:x]doubleValue];       
+    }
+}
+
+-(void)convertArrayToNSMutableArray:(NSMutableArray *)nsArray:(double[])originalArray:(bool)isDouble
+{
+    for (int x=0; x<[nsArray count];x++)
+    {
+        if (isDouble == TRUE)
+        {
+            [nsArray replaceObjectAtIndex:x withObject:[NSString stringWithFormat:@"%d", originalArray[x]]];
+        }
+        else
+        {
+            [nsArray replaceObjectAtIndex:x withObject:[NSNumber numberWithInt:(int)originalArray[x]]];
+        }
+    }
+}
+
+
+-(void)savePlayerDataLocally:(NSDictionary*)playerData : (NSString *)PlayersID{
+    
+    //look at this code which creates path to plist in documents directory:
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); //1
+    NSString *documentsDirectory = [paths objectAtIndex:0]; //2
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"PlayersChoices.plist"]; //3
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSMutableDictionary *data;
+    
+    if ([fileManager fileExistsAtPath: path]) 
+    {
+        // If the file exists, read dictionary from file
+        data = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
+    }
+    else
+    {
+        // If the file doesn’t exist, create an empty dictionary
+        data = [[NSMutableDictionary alloc] init];
+    }
+    
+    //And write data:
+    
+    
+    [data setObject:playerData forKey:PlayersID];
+    
+    [data writeToFile: path atomically:YES];
+    
+}
+
+
+
+-(void)convertUpdateconvert:(NSString *)Playername
+{
+    int linaChoice;
+    int joannaChoice;
+    int numberBeforeLast;
+    int lastNumber;
+    int numberOfGamesPlayed;
+    
+    
+    //initialize normal arrays for update later
+    double conditionalArray[25] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+    double actionArray[5] = { 0.2, 0.2, 0.2, 0.2, 0.2 };
+    double weightsConditionActionArray[2] = { 0.5, 0.5 };
+    double results[2] ={ 1, 1};
+    double predictedNum[2] ={4,4};
+    
+    //get loaded data
+     NSMutableDictionary *loadedPlayerData;
+    loadedPlayerData = [self loadPlayersChoiceData:Playername];
+    
+    
+    NSMutableArray *conditionalArrayNS1 = [NSMutableArray arrayWithCapacity:25]; 
+    conditionalArrayNS1 = [loadedPlayerData objectForKey:@"conditionalArray"];
+    NSMutableArray *actionArrayNS1 = [NSMutableArray arrayWithCapacity:5]; 
+    actionArrayNS1 = [loadedPlayerData objectForKey:@"actionArray"];
+    NSMutableArray *predictedNumNS1 = [NSMutableArray arrayWithCapacity:2];
+    predictedNumNS1 = [loadedPlayerData objectForKey:@"predictedNum" ];
+    NSMutableArray *weightsConditionActionArrayNS1 = [NSMutableArray arrayWithCapacity:2];
+    weightsConditionActionArrayNS1 = [loadedPlayerData objectForKey:@"weightsConditionActionArray"];
+    
+   
+    //update normal arrays with loaded player data
+    [self convertNSMutableArrayToArray:conditionalArrayNS1:conditionalArray];
+    [self convertNSMutableArrayToArray:actionArrayNS1:actionArray]; 
+    [self convertNSMutableArrayToArray:weightsConditionActionArrayNS1:weightsConditionActionArray]; 
+    [self convertNSMutableArrayToArray:predictedNumNS1:predictedNum];
+     
+
+    numberBeforeLast = [[loadedPlayerData objectForKey:@"numberBeforeLast"]intValue];
+    lastNumber = [[loadedPlayerData objectForKey:@"lastNumber"]intValue];
+    numberOfGamesPlayed = [[loadedPlayerData objectForKey:@"numberOfGamesPlayed"]intValue];
+    
+    
+    //if no games have been played then no data will be available for the computer to make an estimate from
+    // for the first game the computer will make a random estimation
+    // for the rest of the time the computer will take users past choices to prect the next action
+    if (numberBeforeLast == 0)
+    {
+        int r = (arc4random()%5) + 1;
+        linaChoice = r;
+        joannaChoice = r;
+        
+    }
+    else
+    {
+        
+        //updating player data using normal arrays and previously loaded data
+        updatingConditionalArray(numberBeforeLast, lastNumber, conditionalArray);
+        
+        actionLookUp(numberBeforeLast, lastNumber, actionArray);
+        
+        updateWeightsConActionArray(lastNumber, weightsConditionActionArray, predictedNum , numberOfGamesPlayed);
+        
+        nextNumberPrediction(lastNumber, numberBeforeLast, conditionalArray, actionArray, weightsConditionActionArray, numberOfGamesPlayed, predictedNum, results);
+        
+        
+        linaChoice = (int)results[0];
+        
+        joannaChoice = (int)results[1];
+         
+        predictedNum[0] = results[0];
+        predictedNum[1] = results[1];        
+    }
+    
+    //update numberOfGamesPlayed
+    numberOfGamesPlayed = ((int) numberOfGamesPlayed + 1)%50;
+    
+    
+    //update the nsarrays with updated normal arrays
+    [self convertArrayToNSMutableArray:conditionalArrayNS1 :conditionalArray :FALSE];
+    [self convertArrayToNSMutableArray:actionArrayNS1 :actionArray :TRUE];
+    [self convertArrayToNSMutableArray:weightsConditionActionArrayNS1 :weightsConditionActionArray :TRUE];
+    [self convertArrayToNSMutableArray:predictedNumNS1 :predictedNum :FALSE];
+    
+    //use NSArrays and make new playerdata dictionary to be saved
+     NSMutableDictionary *updatedPlayerData;
+    
+    [updatedPlayerData setObject:conditionalArrayNS1 forKey:@"conditionalArray"];
+    [updatedPlayerData setObject:actionArrayNS1 forKey:@"actionArray"];
+    [updatedPlayerData setObject:predictedNumNS1 forKey:@"predictedNum"];
+    [updatedPlayerData setObject:weightsConditionActionArrayNS1 forKey:@"weightsConditionActionArray"];
+    [updatedPlayerData setObject:[NSNumber numberWithInt:lastNumber] forKey:@"lastNumber"];
+    [updatedPlayerData setObject:[NSNumber numberWithInt:numberBeforeLast] forKey:@"numberBeforeLast"];
+    [updatedPlayerData setObject:[NSNumber numberWithInt:numberOfGamesPlayed] forKey:@"numberOfGamesPlayed"];
+    
+    [self savePlayerDataLocally:updatedPlayerData :Playername];
+    
+    
 }
 
 
