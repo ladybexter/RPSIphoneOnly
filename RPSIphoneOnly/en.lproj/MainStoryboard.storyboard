@@ -172,7 +172,7 @@
                                 <rect key="frame" x="17" y="248" width="76" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Home" backgroundImage="GI - button-v2-1.png">
+                                <state key="normal" title="Home" backgroundImage="GI - button-v2-3.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -187,7 +187,7 @@
                                 <rect key="frame" x="387" y="248" width="76" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Advice" backgroundImage="GI - button-v2-1.png">
+                                <state key="normal" title="Advice" backgroundImage="GI - button-v2-3.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -202,7 +202,7 @@
                                 <rect key="frame" x="172" y="248" width="136" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Game Center" backgroundImage="GI - button-v2-1.png">
+                                <state key="normal" title="Game Center" backgroundImage="GI - button-v2-3.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -363,7 +363,7 @@
                                 <rect key="frame" x="183" y="113" width="114" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                <state key="normal" title="Post Score" backgroundImage="GI - button-v2-1.png">
+                                <state key="normal" title="Post Score" backgroundImage="GI - button-v2-3.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -722,6 +722,7 @@
     </scenes>
     <resources>
         <image name="GI - button-v2-1.png" width="430" height="110"/>
+        <image name="GI - button-v2-3.png" width="430" height="110"/>
         <image name="GI - button-v3.png" width="391" height="73"/>
         <image name="GI- Display - Paper.png" width="239" height="231"/>
         <image name="GI- Display - Robot (FINAL).png" width="238" height="238"/>
@@ -805,7 +806,7 @@
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>

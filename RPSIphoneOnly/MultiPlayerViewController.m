@@ -286,13 +286,12 @@ int playerMe;
 
 
 
--(void)convertUpdateconvert:(NSString *)Playername
+-(void)convertUpdateconvert:(NSString *)Playername: (int)numberBeforeLastG: (int)lastNumberG: (int) numberOfGamesPlayed
 {
     int linaChoice;
     int joannaChoice;
     int numberBeforeLast;
     int lastNumber;
-    int numberOfGamesPlayed;
     
     
     //initialize normal arrays for update later
@@ -362,6 +361,10 @@ int playerMe;
     
     //update numberOfGamesPlayed
     numberOfGamesPlayed = ((int) numberOfGamesPlayed + 1)%50;
+    
+    //update lastNumber and numberBeforeLast
+    numberBeforeLast = numberBeforeLastG;
+    lastNumber = lastNumberG;
     
     
     //update the nsarrays with updated normal arrays
@@ -1185,11 +1188,13 @@ int playerMe;
     if (playerMe == 1)
     {
         [gameInfoArray replaceObjectAtIndex:3 withObject:[NSNumber numberWithDouble:2]];
+        [gameInfoArray replaceObjectAtIndex:12 withObject:[NSNumber numberWithDouble:2]];
     }
     else if (playerMe == 2)
     {
         
         [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:2]];
+        [gameInfoArray replaceObjectAtIndex:15 withObject:[NSNumber numberWithDouble:2]];
         
     }
     
@@ -1204,11 +1209,13 @@ int playerMe;
     if (playerMe == 1)
     {
         [gameInfoArray replaceObjectAtIndex:3 withObject:[NSNumber numberWithDouble:3]];
+        [gameInfoArray replaceObjectAtIndex:12 withObject:[NSNumber numberWithDouble:3]];
     }
     else if (playerMe == 2)
     {
         
         [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:3]];
+        [gameInfoArray replaceObjectAtIndex:15 withObject:[NSNumber numberWithDouble:3]];
     }
     
     [self sendTurn];
@@ -1222,11 +1229,13 @@ int playerMe;
     if (playerMe == 1)
     {
         [gameInfoArray replaceObjectAtIndex:3 withObject:[NSNumber numberWithDouble:4]];
+        [gameInfoArray replaceObjectAtIndex:12 withObject:[NSNumber numberWithDouble:4]];
     }
     else if (playerMe == 2)
     {
         
         [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:4]];
+        [gameInfoArray replaceObjectAtIndex:15 withObject:[NSNumber numberWithDouble:4]];
     }
     [self sendTurn];
 }
@@ -1238,10 +1247,12 @@ int playerMe;
     if (playerMe == 1)
     {
         [gameInfoArray replaceObjectAtIndex:3 withObject:[NSNumber numberWithDouble:5]];
+        [gameInfoArray replaceObjectAtIndex:12 withObject:[NSNumber numberWithDouble:5]];
     }
     else if (playerMe == 2)
     {
         [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:5]];
+        [gameInfoArray replaceObjectAtIndex:15 withObject:[NSNumber numberWithDouble:5]];
     }
     
     [self sendTurn];
@@ -1254,11 +1265,13 @@ int playerMe;
     if (playerMe == 1)
     {
         [gameInfoArray replaceObjectAtIndex:3 withObject:[NSNumber numberWithDouble:1]];
+        [gameInfoArray replaceObjectAtIndex:12 withObject:[NSNumber numberWithDouble:1]];
     }
     else if (playerMe == 2)
     {
         
         [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:1]];
+        [gameInfoArray replaceObjectAtIndex:15 withObject:[NSNumber numberWithDouble:1]];
     }
     
     [self sendTurn];
@@ -1586,7 +1599,7 @@ int playerMe;
     NSLog(@"Entering new game...");
     
     
-    // 0= currentScorePlayer1, 1 = currentScorePlayer2, 2= turn, 3 = player1Pick, 4= player2Pick, 5=turnCount, 6=Player1Alias, 7= Player1ID to be replaced with Player2Alias, 8 = Player1PlayerID, 9 = Player1PlayerID to be reaplced with Player2PlayerID
+    // 0= currentScorePlayer1, 1 = currentScorePlayer2, 2= turn, 3 = player1Pick, 4= player2Pick, 5=turnCount, 6=Player1Alias, 7= Player1ID to be replaced with Player2Alias, 8 = Player1PlayerID, 9 = Player1PlayerID to be reaplced with Player2PlayerID, 10 = numberBeforeLast pl1, 11 = lastNumber pl2, 12 = currentNumber pl1, 13 = numberBeforeLast pl2, 14 = lastNumber pl2, 15 = currentNumber pl 2
     
      gameInfoArray = [NSMutableArray arrayWithObjects:[NSNumber numberWithDouble:0],
                                    [NSNumber numberWithDouble:0],
@@ -1597,7 +1610,13 @@ int playerMe;
                                    [[GKLocalPlayer localPlayer] alias],
                                     [[GKLocalPlayer localPlayer] playerID],
                                     [[GKLocalPlayer localPlayer] playerID],
-                                    [[GKLocalPlayer localPlayer] playerID],nil];
+                                    [[GKLocalPlayer localPlayer] playerID],
+                                    [NSNumber numberWithDouble:0],
+                                    [NSNumber numberWithDouble:0],
+                                    [NSNumber numberWithDouble:0],
+                                    [NSNumber numberWithDouble:0],
+                                    [NSNumber numberWithDouble:0],
+                                    [NSNumber numberWithDouble:0],nil];
     
     btnRobot.enabled = YES;
     btnPaper.enabled = YES;

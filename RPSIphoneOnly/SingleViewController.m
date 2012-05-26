@@ -27,6 +27,7 @@
 @synthesize txtComputerBestConsWin;
 
 int timerCount = 0;
+int currentNumber = 0;
 int lastNumber = 0;
 int numberBeforeLast = 0;
 double numberOfGamesPlayed = 0;
@@ -465,6 +466,7 @@ double predictedNum[2] ={4,4};
 
 -(void)resetThings
 {
+    currentNumber = 0;
     lastNumber = 0;
     numberBeforeLast = 0;
     numberOfGamesPlayed = 0;
@@ -516,7 +518,8 @@ double predictedNum[2] ={4,4};
     
        
     numberBeforeLast = lastNumber;
-    lastNumber = 1;
+    lastNumber = currentNumber;
+    currentNumber = 1;
     userChoice = 1;
     
     
@@ -532,7 +535,8 @@ double predictedNum[2] ={4,4};
 - (IBAction)btnPaper:(id)sender {
     
     numberBeforeLast = lastNumber;
-    lastNumber = 2;
+    lastNumber = currentNumber;
+    currentNumber = 2;
     userChoice = 2;    
     
     [self imageChange:@"paper2_finalise-android(78x78)nobg.png":1];
@@ -544,7 +548,8 @@ double predictedNum[2] ={4,4};
 - (IBAction)btnScissors:(id)sender {
     
     numberBeforeLast = lastNumber;
-    lastNumber = 3;
+    lastNumber = currentNumber;
+    currentNumber = 3;
     userChoice = 3;
     
     [self imageChange:@"scissors4_finalise-android(78x78)nobg.png":1];
@@ -556,7 +561,8 @@ double predictedNum[2] ={4,4};
 - (IBAction)btnUnicorn:(id)sender {
     
     numberBeforeLast = lastNumber;
-    lastNumber = 4;
+    lastNumber = currentNumber;
+    currentNumber = 4;
     userChoice = 4;
     
     [self imageChange:@"unicorn3_finalise-android(78x78)nobg.png":1];
@@ -568,7 +574,8 @@ double predictedNum[2] ={4,4};
 - (IBAction)btnRobot:(id)sender {
     
     numberBeforeLast = lastNumber;
-    lastNumber = 5;
+    lastNumber = currentNumber;
+    currentNumber = 5;
     userChoice = 5;
     
     [self imageChange:@"robot4_finalise-android(78x78)nobg.png":1];
