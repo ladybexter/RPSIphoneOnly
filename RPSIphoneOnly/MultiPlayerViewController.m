@@ -38,6 +38,8 @@
 
 int cArray[7];
 int playerMe;
+int linaChoice;
+int joannaChoice;
 
 
 
@@ -285,16 +287,84 @@ int playerMe;
 }
 
 
-
--(void)convertUpdateconvert:(NSString *)Playername: (int)numberBeforeLastG: (int)lastNumberG: (int) numberOfGamesPlayed
+-(void)updateLocalPlayerData:(NSString *)Playername:(int)numberBeforeLastG: (int)lastNumberG
 {
-    int linaChoice;
-    int joannaChoice;
-    int numberBeforeLast;
-    int lastNumber;
+    int numberOfGamesPlayed;
+    
+     //initialize normal arrays for update later (dummy arrays)
+    double conditionalArray[25] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+    double actionArray[5] = { 0.2, 0.2, 0.2, 0.2, 0.2 };
+    double weightsConditionActionArray[2] = { 0.5, 0.5 };
+    double predictedNum[2] ={4,4};
+    
+    //get loaded data
+    NSMutableDictionary *loadedPlayerData;
+    loadedPlayerData = [self loadPlayersChoiceData:Playername];
     
     
-    //initialize normal arrays for update later
+    NSMutableArray *conditionalArrayNS1 = [NSMutableArray arrayWithCapacity:25]; 
+    conditionalArrayNS1 = [loadedPlayerData objectForKey:@"conditionalArray"];
+    NSMutableArray *actionArrayNS1 = [NSMutableArray arrayWithCapacity:5]; 
+    actionArrayNS1 = [loadedPlayerData objectForKey:@"actionArray"];
+    NSMutableArray *predictedNumNS1 = [NSMutableArray arrayWithCapacity:2];
+    predictedNumNS1 = [loadedPlayerData objectForKey:@"predictedNum" ];
+    NSMutableArray *weightsConditionActionArrayNS1 = [NSMutableArray arrayWithCapacity:2];
+    weightsConditionActionArrayNS1 = [loadedPlayerData objectForKey:@"weightsConditionActionArray"];
+    numberOfGamesPlayed = [[loadedPlayerData objectForKey:@"numberOfGamesPlayed"]intValue];
+    
+    
+    
+    if (lastNumberG == 0) 
+    {
+        //only update games count
+        numberOfGamesPlayed = ((int) numberOfGamesPlayed + 1)%50;
+    }
+    else
+    {
+        //update dummy arrays with loaded player data
+        [self convertNSMutableArrayToArray:conditionalArrayNS1:conditionalArray];
+        [self convertNSMutableArrayToArray:actionArrayNS1:actionArray]; 
+        [self convertNSMutableArrayToArray:weightsConditionActionArrayNS1:weightsConditionActionArray]; 
+        [self convertNSMutableArrayToArray:predictedNumNS1:predictedNum];
+    
+        //updating player data using normal arrays and previously loaded data   
+        updatingConditionalArray(numberBeforeLastG, lastNumberG, conditionalArray);
+    
+        actionLookUp(numberBeforeLastG, lastNumberG, actionArray);
+    
+        updateWeightsConActionArray(lastNumberG, weightsConditionActionArray, predictedNum , numberOfGamesPlayed);
+    
+        numberOfGamesPlayed = ((int) numberOfGamesPlayed + 1)%50;
+    
+        //convert array back to NSArray
+        [self convertArrayToNSMutableArray:conditionalArrayNS1:conditionalArray:FALSE];
+        [self convertArrayToNSMutableArray:actionArrayNS1:actionArray:TRUE]; 
+        [self convertArrayToNSMutableArray:weightsConditionActionArrayNS1:weightsConditionActionArray:TRUE]; 
+        [self convertArrayToNSMutableArray:predictedNumNS1:predictedNum:FALSE];
+    }
+    
+    
+    NSMutableDictionary *updatedPlayerData;
+    updatedPlayerData = [[NSMutableDictionary alloc] init];
+    
+    [updatedPlayerData setObject:conditionalArrayNS1 forKey:@"conditionalArray"];
+    [updatedPlayerData setObject:actionArrayNS1 forKey:@"actionArray"];
+    [updatedPlayerData setObject:predictedNumNS1 forKey:@"predictedNum"];
+    [updatedPlayerData setObject:weightsConditionActionArrayNS1 forKey:@"weightsConditionActionArray"];
+    [updatedPlayerData setObject:[NSNumber numberWithInt:0] forKey:@"lastNumber"];
+    [updatedPlayerData setObject:[NSNumber numberWithInt:0] forKey:@"numberBeforeLast"];
+    [updatedPlayerData setObject:[NSNumber numberWithInt:0] forKey:@"numberOfGamesPlayed"];
+    
+    [self savePlayerDataLocally:updatedPlayerData :Playername];
+}
+
+
+
+-(void)predictNextNumber:(NSString *)Playername: (int)numberBeforeLastG: (int)lastNumberG
+{
+    int numberOfGamesPlayed;
+    
+    //initialize normal arrays for update later (dummy arrays)
     double conditionalArray[25] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
     double actionArray[5] = { 0.2, 0.2, 0.2, 0.2, 0.2 };
     double weightsConditionActionArray[2] = { 0.5, 0.5 };
@@ -314,24 +384,20 @@ int playerMe;
     predictedNumNS1 = [loadedPlayerData objectForKey:@"predictedNum" ];
     NSMutableArray *weightsConditionActionArrayNS1 = [NSMutableArray arrayWithCapacity:2];
     weightsConditionActionArrayNS1 = [loadedPlayerData objectForKey:@"weightsConditionActionArray"];
+    numberOfGamesPlayed = [[loadedPlayerData objectForKey:@"numberOfGamesPlayed"]intValue];
     
    
-    //update normal arrays with loaded player data
+    //update dummy arrays with loaded player data
     [self convertNSMutableArrayToArray:conditionalArrayNS1:conditionalArray];
     [self convertNSMutableArrayToArray:actionArrayNS1:actionArray]; 
     [self convertNSMutableArrayToArray:weightsConditionActionArrayNS1:weightsConditionActionArray]; 
     [self convertNSMutableArrayToArray:predictedNumNS1:predictedNum];
      
-
-    numberBeforeLast = [[loadedPlayerData objectForKey:@"numberBeforeLast"]intValue];
-    lastNumber = [[loadedPlayerData objectForKey:@"lastNumber"]intValue];
-    numberOfGamesPlayed = [[loadedPlayerData objectForKey:@"numberOfGamesPlayed"]intValue];
-    
     
     //if no games have been played then no data will be available for the computer to make an estimate from
     // for the first game the computer will make a random estimation
     // for the rest of the time the computer will take users past choices to prect the next action
-    if (numberBeforeLast == 0)
+    if (numberBeforeLastG == 0)
     {
         int r = (arc4random()%5) + 1;
         linaChoice = r;
@@ -340,15 +406,7 @@ int playerMe;
     }
     else
     {
-        
-        //updating player data using normal arrays and previously loaded data
-        updatingConditionalArray(numberBeforeLast, lastNumber, conditionalArray);
-        
-        actionLookUp(numberBeforeLast, lastNumber, actionArray);
-        
-        updateWeightsConActionArray(lastNumber, weightsConditionActionArray, predictedNum , numberOfGamesPlayed);
-        
-        nextNumberPrediction(lastNumber, numberBeforeLast, conditionalArray, actionArray, weightsConditionActionArray, numberOfGamesPlayed, predictedNum, results);
+        nextNumberPrediction(lastNumberG, numberBeforeLastG, conditionalArray, actionArray, weightsConditionActionArray, numberOfGamesPlayed, predictedNum, results);
         
         
         linaChoice = (int)results[0];
@@ -359,32 +417,7 @@ int playerMe;
         predictedNum[1] = results[1];        
     }
     
-    //update numberOfGamesPlayed
-    numberOfGamesPlayed = ((int) numberOfGamesPlayed + 1)%50;
     
-    //update lastNumber and numberBeforeLast
-    numberBeforeLast = numberBeforeLastG;
-    lastNumber = lastNumberG;
-    
-    
-    //update the nsarrays with updated normal arrays
-    [self convertArrayToNSMutableArray:conditionalArrayNS1 :conditionalArray :FALSE];
-    [self convertArrayToNSMutableArray:actionArrayNS1 :actionArray :TRUE];
-    [self convertArrayToNSMutableArray:weightsConditionActionArrayNS1 :weightsConditionActionArray :TRUE];
-    [self convertArrayToNSMutableArray:predictedNumNS1 :predictedNum :FALSE];
-    
-    //use NSArrays and make new playerdata dictionary to be saved
-     NSMutableDictionary *updatedPlayerData;
-    
-    [updatedPlayerData setObject:conditionalArrayNS1 forKey:@"conditionalArray"];
-    [updatedPlayerData setObject:actionArrayNS1 forKey:@"actionArray"];
-    [updatedPlayerData setObject:predictedNumNS1 forKey:@"predictedNum"];
-    [updatedPlayerData setObject:weightsConditionActionArrayNS1 forKey:@"weightsConditionActionArray"];
-    [updatedPlayerData setObject:[NSNumber numberWithInt:lastNumber] forKey:@"lastNumber"];
-    [updatedPlayerData setObject:[NSNumber numberWithInt:numberBeforeLast] forKey:@"numberBeforeLast"];
-    [updatedPlayerData setObject:[NSNumber numberWithInt:numberOfGamesPlayed] forKey:@"numberOfGamesPlayed"];
-    
-    [self savePlayerDataLocally:updatedPlayerData :Playername];
     
     
 }
@@ -1159,6 +1192,36 @@ int playerMe;
     
 }
 
+-(void)setRightNumbers:(int)currentNumber{
+    if(playerMe == 1)
+    {
+        //set player choice
+        [gameInfoArray replaceObjectAtIndex:3 withObject:[NSNumber numberWithInt:currentNumber]];
+        
+        //set numberBeforeLast to last number
+        [gameInfoArray replaceObjectAtIndex:10 withObject:[gameInfoArray objectAtIndex:11]];
+        
+        //set last number to currentNumber
+        [gameInfoArray replaceObjectAtIndex:11 withObject:[gameInfoArray objectAtIndex:12]];
+        
+        //set current number
+        [gameInfoArray replaceObjectAtIndex:12 withObject:[NSNumber numberWithInt:currentNumber]];
+        
+        
+    }
+    if(playerMe == 2)
+    {
+        //set player choice[
+        [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithInt:currentNumber]];
+        
+        //set numberBeforelast to last number
+        [gameInfoArray replaceObjectAtIndex:13 withObject:[gameInfoArray objectAtIndex:14]];
+        
+        //set current number to last number for new round
+        [gameInfoArray replaceObjectAtIndex:14 withObject:[NSNumber numberWithInt:currentNumber]];
+    }
+}
+
 - (IBAction)btnPostScore:(id)sender {
     
     GKTurnBasedMatch *currentMatch = 
@@ -1182,21 +1245,7 @@ int playerMe;
 
 - (IBAction)btnPaper:(id)sender {
     
-    
-    
-    //set userMePick to 2
-    if (playerMe == 1)
-    {
-        [gameInfoArray replaceObjectAtIndex:3 withObject:[NSNumber numberWithDouble:2]];
-        [gameInfoArray replaceObjectAtIndex:12 withObject:[NSNumber numberWithDouble:2]];
-    }
-    else if (playerMe == 2)
-    {
-        
-        [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:2]];
-        [gameInfoArray replaceObjectAtIndex:15 withObject:[NSNumber numberWithDouble:2]];
-        
-    }
+    [self setRightNumbers:2];
     
     [self sendTurn];
         
@@ -1204,19 +1253,7 @@ int playerMe;
 
 - (IBAction)btnScissors:(id)sender {
     
-    
-    //set userMePick to 3
-    if (playerMe == 1)
-    {
-        [gameInfoArray replaceObjectAtIndex:3 withObject:[NSNumber numberWithDouble:3]];
-        [gameInfoArray replaceObjectAtIndex:12 withObject:[NSNumber numberWithDouble:3]];
-    }
-    else if (playerMe == 2)
-    {
-        
-        [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:3]];
-        [gameInfoArray replaceObjectAtIndex:15 withObject:[NSNumber numberWithDouble:3]];
-    }
+    [self setRightNumbers:3];
     
     [self sendTurn];
     
@@ -1224,63 +1261,158 @@ int playerMe;
 
 - (IBAction)btnUnicorn:(id)sender {
     
+    [self setRightNumbers:4];
     
-    //set userMePick to 4
-    if (playerMe == 1)
-    {
-        [gameInfoArray replaceObjectAtIndex:3 withObject:[NSNumber numberWithDouble:4]];
-        [gameInfoArray replaceObjectAtIndex:12 withObject:[NSNumber numberWithDouble:4]];
-    }
-    else if (playerMe == 2)
-    {
-        
-        [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:4]];
-        [gameInfoArray replaceObjectAtIndex:15 withObject:[NSNumber numberWithDouble:4]];
-    }
     [self sendTurn];
 }
 
 - (IBAction)btnRobot:(id)sender {
     
-    
-    //set userMePick to 5
-    if (playerMe == 1)
-    {
-        [gameInfoArray replaceObjectAtIndex:3 withObject:[NSNumber numberWithDouble:5]];
-        [gameInfoArray replaceObjectAtIndex:12 withObject:[NSNumber numberWithDouble:5]];
-    }
-    else if (playerMe == 2)
-    {
-        [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:5]];
-        [gameInfoArray replaceObjectAtIndex:15 withObject:[NSNumber numberWithDouble:5]];
-    }
+    [self setRightNumbers:5];
     
     [self sendTurn];
 }
 
 - (IBAction)btnRock:(id)sender {
     
-    
-    //set userMePick to 1
-    if (playerMe == 1)
-    {
-        [gameInfoArray replaceObjectAtIndex:3 withObject:[NSNumber numberWithDouble:1]];
-        [gameInfoArray replaceObjectAtIndex:12 withObject:[NSNumber numberWithDouble:1]];
-    }
-    else if (playerMe == 2)
-    {
-        
-        [gameInfoArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithDouble:1]];
-        [gameInfoArray replaceObjectAtIndex:15 withObject:[NSNumber numberWithDouble:1]];
-    }
+    [self setRightNumbers:1];
     
     [self sendTurn];
 }
 
 - (IBAction)btnAIAdvice:(id)sender {
     
+    
+    int numberBeforeLastLoadP;
+    int lastNumberLoadP;
+    
+    int numberBeforeLastLoadG;
+    int lastNumberLoadG;
+    
+    int numberBeforeLastMatch;
+    int lastNumberMatch;
+    
+    //get loaded data
+    NSMutableDictionary *playerData;
+    NSMutableDictionary *generalPlayerData;
+    
+    
+    
+    generalPlayerData = [self loadPlayersChoiceData:@"generalPlayer"];
+    
+    lastNumberLoadG = [[generalPlayerData objectForKey:@"lastNumber"]intValue];
+    numberBeforeLastLoadG = [[generalPlayerData objectForKey:@"numberBeforeLast"]intValue];
+    
+    if (playerMe == 1)
+    {
         
-    UIAlertView *eventChoiceNow = [[UIAlertView alloc] initWithTitle:nil message:@"Lina: I suggest UNICORN \n\n Joanna: I suggest SCISSORS" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    }
+    else
+    {
+        playerData = [self loadPlayersChoiceData:[gameInfoArray objectAtIndex:8]];
+    
+        lastNumberLoadP = [[playerData objectForKey:@"lastNumber"]intValue];
+        numberBeforeLastLoadP = [[playerData objectForKey:@"numberBeforeLast"]intValue];
+        
+        numberBeforeLastMatch = [[gameInfoArray objectAtIndex:10]intValue];
+        lastNumberMatch = [[gameInfoArray objectAtIndex:11]intValue];
+        
+        //predicting next number lina and joanna
+        
+             //match has just started against playerA
+        if (lastNumberMatch == 0)
+        {
+            //check to see if any data exists on device for playerA
+            if (lastNumberLoadP == 0)
+            {
+                //check to see if any player data exists on device
+                if (lastNumberLoadP == 0)
+                {
+                    //no data exists anywhere so just put matchdata to get random prediction
+                    [self predictNextNumber:[gameInfoArray objectAtIndex:8] :0 :0];
+                }
+                else
+                {
+                    //some general playing data exist on device
+                    [self predictNextNumber:@"generalPlayer" :numberBeforeLastLoadG :lastNumberLoadG];
+                }
+            }
+            else
+            {
+                //some previous playing data exist for player A on device
+                [self predictNextNumber:[gameInfoArray objectAtIndex:8] :numberBeforeLastLoadP :lastNumberLoadP];
+            }
+        }
+        else
+        {
+            if (numberBeforeLastMatch == 0)
+            {
+                //match is in round 2, check to see if previous games have been played against playerA on device
+                if (lastNumberLoadP != 0)
+                {
+                    //use 
+                    [self predictNextNumber:[gameInfoArray objectAtIndex:8]  :lastNumberLoadP :lastNumberMatch];
+                }
+                else
+                {
+                    //random prediction
+                    [self predictNextNumber:[gameInfoArray objectAtIndex:8] :0 :0];
+                }
+            }
+            else
+            {
+                //match is further along and data of current match exist, use mathcdata numbers for prediction
+                [self predictNextNumber:[gameInfoArray objectAtIndex:8] :numberBeforeLastMatch :lastNumberMatch];
+            }
+        }
+    }
+    NSString *lina;
+    NSString *joanna;
+    
+    if (linaChoice ==1)
+    {
+        lina = @"Rock";
+    }
+    else if (linaChoice == 2)
+    {
+        lina = @"Paper";
+    }
+    else if(linaChoice == 3)
+    {
+        lina = @"Scissors";
+    }
+    else if(linaChoice == 4)
+    {
+        lina = @"Unicorn";
+    }
+    else
+    {
+        lina = @"Robot";
+    }
+    
+    if (joannaChoice ==1)
+    {
+        joanna = @"Rock";
+    }
+    else if (joannaChoice == 2)
+    {
+        joanna = @"Paper";
+    }
+    else if(joannaChoice == 3)
+    {
+        joanna = @"Scissors";
+    }
+    else if(joannaChoice == 4)
+    {
+        joanna = @"Unicorn";
+    }
+    else
+    {
+        joanna = @"Robot";
+    }
+    
+        
+    UIAlertView *eventChoiceNow = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Lina: I suggest %@ \n\n Joanna: I suggest %@",lina, joanna] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [eventChoiceNow show];
     [self didPresentAlertView:eventChoiceNow];
 
@@ -1392,8 +1524,6 @@ int playerMe;
         }
     }
 }
-
-
 
 
 -(void)layoutMatch:(GKTurnBasedMatch *)match {
@@ -1599,7 +1729,7 @@ int playerMe;
     NSLog(@"Entering new game...");
     
     
-    // 0= currentScorePlayer1, 1 = currentScorePlayer2, 2= turn, 3 = player1Pick, 4= player2Pick, 5=turnCount, 6=Player1Alias, 7= Player1ID to be replaced with Player2Alias, 8 = Player1PlayerID, 9 = Player1PlayerID to be reaplced with Player2PlayerID, 10 = numberBeforeLast pl1, 11 = lastNumber pl2, 12 = currentNumber pl1, 13 = numberBeforeLast pl2, 14 = lastNumber pl2, 15 = currentNumber pl 2
+    // 0= currentScorePlayer1, 1 = currentScorePlayer2, 2= turn, 3 = player1Pick, 4= player2Pick, 5=turnCount, 6=Player1Alias, 7= Player1ID to be replaced with Player2Alias, 8 = Player1PlayerID, 9 = Player1PlayerID to be reaplced with Player2PlayerID, 10 = numberBeforeLast pl1, 11 = lastNumber pl, 12 = currentNumber pl1, 13 = numberBeforeLast pl2, 14 = lastNumber pl2, 
     
      gameInfoArray = [NSMutableArray arrayWithObjects:[NSNumber numberWithDouble:0],
                                    [NSNumber numberWithDouble:0],
@@ -1611,7 +1741,6 @@ int playerMe;
                                     [[GKLocalPlayer localPlayer] playerID],
                                     [[GKLocalPlayer localPlayer] playerID],
                                     [[GKLocalPlayer localPlayer] playerID],
-                                    [NSNumber numberWithDouble:0],
                                     [NSNumber numberWithDouble:0],
                                     [NSNumber numberWithDouble:0],
                                     [NSNumber numberWithDouble:0],
@@ -1643,6 +1772,9 @@ int playerMe;
 -(void)takeTurn:(GKTurnBasedMatch *)match {
     
     
+    
+    int numberBeforeLastMatch;
+    int lastNumberMatch;
     
     gameInfoArray = [NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
     
@@ -1706,6 +1838,12 @@ int playerMe;
     else 
     {
         NSLog(@"Taking turn for existing game...");
+        
+        
+        int numberBeforeLastLoadP;
+        int lastNumberLoadP;
+        
+        NSMutableDictionary *playerData;
     
         btnRobot.enabled = YES;
         btnPaper.enabled = YES;
@@ -1734,6 +1872,62 @@ int playerMe;
         else
         {
             playerMe = 2;
+            
+            playerData = [self loadPlayersChoiceData:[gameInfoArray objectAtIndex:8]];
+            
+            lastNumberLoadP = [[playerData objectForKey:@"lastNumber"]intValue];
+            numberBeforeLastLoadP = [[playerData objectForKey:@"numberBeforeLast"]intValue];
+            
+            numberBeforeLastMatch = [[gameInfoArray objectAtIndex:10]intValue];
+            lastNumberMatch = [[gameInfoArray objectAtIndex:11]intValue];
+            
+            if (numberBeforeLastMatch == 0)
+            {
+                
+                if (lastNumberMatch == 0)
+                {
+                    //match is in first round check to see if previous playing data exists 
+                    if (numberBeforeLastLoadP != 0)
+                    {
+                        //previous data exists
+                        [self updateLocalPlayerData:[gameInfoArray objectAtIndex:8] :numberBeforeLastLoadP :lastNumberLoadP];
+                    }
+                    else
+                    {
+                        //no previous data exists
+                        [self updateLocalPlayerData:[gameInfoArray objectAtIndex:8] :numberBeforeLastMatch :lastNumberMatch];
+                    }
+                    
+                    
+                }
+                else
+                {
+                    //match is in second round check to see if previous playing data exists
+                    
+                    if (lastNumberLoadP != 0)
+                    {
+                        //previous data exists
+                        [self updateLocalPlayerData:[gameInfoArray objectAtIndex:8] :lastNumberLoadP :lastNumberMatch];
+                    }
+                    else
+                    {
+                        //no previous data exists
+                        [self updateLocalPlayerData:[gameInfoArray objectAtIndex:8] :numberBeforeLastMatch :lastNumberMatch];
+                    }
+                }
+            }
+            else
+            {
+            
+                //updating current and general local opponent player data
+                [self updateLocalPlayerData:[gameInfoArray objectAtIndex:8] :numberBeforeLastMatch :lastNumberMatch];
+            }
+            
+            if (numberBeforeLastMatch != 0)
+            {
+                [self updateLocalPlayerData:@"generalPlayer" :numberBeforeLastMatch :lastNumberMatch];
+            }
+            
         
             lblPlayerName.text = [gameInfoArray objectAtIndex:6];
         
