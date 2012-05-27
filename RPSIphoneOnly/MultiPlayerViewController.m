@@ -1289,9 +1289,6 @@ int joannaChoice;
     int numberBeforeLastLoadG;
     int lastNumberLoadG;
     
-    int numberBeforeLastMatch;
-    int lastNumberMatch;
-    
     //get loaded data
     NSMutableDictionary *playerData;
     NSMutableDictionary *generalPlayerData;
@@ -1305,64 +1302,103 @@ int joannaChoice;
     
     if (playerMe == 1)
     {
+        //player data is up to date
+        playerData = [self loadPlayersChoiceData:[gameInfoArray objectAtIndex:9]];
+        
+        lastNumberLoadP = [[playerData objectForKey:@"lastNumber"]intValue];
+        numberBeforeLastLoadP = [[playerData objectForKey:@"numberBeforeLast"]intValue];
+        
+        
+        //predicting next number lina and joanna
+        
+        //prediction of number only can happen in second round for playerA -> lastnumberloadp always exists
+        
+        
+            
+            if (numberBeforeLastLoadP == 0)
+            {
+                //match is in round 2 and no previous playerB data was stored on device
+                
+                if (lastNumberLoadG == 0)
+                {
+                    //no general player data exists -> random prediction
+                    [self predictNextNumber:[gameInfoArray objectAtIndex:9] :numberBeforeLastLoadP :lastNumberLoadP];
+                    
+                }
+                else
+                {
+                    //general player data exists use half and half
+                    [self predictNextNumber:@"generalPlayer" :lastNumberLoadG :lastNumberLoadP];
+                }
+                
+                
+            }
+            else
+            {
+                //match is further along and data of current match exist, use matchdata numbers for prediction
+                [self predictNextNumber:[gameInfoArray objectAtIndex:9] :numberBeforeLastLoadP :lastNumberLoadP];
+            }
+        
         
     }
     else
     {
+        //player data is up to date
         playerData = [self loadPlayersChoiceData:[gameInfoArray objectAtIndex:8]];
     
         lastNumberLoadP = [[playerData objectForKey:@"lastNumber"]intValue];
         numberBeforeLastLoadP = [[playerData objectForKey:@"numberBeforeLast"]intValue];
         
-        numberBeforeLastMatch = [[gameInfoArray objectAtIndex:10]intValue];
-        lastNumberMatch = [[gameInfoArray objectAtIndex:11]intValue];
         
         //predicting next number lina and joanna
         
-             //match has just started against playerA
-        if (lastNumberMatch == 0)
+             
+        if (lastNumberLoadP == 0)
         {
-            //check to see if any data exists on device for playerA
-            if (lastNumberLoadP == 0)
+            //match has just started against playerA and no previous playerA data existed on device
+            
+            //use general player data for prediction if it exists
+            
+            if (numberBeforeLastLoadG == 0)
             {
-                //check to see if any player data exists on device
-                if (lastNumberLoadP == 0)
-                {
-                    //no data exists anywhere so just put matchdata to get random prediction
-                    [self predictNextNumber:[gameInfoArray objectAtIndex:8] :0 :0];
-                }
-                else
-                {
-                    //some general playing data exist on device
-                    [self predictNextNumber:@"generalPlayer" :numberBeforeLastLoadG :lastNumberLoadG];
-                }
+                //no general player data exists -> random prediction
+                [self predictNextNumber:[gameInfoArray objectAtIndex:8] :numberBeforeLastLoadP :lastNumberLoadP];
+                
             }
             else
             {
-                //some previous playing data exist for player A on device
-                [self predictNextNumber:[gameInfoArray objectAtIndex:8] :numberBeforeLastLoadP :lastNumberLoadP];
+                //general player data exists
+                [self predictNextNumber:@"generalPlayer" :numberBeforeLastLoadG :lastNumberLoadG];
             }
+            
+            
         }
         else
         {
-            if (numberBeforeLastMatch == 0)
+            //match is either in 2.round or had some previous stored data for playerA stored on device
+            
+            if (numberBeforeLastLoadP == 0)
             {
-                //match is in round 2, check to see if previous games have been played against playerA on device
-                if (lastNumberLoadP != 0)
+                //match is in round 2 and no previous playerA data was stored on device
+                
+                if (lastNumberLoadG == 0)
                 {
-                    //use 
-                    [self predictNextNumber:[gameInfoArray objectAtIndex:8]  :lastNumberLoadP :lastNumberMatch];
+                    //no general player data exists -> random prediction
+                    [self predictNextNumber:[gameInfoArray objectAtIndex:8] :numberBeforeLastLoadP :lastNumberLoadP];
+                    
                 }
                 else
                 {
-                    //random prediction
-                    [self predictNextNumber:[gameInfoArray objectAtIndex:8] :0 :0];
+                    //general player data exists use half and half
+                    [self predictNextNumber:@"generalPlayer" :lastNumberLoadG :lastNumberLoadP];
                 }
+                
+                
             }
             else
             {
                 //match is further along and data of current match exist, use mathcdata numbers for prediction
-                [self predictNextNumber:[gameInfoArray objectAtIndex:8] :numberBeforeLastMatch :lastNumberMatch];
+                [self predictNextNumber:[gameInfoArray objectAtIndex:8] :numberBeforeLastLoadP :lastNumberLoadP];
             }
         }
     }
@@ -1498,6 +1534,7 @@ int joannaChoice;
             btnScissors.enabled = NO;
             btnUnicorn.enabled = NO;
             btnRock.enabled = NO;
+            btnAdvice.enabled = NO;
             lblOppScore.text = @"";
             lblUserScore.text = @"";
             lblVS.text = @"";
@@ -1687,6 +1724,7 @@ int joannaChoice;
             btnScissors.enabled = NO;
             btnUnicorn.enabled = NO;
             btnRock.enabled = NO;
+            btnAdvice.enabled = NO;
             
             cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue];
     
@@ -1752,6 +1790,7 @@ int joannaChoice;
     btnScissors.enabled = YES;
     btnUnicorn.enabled = YES;
     btnRock.enabled = YES;
+    btnAdvice.enabled = NO;
     lblOppScore.text = @"000";
     lblUserScore.text = @"000";
     lblStatus.text = @"Please start new game";
@@ -1850,6 +1889,7 @@ int joannaChoice;
         btnScissors.enabled = YES;
         btnUnicorn.enabled = YES;
         btnRock.enabled = YES;
+        btnAdvice.enabled = YES;
         lblStatus.text =@"It's your turn";
     
         GKTurnBasedParticipant *firstParticipant = 
@@ -1858,6 +1898,46 @@ int joannaChoice;
         {
             playerMe = 1;
         
+            playerData = [self loadPlayersChoiceData:[gameInfoArray objectAtIndex:9]];
+            
+            lastNumberLoadP = [[playerData objectForKey:@"lastNumber"]intValue];
+            numberBeforeLastLoadP = [[playerData objectForKey:@"numberBeforeLast"]intValue];
+            
+            numberBeforeLastMatch = [[gameInfoArray objectAtIndex:13]intValue];
+            lastNumberMatch = [[gameInfoArray objectAtIndex:14]intValue];
+            
+            //we are already at least in second round and lastNumberMatch must exist already
+            
+            if (numberBeforeLastMatch == 0)
+            {
+                //round 2
+                //check to see if previous playing data exist to use for numberBeforeLastMatch
+                
+                
+                if (lastNumberLoadP == 0)
+                {
+                    //no previous playerB data exists (0, someNumber)
+                    [self updateLocalPlayerData:[gameInfoArray objectAtIndex:9] :numberBeforeLastMatch :lastNumberMatch];
+                    
+                }
+                else
+                {
+                    //previous playerB data exists, use lastNumberLoadP for numberBeforeLastMatch
+                    [self updateLocalPlayerData:[gameInfoArray objectAtIndex:9] :lastNumberLoadP :lastNumberMatch];
+                    
+                    //updating generalPlayer data on device
+                    [self updateLocalPlayerData:@"generalPlayer" :lastNumberLoadP :lastNumberMatch];
+                    
+                }
+            }
+            else
+            {
+                //game is already further along
+                [self updateLocalPlayerData:[gameInfoArray objectAtIndex:9] :numberBeforeLastMatch :lastNumberMatch];
+                
+                //updating generalPlayer data on device
+                [self updateLocalPlayerData:@"generalPlayer" :numberBeforeLastMatch :lastNumberMatch];
+            }
         
             lblPlayerName.text = [gameInfoArray objectAtIndex:7];
         
@@ -1883,18 +1963,20 @@ int joannaChoice;
             
             if (numberBeforeLastMatch == 0)
             {
+                //match is first or second round
                 
                 if (lastNumberMatch == 0)
                 {
-                    //match is in first round check to see if previous playing data exists 
+                    //match is in first round, check to see if previous playing data exists 
                     if (numberBeforeLastLoadP != 0)
                     {
-                        //previous data exists
+                        //previous playerA data exists on device
                         [self updateLocalPlayerData:[gameInfoArray objectAtIndex:8] :numberBeforeLastLoadP :lastNumberLoadP];
+                        
                     }
                     else
                     {
-                        //no previous data exists
+                        //no previous playerA data exists on device, just update with match data (0,0)
                         [self updateLocalPlayerData:[gameInfoArray objectAtIndex:8] :numberBeforeLastMatch :lastNumberMatch];
                     }
                     
@@ -1902,29 +1984,31 @@ int joannaChoice;
                 }
                 else
                 {
-                    //match is in second round check to see if previous playing data exists
+                    //match is in second round, check to see if previous playing data exists
                     
                     if (lastNumberLoadP != 0)
                     {
-                        //previous data exists
+                        //previous playerA data exists on device
                         [self updateLocalPlayerData:[gameInfoArray objectAtIndex:8] :lastNumberLoadP :lastNumberMatch];
+                        
+                        //updating generalPlayer data on device
+                        [self updateLocalPlayerData:@"generalPlayer" :lastNumberLoadP :lastNumberMatch];
                     }
                     else
                     {
-                        //no previous data exists
+                        //no previous playerA data exists on device (0, someNumber)
                         [self updateLocalPlayerData:[gameInfoArray objectAtIndex:8] :numberBeforeLastMatch :lastNumberMatch];
                     }
                 }
             }
             else
             {
+                //match is further than third round
             
-                //updating current and general local opponent player data
+                //updating current opponent player data
                 [self updateLocalPlayerData:[gameInfoArray objectAtIndex:8] :numberBeforeLastMatch :lastNumberMatch];
-            }
-            
-            if (numberBeforeLastMatch != 0)
-            {
+                
+                //updating generalPlayer data on device
                 [self updateLocalPlayerData:@"generalPlayer" :numberBeforeLastMatch :lastNumberMatch];
             }
             
