@@ -81,7 +81,7 @@ double predictedNum[2] ={4,4};
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"XRPSInterfacebackground2" ofType:@"png" inDirectory:@""];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"XRPS-Interface-background-main" ofType:@"png" inDirectory:@""];
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile:path]]];
     

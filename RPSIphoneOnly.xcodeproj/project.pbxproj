@@ -37,10 +37,10 @@
 		C6965EEB14DCA77400A4A21D /* SingleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6965EE914DCA77400A4A21D /* SingleViewController.m */; };
 		C6965EEC14DCA77400A4A21D /* SingleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6965EEA14DCA77400A4A21D /* SingleViewController.xib */; };
 		C69A231914ED496700CFF477 /* xrps-wp7-f4-2.png in Resources */ = {isa = PBXBuildFile; fileRef = C69A231814ED496700CFF477 /* xrps-wp7-f4-2.png */; };
-		C69A231E14F010EC00CFF477 /* xrps-background2.png in Resources */ = {isa = PBXBuildFile; fileRef = C69A231D14F010EC00CFF477 /* xrps-background2.png */; };
-		C69A232014F06E7C00CFF477 /* XRPSInterfacebackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = C69A231F14F06E7C00CFF477 /* XRPSInterfacebackground2.png */; };
 		C6A332B214E828BA0026C51E /* tempRobotButton.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C6A332B114E828BA0026C51E /* tempRobotButton.jpg */; };
-		C6ABD05114DF8C1800AB6970 /* testBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C6ABD05014DF8C1800AB6970 /* testBackground.jpg */; };
+		C6A812161572CCC9008B0B21 /* XRPS-Interface-background-main.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A812151572CCC9008B0B21 /* XRPS-Interface-background-main.png */; };
+		C6A812181572CCE3008B0B21 /* XRPS-Interface-background-home.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A812171572CCE3008B0B21 /* XRPS-Interface-background-home.png */; };
+		C6A8121B1572D41B008B0B21 /* RulesPage2.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A8121A1572D41B008B0B21 /* RulesPage2.m */; };
 		C6AC9327155F1C5F005D81B2 /* xrps-rulespage1.png in Resources */ = {isa = PBXBuildFile; fileRef = C6AC9326155F1C5F005D81B2 /* xrps-rulespage1.png */; };
 		C6AC932915652153005D81B2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6AC932815652152005D81B2 /* SystemConfiguration.framework */; };
 		C6AC932F1568425E005D81B2 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C6AC932E1568425E005D81B2 /* Reachability.m */; };
@@ -50,7 +50,6 @@
 		C6AC9337156D9036005D81B2 /* GI - button-v2-3.png in Resources */ = {isa = PBXBuildFile; fileRef = C6AC9335156D9035005D81B2 /* GI - button-v2-3.png */; };
 		C6AF4EB3154E032B00B94D81 /* xrps-rulespage.png in Resources */ = {isa = PBXBuildFile; fileRef = C6AF4EB2154E032A00B94D81 /* xrps-rulespage.png */; };
 		C6AF4EB8154E06B700B94D81 /* RulesPage1.m in Sources */ = {isa = PBXBuildFile; fileRef = C6AF4EB6154E06AB00B94D81 /* RulesPage1.m */; };
-		C6AF4EB9154E06B700B94D81 /* RulesPage1.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6AF4EB7154E06B600B94D81 /* RulesPage1.xib */; };
 		C6AF4EDC1553406000B94D81 /* GI- Display - Unicorn.png in Resources */ = {isa = PBXBuildFile; fileRef = C6AF4EDB1553406000B94D81 /* GI- Display - Unicorn.png */; };
 		C6AF4EDF1553408300B94D81 /* GI- Display - Scissors.png in Resources */ = {isa = PBXBuildFile; fileRef = C6AF4EDE1553408300B94D81 /* GI- Display - Scissors.png */; };
 		C6AF4EE11553409200B94D81 /* GI- Display - Robot (FINAL).png in Resources */ = {isa = PBXBuildFile; fileRef = C6AF4EE01553409200B94D81 /* GI- Display - Robot (FINAL).png */; };
@@ -113,10 +112,11 @@
 		C6965EE914DCA77400A4A21D /* SingleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleViewController.m; sourceTree = "<group>"; };
 		C6965EEA14DCA77400A4A21D /* SingleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingleViewController.xib; sourceTree = "<group>"; };
 		C69A231814ED496700CFF477 /* xrps-wp7-f4-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "xrps-wp7-f4-2.png"; path = "../../../../Dropbox/Mobile Apps/RPS Interface/win 7 images/xrps-wp7-f4-2.png"; sourceTree = "<group>"; };
-		C69A231D14F010EC00CFF477 /* xrps-background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "xrps-background2.png"; path = "../../../../Downloads/xrps-background2.png"; sourceTree = "<group>"; };
-		C69A231F14F06E7C00CFF477 /* XRPSInterfacebackground2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = XRPSInterfacebackground2.png; path = ../../../../Downloads/XRPSInterfacebackground2.png; sourceTree = "<group>"; };
 		C6A332B114E828BA0026C51E /* tempRobotButton.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = tempRobotButton.jpg; path = ../../../IphoneRPSScreenshots/tempRobotButton.jpg; sourceTree = "<group>"; };
-		C6ABD05014DF8C1800AB6970 /* testBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = testBackground.jpg; sourceTree = "<group>"; };
+		C6A812151572CCC9008B0B21 /* XRPS-Interface-background-main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "XRPS-Interface-background-main.png"; sourceTree = "<group>"; };
+		C6A812171572CCE3008B0B21 /* XRPS-Interface-background-home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "XRPS-Interface-background-home.png"; sourceTree = "<group>"; };
+		C6A812191572D41B008B0B21 /* RulesPage2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RulesPage2.h; sourceTree = "<group>"; };
+		C6A8121A1572D41B008B0B21 /* RulesPage2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RulesPage2.m; sourceTree = "<group>"; };
 		C6AC9326155F1C5F005D81B2 /* xrps-rulespage1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "xrps-rulespage1.png"; path = "../../../../Downloads/xrps-rulespage1.png"; sourceTree = "<group>"; };
 		C6AC932815652152005D81B2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C6AC932D1568425E005D81B2 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -129,7 +129,6 @@
 		C6AF4EB2154E032A00B94D81 /* xrps-rulespage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "xrps-rulespage.png"; path = "../../../../Downloads/xrps-rulespage.png"; sourceTree = "<group>"; };
 		C6AF4EB5154E06A900B94D81 /* RulesPage1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RulesPage1.h; sourceTree = "<group>"; };
 		C6AF4EB6154E06AB00B94D81 /* RulesPage1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RulesPage1.m; sourceTree = "<group>"; };
-		C6AF4EB7154E06B600B94D81 /* RulesPage1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RulesPage1.xib; sourceTree = "<group>"; };
 		C6AF4EDB1553406000B94D81 /* GI- Display - Unicorn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GI- Display - Unicorn.png"; sourceTree = "<group>"; };
 		C6AF4EDE1553408300B94D81 /* GI- Display - Scissors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GI- Display - Scissors.png"; sourceTree = "<group>"; };
 		C6AF4EE01553409200B94D81 /* GI- Display - Robot (FINAL).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GI- Display - Robot (FINAL).png"; sourceTree = "<group>"; };
@@ -213,11 +212,10 @@
 				C6965E9C14DC995700A4A21D /* Supporting Files */,
 				C6965ECF14DC9F4F00A4A21D /* paper 2_finalise - android (48x48)no bg.png */,
 				C6965ED114DC9F6300A4A21D /* paper2_finalise-android(78x78)nobg.png */,
-				C6ABD05014DF8C1800AB6970 /* testBackground.jpg */,
 				C6AF4EB2154E032A00B94D81 /* xrps-rulespage.png */,
 				C6AC9326155F1C5F005D81B2 /* xrps-rulespage1.png */,
-				C69A231D14F010EC00CFF477 /* xrps-background2.png */,
-				C69A231F14F06E7C00CFF477 /* XRPSInterfacebackground2.png */,
+				C6A812151572CCC9008B0B21 /* XRPS-Interface-background-main.png */,
+				C6A812171572CCE3008B0B21 /* XRPS-Interface-background-home.png */,
 				C6B463B114F1E9070097F1A7 /* XRPSInterfacebackground3.png */,
 				C69A231814ED496700CFF477 /* xrps-wp7-f4-2.png */,
 				C6AF4EDB1553406000B94D81 /* GI- Display - Unicorn.png */,
@@ -266,9 +264,10 @@
 				C6965EA314DC995700A4A21D /* RPSIphoneOnly-Prefix.pch */,
 				C6AF4EB5154E06A900B94D81 /* RulesPage1.h */,
 				C6AF4EB6154E06AB00B94D81 /* RulesPage1.m */,
-				C6AF4EB7154E06B600B94D81 /* RulesPage1.xib */,
 				C6AC932D1568425E005D81B2 /* Reachability.h */,
 				C6AC932E1568425E005D81B2 /* Reachability.m */,
+				C6A812191572D41B008B0B21 /* RulesPage2.h */,
+				C6A8121A1572D41B008B0B21 /* RulesPage2.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -377,15 +376,11 @@
 				C6965EE214DC9FF100A4A21D /* unicorn3_finalise-android(78x78)nobg.png in Resources */,
 				C6965EEC14DCA77400A4A21D /* SingleViewController.xib in Resources */,
 				C6E73B1F14DDDD12007E48F2 /* ModeViewController.xib in Resources */,
-				C6ABD05114DF8C1800AB6970 /* testBackground.jpg in Resources */,
 				C690C96F14E5EA83000BB787 /* MultiPlayerViewController.xib in Resources */,
 				C6A332B214E828BA0026C51E /* tempRobotButton.jpg in Resources */,
 				C69A231914ED496700CFF477 /* xrps-wp7-f4-2.png in Resources */,
-				C69A231E14F010EC00CFF477 /* xrps-background2.png in Resources */,
-				C69A232014F06E7C00CFF477 /* XRPSInterfacebackground2.png in Resources */,
 				C6B463B214F1E9070097F1A7 /* XRPSInterfacebackground3.png in Resources */,
 				C6AF4EB3154E032B00B94D81 /* xrps-rulespage.png in Resources */,
-				C6AF4EB9154E06B700B94D81 /* RulesPage1.xib in Resources */,
 				C6AF4EDC1553406000B94D81 /* GI- Display - Unicorn.png in Resources */,
 				C6AF4EDF1553408300B94D81 /* GI- Display - Scissors.png in Resources */,
 				C6AF4EE11553409200B94D81 /* GI- Display - Robot (FINAL).png in Resources */,
@@ -397,6 +392,8 @@
 				C6AC9333156A33C0005D81B2 /* GI - button-v2-1.png in Resources */,
 				C6AC9336156D9036005D81B2 /* GI - button-v2-2.png in Resources */,
 				C6AC9337156D9036005D81B2 /* GI - button-v2-3.png in Resources */,
+				C6A812161572CCC9008B0B21 /* XRPS-Interface-background-main.png in Resources */,
+				C6A812181572CCE3008B0B21 /* XRPS-Interface-background-home.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +438,7 @@
 				C690C96E14E5EA83000BB787 /* MultiPlayerViewController.m in Sources */,
 				C6AF4EB8154E06B700B94D81 /* RulesPage1.m in Sources */,
 				C6AC932F1568425E005D81B2 /* Reachability.m in Sources */,
+				C6A8121B1572D41B008B0B21 /* RulesPage2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

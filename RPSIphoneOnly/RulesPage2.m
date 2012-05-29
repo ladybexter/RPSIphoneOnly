@@ -1,16 +1,14 @@
 //
-//  ModeViewController.m
+//  RulesPage2.m
 //  RPSIphoneOnly
 //
-//  Created by student student on 04/02/2012.
+//  Created by student student on 27/05/2012.
 //  Copyright (c) 2012 UoP. All rights reserved.
 //
 
-#import "ModeViewController.h"
-#import "AppDelegate.h"
+#import "RulesPage2.h"
 
-@implementation ModeViewController
-
+@implementation RulesPage2
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,12 +33,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
-    
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"XRPS-Interface-background-home" ofType:@"png" inDirectory:@""];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"xrps-rulespage1" ofType:@"png" inDirectory:@""];
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile:path]]];
-    
 }
 
 - (void)viewDidUnload
@@ -56,14 +51,4 @@
 	return interfaceOrientation == UIInterfaceOrientationLandscapeRight;
 }
 
-- (IBAction)btnEasyMode:(id)sender {
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate.mode setString:@"1"];
-     
-}
-
-- (IBAction)btnIntenseMode:(id)sender {   
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate.mode setString:@"2"];
-}
 @end

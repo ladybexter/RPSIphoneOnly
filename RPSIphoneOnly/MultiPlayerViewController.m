@@ -93,7 +93,7 @@ int joannaChoice;
     lblStatus.text = @"Please press Game Center to get started";
     lblRound.text = @"";
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"XRPSInterfacebackground3" ofType:@"png" inDirectory:@""];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"XRPS-Interface-background-main" ofType:@"png" inDirectory:@""];
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile:path]]];
     
@@ -284,6 +284,14 @@ int joannaChoice;
     
     [data writeToFile: path atomically:YES];
     
+    
+    if ([data writeToFile: path atomically:YES]) {
+         NSLog(@"new plist created");
+    } else {
+        
+        NSLog(@"couldn't write to new plist");
+    }
+    
 }
 
 
@@ -351,11 +359,13 @@ int joannaChoice;
     [updatedPlayerData setObject:actionArrayNS1 forKey:@"actionArray"];
     [updatedPlayerData setObject:predictedNumNS1 forKey:@"predictedNum"];
     [updatedPlayerData setObject:weightsConditionActionArrayNS1 forKey:@"weightsConditionActionArray"];
-    [updatedPlayerData setObject:[NSNumber numberWithInt:0] forKey:@"lastNumber"];
-    [updatedPlayerData setObject:[NSNumber numberWithInt:0] forKey:@"numberBeforeLast"];
-    [updatedPlayerData setObject:[NSNumber numberWithInt:0] forKey:@"numberOfGamesPlayed"];
+    [updatedPlayerData setObject:[NSNumber numberWithInt:lastNumberG] forKey:@"lastNumber"];
+    [updatedPlayerData setObject:[NSNumber numberWithInt:numberBeforeLastG] forKey:@"numberBeforeLast"];
+    [updatedPlayerData setObject:[NSNumber numberWithInt:numberOfGamesPlayed] forKey:@"numberOfGamesPlayed"];
     
     [self savePlayerDataLocally:updatedPlayerData :Playername];
+    
+    
 }
 
 
@@ -1086,6 +1096,7 @@ int joannaChoice;
         btnScissors.enabled = NO;
         btnUnicorn.enabled = NO;
         btnRock.enabled = NO;
+        btnAdvice.enabled = NO;
         
             GKTurnBasedParticipant *firstPlayer;
             firstPlayer = 
@@ -1145,6 +1156,7 @@ int joannaChoice;
                                                        btnScissors.enabled = NO;
                                                        btnUnicorn.enabled = NO;
                                                        btnRock.enabled = NO;
+                                                       btnAdvice.enabled = NO;
                                                    }
                                                }];
                 
@@ -1182,6 +1194,7 @@ int joannaChoice;
                                                btnScissors.enabled = NO;
                                                btnUnicorn.enabled = NO;
                                                btnRock.enabled = NO;
+                                               btnAdvice.enabled = NO;
                                            }
                                        }];
         
