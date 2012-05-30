@@ -270,6 +270,8 @@ int joannaChoice;
     {
         // If the file exists, read dictionary from file
         data = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
+        
+        NSLog(@"%@",data);
     }
     else
     {
@@ -295,7 +297,7 @@ int joannaChoice;
 }
 
 
--(void)updateLocalPlayerData:(NSString *)Playername:(int)numberBeforeLastG: (int)lastNumberG
+-(void)updateLocalPlayerData:(NSString *)Playername:(int)numberBeforeLastG: (int)lastNumberG:(NSMutableDictionary *)data
 {
     int numberOfGamesPlayed;
     
@@ -305,20 +307,15 @@ int joannaChoice;
     double weightsConditionActionArray[2] = { 0.5, 0.5 };
     double predictedNum[2] ={4,4};
     
-    //get loaded data
-    NSMutableDictionary *loadedPlayerData;
-    loadedPlayerData = [self loadPlayersChoiceData:Playername];
-    
-    
     NSMutableArray *conditionalArrayNS1 = [NSMutableArray arrayWithCapacity:25]; 
-    conditionalArrayNS1 = [loadedPlayerData objectForKey:@"conditionalArray"];
+    conditionalArrayNS1 = [data objectForKey:@"conditionalArray"];
     NSMutableArray *actionArrayNS1 = [NSMutableArray arrayWithCapacity:5]; 
-    actionArrayNS1 = [loadedPlayerData objectForKey:@"actionArray"];
+    actionArrayNS1 = [data objectForKey:@"actionArray"];
     NSMutableArray *predictedNumNS1 = [NSMutableArray arrayWithCapacity:2];
-    predictedNumNS1 = [loadedPlayerData objectForKey:@"predictedNum" ];
+    predictedNumNS1 = [data objectForKey:@"predictedNum" ];
     NSMutableArray *weightsConditionActionArrayNS1 = [NSMutableArray arrayWithCapacity:2];
-    weightsConditionActionArrayNS1 = [loadedPlayerData objectForKey:@"weightsConditionActionArray"];
-    numberOfGamesPlayed = [[loadedPlayerData objectForKey:@"numberOfGamesPlayed"]intValue];
+    weightsConditionActionArrayNS1 = [data objectForKey:@"weightsConditionActionArray"];
+    numberOfGamesPlayed = [[data objectForKey:@"numberOfGamesPlayed"]intValue];
     
     
     
@@ -370,7 +367,7 @@ int joannaChoice;
 
 
 
--(void)predictNextNumber:(NSString *)Playername: (int)numberBeforeLastG: (int)lastNumberG
+-(void)predictNextNumber:(int)numberBeforeLastG: (int)lastNumberG :(NSMutableDictionary *)loadedPlayerData
 {
     int numberOfGamesPlayed;
     
@@ -380,10 +377,6 @@ int joannaChoice;
     double weightsConditionActionArray[2] = { 0.5, 0.5 };
     double results[2] ={ 1, 1};
     double predictedNum[2] ={4,4};
-    
-    //get loaded data
-     NSMutableDictionary *loadedPlayerData;
-    loadedPlayerData = [self loadPlayersChoiceData:Playername];
     
     
     NSMutableArray *conditionalArrayNS1 = [NSMutableArray arrayWithCapacity:25]; 
@@ -421,10 +414,7 @@ int joannaChoice;
         
         linaChoice = (int)results[0];
         
-        joannaChoice = (int)results[1];
-         
-        predictedNum[0] = results[0];
-        predictedNum[1] = results[1];        
+        joannaChoice = (int)results[1];  
     }
     
     
@@ -1293,6 +1283,7 @@ int joannaChoice;
     [self sendTurn];
 }
 
+
 - (IBAction)btnAIAdvice:(id)sender {
     
     
@@ -1335,13 +1326,13 @@ int joannaChoice;
                 if (lastNumberLoadG == 0)
                 {
                     //no general player data exists -> random prediction
-                    [self predictNextNumber:[gameInfoArray objectAtIndex:9] :numberBeforeLastLoadP :lastNumberLoadP];
+                    [self predictNextNumber:numberBeforeLastLoadP :lastNumberLoadP:playerData];
                     
                 }
                 else
                 {
                     //general player data exists use half and half
-                    [self predictNextNumber:@"generalPlayer" :lastNumberLoadG :lastNumberLoadP];
+                    [self predictNextNumber:lastNumberLoadG :lastNumberLoadP:generalPlayerData];
                 }
                 
                 
@@ -1349,7 +1340,7 @@ int joannaChoice;
             else
             {
                 //match is further along and data of current match exist, use matchdata numbers for prediction
-                [self predictNextNumber:[gameInfoArray objectAtIndex:9] :numberBeforeLastLoadP :lastNumberLoadP];
+                [self predictNextNumber:numberBeforeLastLoadP :lastNumberLoadP:playerData];
             }
         
         
@@ -1375,13 +1366,13 @@ int joannaChoice;
             if (numberBeforeLastLoadG == 0)
             {
                 //no general player data exists -> random prediction
-                [self predictNextNumber:[gameInfoArray objectAtIndex:8] :numberBeforeLastLoadP :lastNumberLoadP];
+                [self predictNextNumber:numberBeforeLastLoadP :lastNumberLoadP:playerData];
                 
             }
             else
             {
                 //general player data exists
-                [self predictNextNumber:@"generalPlayer" :numberBeforeLastLoadG :lastNumberLoadG];
+                [self predictNextNumber:numberBeforeLastLoadG :lastNumberLoadG:generalPlayerData];
             }
             
             
@@ -1397,13 +1388,13 @@ int joannaChoice;
                 if (lastNumberLoadG == 0)
                 {
                     //no general player data exists -> random prediction
-                    [self predictNextNumber:[gameInfoArray objectAtIndex:8] :numberBeforeLastLoadP :lastNumberLoadP];
+                    [self predictNextNumber:numberBeforeLastLoadP :lastNumberLoadP:playerData];
                     
                 }
                 else
                 {
                     //general player data exists use half and half
-                    [self predictNextNumber:@"generalPlayer" :lastNumberLoadG :lastNumberLoadP];
+                    [self predictNextNumber:lastNumberLoadG :lastNumberLoadP:generalPlayerData];
                 }
                 
                 
@@ -1411,7 +1402,7 @@ int joannaChoice;
             else
             {
                 //match is further along and data of current match exist, use mathcdata numbers for prediction
-                [self predictNextNumber:[gameInfoArray objectAtIndex:8] :numberBeforeLastLoadP :lastNumberLoadP];
+                [self predictNextNumber:numberBeforeLastLoadP :lastNumberLoadP:playerData];
             }
         }
     }
@@ -1891,6 +1882,9 @@ int joannaChoice;
     {
         NSLog(@"Taking turn for existing game...");
         
+        NSMutableDictionary *generalPlayerData;
+        
+        generalPlayerData = [self loadPlayersChoiceData:@"generalPlayer"];
         
         int numberBeforeLastLoadP;
         int lastNumberLoadP;
@@ -1904,6 +1898,26 @@ int joannaChoice;
         btnRock.enabled = YES;
         btnAdvice.enabled = YES;
         lblStatus.text =@"It's your turn";
+        
+        
+        //TEMPORARY DELETING PLISTS
+        //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); //1
+        //NSString *documentsDirectory = [paths objectAtIndex:0]; //2
+        //NSString *path = [documentsDirectory stringByAppendingPathComponent:@"PlayersChoices.plist"];
+        
+        //NSFileManager * fileManager = [NSFileManager defaultManager];
+        
+        //if ([fileManager isDeletableFileAtPath:path])
+        //{
+          //  NSLog(@"deletable plist");
+        //}
+        
+        //if([fileManager fileExistsAtPath:path]) {
+          //  if ([fileManager removeItemAtPath:path error:nil])
+            //{
+            //NSLog(@"file removed");
+            //}
+        //}
     
         GKTurnBasedParticipant *firstParticipant = 
         [match.participants objectAtIndex:0];
@@ -1921,6 +1935,8 @@ int joannaChoice;
             
             //we are already at least in second round and lastNumberMatch must exist already
             
+        
+            
             if (numberBeforeLastMatch == 0)
             {
                 //round 2
@@ -1930,26 +1946,26 @@ int joannaChoice;
                 if (lastNumberLoadP == 0)
                 {
                     //no previous playerB data exists (0, someNumber)
-                    [self updateLocalPlayerData:[gameInfoArray objectAtIndex:9] :numberBeforeLastMatch :lastNumberMatch];
+                    [self updateLocalPlayerData:[gameInfoArray objectAtIndex:9] :numberBeforeLastMatch :lastNumberMatch: playerData];
                     
                 }
                 else
                 {
                     //previous playerB data exists, use lastNumberLoadP for numberBeforeLastMatch
-                    [self updateLocalPlayerData:[gameInfoArray objectAtIndex:9] :lastNumberLoadP :lastNumberMatch];
+                    [self updateLocalPlayerData:[gameInfoArray objectAtIndex:9] :lastNumberLoadP :lastNumberMatch:playerData];
                     
                     //updating generalPlayer data on device
-                    [self updateLocalPlayerData:@"generalPlayer" :lastNumberLoadP :lastNumberMatch];
+                    [self updateLocalPlayerData:@"generalPlayer" :lastNumberLoadP :lastNumberMatch:generalPlayerData];
                     
                 }
             }
             else
             {
                 //game is already further along
-                [self updateLocalPlayerData:[gameInfoArray objectAtIndex:9] :numberBeforeLastMatch :lastNumberMatch];
+                [self updateLocalPlayerData:[gameInfoArray objectAtIndex:9] :numberBeforeLastMatch :lastNumberMatch:playerData];
                 
                 //updating generalPlayer data on device
-                [self updateLocalPlayerData:@"generalPlayer" :numberBeforeLastMatch :lastNumberMatch];
+                [self updateLocalPlayerData:@"generalPlayer" :numberBeforeLastMatch :lastNumberMatch:generalPlayerData];
             }
         
             lblPlayerName.text = [gameInfoArray objectAtIndex:7];
@@ -1984,13 +2000,13 @@ int joannaChoice;
                     if (numberBeforeLastLoadP != 0)
                     {
                         //previous playerA data exists on device
-                        [self updateLocalPlayerData:[gameInfoArray objectAtIndex:8] :numberBeforeLastLoadP :lastNumberLoadP];
+                        [self updateLocalPlayerData:[gameInfoArray objectAtIndex:8] :numberBeforeLastLoadP :lastNumberLoadP:playerData];
                         
                     }
                     else
                     {
                         //no previous playerA data exists on device, just update with match data (0,0)
-                        [self updateLocalPlayerData:[gameInfoArray objectAtIndex:8] :numberBeforeLastMatch :lastNumberMatch];
+                        [self updateLocalPlayerData:[gameInfoArray objectAtIndex:8] :numberBeforeLastMatch :lastNumberMatch:playerData];
                     }
                     
                     
@@ -2002,15 +2018,15 @@ int joannaChoice;
                     if (lastNumberLoadP != 0)
                     {
                         //previous playerA data exists on device
-                        [self updateLocalPlayerData:[gameInfoArray objectAtIndex:8] :lastNumberLoadP :lastNumberMatch];
+                        [self updateLocalPlayerData:[gameInfoArray objectAtIndex:8] :lastNumberLoadP :lastNumberMatch:playerData];
                         
                         //updating generalPlayer data on device
-                        [self updateLocalPlayerData:@"generalPlayer" :lastNumberLoadP :lastNumberMatch];
+                        [self updateLocalPlayerData:@"generalPlayer" :lastNumberLoadP :lastNumberMatch:generalPlayerData];
                     }
                     else
                     {
                         //no previous playerA data exists on device (0, someNumber)
-                        [self updateLocalPlayerData:[gameInfoArray objectAtIndex:8] :numberBeforeLastMatch :lastNumberMatch];
+                        [self updateLocalPlayerData:[gameInfoArray objectAtIndex:8] :numberBeforeLastMatch :lastNumberMatch:playerData];
                     }
                 }
             }
@@ -2019,10 +2035,10 @@ int joannaChoice;
                 //match is further than third round
             
                 //updating current opponent player data
-                [self updateLocalPlayerData:[gameInfoArray objectAtIndex:8] :numberBeforeLastMatch :lastNumberMatch];
+                [self updateLocalPlayerData:[gameInfoArray objectAtIndex:8] :numberBeforeLastMatch :lastNumberMatch:playerData];
                 
                 //updating generalPlayer data on device
-                [self updateLocalPlayerData:@"generalPlayer" :numberBeforeLastMatch :lastNumberMatch];
+                [self updateLocalPlayerData:@"generalPlayer" :numberBeforeLastMatch :lastNumberMatch:generalPlayerData];
             }
             
         
