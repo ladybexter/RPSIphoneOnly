@@ -151,8 +151,11 @@ double predictedNum[2] ={4,4};
     else
     {
         updatingConditionalArray(numberBeforeLast, lastNumber, conditionalArray);
+        
           
         actionLookUp(numberBeforeLast, lastNumber, actionArray);
+        
+        
         
         updateWeightsConActionArray(lastNumber, weightsConditionActionArray, predictedNum , numberOfGamesPlayed);
         

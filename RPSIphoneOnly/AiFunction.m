@@ -14,6 +14,7 @@
 
 void updatingConditionalArray(int numberBeforeLast, int lastNumber, double conditionalArray[])
 {
+    //update conditionalArray .. which element does the user pick after ...  
     if (numberBeforeLast > 0)
     {
         int positionUpdate = 5* (numberBeforeLast - 1) + (lastNumber - 1);
@@ -25,6 +26,7 @@ void actionLookUp(int numberBeforeLast, int lastNumber, double actionArray[])
 {
     if (numberBeforeLast > 0)
     {
+        //actionArray basically gives the elements that can beat the element the user picks most more "power"
         if (lastNumber == 1)
         {
             updatingActionArray(1, 4, 2, 3, actionArray);
@@ -167,6 +169,18 @@ void findPercentages(double row[], double predictedPercentageConditional[])
     }
 }
 
+int findingNumberToBeatPrediction(double randomNumber, int beatObject1, int beatObject2)
+{
+    if (randomNumber < 0.5)
+    {
+        return beatObject1;
+    }
+    else
+    {
+        return beatObject2;
+    }
+}
+
 void partOfConditionalArray(double args[], int startPoint, double partConditional[])
 {
     partConditional[0] = args[startPoint];
@@ -213,7 +227,31 @@ void nextNumberPrediction(int lastNumber, int numberBeforeLast, double condition
         findPercentages(partConditional, predictedPercentageConditional);    
     }
     
-    results[0] = findingNextNumberConditional(drand(0,1), predictedPercentageConditional);
+    //finding next number conditional gets the number that the ai thinks the user will pick next .. we need to now pick an element that will beat it
+    int predictionConditional = findingNextNumberConditional(drand(0,1), predictedPercentageConditional);
+    
+    if (predictionConditional == 1)
+    {
+        results[2]=findingNumberToBeatPrediction(drand(0,1), 5, 2);
+    }
+    else if (predictionConditional == 2)
+    {
+        results[2]=findingNumberToBeatPrediction(drand(0, 1), 4, 3);
+    }
+    else if (predictionConditional == 3)
+    {
+        results[2]=findingNumberToBeatPrediction(drand(0, 1), 4, 1);
+    }
+    else if (predictionConditional == 4)
+    {
+        results[2]=findingNumberToBeatPrediction(drand(0, 1), 5, 1);
+    }
+    else
+    {
+        results[2]=findingNumberToBeatPrediction(drand(0, 1), 2, 3);
+    }
+    
+    //finding next number action gets the number that is most likely gonna beat the element the user will pick
     results[1] = findingNextNumberAction(drand(0,1), actionArray);
 }
 
