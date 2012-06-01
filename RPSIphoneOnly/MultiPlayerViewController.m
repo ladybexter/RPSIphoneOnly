@@ -1901,23 +1901,23 @@ int joannaChoice;
         
         
         //TEMPORARY DELETING PLISTS
-        //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); //1
-        //NSString *documentsDirectory = [paths objectAtIndex:0]; //2
-        //NSString *path = [documentsDirectory stringByAppendingPathComponent:@"PlayersChoices.plist"];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); //1
+        NSString *documentsDirectory = [paths objectAtIndex:0]; //2
+        NSString *path = [documentsDirectory stringByAppendingPathComponent:@"LBScore.plist"];
         
-        //NSFileManager * fileManager = [NSFileManager defaultManager];
+        NSFileManager * fileManager = [NSFileManager defaultManager];
         
-        //if ([fileManager isDeletableFileAtPath:path])
-        //{
-          //  NSLog(@"deletable plist");
-        //}
+        if ([fileManager isDeletableFileAtPath:path])
+        {
+            NSLog(@"deletable plist");
+        }
         
-        //if([fileManager fileExistsAtPath:path]) {
-          //  if ([fileManager removeItemAtPath:path error:nil])
-            //{
-            //NSLog(@"file removed");
-            //}
-        //}
+        if([fileManager fileExistsAtPath:path]) {
+            if ([fileManager removeItemAtPath:path error:nil])
+            {
+            NSLog(@"file removed");
+            }
+        }
     
         GKTurnBasedParticipant *firstParticipant = 
         [match.participants objectAtIndex:0];

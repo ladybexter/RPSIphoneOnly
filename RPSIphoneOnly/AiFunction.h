@@ -30,6 +30,8 @@ void partOfConditionalArray(double args[], int startPoint, double partConditiona
 
 double drand (double low, double high);
 
+int findingNumberToBeatPrediction(double randomNumber, int beatObject1, int beatObject2);
+
 void nextNumberPrediction(int lastNumber, int numberBeforeLast, double conditionalArray[], double actionArray[], double weightsCondActionArray[], double numberOfGamesPlayed, double bothPrevPredictedNum[], double results[]);
 
 @end

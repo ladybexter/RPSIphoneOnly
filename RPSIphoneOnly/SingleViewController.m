@@ -13,6 +13,7 @@
 
 @implementation SingleViewController
 
+@synthesize time;
 @synthesize txtAIMode;
 @synthesize testlabel;
 @synthesize imgUserDisplay;
@@ -26,7 +27,7 @@
 @synthesize txtUserBestConsWin;
 @synthesize txtComputerBestConsWin;
 
-int timerCount = 0;
+int counter;
 int currentNumber = 0;
 int lastNumber = 0;
 int numberBeforeLast = 0;
@@ -150,11 +151,26 @@ double predictedNum[2] ={4,4};
     }
     else
     {
+        for(int i=0; i<25; i++)
+        {
+            printf("oldConditional: %f\n", conditionalArray[i]);
+        }
+        
         updatingConditionalArray(numberBeforeLast, lastNumber, conditionalArray);
+        for(int i=0; i<25; i++)
+        {
+            printf("newConditional: %f\n", conditionalArray[i]);
+        }
         
-          
+        for(int i=0; i<5; i++)
+        {
+            printf("oldAction: %f\n", actionArray[i]);
+        }
         actionLookUp(numberBeforeLast, lastNumber, actionArray);
-        
+        for(int i=0; i<5; i++)
+        {
+            printf("newAction: %f\n", actionArray[i]);
+        }
         
         
         updateWeightsConActionArray(lastNumber, weightsConditionActionArray, predictedNum , numberOfGamesPlayed);
@@ -188,14 +204,12 @@ double predictedNum[2] ={4,4};
     numberOfGamesPlayed = ((int) numberOfGamesPlayed + 1)%50;
     
     // start Timer
-    counter = 0;
-    
+    counter = 0;    
     computerChoiceNS = [NSNumber numberWithInt:computerChoice];
 
     
-    time = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(action:)  userInfo:computerChoiceNS repeats:YES];
+    self.time = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(action:)  userInfo:computerChoiceNS repeats:YES];
     
-    //[self computerDisplay:computerChoice :true];
     
     
 }
@@ -203,12 +217,14 @@ double predictedNum[2] ={4,4};
 
 -(void)action:(NSTimer *)timer {
     computerPick = [computerChoiceNS doubleValue];
+    
 	if(counter < 15){
         counter++;
         int random = (arc4random()%5) + 1;
         [self computerDisplay:random: false];        
     }else{
-        [time invalidate];
+        [timer invalidate];
+        self.time = nil;
         [self computerDisplay:computerPick: true];        
     }
 }
@@ -516,9 +532,20 @@ double predictedNum[2] ={4,4};
     [self displayORHide:1];  
 }
 
+-(void)stopTimerEarly
+{
+    if (counter < 15)
+    {
+        [self.time invalidate];
+        self.time = nil;
+        
+    }
+}
+
 
 - (IBAction)btnRock:(id)sender {    
     
+    [self stopTimerEarly];
        
     numberBeforeLast = lastNumber;
     lastNumber = currentNumber;
@@ -537,6 +564,8 @@ double predictedNum[2] ={4,4};
 
 - (IBAction)btnPaper:(id)sender {
     
+    [self stopTimerEarly];
+    
     numberBeforeLast = lastNumber;
     lastNumber = currentNumber;
     currentNumber = 2;
@@ -549,6 +578,8 @@ double predictedNum[2] ={4,4};
 }
 
 - (IBAction)btnScissors:(id)sender {
+    
+    [self stopTimerEarly];
     
     numberBeforeLast = lastNumber;
     lastNumber = currentNumber;
@@ -563,6 +594,8 @@ double predictedNum[2] ={4,4};
 
 - (IBAction)btnUnicorn:(id)sender {
     
+    [self stopTimerEarly];
+    
     numberBeforeLast = lastNumber;
     lastNumber = currentNumber;
     currentNumber = 4;
@@ -576,6 +609,8 @@ double predictedNum[2] ={4,4};
 
 - (IBAction)btnRobot:(id)sender {
     
+    [self stopTimerEarly];
+    
     numberBeforeLast = lastNumber;
     lastNumber = currentNumber;
     currentNumber = 5;
@@ -588,11 +623,15 @@ double predictedNum[2] ={4,4};
 }
 
 - (IBAction)btnReset:(id)sender {
+    
+    [self stopTimerEarly];
     [self resetThings];
     
        }
 
 - (IBAction)btnHome:(id)sender {
+    
+    [self stopTimerEarly];
     [self resetThings];
 }
 

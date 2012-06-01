@@ -13,7 +13,7 @@
     NSTimer *time;
     int counter;
 }
-
+@property (nonatomic, retain) NSTimer *time;
 @property (weak, nonatomic) IBOutlet UILabel *txtAIMode;
 @property (weak, nonatomic) IBOutlet UILabel *testlabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imgUserDisplay;
