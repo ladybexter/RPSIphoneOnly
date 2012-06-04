@@ -52,10 +52,10 @@ void actionLookUp(int numberBeforeLast, int lastNumber, double actionArray[])
 
 void updatingActionArray(int beatObject1, int beatObject2, int looseObject1, int looseObject2, double actionArray[])
 {
-    actionArray[beatObject1] = actionArray[beatObject1] * 1.45;
-    actionArray[beatObject2] = actionArray[beatObject2]* 1.45;
-    actionArray[looseObject1] = actionArray[looseObject1] * 0.55;
-    actionArray[looseObject2] = actionArray[looseObject2] * 0.55;
+    actionArray[beatObject1] = actionArray[beatObject1] * 1.1;
+    actionArray[beatObject2] = actionArray[beatObject2]* 1.1;
+    actionArray[looseObject1] = actionArray[looseObject1] * 0.9;
+    actionArray[looseObject2] = actionArray[looseObject2] * 0.9;
     
     int u;
     double sum = 0;
@@ -110,14 +110,77 @@ int findingNextNumberAction(double randomNumber, double predictedPercentage[])
     return findingNextNumber(randomNumber, predictedPercentage[0], predictedPercentage[1], predictedPercentage[2], predictedPercentage[3]);
 }
 
+int chooseNumberAfterUserPrediction(double randomNumber, int predictedUserChoice)
+{
+    if (predictedUserChoice ==1)
+    {
+        if (randomNumber <= 0.5)
+        {
+            return 2;
+        }
+        else
+        {
+            return 5;
+        }
+    }
+    else if (predictedUserChoice == 2)
+    {
+        if (randomNumber <= 0.5)
+        {
+            return 3;
+        }
+        else
+        {
+            return 4;
+        }
+    }
+    else if (predictedUserChoice == 3)
+    {
+        if (randomNumber <= 0.5)
+        {
+            return 4;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+    else if (predictedUserChoice == 4)
+    {
+        if (randomNumber <= 0.5)
+        {
+            return 5;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+    else
+    {
+        if (randomNumber <= 0.5)
+        {
+            return 2;
+        }
+        else
+        {
+            return 3;
+        }
+    }
+}
+
 int findingNextNumberConditional(double randomNumber, double predictedPercentage[])
 {
-    double rangeWidth1 = (predictedPercentage[1] + predictedPercentage[4])/2.0;
-    double rangeWidth2 = (predictedPercentage[2] + predictedPercentage[3])/2.0;
-    double rangeWidth3 = (predictedPercentage[0] + predictedPercentage[3]) / 2.0;
-    double rangeWidth4 = (predictedPercentage[0] + predictedPercentage[4])/2.0;
+    double rangeWidth1 = predictedPercentage[0];
+    double rangeWidth2 = predictedPercentage[1];
+    double rangeWidth3 = predictedPercentage[2];
+    double rangeWidth4 = predictedPercentage[3];
     
-    return findingNextNumber(randomNumber, rangeWidth1, rangeWidth2, rangeWidth3, rangeWidth4);
+    int predictedUserChoice = findingNextNumber(randomNumber, rangeWidth1, rangeWidth2, rangeWidth3, rangeWidth4);
+    
+    return chooseNumberAfterUserPrediction(randomNumber, predictedUserChoice);
+    
+    
 }
 
 int findingNextNumber(double randomNumber, double rangeWidth1, double rangeWidth2, double rangeWidth3,double rangeWidth4)
@@ -227,7 +290,7 @@ void nextNumberPrediction(int lastNumber, int numberBeforeLast, double condition
         findPercentages(partConditional, predictedPercentageConditional);    
     }
     
-    //finding next number conditional gets the number that the ai thinks the user will pick next .. we need to now pick an element that will beat it
+    //conditional gets the number opponents most likely to pick (using random number as well) and then uses random number as well to pick which element to pick that will beat it.
     results[0] = findingNextNumberConditional(drand(0,1), predictedPercentageConditional);
     
     //finding next number action gets the number that is most likely gonna beat the element the user will pick

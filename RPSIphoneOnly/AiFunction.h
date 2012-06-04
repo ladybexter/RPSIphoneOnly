@@ -20,6 +20,8 @@ void updateWeightsConActionArray(int lastNumber, double weightsCondActionArray[]
 
 int findingNextNumberAction(double randomNumber, double predictedPercentage[]);
 
+int chooseNumberAfterUserPrediction(double randomNumber, int predictedUserChoice);
+
 int findingNextNumberConditional(double randomNumber, double predictedPercentage[]);
 
 int findingNextNumber(double randomNumber, double rangeWidth1, double rangeWidth2, double rangeWidth3,double rangeWidth4);

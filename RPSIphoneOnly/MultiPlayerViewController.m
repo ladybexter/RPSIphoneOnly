@@ -154,8 +154,11 @@ int joannaChoice;
     
     for (int x=0; x<5;x++)
     {
-        [actionArrayNS addObject:[NSString stringWithFormat:@"%d", 0.2]];       
+        [actionArrayNS addObject:[NSNumber numberWithDouble:0.2]];
+        //[actionArrayNS addObject:[NSString stringWithFormat:@"%d", 0.2]];       
     }
+    
+    NSLog(@"actionArray: %@", actionArrayNS);
     
     NSMutableArray *predictedNumNS = [NSMutableArray arrayWithCapacity:2];
     
@@ -165,8 +168,8 @@ int joannaChoice;
     
     NSMutableArray *weightsConditionActionArrayNS = [NSMutableArray arrayWithCapacity:2];
     
-    [weightsConditionActionArrayNS addObject:[NSString stringWithFormat:@"%d", 0.5]];
-    [weightsConditionActionArrayNS addObject:[NSString stringWithFormat:@"%d", 0.5]];
+    [weightsConditionActionArrayNS addObject:[NSNumber numberWithDouble: 0.5]];
+    [weightsConditionActionArrayNS addObject:[NSNumber numberWithDouble: 0.5]];
     
     [playerData setObject:conditionalArrayNS forKey:@"conditionalArray"];
     [playerData setObject:actionArrayNS forKey:@"actionArray"];
@@ -176,7 +179,10 @@ int joannaChoice;
     [playerData setObject:[NSNumber numberWithInt:0] forKey:@"numberBeforeLast"];
     [playerData setObject:[NSNumber numberWithInt:0] forKey:@"numberOfGamesPlayed"];
     
+    NSLog(@"initial data:%@",playerData);
     return playerData;
+    
+    
 }
 
 
@@ -245,7 +251,7 @@ int joannaChoice;
     {
         if (isDouble == TRUE)
         {
-            [nsArray replaceObjectAtIndex:x withObject:[NSString stringWithFormat:@"%d", originalArray[x]]];
+            [nsArray replaceObjectAtIndex:x withObject:[NSNumber numberWithDouble: originalArray[x]]];
         }
         else
         {
@@ -271,13 +277,16 @@ int joannaChoice;
         // If the file exists, read dictionary from file
         data = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
         
-        NSLog(@"%@",data);
+        
     }
     else
     {
         // If the file doesn’t exist, create an empty dictionary
         data = [[NSMutableDictionary alloc] init];
     }
+    
+    NSLog(@"%@ saving data:%@",PlayersID, playerData);
+    
     
     //And write data:
     
@@ -339,7 +348,7 @@ int joannaChoice;
     
         updateWeightsConActionArray(lastNumberG, weightsConditionActionArray, predictedNum , numberOfGamesPlayed);
     
-        numberOfGamesPlayed = ((int) numberOfGamesPlayed + 1)%50;
+        numberOfGamesPlayed = ((int) numberOfGamesPlayed + 1)%100;
     
         //convert array back to NSArray
         [self convertArrayToNSMutableArray:conditionalArrayNS1:conditionalArray:FALSE];
@@ -1297,9 +1306,9 @@ int joannaChoice;
     NSMutableDictionary *playerData;
     NSMutableDictionary *generalPlayerData;
     
-    
-    
     generalPlayerData = [self loadPlayersChoiceData:@"generalPlayer"];
+    
+    NSLog(@"saved GENERAL data:%@",generalPlayerData);
     
     lastNumberLoadG = [[generalPlayerData objectForKey:@"lastNumber"]intValue];
     numberBeforeLastLoadG = [[generalPlayerData objectForKey:@"numberBeforeLast"]intValue];
@@ -1308,6 +1317,8 @@ int joannaChoice;
     {
         //player data is up to date
         playerData = [self loadPlayersChoiceData:[gameInfoArray objectAtIndex:9]];
+        
+        NSLog(@"%@ saved data:%@",[gameInfoArray objectAtIndex:9], playerData);
         
         lastNumberLoadP = [[playerData objectForKey:@"lastNumber"]intValue];
         numberBeforeLastLoadP = [[playerData objectForKey:@"numberBeforeLast"]intValue];
@@ -1349,6 +1360,8 @@ int joannaChoice;
     {
         //player data is up to date
         playerData = [self loadPlayersChoiceData:[gameInfoArray objectAtIndex:8]];
+        
+        NSLog(@"%@ saved data:%@",[gameInfoArray objectAtIndex:8], playerData);
     
         lastNumberLoadP = [[playerData objectForKey:@"lastNumber"]intValue];
         numberBeforeLastLoadP = [[playerData objectForKey:@"numberBeforeLast"]intValue];
@@ -1469,6 +1482,25 @@ int joannaChoice;
 }
 
 -(BOOL)checkIfOtherPlayerQuit:(int)TakeTurn{
+    
+    //TEMPORARY DELETING PLISTS
+    //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); //1
+    //NSString *documentsDirectory = [paths objectAtIndex:0]; //2
+    //NSString *path = [documentsDirectory stringByAppendingPathComponent:@"PlayersChoices.plist"];
+    
+    //NSFileManager * fileManager = [NSFileManager defaultManager];
+    
+    //if ([fileManager isDeletableFileAtPath:path])
+    //{
+      //NSLog(@"deletable plist");
+    //}
+    
+    //if([fileManager fileExistsAtPath:path]) {
+     //if ([fileManager removeItemAtPath:path error:nil])
+    //{
+      //NSLog(@"file removed");
+    //}
+    //}
     
     GKTurnBasedMatch *currentMatch = 
     [[GCHelper sharedInstance] currentMatch];
@@ -1886,6 +1918,7 @@ int joannaChoice;
         
         generalPlayerData = [self loadPlayersChoiceData:@"generalPlayer"];
         
+        
         int numberBeforeLastLoadP;
         int lastNumberLoadP;
         
@@ -1901,23 +1934,23 @@ int joannaChoice;
         
         
         //TEMPORARY DELETING PLISTS
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); //1
-        NSString *documentsDirectory = [paths objectAtIndex:0]; //2
-        NSString *path = [documentsDirectory stringByAppendingPathComponent:@"LBScore.plist"];
+        //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); //1
+        //NSString *documentsDirectory = [paths objectAtIndex:0]; //2
+        //NSString *path = [documentsDirectory stringByAppendingPathComponent:@"PlayersChoices.plist"];
         
-        NSFileManager * fileManager = [NSFileManager defaultManager];
+        //NSFileManager * fileManager = [NSFileManager defaultManager];
         
-        if ([fileManager isDeletableFileAtPath:path])
-        {
-            NSLog(@"deletable plist");
-        }
+        //if ([fileManager isDeletableFileAtPath:path])
+        //{
+          //  NSLog(@"deletable plist");
+        //}
         
-        if([fileManager fileExistsAtPath:path]) {
-            if ([fileManager removeItemAtPath:path error:nil])
-            {
-            NSLog(@"file removed");
-            }
-        }
+        //if([fileManager fileExistsAtPath:path]) {
+          //  if ([fileManager removeItemAtPath:path error:nil])
+            //{
+              //  NSLog(@"file removed");
+            //}
+        //}
     
         GKTurnBasedParticipant *firstParticipant = 
         [match.participants objectAtIndex:0];
