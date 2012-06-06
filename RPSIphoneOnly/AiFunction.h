@@ -12,7 +12,7 @@
 
 void updatingConditionalArray(int numberBeforeLast, int lastNumber, double conditionalArray[]);
 
-void actionLookUp(int numberBeforeLast, int lastNumber, double actionArray[]);
+void actionLookUp(int lastNumber, double actionArray[]);
 
 void updatingActionArray(int beatObject1, int beatObject2, int looseObject1, int looseObject2, double actionArray[]);
 
@@ -34,6 +34,6 @@ double drand (double low, double high);
 
 int findingNumberToBeatPrediction(double randomNumber, int beatObject1, int beatObject2);
 
-void nextNumberPrediction(int lastNumber, int numberBeforeLast, double conditionalArray[], double actionArray[], double weightsCondActionArray[], double numberOfGamesPlayed, double bothPrevPredictedNum[], double results[]);
+void nextNumberPrediction(int lastNumber, double conditionalArray[], double actionArray[],double results[]);
 
 @end

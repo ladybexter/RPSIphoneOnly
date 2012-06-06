@@ -22,10 +22,8 @@ void updatingConditionalArray(int numberBeforeLast, int lastNumber, double condi
     }
 }
 
-void actionLookUp(int numberBeforeLast, int lastNumber, double actionArray[])
+void actionLookUp(int lastNumber, double actionArray[])
 {
-    if (numberBeforeLast > 0)
-    {
         //actionArray basically gives the elements that can beat the element the user picks most more "power"
         if (lastNumber == 1)
         {
@@ -47,7 +45,7 @@ void actionLookUp(int numberBeforeLast, int lastNumber, double actionArray[])
         {
             updatingActionArray(1, 2, 0, 3, actionArray);
         }
-    }
+    
 }
 
 void updatingActionArray(int beatObject1, int beatObject2, int looseObject1, int looseObject2, double actionArray[])
@@ -258,7 +256,7 @@ double drand (double low, double high)
     return ((double)rand() * (high - low))/(double)RAND_MAX + low;
 }
 
-void nextNumberPrediction(int lastNumber, int numberBeforeLast, double conditionalArray[], double actionArray[], double weightsCondActionArray[], double numberOfGamesPlayed, double bothPrevPredictedNum[], double results[])
+void nextNumberPrediction(int lastNumber, double conditionalArray[], double actionArray[], double results[])
 {
     double partConditional[5];
     

@@ -50,8 +50,6 @@ int consecutiveScoreDifference;
 
 double conditionalArray[25] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 double actionArray[5] = { 0.2, 0.2, 0.2, 0.2, 0.2 };
-double weightsConditionActionArray[2] = { 0.5, 0.5 };
-int bothPrevPredictedNum[2] = { 0, 0 };
 double results[2] ={ 1, 1};
 double predictedNum[2] ={4,4};
 
@@ -166,16 +164,13 @@ double predictedNum[2] ={4,4};
         {
             printf("oldAction: %f\n", actionArray[i]);
         }
-        actionLookUp(numberBeforeLast, lastNumber, actionArray);
+        actionLookUp(lastNumber, actionArray);
         for(int i=0; i<5; i++)
         {
             printf("newAction: %f\n", actionArray[i]);
         }
-        
-        
-        updateWeightsConActionArray(lastNumber, weightsConditionActionArray, predictedNum , numberOfGamesPlayed);
-        
-        nextNumberPrediction(lastNumber, numberBeforeLast, conditionalArray, actionArray, weightsConditionActionArray, numberOfGamesPlayed, predictedNum, results);
+
+        nextNumberPrediction(lastNumber, conditionalArray, actionArray,results);
         
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         
@@ -518,10 +513,6 @@ double predictedNum[2] ={4,4};
     }
     
     
-    weightsConditionActionArray[0] = 0.5;   
-    weightsConditionActionArray[1] = 0.5;
-    bothPrevPredictedNum[0] = 0;
-    bothPrevPredictedNum[1] = 0;
     results[0] = 1;
     results[1] = 1;
     predictedNum[0] = 4;
