@@ -201,7 +201,7 @@ double predictedNum[2] ={4,4};
         predictedNum[1] = results[1];        
     }
     
-    numberOfGamesPlayed = ((int) numberOfGamesPlayed + 1)%50;
+    numberOfGamesPlayed = ((int) numberOfGamesPlayed + 1)%100;
     
     // start Timer
     counter = 0;    

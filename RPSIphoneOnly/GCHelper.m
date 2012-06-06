@@ -82,7 +82,8 @@ static GCHelper *sharedHelper = nil;
     if ([GKLocalPlayer localPlayer].authenticated == NO) {     
         [[GKLocalPlayer localPlayer] 
          authenticateWithCompletionHandler:
-         setGKEventHandlerDelegate];        
+         setGKEventHandlerDelegate]; 
+        
     } else {
         NSLog(@"Already authenticated!");
         setGKEventHandlerDelegate(nil);
@@ -90,6 +91,7 @@ static GCHelper *sharedHelper = nil;
     }
     
 }
+
 
 - (void)findMatchWithMinPlayers:(int)minPlayers 
                      maxPlayers:(int)maxPlayers 
@@ -175,6 +177,8 @@ static GCHelper *sharedHelper = nil;
 }
 
 #pragma mark GKTurnBasedEventHandlerDelegate
+
+
 
 -(void)handleInviteFromGameCenter:(NSArray *)playersToInvite {
     [presentingViewController 

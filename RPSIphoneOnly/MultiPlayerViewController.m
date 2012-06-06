@@ -176,7 +176,6 @@ int joannaChoice;
     [playerData setObject:predictedNumNS forKey:@"predictedNum"];
     [playerData setObject:weightsConditionActionArrayNS forKey:@"weightsConditionActionArray"];
     [playerData setObject:[NSNumber numberWithInt:0] forKey:@"lastNumber"];
-    [playerData setObject:[NSNumber numberWithInt:0] forKey:@"numberBeforeLast"];
     [playerData setObject:[NSNumber numberWithInt:0] forKey:@"numberOfGamesPlayed"];
     
     NSLog(@"initial data:%@",playerData);
@@ -331,7 +330,7 @@ int joannaChoice;
     if (lastNumberG == 0) 
     {
         //only update games count
-        numberOfGamesPlayed = ((int) numberOfGamesPlayed + 1)%50;
+        numberOfGamesPlayed = ((int) numberOfGamesPlayed + 1);
     }
     else
     {
@@ -348,7 +347,7 @@ int joannaChoice;
     
         updateWeightsConActionArray(lastNumberG, weightsConditionActionArray, predictedNum , numberOfGamesPlayed);
     
-        numberOfGamesPlayed = ((int) numberOfGamesPlayed + 1)%100;
+        numberOfGamesPlayed = ((int) numberOfGamesPlayed + 1);
     
         //convert array back to NSArray
         [self convertArrayToNSMutableArray:conditionalArrayNS1:conditionalArray:FALSE];
@@ -366,7 +365,6 @@ int joannaChoice;
     [updatedPlayerData setObject:predictedNumNS1 forKey:@"predictedNum"];
     [updatedPlayerData setObject:weightsConditionActionArrayNS1 forKey:@"weightsConditionActionArray"];
     [updatedPlayerData setObject:[NSNumber numberWithInt:lastNumberG] forKey:@"lastNumber"];
-    [updatedPlayerData setObject:[NSNumber numberWithInt:numberBeforeLastG] forKey:@"numberBeforeLast"];
     [updatedPlayerData setObject:[NSNumber numberWithInt:numberOfGamesPlayed] forKey:@"numberOfGamesPlayed"];
     
     [self savePlayerDataLocally:updatedPlayerData :Playername];
@@ -376,7 +374,7 @@ int joannaChoice;
 
 
 
--(void)predictNextNumber:(int)numberBeforeLastG: (int)lastNumberG :(NSMutableDictionary *)loadedPlayerData
+-(void)predictNextNumber:(int)lastNumberG :(NSMutableDictionary *)loadedPlayerData
 {
     int numberOfGamesPlayed;
     
@@ -409,7 +407,7 @@ int joannaChoice;
     //if no games have been played then no data will be available for the computer to make an estimate from
     // for the first game the computer will make a random estimation
     // for the rest of the time the computer will take users past choices to prect the next action
-    if (numberBeforeLastG == 0)
+    if (lastNumberG == 0)
     {
         int r = (arc4random()%5) + 1;
         linaChoice = r;
@@ -418,7 +416,7 @@ int joannaChoice;
     }
     else
     {
-        nextNumberPrediction(lastNumberG, numberBeforeLastG, conditionalArray, actionArray, weightsConditionActionArray, numberOfGamesPlayed, predictedNum, results);
+        nextNumberPrediction(lastNumberG, conditionalArray, actionArray, weightsConditionActionArray, numberOfGamesPlayed, predictedNum, results);
         
         
         linaChoice = (int)results[0];
@@ -1255,6 +1253,8 @@ int joannaChoice;
     }
 }
 
+
+
 - (IBAction)btnPaper:(id)sender {
     
     [self setRightNumbers:2];
@@ -1295,12 +1295,14 @@ int joannaChoice;
 
 - (IBAction)btnAIAdvice:(id)sender {
     
+    int numberBeforeLastMatch;
+    int lastNumberMatch;
     
-    int numberBeforeLastLoadP;
     int lastNumberLoadP;
+    int numberOfGamesPlayedP;
     
-    int numberBeforeLastLoadG;
     int lastNumberLoadG;
+    int numberOfGamesPlayedG;
     
     //get loaded data
     NSMutableDictionary *playerData;
@@ -1311,7 +1313,10 @@ int joannaChoice;
     NSLog(@"saved GENERAL data:%@",generalPlayerData);
     
     lastNumberLoadG = [[generalPlayerData objectForKey:@"lastNumber"]intValue];
-    numberBeforeLastLoadG = [[generalPlayerData objectForKey:@"numberBeforeLast"]intValue];
+    numberOfGamesPlayedG = [[generalPlayerData objectForKey:@"numberOfGamesPlayed"]intValue];
+    
+    numberBeforeLastMatch = [[gameInfoArray objectAtIndex:13]intValue];
+    lastNumberMatch = [[gameInfoArray objectAtIndex:14]intValue];
     
     if (playerMe == 1)
     {
@@ -1321,38 +1326,52 @@ int joannaChoice;
         NSLog(@"%@ saved data:%@",[gameInfoArray objectAtIndex:9], playerData);
         
         lastNumberLoadP = [[playerData objectForKey:@"lastNumber"]intValue];
-        numberBeforeLastLoadP = [[playerData objectForKey:@"numberBeforeLast"]intValue];
+        numberOfGamesPlayedP = [[playerData objectForKey:@"numberOfGamesPlayed"]intValue];
         
         
         //predicting next number lina and joanna
         
-        //prediction of number only can happen in second round for playerA -> lastnumberloadp always exists
+        //prediction of number only can happen in second round for playerA -> lastnumberMatch always exists
         
         
-            
-            if (numberBeforeLastLoadP == 0)
-            {
-                //match is in round 2 and no previous playerB data was stored on device
-                
-                if (lastNumberLoadG == 0)
+                if (numberOfGamesPlayedP == 0)
                 {
-                    //no general player data exists -> random prediction
-                    [self predictNextNumber:numberBeforeLastLoadP :lastNumberLoadP:playerData];
+                    //first ever game with playerB
                     
+                    //check if generalPlayerData exists
+                    
+                    if (numberOfGamesPlayedG == 0)
+                    {
+                        //no general player data exists
+                        [self predictNextNumber:lastNumberMatch:playerData];
+                    }
+                    else 
+                    {
+                        //general data exists
+                        [self predictNextNumber:lastNumberMatch:generalPlayerData];
+                    }
+                    
+                }
+                else if (numberOfGamesPlayedP <= 10)
+                {
+                    //playerData exists but is in early stages ... check if generalData is further along
+                    
+                    if (numberOfGamesPlayedG > 10)
+                    {
+                        //general player data is further along than playerData
+                        [self predictNextNumber:lastNumberMatch:generalPlayerData];
+                    }
+                    else
+                    {
+                        // playerData is similar up to date as generalData
+                        [self predictNextNumber:lastNumberMatch:playerData];
+                    }
                 }
                 else
                 {
-                    //general player data exists use half and half
-                    [self predictNextNumber:lastNumberLoadG :lastNumberLoadP:generalPlayerData];
+                    [self predictNextNumber:lastNumberMatch:playerData];
                 }
-                
-                
-            }
-            else
-            {
-                //match is further along and data of current match exist, use matchdata numbers for prediction
-                [self predictNextNumber:numberBeforeLastLoadP :lastNumberLoadP:playerData];
-            }
+            
         
         
     }
@@ -1364,60 +1383,102 @@ int joannaChoice;
         NSLog(@"%@ saved data:%@",[gameInfoArray objectAtIndex:8], playerData);
     
         lastNumberLoadP = [[playerData objectForKey:@"lastNumber"]intValue];
-        numberBeforeLastLoadP = [[playerData objectForKey:@"numberBeforeLast"]intValue];
         
         
         //predicting next number lina and joanna
         
-             
-        if (lastNumberLoadP == 0)
+        //Player2
+        
+        if (lastNumberMatch == 0)
         {
-            //match has just started against playerA and no previous playerA data existed on device
+            // first round of match => no lastnumber exists for prediction
             
-            //use general player data for prediction if it exists
-            
-            if (numberBeforeLastLoadG == 0)
+            if (lastNumberLoadP == 0)
             {
-                //no general player data exists -> random prediction
-                [self predictNextNumber:numberBeforeLastLoadP :lastNumberLoadP:playerData];
+                //first ever round with playerA
                 
+                if (lastNumberLoadG == 0)
+                {
+                    //first ever round EVER => random prediction
+                    [self predictNextNumber:lastNumberMatch:playerData];
+                }
+                else
+                {
+                    //use lastNumberLoadG for prediction
+                    [self predictNextNumber:lastNumberLoadG:generalPlayerData];
+                }
             }
             else
             {
-                //general player data exists
-                [self predictNextNumber:numberBeforeLastLoadG :lastNumberLoadG:generalPlayerData];
+                //use lastNumberLoadP for prediction
+                
+                if (numberOfGamesPlayedP <= 10)
+                {
+                    //playerData exists but not far along
+                    
+                    if (numberOfGamesPlayedG <= 10)
+                    {
+                        //generalData is just up to date as playerData
+                        [self predictNextNumber:lastNumberLoadP:playerData];
+                    }
+                    else
+                    {
+                        //generalData has more data than playerData
+                        [self predictNextNumber:lastNumberLoadP:generalPlayerData];
+                    }
+                }
+                else
+                {
+                    [self predictNextNumber:lastNumberLoadP:playerData];
+
+                }
+                
             }
             
             
         }
         else
         {
-            //match is either in 2.round or had some previous stored data for playerA stored on device
+            // 2nd, 3rd, 4th, or 5th round of match => lastnumber exists for predicition
             
-            if (numberBeforeLastLoadP == 0)
+            if (numberOfGamesPlayedP == 0)
             {
-                //match is in round 2 and no previous playerA data was stored on device
+                //no previous playerA data exists
                 
-                if (lastNumberLoadG == 0)
+                if (numberOfGamesPlayedG == 0)
                 {
-                    //no general player data exists -> random prediction
-                    [self predictNextNumber:numberBeforeLastLoadP :lastNumberLoadP:playerData];
-                    
+                    //no general player data exists
+                     [self predictNextNumber:lastNumberMatch:playerData];
                 }
                 else
                 {
-                    //general player data exists use half and half
-                    [self predictNextNumber:lastNumberLoadG :lastNumberLoadP:generalPlayerData];
+                    //general player data exists
+                     [self predictNextNumber:lastNumberMatch:generalPlayerData];
                 }
+            }
+            else if (numberOfGamesPlayedP <= 10)
+            {
+                //playerData exists but is in early stages ... check if generalData is further along
                 
-                
+                if (numberOfGamesPlayedG > 10)
+                {
+                    //general player data is further along than playerData
+                    [self predictNextNumber:lastNumberMatch:generalPlayerData];
+                }
+                else
+                {
+                    // playerData is similar up to date as generalData
+                    [self predictNextNumber:lastNumberMatch:playerData];
+                }
             }
             else
             {
-                //match is further along and data of current match exist, use mathcdata numbers for prediction
-                [self predictNextNumber:numberBeforeLastLoadP :lastNumberLoadP:playerData];
+                [self predictNextNumber:lastNumberMatch:playerData];
             }
+            
+
         }
+        
     }
     NSString *lina;
     NSString *joanna;
@@ -1484,23 +1545,23 @@ int joannaChoice;
 -(BOOL)checkIfOtherPlayerQuit:(int)TakeTurn{
     
     //TEMPORARY DELETING PLISTS
-    //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); //1
-    //NSString *documentsDirectory = [paths objectAtIndex:0]; //2
-    //NSString *path = [documentsDirectory stringByAppendingPathComponent:@"PlayersChoices.plist"];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); //1
+    NSString *documentsDirectory = [paths objectAtIndex:0]; //2
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"PlayersChoices.plist"];
     
-    //NSFileManager * fileManager = [NSFileManager defaultManager];
+    NSFileManager * fileManager = [NSFileManager defaultManager];
     
-    //if ([fileManager isDeletableFileAtPath:path])
-    //{
-      //NSLog(@"deletable plist");
-    //}
+    if ([fileManager isDeletableFileAtPath:path])
+    {
+      NSLog(@"deletable plist");
+    }
     
-    //if([fileManager fileExistsAtPath:path]) {
-     //if ([fileManager removeItemAtPath:path error:nil])
-    //{
-      //NSLog(@"file removed");
-    //}
-    //}
+    if([fileManager fileExistsAtPath:path]) {
+     if ([fileManager removeItemAtPath:path error:nil])
+    {
+      NSLog(@"file removed");
+    }
+    }
     
     GKTurnBasedMatch *currentMatch = 
     [[GCHelper sharedInstance] currentMatch];
@@ -1919,8 +1980,8 @@ int joannaChoice;
         generalPlayerData = [self loadPlayersChoiceData:@"generalPlayer"];
         
         
-        int numberBeforeLastLoadP;
-        int lastNumberLoadP;
+        //int numberBeforeLastLoadP;
+        //int lastNumberLoadP;
         
         NSMutableDictionary *playerData;
     
@@ -1932,26 +1993,6 @@ int joannaChoice;
         btnAdvice.enabled = YES;
         lblStatus.text =@"It's your turn";
         
-        
-        //TEMPORARY DELETING PLISTS
-        //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); //1
-        //NSString *documentsDirectory = [paths objectAtIndex:0]; //2
-        //NSString *path = [documentsDirectory stringByAppendingPathComponent:@"PlayersChoices.plist"];
-        
-        //NSFileManager * fileManager = [NSFileManager defaultManager];
-        
-        //if ([fileManager isDeletableFileAtPath:path])
-        //{
-          //  NSLog(@"deletable plist");
-        //}
-        
-        //if([fileManager fileExistsAtPath:path]) {
-          //  if ([fileManager removeItemAtPath:path error:nil])
-            //{
-              //  NSLog(@"file removed");
-            //}
-        //}
-    
         GKTurnBasedParticipant *firstParticipant = 
         [match.participants objectAtIndex:0];
         if (firstParticipant == match.currentParticipant)
@@ -1960,8 +2001,8 @@ int joannaChoice;
         
             playerData = [self loadPlayersChoiceData:[gameInfoArray objectAtIndex:9]];
             
-            lastNumberLoadP = [[playerData objectForKey:@"lastNumber"]intValue];
-            numberBeforeLastLoadP = [[playerData objectForKey:@"numberBeforeLast"]intValue];
+            //lastNumberLoadP = [[playerData objectForKey:@"lastNumber"]intValue];
+            //numberBeforeLastLoadP = [[playerData objectForKey:@"numberBeforeLast"]intValue];
             
             numberBeforeLastMatch = [[gameInfoArray objectAtIndex:13]intValue];
             lastNumberMatch = [[gameInfoArray objectAtIndex:14]intValue];
@@ -1969,30 +2010,7 @@ int joannaChoice;
             //we are already at least in second round and lastNumberMatch must exist already
             
         
-            
-            if (numberBeforeLastMatch == 0)
-            {
-                //round 2
-                //check to see if previous playing data exist to use for numberBeforeLastMatch
-                
-                
-                if (lastNumberLoadP == 0)
-                {
-                    //no previous playerB data exists (0, someNumber)
-                    [self updateLocalPlayerData:[gameInfoArray objectAtIndex:9] :numberBeforeLastMatch :lastNumberMatch: playerData];
-                    
-                }
-                else
-                {
-                    //previous playerB data exists, use lastNumberLoadP for numberBeforeLastMatch
-                    [self updateLocalPlayerData:[gameInfoArray objectAtIndex:9] :lastNumberLoadP :lastNumberMatch:playerData];
-                    
-                    //updating generalPlayer data on device
-                    [self updateLocalPlayerData:@"generalPlayer" :lastNumberLoadP :lastNumberMatch:generalPlayerData];
-                    
-                }
-            }
-            else
+            if (numberBeforeLastMatch != 0)
             {
                 //game is already further along
                 [self updateLocalPlayerData:[gameInfoArray objectAtIndex:9] :numberBeforeLastMatch :lastNumberMatch:playerData];
@@ -2017,55 +2035,13 @@ int joannaChoice;
             
             playerData = [self loadPlayersChoiceData:[gameInfoArray objectAtIndex:8]];
             
-            lastNumberLoadP = [[playerData objectForKey:@"lastNumber"]intValue];
-            numberBeforeLastLoadP = [[playerData objectForKey:@"numberBeforeLast"]intValue];
             
             numberBeforeLastMatch = [[gameInfoArray objectAtIndex:10]intValue];
             lastNumberMatch = [[gameInfoArray objectAtIndex:11]intValue];
             
-            if (numberBeforeLastMatch == 0)
+            if (numberBeforeLastMatch != 0)
             {
-                //match is first or second round
-                
-                if (lastNumberMatch == 0)
-                {
-                    //match is in first round, check to see if previous playing data exists 
-                    if (numberBeforeLastLoadP != 0)
-                    {
-                        //previous playerA data exists on device
-                        [self updateLocalPlayerData:[gameInfoArray objectAtIndex:8] :numberBeforeLastLoadP :lastNumberLoadP:playerData];
-                        
-                    }
-                    else
-                    {
-                        //no previous playerA data exists on device, just update with match data (0,0)
-                        [self updateLocalPlayerData:[gameInfoArray objectAtIndex:8] :numberBeforeLastMatch :lastNumberMatch:playerData];
-                    }
-                    
-                    
-                }
-                else
-                {
-                    //match is in second round, check to see if previous playing data exists
-                    
-                    if (lastNumberLoadP != 0)
-                    {
-                        //previous playerA data exists on device
-                        [self updateLocalPlayerData:[gameInfoArray objectAtIndex:8] :lastNumberLoadP :lastNumberMatch:playerData];
-                        
-                        //updating generalPlayer data on device
-                        [self updateLocalPlayerData:@"generalPlayer" :lastNumberLoadP :lastNumberMatch:generalPlayerData];
-                    }
-                    else
-                    {
-                        //no previous playerA data exists on device (0, someNumber)
-                        [self updateLocalPlayerData:[gameInfoArray objectAtIndex:8] :numberBeforeLastMatch :lastNumberMatch:playerData];
-                    }
-                }
-            }
-            else
-            {
-                //match is further than third round
+                //match is further than third round, enough rounds to update player data
             
                 //updating current opponent player data
                 [self updateLocalPlayerData:[gameInfoArray objectAtIndex:8] :numberBeforeLastMatch :lastNumberMatch:playerData];
