@@ -86,7 +86,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bAx-0C-9Ye" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="R" id="eFq-uY-GT5" customClass="RulesPage1" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="g6T-9s-dkK">
-                        <rect key="frame" x="0.0" y="20" width="480" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1J5-yG-kTl">
@@ -132,7 +132,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QGq-c4-s4k" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="eVV-Ob-GJi" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vNb-Ov-ePd">
-                        <rect key="frame" x="0.0" y="20" width="480" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uv5-tg-NxW">
@@ -422,11 +422,11 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fY5-RK-hYJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="n5Q-QF-kI1" customClass="ModeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mxl-35-vqe">
-                        <rect key="frame" x="0.0" y="20" width="480" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fV1-eU-O4R">
-                                <rect key="frame" x="180" y="79" width="140" height="57"/>
+                                <rect key="frame" x="169" y="79" width="143" height="61"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="easy mode" backgroundImage="GI - button-v3.png">
@@ -442,7 +442,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2HI-z0-cOx">
-                                <rect key="frame" x="180" y="144" width="140" height="57"/>
+                                <rect key="frame" x="169" y="148" width="143" height="61"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="intense mode" backgroundImage="GI - button-v3.png">
@@ -470,7 +470,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KcF-uH-7GT" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Zax-uh-4qY" customClass="SingleViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XhR-kO-600">
-                        <rect key="frame" x="0.0" y="20" width="480" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZG5-xJ-Cw9">
@@ -696,7 +696,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="a8S-sF-qQd">
-                                <rect key="frame" x="194" y="20" width="72" height="37"/>
+                                <rect key="frame" x="204" y="20" width="72" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Play" backgroundImage="GI - button-v3.png">
@@ -711,7 +711,7 @@
                                 </connections>
                             </button>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" id="pY5-s6-M8c">
-                                <rect key="frame" x="200" y="290" width="38" height="36"/>
+                                <rect key="frame" x="221" y="270" width="38" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </pageControl>
