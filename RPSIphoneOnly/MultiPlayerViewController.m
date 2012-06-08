@@ -869,6 +869,17 @@ int joannaChoice;
 -(void)compareUpdateLBScoreWithLocallyStoredScore:(NSString *)PlayersID: (int) localScore: (int) leaderboardScore{
     
     int newScore;
+    int addedScore;
+    
+    if (playerMe == 1)
+    {
+        addedScore = [[gameInfoArray objectAtIndex:0] intValue];
+    }
+    else
+    {
+        addedScore = [[gameInfoArray objectAtIndex:1] intValue];
+    }
+    
     
     //if leaderboardscore is -1 then there was an error retreiving current leaderboard score
     
@@ -879,15 +890,15 @@ int joannaChoice;
         if (leaderboardScore == 0 & localScore == 0)
         {
             //create local score storage and set it to 1
-            [self saveScoreLocally:1 :PlayersID];
+            [self saveScoreLocally:addedScore :PlayersID];
         
             //post localScore as leaderboardScore
-            [self reportScore:1 forCategory: kLeaderboardID];  
+            [self reportScore:addedScore forCategory: kLeaderboardID];  
         }
         else if(leaderboardScore == 0)
         {
             //leaderboard hasnt been updated yet. take local score increase by one and post it
-            newScore = localScore + 1;
+            newScore = localScore + addedScore;
             [self reportScore:newScore forCategory:kLeaderboardID];
         
             //submit update for local score
@@ -896,7 +907,7 @@ int joannaChoice;
         else if(localScore == 0)
         {
             //create local score with current leaderboardNumber
-            newScore = leaderboardScore + 1;
+            newScore = leaderboardScore + addedScore;
             [self saveScoreLocally:newScore :PlayersID];
         
             //submit new leaderboard score
@@ -904,7 +915,7 @@ int joannaChoice;
         }
         else if(localScore == leaderboardScore)
         {
-            newScore = localScore + 1;
+            newScore = localScore + addedScore;
         
             [self reportScore:newScore forCategory:kLeaderboardID];
             [self saveScoreLocally:newScore :PlayersID];
@@ -912,7 +923,7 @@ int joannaChoice;
         else if(localScore > leaderboardScore)
         {
             //leaderboardscore hasnt updated yet
-            newScore = localScore + 1;
+            newScore = localScore + addedScore;
         
             [self reportScore:newScore forCategory:kLeaderboardID];
             [self saveScoreLocally:newScore :PlayersID];
@@ -920,7 +931,7 @@ int joannaChoice;
         else if(leaderboardScore > localScore)
         {
             //devices were switched so leaderboard score will b more up to date
-            newScore = leaderboardScore + 1;
+            newScore = leaderboardScore + addedScore;
         
             [self reportScore:newScore forCategory:kLeaderboardID];
             [self saveScoreLocally:newScore :PlayersID];
@@ -1900,7 +1911,7 @@ int joannaChoice;
         //player 2 score failed to update LBscore
     if ([[gameInfoArray objectAtIndex:5] floatValue] == 11)
     {
-        
+        playerMe = 2;
         lblPlayerName.text = [gameInfoArray objectAtIndex:6];
         
         
@@ -1915,6 +1926,7 @@ int joannaChoice;
         btnUnicorn.enabled = NO;
         btnRock.enabled = NO;
         btnPostScore.hidden = NO;
+        lblHowResult.textColor = [UIColor orangeColor];
         lblHowResult.text =@"Try to update your leaderboard score again!";
         lblStatus.text = @"Match has ended";
         lblYOUResult.text = @"";
@@ -1922,6 +1934,8 @@ int joannaChoice;
     else if ([[gameInfoArray objectAtIndex:5] floatValue] == 12)
     {
         //player 1 won and needs to update score
+        
+        playerMe = 1;
         
         UIAlertView *outcomeEventWon = [[UIAlertView alloc] initWithTitle:nil message:@"YOU WIN :)" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [outcomeEventWon show];
@@ -1942,6 +1956,7 @@ int joannaChoice;
         btnUnicorn.enabled = NO;
         btnRock.enabled = NO;
         btnPostScore.hidden = NO;
+        lblHowResult.textColor = [UIColor orangeColor];
         lblHowResult.text =@"Please update your leaderboard score!";
         lblStatus.text = @"Match has ended";
         lblYOUResult.text = @"";
