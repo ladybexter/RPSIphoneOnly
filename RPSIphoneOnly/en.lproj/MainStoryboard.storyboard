@@ -104,7 +104,7 @@
                                     <segue destination="eVV-Ob-GJi" kind="modal" id="UNY-ys-27X"/>
                                 </connections>
                             </button>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" currentPage="1" id="q3D-Ab-IHd">
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" id="q3D-Ab-IHd">
                                 <rect key="frame" x="221" y="270" width="38" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -119,7 +119,7 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </viewController>
-                <swipeGestureRecognizer direction="right" id="UpW-NK-DiZ">
+                <swipeGestureRecognizer direction="left" id="UpW-NK-DiZ">
                     <connections>
                         <segue destination="swA-CU-0l1" kind="modal" id="3Gs-57-vE5"/>
                     </connections>
@@ -186,7 +186,7 @@
                                 <rect key="frame" x="17" y="248" width="76" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Home" backgroundImage="GI - button-v2-3.png">
+                                <state key="normal" title="Home" backgroundImage="GI - button-v2-1.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -201,7 +201,7 @@
                                 <rect key="frame" x="387" y="248" width="76" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Advice" backgroundImage="GI - button-v2-3.png">
+                                <state key="normal" title="Advice" backgroundImage="GI - button-v2-1.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -216,7 +216,7 @@
                                 <rect key="frame" x="172" y="248" width="136" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Game Center" backgroundImage="GI - button-v2-3.png">
+                                <state key="normal" title="Games" backgroundImage="GI - button-v2-1.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -309,11 +309,11 @@
                                     <action selector="btnRobot:" destination="A3B-TR-7R4" eventType="touchUpInside" id="B4M-90-pMf"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="xrps-wp7-f4-2.png" id="Fox-Gs-eC1">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="Fox-Gs-eC1">
                                 <rect key="frame" x="17" y="9" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="xrps-wp7-f4-2.png" id="Ar8-Vs-nlf">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="Ar8-Vs-nlf">
                                 <rect key="frame" x="373" y="9" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -324,15 +324,15 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="You" lineBreakMode="tailTruncation" minimumFontSize="10" id="dZY-Iv-Cg3">
-                                <rect key="frame" x="17" y="97" width="42" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="You" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="dZY-Iv-Cg3">
+                                <rect key="frame" x="17" y="97" width="90" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Other Player" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="TgZ-Ab-ORL">
-                                <rect key="frame" x="366" y="97" width="97" height="21"/>
+                                <rect key="frame" x="358" y="97" width="105" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -355,14 +355,14 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="2g0-Sz-bOx">
                                 <rect key="frame" x="201" y="17" width="72" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="A5Z-Lc-k3T">
                                 <rect key="frame" x="130" y="97" width="220" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -377,7 +377,7 @@
                                 <rect key="frame" x="183" y="113" width="114" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                <state key="normal" title="Post Score" backgroundImage="GI - button-v2-3.png">
+                                <state key="normal" title="Post Score" backgroundImage="GI - button-v2-1.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -579,15 +579,15 @@
                                     <action selector="btnScissors:" destination="Zax-uh-4qY" eventType="touchUpInside" id="HOs-wH-h3g"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Lina" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="vhI-rb-cQl">
-                                <rect key="frame" x="419" y="97" width="44" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Lina" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="vhI-rb-cQl">
+                                <rect key="frame" x="370" y="97" width="90" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="You" lineBreakMode="tailTruncation" minimumFontSize="10" id="t3a-bl-thb">
-                                <rect key="frame" x="17" y="97" width="42" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="You" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="t3a-bl-thb">
+                                <rect key="frame" x="17" y="97" width="90" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -617,7 +617,7 @@
                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="You Lose" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="MJB-xo-dSq">
                                 <rect key="frame" x="201" y="17" width="78" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -642,18 +642,18 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="xrps-wp7-f4-2.png" id="mun-0g-AMc">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="mun-0g-AMc">
                                 <rect key="frame" x="370" y="9" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="xrps-wp7-f4-2.png" id="0Zm-Hi-Jb6">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="0Zm-Hi-Jb6">
                                 <rect key="frame" x="17" y="9" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Unicorn stomps on Scissors" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="mHH-NK-fb9">
                                 <rect key="frame" x="131" y="97" width="218" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -710,7 +710,7 @@
                                     <segue destination="eVV-Ob-GJi" kind="modal" id="g1z-QF-Uvj"/>
                                 </connections>
                             </button>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" id="pY5-s6-M8c">
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" currentPage="1" id="pY5-s6-M8c">
                                 <rect key="frame" x="221" y="270" width="38" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -725,7 +725,7 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </viewController>
-                <swipeGestureRecognizer direction="right" id="QdR-8x-MKd">
+                <swipeGestureRecognizer direction="left" id="QdR-8x-MKd">
                     <connections>
                         <segue destination="eFq-uY-GT5" kind="modal" id="oyY-zG-kMI"/>
                     </connections>
@@ -736,14 +736,12 @@
     </scenes>
     <resources>
         <image name="GI - button-v2-1.png" width="430" height="110"/>
-        <image name="GI - button-v2-3.png" width="430" height="110"/>
         <image name="GI - button-v3.png" width="391" height="73"/>
         <image name="GI- Display - Paper.png" width="239" height="231"/>
         <image name="GI- Display - Robot (FINAL).png" width="238" height="238"/>
         <image name="GI- Display - Rock.png" width="227" height="220"/>
         <image name="GI- Display - Scissors.png" width="229" height="216"/>
         <image name="GI- Display - Unicorn.png" width="234" height="225"/>
-        <image name="xrps-wp7-f4-2.png" width="62" height="62"/>
     </resources>
     <classes>
         <class className="ModeViewController" superclassName="UIViewController">

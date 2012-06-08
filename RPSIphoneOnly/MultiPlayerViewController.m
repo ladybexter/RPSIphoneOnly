@@ -77,7 +77,7 @@ int joannaChoice;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    UIAlertView *eventInstruct = [[UIAlertView alloc] initWithTitle:nil message:@"Please press Game Center to either \n\n START NEW game \n or \n CONTINUE game" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView *eventInstruct = [[UIAlertView alloc] initWithTitle:nil message:@"Please press Games to either \n START NEW game \n or \n CONTINUE game \n\n You need to be logged into Game Center to play Multiplayer" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 
     [eventInstruct show];
     
@@ -90,7 +90,7 @@ int joannaChoice;
     btnUnicorn.enabled = NO;
     btnRock.enabled = NO;
     
-    lblStatus.text = @"Please press Game Center to get started";
+    lblStatus.text = @"Please press Games to get started";
     lblRound.text = @"";
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"XRPS-Interface-background-main" ofType:@"png" inDirectory:@""];
@@ -408,10 +408,12 @@ int joannaChoice;
 -(void)imageChange:(NSString*) image:(int) number{
     if(number == 1)
     {
+        imgUserPick.hidden = NO;
         imgUserPick.image = [UIImage imageNamed:(image)];
     }
     else
     {
+        imgOppPick.hidden = NO;
         imgOppPick.image = [UIImage imageNamed:(image)];
     }
 }
@@ -429,8 +431,9 @@ int joannaChoice;
 
 -(void)win
 {
-    lblHowResult.textColor =[UIColor greenColor];
-    lblYOUResult.textColor = [UIColor greenColor];
+    // 009900
+    lblHowResult.textColor =[UIColor colorWithRed:0 green:0.6 blue:0 alpha:1];
+    lblYOUResult.textColor = [UIColor colorWithRed:0 green:0.6 blue:0 alpha:1];
     lblYOUResult.text = @"YOU WIN";
     
     
@@ -653,7 +656,8 @@ int joannaChoice;
     }
     else
     {
-        [self imageChange:@"xrps-wp7-f4-2.png":selfOrOpp];
+        
+        //[self imageChange:@"xrps-wp7-f4-2.png":selfOrOpp];
     }
 }
 
@@ -775,7 +779,7 @@ int joannaChoice;
                                         }
                                     }];
             lblYOUResult.text = @"";
-            lblHowResult.textColor = [UIColor orangeColor];
+            lblHowResult.textColor = [UIColor colorWithRed:0.8 green:0.6 blue:0 alpha:1];
             lblHowResult.text = @"";
             lblStatus.text = @"Leaderboard Post was successful";
             btnPostScore.hidden = YES;
@@ -941,7 +945,7 @@ int joannaChoice;
     {
         //there was an error retreiving leaderboardscore
         lblYOUResult.text = @"";
-        lblHowResult.textColor = [UIColor orangeColor];
+        lblHowResult.textColor = [UIColor colorWithRed:0.8 green:0.6 blue:0 alpha:1];
         lblHowResult.text = @"Sorry, there was an error trying to update your score, please try again!";
         
         btnPostScore.hidden = NO;
@@ -1114,7 +1118,7 @@ int joannaChoice;
             else if ([[gameInfoArray objectAtIndex:0] floatValue] > [[gameInfoArray objectAtIndex:1] floatValue])
             {
                
-                UIAlertView *outcomeEventLost = [[UIAlertView alloc] initWithTitle:nil message:@"YOU LOST :(" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                UIAlertView *outcomeEventLost = [[UIAlertView alloc] initWithTitle:nil message:@"YOU LOST MATCH :(" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [outcomeEventLost show];
                 [self didPresentAlertView:outcomeEventLost];
 
@@ -1149,7 +1153,7 @@ int joannaChoice;
             {
                 
                 
-                UIAlertView *outcomeEventWin = [[UIAlertView alloc] initWithTitle:nil message:@"YOU WIN :)" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                UIAlertView *outcomeEventWin = [[UIAlertView alloc] initWithTitle:nil message:@"YOU WON MATCH :)" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [outcomeEventWin show];
                 [self didPresentAlertView:outcomeEventWin];
 
@@ -1575,8 +1579,10 @@ int joannaChoice;
                                           [currentMatch.participants count ])];
         if (nextParticipant.matchOutcome == GKTurnBasedMatchOutcomeQuit)
         {
-            [self imageChange:@"xrps-wp7-f4-2.png" :1];
-            [self imageChange:@"xrps-wp7-f4-2.png" :2];
+            imgOppPick.hidden = YES;
+            imgUserPick.hidden = YES;
+            //[self imageChange:@"xrps-wp7-f4-2.png" :1];
+            //[self imageChange:@"xrps-wp7-f4-2.png" :2];
             
             if (TakeTurn == 1)
             {
@@ -1702,23 +1708,24 @@ int joannaChoice;
         
         if (userScoreInt == oppScoreInt)
         {
-            lblHowResult.textColor = [UIColor orangeColor];
+            lblHowResult.textColor = [UIColor colorWithRed:0.8 green:0.6 blue:0 alpha:1];
             lblHowResult.text = @"You Tied";
         }
         else if (userScoreInt < oppScoreInt)
         {
-            lblHowResult.textColor = [UIColor orangeColor];
-            lblHowResult.text = @"You Lost";
+            lblHowResult.textColor = [UIColor colorWithRed:0.8 green:0.6 blue:0 alpha:1];
+            lblHowResult.text = @"You Lost Match";
         }
         else if (userScoreInt > oppScoreInt)
         {
-            lblHowResult.textColor = [UIColor orangeColor];
-            lblHowResult.text = @"You Won";
+            lblHowResult.textColor = [UIColor colorWithRed:0.8 green:0.6 blue:0 alpha:1];
+            lblHowResult.text = @"You Won Match";
         }
         
-            
-        [self imageChange:@"xrps-wp7-f4-2.png" :1];
-        [self imageChange:@"xrps-wp7-f4-2.png" :2];
+        imgOppPick.hidden = YES;
+        imgUserPick.hidden = YES;    
+        //[self imageChange:@"xrps-wp7-f4-2.png" :1];
+        //[self imageChange:@"xrps-wp7-f4-2.png" :2];
         
         
         statusString = @"Match Ended";
@@ -1746,8 +1753,10 @@ int joannaChoice;
                 
                 if ([[gameInfoArray objectAtIndex:5] floatValue] == 12)
                 {
-                    [self imageChange:@"xrps-wp7-f4-2.png" :1];
-                    [self imageChange:@"xrps-wp7-f4-2.png" :2];
+                    imgOppPick.hidden = YES;
+                    imgUserPick.hidden = YES;
+                    //[self imageChange:@"xrps-wp7-f4-2.png" :1];
+                    //[self imageChange:@"xrps-wp7-f4-2.png" :2];
                     
                     lblRound.text = @"";
                     
@@ -1786,7 +1795,8 @@ int joannaChoice;
             
                 //only display what player1 picked
                 [self displayChange:3: 1];
-                [self imageChange:@"xrps-wp7-f4-2.png" :2];
+                imgOppPick.hidden = YES;
+                //[self imageChange:@"xrps-wp7-f4-2.png" :2];
                 
                 cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue];
                 
@@ -1888,8 +1898,10 @@ int joannaChoice;
     lblVS.text = @"VS";
     playerMe = 1;
     lblPlayerName.text = @"Other Player";
-    [self imageChange:@"xrps-wp7-f4-2.png" :1];
-    [self imageChange:@"xrps-wp7-f4-2.png" :2];
+    imgOppPick.hidden = YES;
+    imgUserPick.hidden = YES;
+    //[self imageChange:@"xrps-wp7-f4-2.png" :1];
+    //[self imageChange:@"xrps-wp7-f4-2.png" :2];
     
     
 }
@@ -2044,8 +2056,10 @@ int joannaChoice;
             lblOppScore.text = [NSString stringWithFormat:@"%d",oppScore];
             lblUserScore.text = [NSString stringWithFormat:@"%d",userScore]; 
         
-            [self imageChange:@"xrps-wp7-f4-2.png" :1];
-            [self imageChange:@"xrps-wp7-f4-2.png" :2];
+            imgOppPick.hidden = YES;
+            imgUserPick.hidden = YES;
+            //[self imageChange:@"xrps-wp7-f4-2.png" :1];
+            //[self imageChange:@"xrps-wp7-f4-2.png" :2];
         
             lblYOUResult.text = @"";
             lblHowResult.text = @"";

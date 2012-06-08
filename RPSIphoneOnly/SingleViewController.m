@@ -238,8 +238,9 @@ double predictedNum[2] ={4,4};
 
 -(void)win
 {
-    txtResult.textColor =[UIColor greenColor];
-    txtWinLoss.textColor = [UIColor greenColor];
+    
+    txtResult.textColor =[UIColor colorWithRed:0 green:0.6 blue:0 alpha:1];
+    txtWinLoss.textColor = [UIColor colorWithRed:0 green:0.6 blue:0 alpha:1];
     txtWinLoss.text = @"YOU WIN";
     userScore = userScore + 1;
     consecutiveWinsUser = consecutiveWinsUser + 1;
@@ -518,8 +519,8 @@ double predictedNum[2] ={4,4};
     predictedNum[0] = 4;
     predictedNum[1] = 4;
     
-    [self imageChange:@"xrps-wp7-f4-2.png":1];
-    [self imageChange:@"xrps-wp7-f4-2.png":2];
+    //[self imageChange:@"xrps-wp7-f4-2.png":1];
+    //[self imageChange:@"xrps-wp7-f4-2.png":2];
     [self displayORHide:1];  
 }
 
