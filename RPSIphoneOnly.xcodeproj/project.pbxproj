@@ -24,20 +24,13 @@
 		C6965EB614DC995700A4A21D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6965E9714DC995700A4A21D /* Foundation.framework */; };
 		C6965EBE14DC995800A4A21D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C6965EBC14DC995800A4A21D /* InfoPlist.strings */; };
 		C6965EC114DC995800A4A21D /* RPSIphoneOnlyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C6965EC014DC995800A4A21D /* RPSIphoneOnlyTests.m */; };
-		C6965ED014DC9F4F00A4A21D /* paper 2_finalise - android (48x48)no bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6965ECF14DC9F4F00A4A21D /* paper 2_finalise - android (48x48)no bg.png */; };
-		C6965ED214DC9F6300A4A21D /* paper2_finalise-android(78x78)nobg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6965ED114DC9F6300A4A21D /* paper2_finalise-android(78x78)nobg.png */; };
-		C6965ED414DC9F7A00A4A21D /* robot4_finalise - android (48x48)no bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6965ED314DC9F7A00A4A21D /* robot4_finalise - android (48x48)no bg.png */; };
-		C6965ED614DC9F8700A4A21D /* robot4_finalise-android(78x78)nobg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6965ED514DC9F8700A4A21D /* robot4_finalise-android(78x78)nobg.png */; };
-		C6965ED814DC9F9D00A4A21D /* rock5._finalise - android (48x48)no bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6965ED714DC9F9D00A4A21D /* rock5._finalise - android (48x48)no bg.png */; };
-		C6965EDA14DC9FAA00A4A21D /* rock5._finalise-android(78x78)nobg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6965ED914DC9FAA00A4A21D /* rock5._finalise-android(78x78)nobg.png */; };
-		C6965EDC14DC9FB700A4A21D /* scissors4_finalise - android (48x48)no bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6965EDB14DC9FB700A4A21D /* scissors4_finalise - android (48x48)no bg.png */; };
-		C6965EDE14DC9FCE00A4A21D /* scissors4_finalise-android(78x78)nobg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6965EDD14DC9FCE00A4A21D /* scissors4_finalise-android(78x78)nobg.png */; };
-		C6965EE014DC9FE100A4A21D /* unicorn3_finalise - android (48x48)no bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6965EDF14DC9FE100A4A21D /* unicorn3_finalise - android (48x48)no bg.png */; };
-		C6965EE214DC9FF100A4A21D /* unicorn3_finalise-android(78x78)nobg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6965EE114DC9FF100A4A21D /* unicorn3_finalise-android(78x78)nobg.png */; };
 		C6965EEB14DCA77400A4A21D /* SingleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6965EE914DCA77400A4A21D /* SingleViewController.m */; };
 		C6965EEC14DCA77400A4A21D /* SingleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6965EEA14DCA77400A4A21D /* SingleViewController.xib */; };
-		C69A231914ED496700CFF477 /* xrps-wp7-f4-2.png in Resources */ = {isa = PBXBuildFile; fileRef = C69A231814ED496700CFF477 /* xrps-wp7-f4-2.png */; };
-		C6A332B214E828BA0026C51E /* tempRobotButton.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C6A332B114E828BA0026C51E /* tempRobotButton.jpg */; };
+		C6A6538C1584FAB600F786C4 /* paper2_finalise-android(90x90)nobg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A653891584FAB600F786C4 /* paper2_finalise-android(90x90)nobg.png */; };
+		C6A6538D1584FAB600F786C4 /* robot4_finalise-android(90x90)nobg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A6538A1584FAB600F786C4 /* robot4_finalise-android(90x90)nobg.png */; };
+		C6A6538E1584FAB600F786C4 /* unicorn3_finalise-android(90x90)nobg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A6538B1584FAB600F786C4 /* unicorn3_finalise-android(90x90)nobg.png */; };
+		C6A653911584FAC600F786C4 /* rock5._finalise-android(90x90)nobg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A6538F1584FAC600F786C4 /* rock5._finalise-android(90x90)nobg.png */; };
+		C6A653921584FAC600F786C4 /* scissors4_finalise-android(90x90)nobg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A653901584FAC600F786C4 /* scissors4_finalise-android(90x90)nobg.png */; };
 		C6A6C4501582513C00DBEDDB /* xrps-rulespage---2.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A6C44E1582513C00DBEDDB /* xrps-rulespage---2.png */; };
 		C6A6C4511582513C00DBEDDB /* xrps-rulespage.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A6C44F1582513C00DBEDDB /* xrps-rulespage.png */; };
 		C6A812161572CCC9008B0B21 /* XRPS-Interface-background-main.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A812151572CCC9008B0B21 /* XRPS-Interface-background-main.png */; };
@@ -99,21 +92,14 @@
 		C6965EBD14DC995800A4A21D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C6965EBF14DC995800A4A21D /* RPSIphoneOnlyTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSIphoneOnlyTests.h; sourceTree = "<group>"; };
 		C6965EC014DC995800A4A21D /* RPSIphoneOnlyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSIphoneOnlyTests.m; sourceTree = "<group>"; };
-		C6965ECF14DC9F4F00A4A21D /* paper 2_finalise - android (48x48)no bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paper 2_finalise - android (48x48)no bg.png"; sourceTree = "<group>"; };
-		C6965ED114DC9F6300A4A21D /* paper2_finalise-android(78x78)nobg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paper2_finalise-android(78x78)nobg.png"; sourceTree = "<group>"; };
-		C6965ED314DC9F7A00A4A21D /* robot4_finalise - android (48x48)no bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "robot4_finalise - android (48x48)no bg.png"; sourceTree = "<group>"; };
-		C6965ED514DC9F8700A4A21D /* robot4_finalise-android(78x78)nobg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "robot4_finalise-android(78x78)nobg.png"; sourceTree = "<group>"; };
-		C6965ED714DC9F9D00A4A21D /* rock5._finalise - android (48x48)no bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rock5._finalise - android (48x48)no bg.png"; sourceTree = "<group>"; };
-		C6965ED914DC9FAA00A4A21D /* rock5._finalise-android(78x78)nobg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rock5._finalise-android(78x78)nobg.png"; sourceTree = "<group>"; };
-		C6965EDB14DC9FB700A4A21D /* scissors4_finalise - android (48x48)no bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scissors4_finalise - android (48x48)no bg.png"; sourceTree = "<group>"; };
-		C6965EDD14DC9FCE00A4A21D /* scissors4_finalise-android(78x78)nobg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scissors4_finalise-android(78x78)nobg.png"; sourceTree = "<group>"; };
-		C6965EDF14DC9FE100A4A21D /* unicorn3_finalise - android (48x48)no bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unicorn3_finalise - android (48x48)no bg.png"; sourceTree = "<group>"; };
-		C6965EE114DC9FF100A4A21D /* unicorn3_finalise-android(78x78)nobg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unicorn3_finalise-android(78x78)nobg.png"; sourceTree = "<group>"; };
 		C6965EE814DCA77400A4A21D /* SingleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleViewController.h; sourceTree = "<group>"; };
 		C6965EE914DCA77400A4A21D /* SingleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleViewController.m; sourceTree = "<group>"; };
 		C6965EEA14DCA77400A4A21D /* SingleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingleViewController.xib; sourceTree = "<group>"; };
-		C69A231814ED496700CFF477 /* xrps-wp7-f4-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "xrps-wp7-f4-2.png"; path = "../../../../Dropbox/Mobile Apps/RPS Interface/win 7 images/xrps-wp7-f4-2.png"; sourceTree = "<group>"; };
-		C6A332B114E828BA0026C51E /* tempRobotButton.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = tempRobotButton.jpg; path = ../../../IphoneRPSScreenshots/tempRobotButton.jpg; sourceTree = "<group>"; };
+		C6A653891584FAB600F786C4 /* paper2_finalise-android(90x90)nobg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paper2_finalise-android(90x90)nobg.png"; sourceTree = "<group>"; };
+		C6A6538A1584FAB600F786C4 /* robot4_finalise-android(90x90)nobg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "robot4_finalise-android(90x90)nobg.png"; sourceTree = "<group>"; };
+		C6A6538B1584FAB600F786C4 /* unicorn3_finalise-android(90x90)nobg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unicorn3_finalise-android(90x90)nobg.png"; sourceTree = "<group>"; };
+		C6A6538F1584FAC600F786C4 /* rock5._finalise-android(90x90)nobg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rock5._finalise-android(90x90)nobg.png"; sourceTree = "<group>"; };
+		C6A653901584FAC600F786C4 /* scissors4_finalise-android(90x90)nobg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scissors4_finalise-android(90x90)nobg.png"; sourceTree = "<group>"; };
 		C6A6C44E1582513C00DBEDDB /* xrps-rulespage---2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xrps-rulespage---2.png"; sourceTree = "<group>"; };
 		C6A6C44F1582513C00DBEDDB /* xrps-rulespage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xrps-rulespage.png"; sourceTree = "<group>"; };
 		C6A812151572CCC9008B0B21 /* XRPS-Interface-background-main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "XRPS-Interface-background-main.png"; sourceTree = "<group>"; };
@@ -212,15 +198,12 @@
 				C6965EAA14DC995700A4A21D /* ViewController.h */,
 				C6965EAB14DC995700A4A21D /* ViewController.m */,
 				C6965E9C14DC995700A4A21D /* Supporting Files */,
-				C6965ECF14DC9F4F00A4A21D /* paper 2_finalise - android (48x48)no bg.png */,
-				C6965ED114DC9F6300A4A21D /* paper2_finalise-android(78x78)nobg.png */,
 				C6A6C44E1582513C00DBEDDB /* xrps-rulespage---2.png */,
 				C6A6C44F1582513C00DBEDDB /* xrps-rulespage.png */,
 				C6AC9326155F1C5F005D81B2 /* xrps-rulespage1.png */,
 				C6A812151572CCC9008B0B21 /* XRPS-Interface-background-main.png */,
 				C6A812171572CCE3008B0B21 /* XRPS-Interface-background-home.png */,
 				C6B463B114F1E9070097F1A7 /* XRPSInterfacebackground3.png */,
-				C69A231814ED496700CFF477 /* xrps-wp7-f4-2.png */,
 				C6AF4EDB1553406000B94D81 /* GI- Display - Unicorn.png */,
 				C6AF4EDE1553408300B94D81 /* GI- Display - Scissors.png */,
 				C6AF4EE6155340C100B94D81 /* GI- Display - Paper.png */,
@@ -231,15 +214,11 @@
 				C6AC9334156D9034005D81B2 /* GI - button-v2-2.png */,
 				C6AC9335156D9035005D81B2 /* GI - button-v2-3.png */,
 				C6AC9330156A33B1005D81B2 /* GI - button-v3.png */,
-				C6965ED314DC9F7A00A4A21D /* robot4_finalise - android (48x48)no bg.png */,
-				C6965ED514DC9F8700A4A21D /* robot4_finalise-android(78x78)nobg.png */,
-				C6965ED714DC9F9D00A4A21D /* rock5._finalise - android (48x48)no bg.png */,
-				C6965ED914DC9FAA00A4A21D /* rock5._finalise-android(78x78)nobg.png */,
-				C6965EDB14DC9FB700A4A21D /* scissors4_finalise - android (48x48)no bg.png */,
-				C6A332B114E828BA0026C51E /* tempRobotButton.jpg */,
-				C6965EDD14DC9FCE00A4A21D /* scissors4_finalise-android(78x78)nobg.png */,
-				C6965EDF14DC9FE100A4A21D /* unicorn3_finalise - android (48x48)no bg.png */,
-				C6965EE114DC9FF100A4A21D /* unicorn3_finalise-android(78x78)nobg.png */,
+				C6A653891584FAB600F786C4 /* paper2_finalise-android(90x90)nobg.png */,
+				C6A6538A1584FAB600F786C4 /* robot4_finalise-android(90x90)nobg.png */,
+				C6A6538B1584FAB600F786C4 /* unicorn3_finalise-android(90x90)nobg.png */,
+				C6A6538F1584FAC600F786C4 /* rock5._finalise-android(90x90)nobg.png */,
+				C6A653901584FAC600F786C4 /* scissors4_finalise-android(90x90)nobg.png */,
 			);
 			path = RPSIphoneOnly;
 			sourceTree = "<group>";
@@ -367,21 +346,9 @@
 			files = (
 				C6965EA014DC995700A4A21D /* InfoPlist.strings in Resources */,
 				C6965EA914DC995700A4A21D /* MainStoryboard.storyboard in Resources */,
-				C6965ED014DC9F4F00A4A21D /* paper 2_finalise - android (48x48)no bg.png in Resources */,
-				C6965ED214DC9F6300A4A21D /* paper2_finalise-android(78x78)nobg.png in Resources */,
-				C6965ED414DC9F7A00A4A21D /* robot4_finalise - android (48x48)no bg.png in Resources */,
-				C6965ED614DC9F8700A4A21D /* robot4_finalise-android(78x78)nobg.png in Resources */,
-				C6965ED814DC9F9D00A4A21D /* rock5._finalise - android (48x48)no bg.png in Resources */,
-				C6965EDA14DC9FAA00A4A21D /* rock5._finalise-android(78x78)nobg.png in Resources */,
-				C6965EDC14DC9FB700A4A21D /* scissors4_finalise - android (48x48)no bg.png in Resources */,
-				C6965EDE14DC9FCE00A4A21D /* scissors4_finalise-android(78x78)nobg.png in Resources */,
-				C6965EE014DC9FE100A4A21D /* unicorn3_finalise - android (48x48)no bg.png in Resources */,
-				C6965EE214DC9FF100A4A21D /* unicorn3_finalise-android(78x78)nobg.png in Resources */,
 				C6965EEC14DCA77400A4A21D /* SingleViewController.xib in Resources */,
 				C6E73B1F14DDDD12007E48F2 /* ModeViewController.xib in Resources */,
 				C690C96F14E5EA83000BB787 /* MultiPlayerViewController.xib in Resources */,
-				C6A332B214E828BA0026C51E /* tempRobotButton.jpg in Resources */,
-				C69A231914ED496700CFF477 /* xrps-wp7-f4-2.png in Resources */,
 				C6B463B214F1E9070097F1A7 /* XRPSInterfacebackground3.png in Resources */,
 				C6AF4EDC1553406000B94D81 /* GI- Display - Unicorn.png in Resources */,
 				C6AF4EDF1553408300B94D81 /* GI- Display - Scissors.png in Resources */,
@@ -398,6 +365,11 @@
 				C6A812181572CCE3008B0B21 /* XRPS-Interface-background-home.png in Resources */,
 				C6A6C4501582513C00DBEDDB /* xrps-rulespage---2.png in Resources */,
 				C6A6C4511582513C00DBEDDB /* xrps-rulespage.png in Resources */,
+				C6A6538C1584FAB600F786C4 /* paper2_finalise-android(90x90)nobg.png in Resources */,
+				C6A6538D1584FAB600F786C4 /* robot4_finalise-android(90x90)nobg.png in Resources */,
+				C6A6538E1584FAB600F786C4 /* unicorn3_finalise-android(90x90)nobg.png in Resources */,
+				C6A653911584FAC600F786C4 /* rock5._finalise-android(90x90)nobg.png in Resources */,
+				C6A653921584FAC600F786C4 /* scissors4_finalise-android(90x90)nobg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

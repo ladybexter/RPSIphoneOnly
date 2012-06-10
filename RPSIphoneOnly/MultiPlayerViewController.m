@@ -636,23 +636,23 @@ int joannaChoice;
     
     if (cArray[indexForPlayer] == 1)
     {
-        [self imageChange:@"rock5._finalise-android(78x78)nobg.png":selfOrOpp];
+        [self imageChange:@"rock5._finalise-android(90x90)nobg.png":selfOrOpp];
     }
     else if (cArray[indexForPlayer] == 2)
     {
-        [self imageChange:@"paper2_finalise-android(78x78)nobg.png":selfOrOpp];
+        [self imageChange:@"paper2_finalise-android(90x90)nobg.png":selfOrOpp];
     }
     else if (cArray[indexForPlayer] == 3)
     {
-        [self imageChange:@"scissors4_finalise-android(78x78)nobg.png":selfOrOpp];
+        [self imageChange:@"scissors4_finalise-android(90x90)nobg.png":selfOrOpp];
     }
     else if (cArray[indexForPlayer] == 4)
     {
-        [self imageChange:@"unicorn3_finalise-android(78x78)nobg.png":selfOrOpp];
+        [self imageChange:@"unicorn3_finalise-android(90x90)nobg.png":selfOrOpp];
     }
     else if (cArray[indexForPlayer] == 5)
     {
-        [self imageChange:@"robot4_finalise-android(78x78)nobg.png":selfOrOpp];
+        [self imageChange:@"robot4_finalise-android(90x90)nobg.png":selfOrOpp];
     }
     else
     {
