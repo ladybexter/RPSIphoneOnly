@@ -219,7 +219,7 @@ void findPercentages(double row[], double predictedPercentageConditional[])
     int u;
     for (u=0; u <5;u++)
     {
-        totalrow+=row[0];
+        totalrow+=row[u];
     }
     
     int ctr=0;
