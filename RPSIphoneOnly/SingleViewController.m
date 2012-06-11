@@ -452,10 +452,12 @@ double predictedNum[2] ={4,4};
 -(void)imageChange:(NSString*) image:(int) number{
     if(number == 1)
     {
+        imgUserDisplay.hidden = NO;
         imgUserDisplay.image = [UIImage imageNamed:(image)];
     }
     else
     {
+        imgComputerDisplay.hidden = NO;
         imgComputerDisplay.image = [UIImage imageNamed:(image)];
     }
 }
@@ -519,6 +521,9 @@ double predictedNum[2] ={4,4};
     predictedNum[0] = 4;
     predictedNum[1] = 4;
     
+    
+    imgComputerDisplay.hidden = YES;
+    imgUserDisplay.hidden = YES;
     //[self imageChange:@"xrps-wp7-f4-2.png":1];
     //[self imageChange:@"xrps-wp7-f4-2.png":2];
     [self displayORHide:1];  

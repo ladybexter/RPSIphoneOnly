@@ -17,7 +17,7 @@
                                 <rect key="frame" x="158" y="176" width="140" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Leaderboard" backgroundImage="GI - button-v3.png">
+                                <state key="normal" title="Leaderboard" backgroundImage="GI - button-v3-3.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -32,7 +32,7 @@
                                 <rect key="frame" x="158" y="125" width="140" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Play" backgroundImage="GI - button-v3.png">
+                                <state key="normal" title="Play" backgroundImage="GI - button-v3-2.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -47,7 +47,7 @@
                                 <rect key="frame" x="158" y="75" width="140" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Rules" backgroundImage="GI - button-v3.png">
+                                <state key="normal" title="Rules" backgroundImage="GI - button-v3-1.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -86,14 +86,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bAx-0C-9Ye" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="R" id="eFq-uY-GT5" customClass="RulesPage1" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="g6T-9s-dkK">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="300"/>
+                        <rect key="frame" x="0.0" y="20" width="480" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1J5-yG-kTl">
                                 <rect key="frame" x="204" y="20" width="72" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Play" backgroundImage="GI - button-v3.png">
+                                <state key="normal" title="Play" backgroundImage="GI - button-v3-1.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -132,7 +132,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QGq-c4-s4k" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="eVV-Ob-GJi" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vNb-Ov-ePd">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="300"/>
+                        <rect key="frame" x="0.0" y="20" width="480" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uv5-tg-NxW">
@@ -422,7 +422,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fY5-RK-hYJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="n5Q-QF-kI1" customClass="ModeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mxl-35-vqe">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="300"/>
+                        <rect key="frame" x="0.0" y="20" width="480" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fV1-eU-O4R">
@@ -470,7 +470,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KcF-uH-7GT" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Zax-uh-4qY" customClass="SingleViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XhR-kO-600">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="300"/>
+                        <rect key="frame" x="0.0" y="20" width="480" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZG5-xJ-Cw9">
@@ -699,7 +699,7 @@
                                 <rect key="frame" x="204" y="20" width="72" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Play" backgroundImage="GI - button-v3.png">
+                                <state key="normal" title="Play" backgroundImage="GI - button-v3-3.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -736,6 +736,9 @@
     </scenes>
     <resources>
         <image name="GI - button-v2-1.png" width="430" height="110"/>
+        <image name="GI - button-v3-1.png" width="386" height="78"/>
+        <image name="GI - button-v3-2.png" width="386" height="78"/>
+        <image name="GI - button-v3-3.png" width="386" height="78"/>
         <image name="GI - button-v3.png" width="391" height="73"/>
         <image name="GI- Display - Paper.png" width="239" height="231"/>
         <image name="GI- Display - Robot (FINAL).png" width="238" height="238"/>

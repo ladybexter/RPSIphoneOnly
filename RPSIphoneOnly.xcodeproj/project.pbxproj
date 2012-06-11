@@ -31,6 +31,9 @@
 		C6A6538E1584FAB600F786C4 /* unicorn3_finalise-android(90x90)nobg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A6538B1584FAB600F786C4 /* unicorn3_finalise-android(90x90)nobg.png */; };
 		C6A653911584FAC600F786C4 /* rock5._finalise-android(90x90)nobg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A6538F1584FAC600F786C4 /* rock5._finalise-android(90x90)nobg.png */; };
 		C6A653921584FAC600F786C4 /* scissors4_finalise-android(90x90)nobg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A653901584FAC600F786C4 /* scissors4_finalise-android(90x90)nobg.png */; };
+		C6A65396158532F800F786C4 /* GI - button-v3-1.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A65393158532F700F786C4 /* GI - button-v3-1.png */; };
+		C6A65397158532F800F786C4 /* GI - button-v3-2.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A65394158532F700F786C4 /* GI - button-v3-2.png */; };
+		C6A65398158532F800F786C4 /* GI - button-v3-3.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A65395158532F800F786C4 /* GI - button-v3-3.png */; };
 		C6A6C4501582513C00DBEDDB /* xrps-rulespage---2.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A6C44E1582513C00DBEDDB /* xrps-rulespage---2.png */; };
 		C6A6C4511582513C00DBEDDB /* xrps-rulespage.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A6C44F1582513C00DBEDDB /* xrps-rulespage.png */; };
 		C6A812161572CCC9008B0B21 /* XRPS-Interface-background-main.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A812151572CCC9008B0B21 /* XRPS-Interface-background-main.png */; };
@@ -41,8 +44,6 @@
 		C6AC932F1568425E005D81B2 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C6AC932E1568425E005D81B2 /* Reachability.m */; };
 		C6AC9331156A33B1005D81B2 /* GI - button-v3.png in Resources */ = {isa = PBXBuildFile; fileRef = C6AC9330156A33B1005D81B2 /* GI - button-v3.png */; };
 		C6AC9333156A33C0005D81B2 /* GI - button-v2-1.png in Resources */ = {isa = PBXBuildFile; fileRef = C6AC9332156A33BF005D81B2 /* GI - button-v2-1.png */; };
-		C6AC9336156D9036005D81B2 /* GI - button-v2-2.png in Resources */ = {isa = PBXBuildFile; fileRef = C6AC9334156D9034005D81B2 /* GI - button-v2-2.png */; };
-		C6AC9337156D9036005D81B2 /* GI - button-v2-3.png in Resources */ = {isa = PBXBuildFile; fileRef = C6AC9335156D9035005D81B2 /* GI - button-v2-3.png */; };
 		C6AF4EB8154E06B700B94D81 /* RulesPage1.m in Sources */ = {isa = PBXBuildFile; fileRef = C6AF4EB6154E06AB00B94D81 /* RulesPage1.m */; };
 		C6AF4EDC1553406000B94D81 /* GI- Display - Unicorn.png in Resources */ = {isa = PBXBuildFile; fileRef = C6AF4EDB1553406000B94D81 /* GI- Display - Unicorn.png */; };
 		C6AF4EDF1553408300B94D81 /* GI- Display - Scissors.png in Resources */ = {isa = PBXBuildFile; fileRef = C6AF4EDE1553408300B94D81 /* GI- Display - Scissors.png */; };
@@ -100,6 +101,9 @@
 		C6A6538B1584FAB600F786C4 /* unicorn3_finalise-android(90x90)nobg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unicorn3_finalise-android(90x90)nobg.png"; sourceTree = "<group>"; };
 		C6A6538F1584FAC600F786C4 /* rock5._finalise-android(90x90)nobg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rock5._finalise-android(90x90)nobg.png"; sourceTree = "<group>"; };
 		C6A653901584FAC600F786C4 /* scissors4_finalise-android(90x90)nobg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scissors4_finalise-android(90x90)nobg.png"; sourceTree = "<group>"; };
+		C6A65393158532F700F786C4 /* GI - button-v3-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GI - button-v3-1.png"; sourceTree = "<group>"; };
+		C6A65394158532F700F786C4 /* GI - button-v3-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GI - button-v3-2.png"; sourceTree = "<group>"; };
+		C6A65395158532F800F786C4 /* GI - button-v3-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GI - button-v3-3.png"; sourceTree = "<group>"; };
 		C6A6C44E1582513C00DBEDDB /* xrps-rulespage---2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xrps-rulespage---2.png"; sourceTree = "<group>"; };
 		C6A6C44F1582513C00DBEDDB /* xrps-rulespage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xrps-rulespage.png"; sourceTree = "<group>"; };
 		C6A812151572CCC9008B0B21 /* XRPS-Interface-background-main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "XRPS-Interface-background-main.png"; sourceTree = "<group>"; };
@@ -112,8 +116,6 @@
 		C6AC932E1568425E005D81B2 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		C6AC9330156A33B1005D81B2 /* GI - button-v3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GI - button-v3.png"; path = "../../../../Dropbox/Mobile Apps/RPS Interface/Iphone/GI - buttons/GI - button-v3.png"; sourceTree = "<group>"; };
 		C6AC9332156A33BF005D81B2 /* GI - button-v2-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GI - button-v2-1.png"; path = "../../../../Dropbox/Mobile Apps/RPS Interface/Iphone/GI - buttons/GI - button-v2-1.png"; sourceTree = "<group>"; };
-		C6AC9334156D9034005D81B2 /* GI - button-v2-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GI - button-v2-2.png"; sourceTree = "<group>"; };
-		C6AC9335156D9035005D81B2 /* GI - button-v2-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GI - button-v2-3.png"; sourceTree = "<group>"; };
 		C6AF4EA1154820B500B94D81 /* AppSpecificValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppSpecificValues.h; path = ../../../../Downloads/GKTapper/Classes/AppSpecificValues.h; sourceTree = "<group>"; };
 		C6AF4EB5154E06A900B94D81 /* RulesPage1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RulesPage1.h; sourceTree = "<group>"; };
 		C6AF4EB6154E06AB00B94D81 /* RulesPage1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RulesPage1.m; sourceTree = "<group>"; };
@@ -211,9 +213,10 @@
 				C6AF4EE4155340A800B94D81 /* GI- Display - Rock.png */,
 				C6AF4EE21553409D00B94D81 /* GI - button-v2.png */,
 				C6AC9332156A33BF005D81B2 /* GI - button-v2-1.png */,
-				C6AC9334156D9034005D81B2 /* GI - button-v2-2.png */,
-				C6AC9335156D9035005D81B2 /* GI - button-v2-3.png */,
 				C6AC9330156A33B1005D81B2 /* GI - button-v3.png */,
+				C6A65393158532F700F786C4 /* GI - button-v3-1.png */,
+				C6A65394158532F700F786C4 /* GI - button-v3-2.png */,
+				C6A65395158532F800F786C4 /* GI - button-v3-3.png */,
 				C6A653891584FAB600F786C4 /* paper2_finalise-android(90x90)nobg.png */,
 				C6A6538A1584FAB600F786C4 /* robot4_finalise-android(90x90)nobg.png */,
 				C6A6538B1584FAB600F786C4 /* unicorn3_finalise-android(90x90)nobg.png */,
@@ -359,8 +362,6 @@
 				C6AC9327155F1C5F005D81B2 /* xrps-rulespage1.png in Resources */,
 				C6AC9331156A33B1005D81B2 /* GI - button-v3.png in Resources */,
 				C6AC9333156A33C0005D81B2 /* GI - button-v2-1.png in Resources */,
-				C6AC9336156D9036005D81B2 /* GI - button-v2-2.png in Resources */,
-				C6AC9337156D9036005D81B2 /* GI - button-v2-3.png in Resources */,
 				C6A812161572CCC9008B0B21 /* XRPS-Interface-background-main.png in Resources */,
 				C6A812181572CCE3008B0B21 /* XRPS-Interface-background-home.png in Resources */,
 				C6A6C4501582513C00DBEDDB /* xrps-rulespage---2.png in Resources */,
@@ -370,6 +371,9 @@
 				C6A6538E1584FAB600F786C4 /* unicorn3_finalise-android(90x90)nobg.png in Resources */,
 				C6A653911584FAC600F786C4 /* rock5._finalise-android(90x90)nobg.png in Resources */,
 				C6A653921584FAC600F786C4 /* scissors4_finalise-android(90x90)nobg.png in Resources */,
+				C6A65396158532F800F786C4 /* GI - button-v3-1.png in Resources */,
+				C6A65397158532F800F786C4 /* GI - button-v3-2.png in Resources */,
+				C6A65398158532F800F786C4 /* GI - button-v3-3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1021,8 +1021,7 @@ int joannaChoice;
         
         //display what user picked for round
         [self displayChange:3 :1];
-        //display what opp picked for round
-        [self displayChange:4:2];
+        imgOppPick.hidden = YES;
     }
     else if (playerMe == 2)
     {
@@ -1889,6 +1888,7 @@ int joannaChoice;
     btnUnicorn.enabled = YES;
     btnRock.enabled = YES;
     btnAdvice.enabled = NO;
+    btnPostScore.hidden = YES;
     lblOppScore.text = @"000";
     lblUserScore.text = @"000";
     lblStatus.text = @"Please start new game";
@@ -1938,7 +1938,7 @@ int joannaChoice;
         btnUnicorn.enabled = NO;
         btnRock.enabled = NO;
         btnPostScore.hidden = NO;
-        lblHowResult.textColor = [UIColor orangeColor];
+        lblHowResult.textColor = [UIColor colorWithRed:0.8 green:0.6 blue:0 alpha:1];
         lblHowResult.text =@"Try to update your leaderboard score again!";
         lblStatus.text = @"Match has ended";
         lblYOUResult.text = @"";
@@ -1968,7 +1968,7 @@ int joannaChoice;
         btnUnicorn.enabled = NO;
         btnRock.enabled = NO;
         btnPostScore.hidden = NO;
-        lblHowResult.textColor = [UIColor orangeColor];
+        lblHowResult.textColor = [UIColor colorWithRed:0.8 green:0.6 blue:0 alpha:1];
         lblHowResult.text =@"Please update your leaderboard score!";
         lblStatus.text = @"Match has ended";
         lblYOUResult.text = @"";
@@ -1994,6 +1994,7 @@ int joannaChoice;
         btnUnicorn.enabled = YES;
         btnRock.enabled = YES;
         btnAdvice.enabled = YES;
+        btnPostScore.hidden = YES;
         lblStatus.text =@"It's your turn";
         
         GKTurnBasedParticipant *firstParticipant = 
