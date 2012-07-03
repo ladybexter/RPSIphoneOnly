@@ -33,7 +33,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"xrps-rulespage---2" ofType:@"png" inDirectory:@""];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"hdxrpsbg" ofType:@"png" inDirectory:@""];
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile:path]]];
 }

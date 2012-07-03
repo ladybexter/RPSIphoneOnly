@@ -127,8 +127,6 @@ int joannaChoice;
     [self setLblLBScore:nil];
     [self setBtnPostScore:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -154,8 +152,7 @@ int joannaChoice;
     
     for (int x=0; x<5;x++)
     {
-        [actionArrayNS addObject:[NSNumber numberWithDouble:0.2]];
-        //[actionArrayNS addObject:[NSString stringWithFormat:@"%d", 0.2]];       
+        [actionArrayNS addObject:[NSNumber numberWithDouble:0.2]];      
     }
     
     NSLog(@"actionArray: %@", actionArrayNS);
@@ -425,7 +422,6 @@ int joannaChoice;
     lblYOUResult.textColor = [UIColor blueColor];
     lblYOUResult.text = @"YOU TIE";
     lblHowResult.text = @"No Win, No Lose";
-    //[self displayORHide:3];  
     
 }
 
@@ -444,7 +440,6 @@ int joannaChoice;
         [gameInfoArray replaceObjectAtIndex:1 withObject:[NSNumber numberWithDouble:cArray[1]]];
     }
     
-    //[self displayORHide:3];  
 }
 
 -(void)lose
@@ -459,8 +454,7 @@ int joannaChoice;
         cArray[0] = [[gameInfoArray objectAtIndex:0] floatValue] + 1;
         [gameInfoArray replaceObjectAtIndex:0 withObject:[NSNumber numberWithDouble:cArray[0]]];
     }
-    
-    //[self displayORHide:3];  
+     
 }
 
 
@@ -636,28 +630,27 @@ int joannaChoice;
     
     if (cArray[indexForPlayer] == 1)
     {
-        [self imageChange:@"rock5._finalise-android(90x90)nobg.png":selfOrOpp];
+        [self imageChange:@"rock5(originalsize).png":selfOrOpp];
     }
     else if (cArray[indexForPlayer] == 2)
     {
-        [self imageChange:@"paper2_finalise-android(90x90)nobg.png":selfOrOpp];
+        [self imageChange:@"paper2(originalsize).png":selfOrOpp];
     }
     else if (cArray[indexForPlayer] == 3)
     {
-        [self imageChange:@"scissors4_finalise-android(90x90)nobg.png":selfOrOpp];
+        [self imageChange:@"scissors4(originalsize).png":selfOrOpp];
     }
     else if (cArray[indexForPlayer] == 4)
     {
-        [self imageChange:@"unicorn3_finalise-android(90x90)nobg.png":selfOrOpp];
+        [self imageChange:@"unicorn3(originalsize).png":selfOrOpp];
     }
     else if (cArray[indexForPlayer] == 5)
     {
-        [self imageChange:@"robot4_finalise-android(90x90)nobg.png":selfOrOpp];
+        [self imageChange:@"robot5(originalsize).png":selfOrOpp];
     }
     else
     {
         
-        //[self imageChange:@"xrps-wp7-f4-2.png":selfOrOpp];
     }
 }
 
@@ -1580,8 +1573,6 @@ int joannaChoice;
         {
             imgOppPick.hidden = YES;
             imgUserPick.hidden = YES;
-            //[self imageChange:@"xrps-wp7-f4-2.png" :1];
-            //[self imageChange:@"xrps-wp7-f4-2.png" :2];
             
             if (TakeTurn == 1)
             {
@@ -1723,8 +1714,6 @@ int joannaChoice;
         
         imgOppPick.hidden = YES;
         imgUserPick.hidden = YES;    
-        //[self imageChange:@"xrps-wp7-f4-2.png" :1];
-        //[self imageChange:@"xrps-wp7-f4-2.png" :2];
         
         
         statusString = @"Match Ended";
@@ -1754,8 +1743,6 @@ int joannaChoice;
                 {
                     imgOppPick.hidden = YES;
                     imgUserPick.hidden = YES;
-                    //[self imageChange:@"xrps-wp7-f4-2.png" :1];
-                    //[self imageChange:@"xrps-wp7-f4-2.png" :2];
                     
                     lblRound.text = @"";
                     
@@ -1795,7 +1782,6 @@ int joannaChoice;
                 //only display what player1 picked
                 [self displayChange:3: 1];
                 imgOppPick.hidden = YES;
-                //[self imageChange:@"xrps-wp7-f4-2.png" :2];
                 
                 cArray[2] = [[gameInfoArray objectAtIndex:2] floatValue];
                 
@@ -1900,8 +1886,6 @@ int joannaChoice;
     lblPlayerName.text = @"Other Player";
     imgOppPick.hidden = YES;
     imgUserPick.hidden = YES;
-    //[self imageChange:@"xrps-wp7-f4-2.png" :1];
-    //[self imageChange:@"xrps-wp7-f4-2.png" :2];
     
     
 }
@@ -2059,8 +2043,6 @@ int joannaChoice;
         
             imgOppPick.hidden = YES;
             imgUserPick.hidden = YES;
-            //[self imageChange:@"xrps-wp7-f4-2.png" :1];
-            //[self imageChange:@"xrps-wp7-f4-2.png" :2];
         
             lblYOUResult.text = @"";
             lblHowResult.text = @"";

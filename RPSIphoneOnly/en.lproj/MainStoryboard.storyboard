@@ -32,7 +32,7 @@
                                 <rect key="frame" x="158" y="125" width="140" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Play" backgroundImage="GI - button-v3-2.png">
+                                <state key="normal" title="Play" backgroundImage="GI - button-v3-3.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -47,7 +47,7 @@
                                 <rect key="frame" x="158" y="75" width="140" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Rules" backgroundImage="GI - button-v3-1.png">
+                                <state key="normal" title="Rules" backgroundImage="GI - button-v3-3.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -93,7 +93,7 @@
                                 <rect key="frame" x="204" y="20" width="72" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Play" backgroundImage="GI - button-v3-1.png">
+                                <state key="normal" title="Play" backgroundImage="GI - button-v3-3.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -139,7 +139,7 @@
                                 <rect key="frame" x="169" y="79" width="143" height="61"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Training" backgroundImage="GI - button-v3.png">
+                                <state key="normal" title="Training" backgroundImage="GI - button-v3-3.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -154,7 +154,7 @@
                                 <rect key="frame" x="169" y="148" width="143" height="61"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Multiplayer" backgroundImage="GI - button-v3.png">
+                                <state key="normal" title="Multiplayer" backgroundImage="GI - button-v3-3.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -429,7 +429,7 @@
                                 <rect key="frame" x="169" y="79" width="143" height="61"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="easy mode" backgroundImage="GI - button-v3.png">
+                                <state key="normal" title="easy mode" backgroundImage="GI - button-v3-3.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -445,7 +445,7 @@
                                 <rect key="frame" x="169" y="148" width="143" height="61"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="intense mode" backgroundImage="GI - button-v3.png">
+                                <state key="normal" title="intense mode" backgroundImage="GI - button-v3-3.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -725,7 +725,7 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </viewController>
-                <swipeGestureRecognizer direction="left" id="QdR-8x-MKd">
+                <swipeGestureRecognizer direction="right" id="QdR-8x-MKd">
                     <connections>
                         <segue destination="eFq-uY-GT5" kind="modal" id="oyY-zG-kMI"/>
                     </connections>
@@ -736,10 +736,7 @@
     </scenes>
     <resources>
         <image name="GI - button-v2-1.png" width="430" height="110"/>
-        <image name="GI - button-v3-1.png" width="386" height="78"/>
-        <image name="GI - button-v3-2.png" width="386" height="78"/>
         <image name="GI - button-v3-3.png" width="386" height="78"/>
-        <image name="GI - button-v3.png" width="391" height="73"/>
         <image name="GI- Display - Paper.png" width="239" height="231"/>
         <image name="GI- Display - Robot (FINAL).png" width="238" height="238"/>
         <image name="GI- Display - Rock.png" width="227" height="220"/>

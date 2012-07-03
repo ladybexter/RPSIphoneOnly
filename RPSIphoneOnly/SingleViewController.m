@@ -263,23 +263,23 @@ double predictedNum[2] ={4,4};
 {
     if(computerPick == 1)
     {
-        [self imageChange:@"rock5._finalise-android(90x90)nobg.png":2];
+        [self imageChange:@"rock5(originalsize).png":2];
     }
     else if(computerPick == 2)
     {
-        [self imageChange:@"paper2_finalise-android(90x90)nobg.png":2];
+        [self imageChange:@"paperv2(originalsize).png":2];
     }
     else if(computerPick == 3)
     {
-        [self imageChange:@"scissors4_finalise-android(90x90)nobg.png":2];    
+        [self imageChange:@"scissors4(originalsize).png":2];    
     }
     else if(computerPick == 4)
     {
-        [self imageChange:@"unicorn3_finalise-android(90x90)nobg.png":2];    
+        [self imageChange:@"unicorn5(originalsize).png":2];    
     }
     else
     {
-        [self imageChange:@"robot4_finalise-android(90x90)nobg.png":2];    
+        [self imageChange:@"robot5(originalsize).png":2];    
     }
     
     if(finalImage == true)
@@ -550,7 +550,7 @@ double predictedNum[2] ={4,4};
     userChoice = 1;
     
     
-    [self imageChange:@"rock5._finalise-android(90x90)nobg.png":1];
+    [self imageChange:@"rock5(originalsize).png":1];
     
     [self displayORHide:1];  
     
@@ -568,7 +568,7 @@ double predictedNum[2] ={4,4};
     currentNumber = 2;
     userChoice = 2;    
     
-    [self imageChange:@"paper2_finalise-android(90x90)nobg.png":1];
+    [self imageChange:@"paperv2(originalsize).png":1];
     [self displayORHide:1];  
     
     [self gameComplete];
@@ -583,7 +583,7 @@ double predictedNum[2] ={4,4};
     currentNumber = 3;
     userChoice = 3;
     
-    [self imageChange:@"scissors4_finalise-android(90x90)nobg.png":1];
+    [self imageChange:@"scissors4(originalsize).png":1];
     [self displayORHide:1];     
     
     [self gameComplete];
@@ -598,7 +598,7 @@ double predictedNum[2] ={4,4};
     currentNumber = 4;
     userChoice = 4;
     
-    [self imageChange:@"unicorn3_finalise-android(90x90)nobg.png":1];
+    [self imageChange:@"unicorn3(originalsize).png":1];
     [self displayORHide:1];  
     
     [self gameComplete];
@@ -613,7 +613,7 @@ double predictedNum[2] ={4,4};
     currentNumber = 5;
     userChoice = 5;
     
-    [self imageChange:@"robot4_finalise-android(90x90)nobg.png":1];
+    [self imageChange:@"robot5(originalsize).png":1];
     [self displayORHide:1];      
     
     [self gameComplete];
