@@ -90,10 +90,10 @@ int joannaChoice;
     btnUnicorn.enabled = NO;
     btnRock.enabled = NO;
     
-    lblStatus.text = @"Please press Games to get started";
+    lblStatus.text = @"Please press 'Games' to get started";
     lblRound.text = @"";
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"XRPS-Interface-background-main" ofType:@"png" inDirectory:@""];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"XRPS-Interface-background@2x" ofType:@"png" inDirectory:@""];
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile:path]]];
     
@@ -630,23 +630,23 @@ int joannaChoice;
     
     if (cArray[indexForPlayer] == 1)
     {
-        [self imageChange:@"rock5(originalsize).png":selfOrOpp];
+        [self imageChange:@"rock.png":selfOrOpp];
     }
     else if (cArray[indexForPlayer] == 2)
     {
-        [self imageChange:@"paper2(originalsize).png":selfOrOpp];
+        [self imageChange:@"paper.png":selfOrOpp];
     }
     else if (cArray[indexForPlayer] == 3)
     {
-        [self imageChange:@"scissors4(originalsize).png":selfOrOpp];
+        [self imageChange:@"scissors.png":selfOrOpp];
     }
     else if (cArray[indexForPlayer] == 4)
     {
-        [self imageChange:@"unicorn3(originalsize).png":selfOrOpp];
+        [self imageChange:@"unicorn.png":selfOrOpp];
     }
     else if (cArray[indexForPlayer] == 5)
     {
-        [self imageChange:@"robot5(originalsize).png":selfOrOpp];
+        [self imageChange:@"robot.png":selfOrOpp];
     }
     else
     {
@@ -772,7 +772,7 @@ int joannaChoice;
                                         }
                                     }];
             lblYOUResult.text = @"";
-            lblHowResult.textColor = [UIColor colorWithRed:0.8 green:0.6 blue:0 alpha:1];
+            lblHowResult.textColor = [UIColor colorWithRed:0.6 green:0.4 blue:0 alpha:1];
             lblHowResult.text = @"";
             lblStatus.text = @"Leaderboard Post was successful";
             btnPostScore.hidden = YES;
@@ -938,7 +938,7 @@ int joannaChoice;
     {
         //there was an error retreiving leaderboardscore
         lblYOUResult.text = @"";
-        lblHowResult.textColor = [UIColor colorWithRed:0.8 green:0.6 blue:0 alpha:1];
+        lblHowResult.textColor = [UIColor colorWithRed:0.6 green:0.4 blue:0 alpha:1];
         lblHowResult.text = @"Sorry, there was an error trying to update your score, please try again!";
         
         btnPostScore.hidden = NO;
@@ -1698,17 +1698,17 @@ int joannaChoice;
         
         if (userScoreInt == oppScoreInt)
         {
-            lblHowResult.textColor = [UIColor colorWithRed:0.8 green:0.6 blue:0 alpha:1];
+            lblHowResult.textColor = [UIColor colorWithRed:0.6 green:0.4 blue:0 alpha:1];
             lblHowResult.text = @"You Tied";
         }
         else if (userScoreInt < oppScoreInt)
         {
-            lblHowResult.textColor = [UIColor colorWithRed:0.8 green:0.6 blue:0 alpha:1];
+            lblHowResult.textColor = [UIColor colorWithRed:0.6 green:0.4 blue:0 alpha:1];
             lblHowResult.text = @"You Lost Match";
         }
         else if (userScoreInt > oppScoreInt)
         {
-            lblHowResult.textColor = [UIColor colorWithRed:0.8 green:0.6 blue:0 alpha:1];
+            lblHowResult.textColor = [UIColor colorWithRed:0.6 green:0.4 blue:0 alpha:1];
             lblHowResult.text = @"You Won Match";
         }
         
@@ -1922,7 +1922,7 @@ int joannaChoice;
         btnUnicorn.enabled = NO;
         btnRock.enabled = NO;
         btnPostScore.hidden = NO;
-        lblHowResult.textColor = [UIColor colorWithRed:0.8 green:0.6 blue:0 alpha:1];
+        lblHowResult.textColor = [UIColor colorWithRed:0.6 green:0.4 blue:0 alpha:1];
         lblHowResult.text =@"Try to update your leaderboard score again!";
         lblStatus.text = @"Match has ended";
         lblYOUResult.text = @"";
@@ -1952,7 +1952,7 @@ int joannaChoice;
         btnUnicorn.enabled = NO;
         btnRock.enabled = NO;
         btnPostScore.hidden = NO;
-        lblHowResult.textColor = [UIColor colorWithRed:0.8 green:0.6 blue:0 alpha:1];
+        lblHowResult.textColor = [UIColor colorWithRed:0.6 green:0.4 blue:0 alpha:1];
         lblHowResult.text =@"Please update your leaderboard score!";
         lblStatus.text = @"Match has ended";
         lblYOUResult.text = @"";

@@ -80,7 +80,7 @@ double predictedNum[2] ={4,4};
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"XRPS-Interface-background-main" ofType:@"png" inDirectory:@""];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"XRPS-Interface-background@2x" ofType:@"png" inDirectory:@""];
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile:path]]];
     
@@ -263,23 +263,23 @@ double predictedNum[2] ={4,4};
 {
     if(computerPick == 1)
     {
-        [self imageChange:@"rock5(originalsize).png":2];
+        [self imageChange:@"rock.png":2];
     }
     else if(computerPick == 2)
     {
-        [self imageChange:@"paperv2(originalsize).png":2];
+        [self imageChange:@"paper.png":2];
     }
     else if(computerPick == 3)
     {
-        [self imageChange:@"scissors4(originalsize).png":2];    
+        [self imageChange:@"scissors.png":2];    
     }
     else if(computerPick == 4)
     {
-        [self imageChange:@"unicorn5(originalsize).png":2];    
+        [self imageChange:@"unicorn.png":2];    
     }
     else
     {
-        [self imageChange:@"robot5(originalsize).png":2];    
+        [self imageChange:@"robot.png":2];    
     }
     
     if(finalImage == true)
@@ -524,8 +524,6 @@ double predictedNum[2] ={4,4};
     
     imgComputerDisplay.hidden = YES;
     imgUserDisplay.hidden = YES;
-    //[self imageChange:@"xrps-wp7-f4-2.png":1];
-    //[self imageChange:@"xrps-wp7-f4-2.png":2];
     [self displayORHide:1];  
 }
 
@@ -550,7 +548,7 @@ double predictedNum[2] ={4,4};
     userChoice = 1;
     
     
-    [self imageChange:@"rock5(originalsize).png":1];
+    [self imageChange:@"rock.png":1];
     
     [self displayORHide:1];  
     
@@ -568,7 +566,7 @@ double predictedNum[2] ={4,4};
     currentNumber = 2;
     userChoice = 2;    
     
-    [self imageChange:@"paperv2(originalsize).png":1];
+    [self imageChange:@"paper.png":1];
     [self displayORHide:1];  
     
     [self gameComplete];
@@ -583,7 +581,7 @@ double predictedNum[2] ={4,4};
     currentNumber = 3;
     userChoice = 3;
     
-    [self imageChange:@"scissors4(originalsize).png":1];
+    [self imageChange:@"scissors.png":1];
     [self displayORHide:1];     
     
     [self gameComplete];
@@ -598,7 +596,7 @@ double predictedNum[2] ={4,4};
     currentNumber = 4;
     userChoice = 4;
     
-    [self imageChange:@"unicorn3(originalsize).png":1];
+    [self imageChange:@"unicorn.png":1];
     [self displayORHide:1];  
     
     [self gameComplete];
@@ -613,7 +611,7 @@ double predictedNum[2] ={4,4};
     currentNumber = 5;
     userChoice = 5;
     
-    [self imageChange:@"robot5(originalsize).png":1];
+    [self imageChange:@"robot.png":1];
     [self displayORHide:1];      
     
     [self gameComplete];
