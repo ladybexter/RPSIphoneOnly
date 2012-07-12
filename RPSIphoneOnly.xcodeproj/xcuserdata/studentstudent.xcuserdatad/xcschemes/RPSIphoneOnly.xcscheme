@@ -89,6 +89,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
+      customArchiveName = "Xtreme RPS"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

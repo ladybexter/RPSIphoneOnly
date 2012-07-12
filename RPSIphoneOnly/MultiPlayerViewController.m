@@ -77,7 +77,7 @@ int joannaChoice;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    UIAlertView *eventInstruct = [[UIAlertView alloc] initWithTitle:nil message:@"Please press Games to either \n START NEW game \n or \n CONTINUE game \n\n You need to be logged into Game Center to play Multiplayer" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView *eventInstruct = [[UIAlertView alloc] initWithTitle:nil message:@"Please press 'Games' to either \n START NEW game \n or \n CONTINUE game \n\n You need to be logged into 'Game Center' to play Multiplayer" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 
     [eventInstruct show];
     
